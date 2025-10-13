@@ -1,4 +1,268 @@
-<section class="home">
-  <h1>Welcome to Datalent</h1>
-  <p>This is the home page.</p>
-</section>
+<!-- Home component template (Angular) -->
+<header id="main-header" class="fixed top-0 left-0 right-0 z-50 py-4 px-4 sm:px-8 bg-dark-base/95 backdrop-blur-sm sticky-header">
+  <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <a routerLink="/home" class="text-2xl font-extrabold text-white tracking-widest uppercase">
+      Data<span class="text-accent-cyan">LENT SOLUTIONS</span>
+    </a>
+
+    <nav class="hidden md:flex space-x-8">
+      <a href="#home" class="nav-link text-text-light hover:text-accent-cyan transition duration-200 py-1" data-section="home">Inicio</a>
+      <a href="#services" class="nav-link text-text-light hover:text-accent-cyan transition duration-200 py-1" data-section="services">Servicios</a>
+      <a href="#why-us" class="nav-link text-text-light hover:text-accent-cyan transition duration-200 py-1" data-section="why-us">Por Qué Nosotros</a>
+      <a href="#contact" class="nav-link text-text-light hover:text-accent-cyan transition duration-200 py-1" data-section="contact">Contacto</a>
+    </nav>
+
+    <a href="#contact" class="hidden sm:block cta-button px-5 py-2 rounded-lg text-sm transition duration-300">Contactar Ahora</a>
+
+    <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none" (click)="toggleMobileMenu()">
+      <i data-lucide="menu"></i>
+    </button>
+  </div>
+  <div id="mobile-menu" *ngIf="mobileMenuOpen" class="md:hidden mt-4 space-y-2">
+    <a href="#home" class="nav-link block text-text-light hover:text-accent-cyan p-2 rounded-lg" data-section="home" (click)="closeMobileMenu()">Inicio</a>
+    <a href="#services" class="nav-link block text-text-light hover:text-accent-cyan p-2 rounded-lg" data-section="services" (click)="closeMobileMenu()">Servicios</a>
+    <a href="#why-us" class="nav-link block text-text-light hover:text-accent-cyan p-2 rounded-lg" data-section="why-us" (click)="closeMobileMenu()">Por Qué Nosotros</a>
+    <a href="#contact" class="nav-link block text-text-light hover:text-accent-cyan p-2 rounded-lg" data-section="contact" (click)="closeMobileMenu()">Contacto</a>
+    <a href="#contact" class="block cta-button px-4 py-2 text-center rounded-lg text-sm" (click)="closeMobileMenu()">Contactar Ahora</a>
+  </div>
+</header>
+
+<main class="pt-20">
+  <section id="home" class="min-h-screen flex items-center bg-dark-base relative overflow-hidden px-4 py-20 sm:py-32">
+    <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#1f2937 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+  <div class="max-w-7xl mx-auto z-10 text-center" appReveal>
+      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6">
+        Tu <span class="text-accent-cyan">Puerta de Acceso</span> al Mejor Talento.
+      </h1>
+      <p class="text-xl sm:text-2xl text-gray-400 max-w-4xl mx-auto mb-10">
+        Transformamos la forma en que las empresas en España y Europa encuentran, evalúan, incorporan, forman y desarrollan su capital humano a través de expertos en recursos humanos basados en analítica predictiva e IA.
+      </p>
+      <a href="#contact" class="cta-button inline-block text-lg px-10 py-4 rounded-xl shadow-2xl shadow-cyan-500/50 transition duration-300 transform hover:scale-105">Consultar Ahora</a>
+    </div>
+  </section>
+
+  <!-- 2. SECCIÓN DE PROPUESTA DE VALOR / PROBLEMA-SOLUCIÓN -->
+  <section id="value-prop" class="py-20 bg-gray-900 px-4" appReveal>
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-white">
+        Convirtiendo Desafíos Comunes en <span class="text-accent-cyan">Ventaja Competitiva</span>
+      </h2>
+      <p class="text-xl text-gray-400 mb-12">
+        Abordamos los mayores puntos de dolor de la industria en la región.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-8 text-left">
+        <!-- Card 1: Problema Resuelto -->
+  <div class="p-6 rounded-xl bg-gray-mid border border-gray-700" appReveal>
+          <i data-lucide="clock-stopwatch" class="w-8 h-8 text-accent-cyan mb-4"></i>
+          <h3 class="text-xl font-semibold text-white mb-2">Tiempo de Contratación Extenso</h3>
+          <p class="text-gray-400">Reducimos el tiempo de contratación a semanas, no meses, con acceso a un pool de talento.</p>
+        </div>
+
+        <!-- Card 2: Problema Resuelto -->
+  <div class="p-6 rounded-xl bg-gray-mid border border-gray-700" appReveal style="transition-delay: 0.1s;">
+          <i data-lucide="zap" class="w-8 h-8 text-accent-cyan mb-4"></i>
+          <h3 class="text-xl font-semibold text-white mb-2">Falta de Experiencia Específica</h3>
+          <p class="text-gray-400">Nuestros expertos senior tienen las capacidades y herramientas para conseguir alineación 
+            con el perfil target solicitado.</p>
+        </div>
+
+        <!-- Card 3: Problema Resuelto -->
+  <div class="p-6 rounded-xl bg-gray-mid border border-gray-700" appReveal style="transition-delay: 0.2s;">
+          <i data-lucide="shield-check" class="w-8 h-8 text-accent-cyan mb-4"></i>
+          <h3 class="text-xl font-semibold text-white mb-2">Riesgo de Mala Contratación</h3>
+          <p class="text-gray-400">Implementamos analitica predictiva 
+            y rigurosos procesos de validación: competencial, técnica, motivacional y fit cultural.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. SECCIÓN DE SERVICIOS CLAVE -->
+  <section id="services" class="py-24 bg-dark-base px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 reveal-item">
+        <span class="text-sm font-semibold uppercase text-accent-cyan">Nuestras Soluciones Modulares</span>
+        <h2 class="text-4xl sm:text-5xl font-bold text-white mt-2">
+          Servicios Diseñados para el Ecosistema Data & AI
+        </h2>
+      </div>
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Servicio 1: TaaS -->
+  <div class="service-card p-6 bg-gray-mid rounded-xl border-2 border-transparent transition duration-500 cursor-pointer" appReveal>
+          <i data-lucide="cloud-cog" class="w-10 h-10 text-accent-cyan mb-4"></i>
+          <h3 class="text-2xl font-bold text-white mb-3">Talent-as-a-Service (TaaS)</h3>
+          <p class="text-gray-400">Acceso flexible y bajo demanda a equipos de datos y IA altamente especializados mediante suscripción mensual. La máxima agilidad.</p>
+        </div>
+
+        <!-- Servicio 2: Reclutamiento-->
+  <div class="service-card p-6 bg-gray-mid rounded-xl border-2 border-transparent transition duration-500 cursor-pointer" appReveal style="transition-delay: 0.1s;">
+          <i data-lucide="target" class="w-10 h-10 text-accent-cyan mb-4"></i>
+          <h3 class="text-2xl font-bold text-white mb-3">Reclutamiento</h3>
+          <p class="text-gray-400">Soporte completo, desde la estrategia de búsqueda hasta la exitosa incorporación del candidato ideal a tiempo completo.</p>
+        </div>
+
+        <!-- Servicio 3: Selección de personal-->
+  <div class="service-card p-6 bg-gray-mid rounded-xl border-2 border-transparent transition duration-500 cursor-pointer" appReveal style="transition-delay: 0.1s;">
+          <i data-lucide="briefcase" class="w-10 h-10 text-accent-cyan mb-4"></i>
+          <h3 class="text-2xl font-bold text-white mb-3">Selección de personal</h3>
+          <p class="text-gray-400">Soporte completo, desde la estrategia de búsqueda hasta la exitosa incorporación del candidato ideal a tiempo completo.</p>
+        </div>
+
+        <!-- Servicio 4: Formación a medida -->
+  <div class="service-card p-6 bg-gray-mid rounded-xl border-2 border-transparent transition duration-500 cursor-pointer" appReveal style="transition-delay: 0.1s;">
+          <i data-lucide="notebook-pen" class="w-10 h-10 text-accent-cyan mb-4"></i>
+          <h3 class="text-2xl font-bold text-white mb-3">Formación a medida</h3>
+          <p class="text-gray-400">Formación a medida para empresas y particulares.</p>
+        </div>
+
+        <!-- Servicio 5: Mentorías 1:1 -->
+  <div class="service-card p-6 bg-gray-mid rounded-xl border-2 border-transparent transition duration-500 cursor-pointer" appReveal style="transition-delay: 0.1s;">
+          <i data-lucide="rocket" class="w-10 h-10 text-accent-cyan mb-4"></i>
+          <h3 class="text-2xl font-bold text-white mb-3">Mentorías 1:1</h3>
+          <p class="text-gray-400">Roadmap para el desarrollo de habilidades. Preparación de entrevistas. Orientación laboral.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. SECCIÓN "WHY PARTNER WITH US" (Diferenciadores) -->
+  <section id="why-us" class="py-24 bg-gray-900 px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+  <div appReveal>
+          <span class="text-sm font-semibold uppercase text-accent-cyan">Nuestra Propuesta Única</span>
+          <h2 class="text-4xl sm:text-5xl font-bold text-white mt-2 mb-6">
+            Por Qué DATALENT SOLUTIONS es tu Socio Estratégico
+          </h2>
+          <p class="text-lg text-gray-400 mb-8">
+            Somos un servicio boutique especializado en consultoría con Data & AI.
+            Nuestro enfoque técnico garantiza métricas de éxito en sinergia con cada modelo de negocio.
+          </p>
+          <a href="#contact" class="cta-button inline-block px-8 py-3 rounded-lg text-sm transition duration-300">Hablemos de tu Reto</a>
+        </div>
+
+  <div class="space-y-6" appReveal style="transition-delay: 0.1s;">
+          <!-- Diferenciador 1 -->
+          <div class="flex items-start space-x-4 p-4 rounded-lg border border-accent-cyan/20 bg-dark-base/50">
+            <i data-lucide="brain" class="flex-shrink-0 w-8 h-8 text-accent-cyan mt-1"></i>
+            <div>
+              <h4 class="text-xl font-semibold text-white">Validación Técnica Profunda</h4>
+              <p class="text-gray-400">Entrevistas realizadas por ingenieros y científicos de datos, no por reclutadores generalistas.</p>
+            </div>
+          </div>
+
+          <!-- Diferenciador 2 -->
+          <div class="flex items-start space-x-4 p-4 rounded-lg border border-accent-cyan/20 bg-dark-base/50">
+            <i data-lucide="globe" class="flex-shrink-0 w-8 h-8 text-accent-cyan mt-1"></i>
+            <div>
+              <h4 class="text-xl font-semibold text-white">Foco Geográfico Estratégico</h4>
+              <p class="text-gray-400">Experiencia comprobada en los mercados de España y Europa, y conocimiento de la cultura de negocios local.</p>
+            </div>
+          </div>
+
+          <!-- Diferenciador 3 -->
+          <div class="flex items-start space-x-4 p-4 rounded-lg border border-accent-cyan/20 bg-dark-base/50">
+            <i data-lucide="rocket" class="flex-shrink-0 w-8 h-8 text-accent-cyan mt-1"></i>
+            <div>
+              <h4 class="text-xl font-semibold text-white">Rapidez y Precisión</h4>
+              <p class="text-gray-400">Entrega de candidatos de alto calibre en tiempo récord gracias a nuestro pipeline especializado.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. FORMULARIO DE CONTACTO RÁPIDO / CTA FINAL -->
+  <section id="contact" class="py-24 bg-gray-900 px-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12 reveal-item">
+        <span class="text-sm font-semibold uppercase text-accent-cyan">Comienza tu Transformación de Talento</span>
+        <h2 class="text-4xl sm:text-5xl font-bold text-white mt-2">Contacta a Nuestro Equipo de Especialistas</h2>
+      </div>
+
+      <div class="bg-dark-base p-6 sm:p-10 rounded-xl shadow-2xl border border-gray-700" appReveal>
+        <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm" class="space-y-6">
+          <div class="grid sm:grid-cols-2 gap-4">
+            <input name="name" ngModel type="text" id="name" placeholder="Nombre Completo" required class="w-full p-3 rounded-lg bg-gray-mid border border-gray-700 text-text-light focus:ring-accent-cyan focus:border-accent-cyan outline-none">
+            <input name="email" ngModel type="email" id="email" placeholder="Email Corporativo" required class="w-full p-3 rounded-lg bg-gray-mid border border-gray-700 text-text-light focus:ring-accent-cyan focus:border-accent-cyan outline-none">
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <input name="phone" ngModel type="text" id="phone" placeholder="Teléfono" class="w-full p-3 rounded-lg bg-gray-mid border border-gray-700 text-text-light focus:ring-accent-cyan focus:border-accent-cyan outline-none">
+            <input name="company" ngModel type="text" id="company" placeholder="Empresa" required class="w-full p-3 rounded-lg bg-gray-mid border border-gray-700 text-text-light focus:ring-accent-cyan focus:border-accent-cyan outline-none">
+          </div>
+
+          <select id="service-interest" name="serviceInterest" ngModel required class="w-full p-3 rounded-lg bg-gray-mid border border-gray-700 text-text-light focus:ring-accent-cyan focus:border-accent-cyan outline-none">
+            <option value="" disabled selected>Estoy Interesado en (Seleccionar Servicio)</option>
+            <option value="taas">Talent-as-a-Service (TaaS)</option>
+            <option value="recruitment">Reclutamiento</option>
+            <option value="personal">Selección de personal</option>
+            <option value="formacion">Formación a medida</option>
+            <option value="mentorias">Mentorías 1:1</option>
+            <option value="general">Consulta General</option>
+          </select>
+
+          <textarea id="message" name="message" ngModel rows="4" placeholder="Describe brevemente tus necesidades de talento o proyecto." required class="w-full p-3 rounded-lg bg-gray-mid border border-gray-700 text-text-light focus:ring-accent-cyan focus:border-accent-cyan outline-none"></textarea>
+
+          <div id="form-status" class="text-center font-medium" role="alert">{{ formStatus }}</div>
+
+          <button type="submit" class="cta-button w-full px-5 py-3 rounded-lg text-lg transition duration-300">Enviar Consulta</button>
+        </form>
+
+        <div class="mt-8 text-center border-t border-gray-700 pt-6">
+          <p class="text-gray-400 mb-2">O contáctanos directamente:</p>
+          <p class="text-text-light font-medium"><i data-lucide="mail" class="w-4 h-4 inline-block mr-2 text-accent-cyan"></i> Email: <a href="mailto:info@datalentsolutions.com" class="hover:text-accent-cyan">info@datalentsolutions.com</a></p>
+          <p class="text-text-light font-medium mt-1"><i data-lucide="phone" class="w-4 h-4 inline-block mr-2 text-accent-cyan"></i> Teléfono: <a href="tel:+34614014095" class="hover:text-accent-cyan">+34 614 014 095 </a></p>
+        </div>
+      </div>
+
+      <div class="mt-12 p-6 rounded-xl bg-gray-mid reveal-item">
+        <h3 class="text-xl font-semibold text-white mb-4"><i data-lucide="map-pin" class="w-6 h-6 inline-block mr-2 text-accent-cyan"></i> Ubicación Principal</h3>
+        <div class="map-container">
+          <iframe width="100%" height="450" frameborder="0" style="border:0" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=40.0086,-3.0019&hl=es&z=14&output=embed" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-dark-base border-t border-gray-800 py-12 px-4">
+    <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="col-span-2 md:col-span-1">
+        <a href="#home" class="text-2xl font-extrabold text-white tracking-widest uppercase">Data<span class="text-accent-cyan">LENT SOLUTIONS</span></a>
+        <p class="text-gray-500 text-sm mt-4">&copy; 2025 DATALENT SOLUTIONS. Todos los derechos reservados.</p>
+      </div>
+
+      <div>
+        <h4 class="text-lg font-semibold text-white mb-4">Empresa</h4>
+        <ul class="space-y-2 text-gray-400 text-sm">
+          <li><a href="#home" class="hover:text-accent-cyan transition">Inicio</a></li>
+          <li><a href="#why-us" class="hover:text-accent-cyan transition">Por Qué Elegirnos</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-lg font-semibold text-white mb-4">Nuestros Servicios</h4>
+        <ul class="space-y-2 text-gray-400 text-sm">
+          <li><a href="#services" class="hover:text-accent-cyan transition">TaaS</a></li>
+          <li><a href="#services" class="hover:text-accent-cyan transition">Reclutamiento</a></li>
+          <li><a href="#services" class="hover:text-accent-cyan transition">Selección de personal</a></li>
+          <li><a href="#services" class="hover:text-accent-cyan transition">Formación</a></li>
+          <li><a href="#services" class="hover:text-accent-cyan transition">Mentorias</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-lg font-semibold text-white mb-4">Conéctate</h4>
+        <div class="flex space-x-4">
+          <a href="#" target="_blank" aria-label="LinkedIn" class="text-gray-400 hover:text-accent-cyan transition"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</main>
