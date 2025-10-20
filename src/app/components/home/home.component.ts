@@ -2,6 +2,8 @@ import { AfterViewInit, Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RevealDirective } from './reveal.directive';
+import emailjs from '@emailjs/browser';
+import { environment } from '../../../environments/environment';
 
 declare const lucide: any;
 
@@ -69,13 +71,50 @@ export class HomeComponent implements AfterViewInit {
   async onSubmit(form: NgForm) {
     if (!form.valid) return;
     this.formStatus = 'Enviando...';
+
+    const payload = {
+      from_name: form.value.name || '',
+      from_email: form.value.email || '',
+      phone: form.value.phone || '',
+      company: form.value.company || '',
+      service_interest: form.value.serviceInterest || '',
+      message: form.value.message || '',
+      to_email: environment.contactEmail
+    };
+
     try {
-      await new Promise(resolve => setTimeout(resolve, 800));
+      // Try sending with EmailJS (client-side). Replace environment placeholders with real values.
+      await emailjs.send(
+        environment.emailjsServiceId,
+        environment.emailjsTemplateId,
+        payload,
+        environment.emailjsPublicKey
+      );
+
       this.formStatus = '¡Gracias! Tu mensaje ha sido enviado exitosamente.';
       form.resetForm();
       try { lucide.createIcons(); } catch (e) {}
     } catch (err) {
-      this.formStatus = 'Error al enviar el formulario.';
+      console.error('EmailJS send error:', err);
+      // Fallback: open user's mail client with a prefilled mailto link
+      try {
+        const subject = encodeURIComponent('Consulta desde web - ' + (payload.company || payload.from_name));
+        const bodyLines = [
+          `Nombre: ${payload.from_name}`,
+          `Email: ${payload.from_email}`,
+          `Teléfono: ${payload.phone}`,
+          `Empresa: ${payload.company}`,
+          `Servicio de interés: ${payload.service_interest}`,
+          '',
+          payload.message
+        ];
+        const body = encodeURIComponent(bodyLines.join('\n'));
+        window.location.href = `mailto:${environment.contactEmail}?subject=${subject}&body=${body}`;
+        this.formStatus = 'Se abrió tu cliente de correo para finalizar el envío.';
+      } catch (mailtoErr) {
+        console.error('Mailto fallback error:', mailtoErr);
+        this.formStatus = 'Error al enviar el formulario. Intenta contactarnos en ' + environment.contactEmail;
+      }
     }
   }
 }
