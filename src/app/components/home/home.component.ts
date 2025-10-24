@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-import { RevealDirective } from './reveal.directive';
+import { RevealDirective } from '../../directives/reveal.directive';
 import emailjs from '@emailjs/browser';
 import { environment } from '../../../environments/environment';
 
@@ -17,6 +17,7 @@ declare const lucide: any;
 export class HomeComponent implements AfterViewInit {
   mobileMenuOpen = false;
   formStatus = '';
+  privacyConsentChecked = false;
 
   ngAfterViewInit(): void {
     try { lucide.createIcons(); } catch (e) {}

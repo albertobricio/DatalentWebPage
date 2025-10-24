@@ -208,9 +208,18 @@
 
           <textarea id="message" name="message" ngModel rows="4" placeholder="Describe brevemente tus necesidades de talento o proyecto." required class="w-full p-3 rounded-lg bg-gray-mid border border-gray-700 text-text-light focus:ring-accent-cyan focus:border-accent-cyan outline-none"></textarea>
 
+          <div class="flex items-center">
+            <input type="checkbox" id="privacyConsent" name="privacyConsent" [(ngModel)]="privacyConsentChecked" [required]="true" class="mr-2">
+            <label for="privacyConsent" class="text-gray-400 text-sm">He leído y acepto la <a href="assets/data-privacy.pdf" target="_blank" class="text-accent-cyan underline">política de privacidad</a>.</label>
+          </div>
+
           <div id="form-status" class="text-center font-medium" role="alert">{{ formStatus }}</div>
 
-          <button type="submit" class="cta-button w-full px-5 py-3 rounded-lg text-lg transition duration-300">Enviar Consulta</button>
+          <button type="submit" class="cta-button w-full px-5 py-3 rounded-lg text-lg transition duration-300"
+            [disabled]="!contactForm.valid || !privacyConsentChecked"
+            [ngClass]="{'opacity-50 cursor-not-allowed bg-gray-500 text-gray-300': !contactForm.valid || !privacyConsentChecked, 'bg-accent-cyan': contactForm.valid && privacyConsentChecked}">
+            Enviar Consulta
+          </button>
         </form>
 
         <div class="mt-8 text-center border-t border-gray-700 pt-6">
