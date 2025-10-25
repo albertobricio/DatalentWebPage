@@ -1,8 +1,8 @@
 <!-- Home component template (Angular) -->
 <header id="main-header" class="fixed top-0 left-0 right-0 z-50 py-4 px-4 sm:px-8 bg-dark-base/95 backdrop-blur-sm sticky-header">
   <div class="max-w-7xl mx-auto flex justify-between items-center">
-    <img src="assets/datalent-icon.png" alt="DATALENT SOLUTIONS Logo" class="h-10 w-auto mr-3"/>
-    <a routerLink="/home" class="text-2xl font-extrabold text-white tracking-widest uppercase">
+    <img src="assets/datalent-icon.png" alt="DATALENT SOLUTIONS Logo" (click)="scrollToSection('home')" class="h-10 w-auto mr-3"/>
+    <a (click)="scrollToSection('home')"  class="text-2xl font-extrabold text-white tracking-widest uppercase">
       Data<span class="text-accent-cyan">LENT SOLUTIONS</span>
     </a>
 
