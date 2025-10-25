@@ -4,13 +4,14 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { RevealDirective } from '../../directives/reveal.directive';
 import emailjs from '@emailjs/browser';
 import { environment } from '../../../environments/environment';
+import { MapComponent } from '../map/map.component';
 
 declare const lucide: any;
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, FormsModule, RevealDirective],
+  imports: [CommonModule, FormsModule, RevealDirective, MapComponent],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
