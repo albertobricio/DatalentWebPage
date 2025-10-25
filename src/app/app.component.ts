@@ -8,4 +8,11 @@ import { RouterModule } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {}
+export class AppComponent {
+  showCookieBanner = !localStorage.getItem('cookiesAccepted');
+
+  acceptCookies() {
+    localStorage.setItem('cookiesAccepted', 'true');
+    this.showCookieBanner = false;
+  }
+}

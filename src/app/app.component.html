@@ -1,1 +1,8 @@
 <router-outlet></router-outlet>
+<div *ngIf="showCookieBanner" class="fixed bottom-0 left-0 right-0 bg-dark-base text-white p-4 z-50 shadow-lg flex flex-col sm:flex-row items-center justify-between">
+  <span class="mb-2 sm:mb-0">
+    Utilizamos cookies para mejorar tu experiencia. Consulta nuestra 
+    <a href="assets/cookie-policy.pdf" target="_blank" class="text-accent-cyan underline">política de cookies</a>.
+  </span>
+  <button (click)="acceptCookies()" class="cta-button px-4 py-2 rounded-lg text-sm ml-4">Aceptar</button>
+</div>

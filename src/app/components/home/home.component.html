@@ -1,6 +1,7 @@
 <!-- Home component template (Angular) -->
 <header id="main-header" class="fixed top-0 left-0 right-0 z-50 py-4 px-4 sm:px-8 bg-dark-base/95 backdrop-blur-sm sticky-header">
   <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <img src="assets/datalent-icon.png" alt="DATALENT SOLUTIONS Logo" class="h-10 w-auto mr-3"/>
     <a routerLink="/home" class="text-2xl font-extrabold text-white tracking-widest uppercase">
       Data<span class="text-accent-cyan">LENT SOLUTIONS</span>
     </a>
@@ -8,7 +9,7 @@
     <nav class="hidden md:flex space-x-8">
       <a (click)="scrollToSection('home')" class="nav-link text-text-light hover:text-accent-cyan transition duration-200 py-1" data-section="home">Inicio</a>
       <a (click)="scrollToSection('services')" class="nav-link text-text-light hover:text-accent-cyan transition duration-200 py-1" data-section="services">Servicios</a>
-      <a (click)="scrollToSection('why-us')" class="nav-link text-text-light hover:text-accent-cyan transition duration-200 py-1" data-section="why-us">Por Qué Nosotros</a>
+      <a (click)="scrollToSection('why-us')" class="nav-link text-text-light hover:text-accent-cyan transition duration-200 py-1" data-section="why-us">Por qué Nosotros</a>
       <a (click)="scrollToSection('contact')" class="nav-link text-text-light hover:text-accent-cyan transition duration-200 py-1" data-section="contact">Contacto</a>
     </nav>
 
@@ -55,7 +56,7 @@
       <div class="grid md:grid-cols-3 gap-8 text-left">
         <!-- Card 1: Problema Resuelto -->
   <div class="p-6 rounded-xl bg-gray-mid border border-gray-700" appReveal>
-          <i data-lucide="clock-stopwatch" class="w-8 h-8 text-accent-cyan mb-4"></i>
+          <i data-lucide="timer-reset" class="w-8 h-8 text-accent-cyan mb-4"></i>
           <h3 class="text-xl font-semibold text-white mb-2">Tiempo de Contratación Extenso</h3>
           <p class="text-gray-400">Reducimos el tiempo de contratación a semanas, no meses, con acceso a un pool de talento.</p>
         </div>
@@ -230,7 +231,7 @@
       </div>
 
       <app-map></app-map>
-      
+
       <div class="mt-12 p-6 rounded-xl bg-gray-mid reveal-item">
         <h3 class="text-xl font-semibold text-white mb-4"><i data-lucide="map-pin" class="w-6 h-6 inline-block mr-2 text-accent-cyan"></i> Ubicación Principal</h3>
         <div class="map-container">
@@ -246,6 +247,7 @@
       <div class="col-span-2 md:col-span-1">
         <a (click)="scrollToSection('home')" class="text-2xl font-extrabold text-white tracking-widest uppercase">Data<span class="text-accent-cyan">LENT SOLUTIONS</span></a>
         <p class="text-gray-500 text-sm mt-4">&copy; 2025 DATALENT SOLUTIONS. Todos los derechos reservados.</p>
+        <a href="assets/data-privacy.pdf" target="_blank" class="text-gray-400 text-sm hover:text-accent-cyan underline mt-2 inline-block">Política de Privacidad</a>
       </div>
 
       <div>
