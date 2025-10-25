@@ -69,6 +69,13 @@ export class HomeComponent implements AfterViewInit {
     });
   }
 
+  scrollToSection(sectionId: string) {
+    const el = document.getElementById(sectionId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
   async onSubmit(form: NgForm) {
     if (!form.valid) return;
     this.formStatus = 'Enviando...';
