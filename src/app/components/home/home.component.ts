@@ -1,10 +1,11 @@
-import { AfterViewInit, Component, HostListener } from '@angular/core';
+import { AfterViewInit, Component, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RevealDirective } from '../../directives/reveal.directive';
 import emailjs from '@emailjs/browser';
 import { environment } from '../../../environments/environment';
 import { MapComponent } from '../map/map.component';
+import { Meta, Title } from '@angular/platform-browser';
 
 declare const lucide: any;
 
@@ -16,10 +17,24 @@ declare const lucide: any;
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements AfterViewInit {
+  private title = inject(Title);
+  private meta = inject(Meta);
+  
   mobileMenuOpen = false;
   formStatus = '';
   privacyConsentChecked = false;
 
+  constructor() {
+    this.title.setTitle('Datalent Solutions');
+    this.meta.addTags([
+      { name: 'description', content: 'Datalent Solutions es una consultora especializada en atracción, reclutamiento, selección,\
+        formación y desarrollo de capital humano basado en analítica predictiva, IA y evidencia científica.' },
+      { name: 'keywords', content: 'rrhh, recursos humanos, datalent, tarancon, madrid, cuenca, eurofirms, adecco, triangle, manpower, personal, contratación, selección, formación, desarrollo, talento, ia, analítica, predictiva, reclutamiento' },
+      { name: 'author', content: 'Datalent' },
+      { rel: 'canonical', href: 'https://www.datalentsolutions.com/' }
+    ]);
+  }
+  
   ngAfterViewInit(): void {
     try { lucide.createIcons(); } catch (e) {}
     // Run one update of active link/sticky header on init
