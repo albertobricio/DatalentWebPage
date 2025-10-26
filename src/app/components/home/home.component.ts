@@ -31,7 +31,7 @@ export class HomeComponent implements AfterViewInit {
         formación y desarrollo de capital humano basado en analítica predictiva, IA y evidencia científica.' },
       { name: 'keywords', content: 'rrhh, recursos humanos, datalent, tarancon, madrid, cuenca, eurofirms, adecco, triangle, manpower, personal, contratación, selección, formación, desarrollo, talento, ia, analítica, predictiva, reclutamiento' },
       { name: 'author', content: 'Datalent' },
-      { rel: 'canonical', href: 'https://www.datalentsolutions.com/' }
+      { rel: 'canonical', href: 'https://www.datalentsolutions.com' }
     ]);
   }
   
