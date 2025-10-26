@@ -29,8 +29,8 @@ export class HomeComponent implements AfterViewInit {
     this.meta.addTags([
       { name: 'description', content: 'Datalent Solutions es una consultora especializada en atracción, reclutamiento, selección,\
         formación y desarrollo de capital humano basado en analítica predictiva, IA y evidencia científica.' },
-      { name: 'keywords', content: 'rrhh, recursos humanos, datalent, tarancon, madrid, cuenca, eurofirms, adecco, triangle, manpower, personal, contratación, selección, formación, desarrollo, talento, ia, analítica, predictiva, reclutamiento' },
-      { name: 'author', content: 'Datalent' },
+      { name: 'keywords', content: 'ofertas de trabajo de tarancon, ofertas de empleo de tarancon, trabajar de tarancon, vacantes de tarancon, eurofirms, adecco' },
+      { name: 'author', content: 'Datalent Solutions' },
       { rel: 'canonical', href: 'https://www.datalentsolutions.com' }
     ]);
   }
