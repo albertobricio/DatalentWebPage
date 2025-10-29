@@ -1,0 +1,28 @@
+<header id="main-header" class="fixed top-0 left-0 right-0 z-50 py-4 px-4 sm:px-8 bg-dark-base/95 backdrop-blur-sm sticky-header">
+  <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <img src="assets/datalent-icon.png" alt="DATALENT SOLUTIONS Logo" (click)="scrollToSection('home')" class="h-10 w-auto mr-3"/>
+    <a (click)="scrollToSection('home')"  class="text-2xl font-extrabold text-white tracking-widest uppercase">
+      Data<span class="text-accent-cyan">LENT SOLUTIONS</span>
+    </a>
+
+    <nav class="hidden md:flex space-x-8">
+      <a (click)="scrollToSection('home')" class="nav-link text-text-light hover:text-accent-cyan transition duration-200 py-1" data-section="home">Inicio</a>
+      <a (click)="scrollToSection('services')" class="nav-link text-text-light hover:text-accent-cyan transition duration-200 py-1" data-section="services">Servicios</a>
+      <a (click)="scrollToSection('why-us')" class="nav-link text-text-light hover:text-accent-cyan transition duration-200 py-1" data-section="why-us">Por qué Nosotros</a>
+      <a (click)="scrollToSection('contact')" class="nav-link text-text-light hover:text-accent-cyan transition duration-200 py-1" data-section="contact">Contacto</a>
+    </nav>
+
+    <a (click)="scrollToSection('contact')" class="hidden sm:block cta-button px-5 py-2 rounded-lg text-sm transition duration-300">Contactar Ahora</a>
+
+    <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none" (click)="toggleMobileMenu()">
+      <i data-lucide="menu"></i>
+    </button>
+  </div>
+  <div id="mobile-menu" *ngIf="mobileMenuOpen" class="md:hidden mt-4 space-y-2">
+    <a (click)="scrollToSection('home'); closeMobileMenu()" class="nav-link block text-text-light hover:text-accent-cyan p-2 rounded-lg" data-section="home">Inicio</a>
+    <a (click)="scrollToSection('services'); closeMobileMenu()" class="nav-link block text-text-light hover:text-accent-cyan p-2 rounded-lg" data-section="services">Servicios</a>
+    <a (click)="scrollToSection('why-us'); closeMobileMenu()" class="nav-link block text-text-light hover:text-accent-cyan p-2 rounded-lg" data-section="why-us">Por Qué Nosotros</a>
+    <a (click)="scrollToSection('contact'); closeMobileMenu()" class="nav-link block text-text-light hover:text-accent-cyan p-2 rounded-lg" data-section="contact">Contacto</a>
+    <a (click)="scrollToSection('contact'); closeMobileMenu()" class="block cta-button px-4 py-2 text-center rounded-lg text-sm">Contactar Ahora</a>
+  </div>
+</header>

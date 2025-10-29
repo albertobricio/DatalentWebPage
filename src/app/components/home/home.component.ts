@@ -20,7 +20,6 @@ export class HomeComponent implements AfterViewInit {
   private title = inject(Title);
   private meta = inject(Meta);
   
-  mobileMenuOpen = false;
   formStatus = '';
   privacyConsentChecked = false;
 
@@ -39,14 +38,6 @@ export class HomeComponent implements AfterViewInit {
     try { lucide.createIcons(); } catch (e) {}
     // Run one update of active link/sticky header on init
     this.updateScrollState();
-  }
-
-  toggleMobileMenu(): void {
-    this.mobileMenuOpen = !this.mobileMenuOpen;
-  }
-
-  closeMobileMenu(): void {
-    this.mobileMenuOpen = false;
   }
 
   @HostListener('window:scroll', [])
