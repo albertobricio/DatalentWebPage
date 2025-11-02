@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { FooterComponent } from './components/footer/footer.component';
 import { MainTopbarComponent } from './components/main-topbar/main-topbar.component';
+import { NewsletterComponent } from './components/newsletter/newsletter.component';
 
 @NgModule({
   declarations: [],
@@ -13,6 +14,7 @@ import { MainTopbarComponent } from './components/main-topbar/main-topbar.compon
     BrowserModule, 
     AppRoutingModule, 
     HomeComponent,
+    NewsletterComponent,
     MapComponent, 
     FooterComponent,
     MainTopbarComponent

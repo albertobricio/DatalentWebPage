@@ -1,0 +1,67 @@
+  <div class="container">
+
+    <h1>Decidir con <span class="highlight">criterio humano</span> y <span class="highlight">precisión analítica</span></h1>
+    <p style="text-align:center;">
+      La newsletter donde aprendemos a tomar decisiones más inteligentes sobre talento:  
+      menos intuición ciega, más claridad, datos y visión humana.
+    </p>
+
+    <div class="section">
+      <h2>🧠 Insight de la semana</h2>
+      <p><strong>“El 80% de los errores de selección no se deben a falta de talento, sino a cómo lo medimos.”</strong></p>
+      <p>En RRHH, seguimos confiando más en la intuición que en los indicadores.  
+      La analítica predictiva no reemplaza la empatía; la amplifica.</p>
+      <ul>
+        <li>Sustituye opiniones por hipótesis medibles.</li>
+        <li>Analiza datos de desempeño real, no solo entrevistas.</li>
+        <li>Evalúa patrones, no currículums.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>📊 Dato que importa</h2>
+      <p><span class="highlight">Un modelo de IA puede predecir con hasta un 70% de precisión el encaje cultural de un candidato.</span><br>
+      <em>(Fuente: Harvard Business Review, 2025)</em></p>
+      <p>No se trata de reemplazar la entrevista, sino de convertirla en una conversación informada.  
+      Tu intuición es más precisa cuando tiene contexto.</p>
+    </div>
+
+    <div class="section">
+      <h2>💬 Decisión en foco</h2>
+      <p><strong>Caso breve:</strong>  
+      Una empresa líder en servicios financieros redujo su rotación un 32% aplicando modelos predictivos de compromiso.</p>
+      <p><strong>Aprendizaje:</strong>  
+      Los datos te dicen <em>qué</em> está pasando. Las personas te explican <em>por qué</em>.  
+      Un buen líder escucha ambas voces.</p>
+    </div>
+
+    <div class="section">
+      <h2>💡 Aplicación del día</h2>
+      <p><strong>Pregúntate:</strong><br>
+      “¿Qué decisión sobre talento podría mejorar si la midiera mejor?”</p>
+      <p>Hazlo una vez por semana.  
+      Esa es la práctica que diferencia a quien opina de quien lidera.</p>
+    </div>
+
+    <div class="cta">
+      <p>Si te interesa un RRHH más inteligente, basado en evidencia y propósito,  
+      <br>únete a una comunidad que piensa distinto, pero con humanidad.</p>
+      <input 
+        name="email" 
+        ngModel 
+        type="email" 
+        id="email" 
+        placeholder="Email"
+        #emailCtrl="ngModel"
+        required
+        class="w-full p-3 rounded-lg bg-gray-mid border border-gray-700 text-text-light focus:ring-accent-cyan focus:border-accent-cyan outline-none">
+      <a 
+        (click)="sendMailToSubscribe()" 
+        [class.pointer-events-none]="emailCtrl.invalid"
+        [class.opacity-50]="emailCtrl.invalid">
+        Suscribirme
+      </a>
+      <div id="form-status" class="text-center font-medium" role="alert">{{ formStatus }}</div>
+    </div>
+
+    <p class="question">¿Qué decisión reciente tomarías distinto si aplicaras más datos que intuición?</p>

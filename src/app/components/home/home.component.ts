@@ -2,24 +2,34 @@ import { AfterViewInit, Component, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RevealDirective } from '../../directives/reveal.directive';
-import emailjs from '@emailjs/browser';
 import { environment } from '../../../environments/environment';
-import { MapComponent } from '../map/map.component';
 import { Meta, Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { NewsletterComponent } from '../newsletter/newsletter.component';
+import { EmailService } from 'src/app/providers/email.service';
+import { MapComponent } from '../map/map.component';
 
 declare const lucide: any;
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, FormsModule, RevealDirective, MapComponent],
+  imports: [
+    CommonModule, 
+    FormsModule, 
+    RevealDirective, 
+    MapComponent, 
+    NewsletterComponent
+  ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements AfterViewInit {
   private title = inject(Title);
   private meta = inject(Meta);
-  
+  private router = inject(Router);
+  private emailService = inject(EmailService);
+
   formStatus = '';
   privacyConsentChecked = false;
 
@@ -38,6 +48,10 @@ export class HomeComponent implements AfterViewInit {
     try { lucide.createIcons(); } catch (e) {}
     // Run one update of active link/sticky header on init
     this.updateScrollState();
+  }
+
+  isNewsletterRoute(): boolean {
+    return this.router.url === '/newsletter';
   }
 
   @HostListener('window:scroll', [])
@@ -97,39 +111,16 @@ export class HomeComponent implements AfterViewInit {
       to_email: environment.contactEmail
     };
 
-    try {
-      // Try sending with EmailJS (client-side). Replace environment placeholders with real values.
-      await emailjs.send(
-        environment.emailjsServiceId,
-        environment.emailjsTemplateId,
-        payload,
-        environment.emailjsPublicKey
-      );
-
+    this.emailService.sendMail(payload).then(success => {
+      if (success) {
       this.formStatus = '¡Gracias! Tu mensaje ha sido enviado exitosamente.';
-      form.resetForm();
-      try { lucide.createIcons(); } catch (e) {}
-    } catch (err) {
-      console.error('EmailJS send error:', err);
-      // Fallback: open user's mail client with a prefilled mailto link
-      try {
-        const subject = encodeURIComponent('Consulta desde web - ' + (payload.company || payload.from_name));
-        const bodyLines = [
-          `Nombre: ${payload.from_name}`,
-          `Email: ${payload.from_email}`,
-          `Teléfono: ${payload.phone}`,
-          `Empresa: ${payload.company}`,
-          `Servicio de interés: ${payload.service_interest}`,
-          '',
-          payload.message
-        ];
-        const body = encodeURIComponent(bodyLines.join('\n'));
-        window.location.href = `mailto:${environment.contactEmail}?subject=${subject}&body=${body}`;
-        this.formStatus = 'Se abrió tu cliente de correo para finalizar el envío.';
-      } catch (mailtoErr) {
-        console.error('Mailto fallback error:', mailtoErr);
-        this.formStatus = 'Error al enviar el formulario. Intenta contactarnos en ' + environment.contactEmail;
-      }
+    } else {
+      this.formStatus = 'Error al enviar el formulario. Intenta contactarnos en ' + environment.contactEmail;
     }
+    } );
+
+    try { lucide.createIcons(); } catch (e) {}
+    form.resetForm();
   }
+
 }

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -10,12 +11,16 @@ import { Component } from '@angular/core';
 })
 export class MainTopbarComponent {
     mobileMenuOpen = false;
+    private router = inject(Router);
 
     scrollToSection(sectionId: string) {
-        const el = document.getElementById(sectionId);
-        if (el) {
-            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        this.router.navigate(['/']);
+        setTimeout(() => {
+            const el = document.getElementById(sectionId);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 50);
     }
 
     toggleMobileMenu(): void {
@@ -24,5 +29,13 @@ export class MainTopbarComponent {
 
     closeMobileMenu(): void {
         this.mobileMenuOpen = false;
+    }
+
+    openNewsletter(): void {
+        this.router.navigate(['newsletter']);
+    }
+
+    isNewsletterRoute(): boolean {
+        return this.router.url === '/newsletter';
     }
 }
