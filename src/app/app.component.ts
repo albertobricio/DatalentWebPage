@@ -18,4 +18,8 @@ export class AppComponent {
     localStorage.setItem('cookiesDatalentAccepted', 'true');
     this.showCookieBanner = false;
   }
+
+  rejectCookies(){
+    this.showCookieBanner = false;
+  }
 }

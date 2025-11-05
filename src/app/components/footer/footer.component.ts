@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -10,10 +11,16 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
     
+    private router = inject(Router);
+    
     scrollToSection(sectionId: string) {
         const el = document.getElementById(sectionId);
         if (el) {
             el.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
+    }
+
+    openNewsletter(): void {
+        this.router.navigate(['newsletter']);
     }
 }

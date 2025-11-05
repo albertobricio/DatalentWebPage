@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, HostListener, inject } from '@angular/core';
+import { AfterViewInit, Component, HostListener, inject, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RevealDirective } from '../../directives/reveal.directive';
@@ -28,6 +28,8 @@ export class HomeComponent implements AfterViewInit {
   private title = inject(Title);
   private meta = inject(Meta);
   private router = inject(Router);
+  private renderer = inject(Renderer2);
+
   private emailService = inject(EmailService);
 
   formStatus = '';
@@ -38,7 +40,7 @@ export class HomeComponent implements AfterViewInit {
     this.meta.addTags([
       { name: 'description', content: 'Datalent Solutions es una consultora especializada en atracción, reclutamiento, selección,\
         formación y desarrollo de capital humano basado en analítica predictiva, IA y evidencia científica.' },
-      { name: 'keywords', content: 'ofertas de trabajo de tarancon, ofertas de empleo de tarancon, trabajar de tarancon, vacantes de tarancon, eurofirms, adecco' },
+      { name: 'keywords', content: 'ofertas de trabajo de tarancon, ofertas de empleo de tarancon, vacantes de tarancon, eurofirms, adecco' },
       { name: 'author', content: 'Datalent Solutions' },
       { rel: 'canonical', href: 'https://www.datalentsolutions.com' }
     ]);
@@ -48,6 +50,15 @@ export class HomeComponent implements AfterViewInit {
     try { lucide.createIcons(); } catch (e) {}
     // Run one update of active link/sticky header on init
     this.updateScrollState();
+    this.renderTrustIndexGoogleReviews();
+  }
+
+  private renderTrustIndexGoogleReviews(): void {
+    const script = this.renderer.createElement('script');
+    script.src = "https://cdn.trustindex.io/loader.js?69a8a5a57a63688be59604730bd";
+    script.async = true;
+    script.defer = true;
+    this.renderer.appendChild(document.getElementById("googleReviews"), script);
   }
 
   isNewsletterRoute(): boolean {

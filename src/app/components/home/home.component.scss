@@ -5,8 +5,8 @@
 :host {
 	display: block;
 	font-family: 'Inter', sans-serif;
-	background-color: #0a0a0a;
-	color: #e5e7eb;
+	background-color: #060606;
+	color: #000000;
 }
 
 .sticky-header {
@@ -15,7 +15,6 @@
 }
 
 .reveal-item {
-	opacity: 0;
 	transform: translateY(20px);
 	transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 	will-change: opacity, transform;
