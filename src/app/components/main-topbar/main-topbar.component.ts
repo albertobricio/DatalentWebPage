@@ -38,6 +38,7 @@ export class MainTopbarComponent {
   isNewsletterRoute(): boolean {
     return this.router.url === '/newsletter';
   }
+  
   openfaq(): void {
     this.router.navigate(['faq']);
   }

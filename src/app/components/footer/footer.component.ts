@@ -14,13 +14,20 @@ export class FooterComponent {
     private router = inject(Router);
     
     scrollToSection(sectionId: string) {
-        const el = document.getElementById(sectionId);
-        if (el) {
-            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        this.router.navigate(['/']);
+        setTimeout(() => {
+            const el = document.getElementById(sectionId);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 50);
     }
 
     openNewsletter(): void {
         this.router.navigate(['newsletter']);
+    }
+
+    openFaq(): void {
+        this.router.navigate(['faq']);
     }
 }

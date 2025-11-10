@@ -18,6 +18,7 @@ export class NewsletterComponent implements OnInit {
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
+    window.dispatchEvent(new Event('scroll'));
   }
 
   sendMailToSubscribe(): void {

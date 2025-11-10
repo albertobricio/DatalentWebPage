@@ -1,14 +1,33 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-faq',
   templateUrl: './faq.component.html',
   styleUrls: ['./faq.component.scss']
 })
-export class FaqComponent {
+export class FaqComponent implements OnInit, AfterViewInit {
+  private router = inject(Router);
 
-  // índice del desplegable abierto
-  openIndex: number | null = 0; // si quieres que ninguno salga abierto pon null
+  ngOnInit(): void {
+    window.scrollTo(0, 0);
+    window.dispatchEvent(new Event('scroll'));
+  }
+
+  ngAfterViewInit(): void {
+    const detailsElements = document.querySelectorAll('#accordion details');
+    detailsElements.forEach((detail) => {
+      detail.addEventListener('toggle', () => {
+        if (detail["open"]) {
+          detailsElements.forEach((otherDetail) => {
+            if (otherDetail !== detail) {
+              otherDetail["open"] = false;
+            }
+          });
+        }
+      });
+    });
+  }
 
   // aquí va toda la info del FAQ en formato desplegable
   faqs = [
@@ -70,7 +89,13 @@ export class FaqComponent {
     }
   ];
 
-  toggle(index: number): void {
-    this.openIndex = this.openIndex === index ? null : index;
+  scrollToSection(sectionId: string) {
+    this.router.navigate(['/']);
+    setTimeout(() => {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 50);
   }
 }

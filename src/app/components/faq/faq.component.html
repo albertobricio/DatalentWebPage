@@ -1,5 +1,5 @@
   <div class="container"></div>
-<section class="faq-section" style="color: #ffffff;">
+<section id="accordion" class="faq-section" style="color: #ffffff;">
   <h2 style="color: #ffffff;">Preguntas Frecuentes</h2>
   <p class="subtitle" style="color: #ffffff;">
     Decisiones más humanas, respaldadas por datos inteligentes.
@@ -59,16 +59,15 @@
     <summary>9.¿Cuál es vuestro mensaje central?</summary>
     <blockquote>“En un mundo guiado por los datos, el valor más grande sigue estando en las personas.  
     Datalent Solutions une ambos mundos: inteligencia y humanidad.”</blockquote>
-  </details>
+  </details> 
 
  <div class="cta">
   <p style="color: #ffffff;">
     ¿Tienes más preguntas?
-    <a href="#contacto" 
-       style="color: #ffffff; font-weight:600; text-decoration:none; cursor:pointer;"
+    <a style="color: rgb(0 234 255 / var(--tw-text-opacity, 1)); font-weight:600; text-decoration:none; cursor:pointer;"
        onmouseover="this.style.color='#19caff'"
        onmouseout="this.style.color='#ffffff'"
-       onclick="document.querySelector('#contacto').scrollIntoView({ behavior: 'smooth' }); return false;">
+       (click)="scrollToSection('contact')">
       Contáctanos
     </a>
     y te responderemos en menos de 24 h.
