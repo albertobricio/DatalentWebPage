@@ -10,32 +10,52 @@ import { Router } from '@angular/router';
   styleUrls: ['./main-topbar.component.scss', '../home/home.component.scss']
 })
 export class MainTopbarComponent {
-    mobileMenuOpen = false;
-    private router = inject(Router);
+  mobileMenuOpen = false;
+  private router = inject(Router);
 
-    scrollToSection(sectionId: string) {
-        this.router.navigate(['/']);
-        setTimeout(() => {
-            const el = document.getElementById(sectionId);
-            if (el) {
-                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }, 50);
-    }
+  scrollToSection(sectionId: string) {
+    this.router.navigate(['/']);
+    setTimeout(() => {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 50);
+  }
 
-    toggleMobileMenu(): void {
-        this.mobileMenuOpen = !this.mobileMenuOpen;
-    }
+  toggleMobileMenu(): void {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+  }
 
-    closeMobileMenu(): void {
-        this.mobileMenuOpen = false;
-    }
+  closeMobileMenu(): void {
+    this.mobileMenuOpen = false;
+  }
 
-    openNewsletter(): void {
-        this.router.navigate(['newsletter']);
-    }
+  openNewsletter(): void {
+    this.router.navigate(['newsletter']);
+  }
 
-    isNewsletterRoute(): boolean {
-        return this.router.url === '/newsletter';
-    }
+  isNewsletterRoute(): boolean {
+    return this.router.url === '/newsletter';
+  }
+  openfaq(): void {
+    this.router.navigate(['faq']);
+  }
+
+  isfaq(): boolean {
+    return this.router.url === '/faq';
+  }
+
+  // 👇 Nuevo método agregado correctamente dentro de la clase
+openf(section: string): void {
+  console.log(`Opening section: ${section}`);
+
+  // (opcional) Comportamiento por defecto para otras secciones
+  const el = document.querySelector(`[data-section="${section}"]`);
+  if (el) {
+    (el as HTMLElement).scrollIntoView({ behavior: 'smooth' });
+  } else {
+    console.warn(`No se encontró el elemento con data-section="${section}"`);
+  }
 }
+} // 

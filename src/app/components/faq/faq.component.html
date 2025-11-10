@@ -1,0 +1,213 @@
+  <div class="container"></div>
+<section class="faq-section" style="color: #ffffff;">
+  <h2 style="color: #ffffff;">Preguntas Frecuentes</h2>
+  <p class="subtitle" style="color: #ffffff;">
+    Decisiones más humanas, respaldadas por datos inteligentes.
+  </p>
+
+  <details>
+    <summary>1.¿Qué hace exactamente Datalent Solutions?</summary>
+    <p>Integramos <strong>datos, tecnología y talento humano</strong> para acelerar la transformación de las organizaciones. A través de analítica avanzada, IA generativa y conocimiento del comportamiento humano, ayudamos a las empresas a tomar decisiones más humanas, más inteligentes y más rentables.</p>
+  </details>
+
+  <details>
+    <summary>2.¿Cuánto tiempo lleva implementar una solución?</summary>
+    <p>Depende del tipo de proyecto y del nivel de madurez digital de tu empresa. Nuestros procesos generan resultados visibles entre <strong>4 semanas y 6 meses</strong>, siempre con una metodología ágil y basada en evidencia.</p>
+  </details>
+
+  <details>
+    <summary>3.¿Por qué elegir Datalent Solutions?</summary>
+    <p>Porque unimos <strong>inteligencia y humanidad</strong>. Nuestro enfoque combina ciencia de datos, inteligencia artificial y desarrollo humano para crear culturas organizacionales sostenibles y maximizar el rendimiento del talento.</p>
+  </details>
+
+  <details>
+    <summary>4.¿Qué servicios ofrecéis?</summary>
+    <ul>
+      <li><strong>Smart Recruitment</strong> | Reclutamiento Predictivo con IA.</li>
+      <li><strong>People Analytics</strong> | Diagnóstico y desarrollo del capital humano.</li>
+      <li><strong>Upskilling & Reskilling</strong> | Formación personalizada y medible.</li>
+      <li><strong>IA & Automatizaciones</strong> | Flujos inteligentes para PYMES y startups.</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>5.¿Qué tipo de resultados puedo esperar?</summary>
+    <ul>
+      <li>Reducción de rotación de talento hasta un <strong>35 %</strong>.</li>
+      <li>Mayor compromiso y satisfacción del equipo.</li>
+      <li>Procesos automatizados y eficientes.</li>
+      <li>Dashboards personalizados con métricas claras.</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>6.¿Imponéis permanencia o contratos largos?</summary>
+    <p>No. Creemos en relaciones basadas en <strong>confianza y resultados</strong>, no en cláusulas. Nuestros clientes permanecen porque ven el impacto real.</p>
+  </details>
+
+  <details>
+    <summary>7.¿Dónde operáis?</summary>
+    <p>Trabajamos globalmente en <strong>Latinoamérica y Europa</strong>, de forma presencial o remota, adaptándonos a la realidad de cada cliente.</p>
+  </details>
+
+  <details>
+    <summary>8.¿Cómo empiezo?</summary>
+    <p>Agenda una <strong>reunión de diagnóstico gratuita</strong>. En menos de 60 min analizaremos tu caso y te presentaremos una hoja de ruta inicial. Si tu empresa cumple los criterios de acceso, nuestro equipo directivo te acompañará personalmente.</p>
+  </details>
+
+  <details>
+    <summary>9.¿Cuál es vuestro mensaje central?</summary>
+    <blockquote>“En un mundo guiado por los datos, el valor más grande sigue estando en las personas.  
+    Datalent Solutions une ambos mundos: inteligencia y humanidad.”</blockquote>
+  </details>
+
+ <div class="cta">
+  <p style="color: #ffffff;">
+    ¿Tienes más preguntas?
+    <a href="#contacto" 
+       style="color: #ffffff; font-weight:600; text-decoration:none; cursor:pointer;"
+       onmouseover="this.style.color='#19caff'"
+       onmouseout="this.style.color='#ffffff'"
+       onclick="document.querySelector('#contacto').scrollIntoView({ behavior: 'smooth' }); return false;">
+      Contáctanos
+    </a>
+    y te responderemos en menos de 24 h.
+  </p>
+</div>
+</section>
+
+
+<style>
+  :root {
+    --color-bg: #0a0a0a;        /* Fondo general oscuro */
+    --color-text: #ffffff;      /* Texto principal blanco */
+    --color-accent: #19caff;    /* Azul corporativo para títulos y bordes */
+    --color-muted: #e0e0e0;     /* Gris claro para texto secundario */
+    --color-panel: #0b3c59;     /* Azul elegante para los recuadros abiertos */
+  }
+
+  .faq-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 1rem;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: 'Inter', 'Poppins', sans-serif;
+  }
+
+  .faq-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .faq-section .subtitle {
+    text-align: center;
+    font-size: 1rem;
+    color: var(--color-muted);
+    margin-bottom: 3rem;
+  }
+
+  /* Estado cerrado */
+  details {
+    border-bottom: 1px solid rgba(25, 202, 255, 0.3);
+    padding: 1.2rem 0;
+    transition: all 0.3s ease;
+  }
+
+  /* Estado abierto */
+  details[open] {
+    background: var(--color-panel); /* Azul elegante */
+    border-left: 3px solid var(--color-accent);
+    border-radius: 8px;
+    padding: 1.5rem 1rem;
+    box-shadow: 0 0 18px rgba(25, 202, 255, 0.15);
+  }
+
+  summary {
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: var(--color-accent);
+    position: relative;
+    padding-right: 1.5rem;
+    transition: color 0.2s ease;
+  }
+
+  summary:hover {
+    color: #66e0ff;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    font-size: 1.2rem;
+    color: var(--color-accent);
+    transition: transform 0.3s ease;
+  }
+
+  details[open] summary::after {
+    content: '−';
+    transform: rotate(180deg);
+  }
+
+  /* Texto dentro de los recuadros */
+  details[open] p,
+  details[open] ul,
+  details[open] li {
+    color: #ffffff; /* Blanco puro dentro de los recuadros */
+  }
+
+  p, ul {
+    margin: 0.7rem 0 0 0;
+    line-height: 1.7;
+    color: var(--color-muted);
+  }
+
+  ul {
+    padding-left: 1.5rem;
+  }
+
+  blockquote {
+    font-style: italic;
+    color: #b5f3ff;
+    border-left: 3px solid var(--color-accent);
+    margin: 1rem 0;
+    padding-left: 1rem;
+  }
+
+  .cta {
+    margin-top: 3rem;
+    text-align: center;
+  }
+
+  .cta-link {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .cta-link:hover {
+    text-decoration: underline;
+    color: #66e0ff;
+  }
+
+  @media (max-width: 600px) {
+    .faq-section {
+      padding: 2rem 0.8rem;
+    }
+    .faq-section h2 {
+      font-size: 1.6rem;
+    }
+    summary {
+      font-size: 1rem;
+    }
+  }
+</style>

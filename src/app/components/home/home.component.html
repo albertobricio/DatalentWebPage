@@ -14,9 +14,14 @@
       <p class="text-xl sm:text-2xl text-gray-400 max-w-4xl mx-auto mb-10">
         Integramos analítica avanzada, IA generativa y automatización para que las empresas tomen decisiones más humanas, más inteligentes y más eficientes.
       </p>
-      <a (click)="scrollToSection('contact')" class="cta-button inline-block text-lg px-10 py-4 rounded-xl shadow-2xl shadow-cyan-500/50 transition duration-300 transform hover:scale-105">Consultar Ahora</a>
-    </div>
-  </section>
+ <a
+    (click)="scrollToSection('contact')"
+    class="cta-button inline-block text-lg px-10 py-4 rounded-xl shadow-2xl shadow-cyan-500/50 transition duration-300 transform hover:scale-105"
+  >
+    Consultar Ahora
+  </a>
+</div>
+</section>
 
   <!-- 2. SECCIÓN DE PROPUESTA DE VALOR / PROBLEMA-SOLUCIÓN -->
   <section id="value-prop" class="py-20 bg-gray-900 px-4" appReveal>
@@ -84,49 +89,48 @@
   </div>
 
   <!-- Cards -->
-  <div class="mt-16 grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-    
-    <!-- Card 1 -->
-    <div class="p-8 bg-[#111827] rounded-2xl border border-transparent hover:border-[#38bdf8]/40 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-[#38bdf8]/10 text-left">
+ <div class="grid md:grid-cols-2 gap-8 text-left" style="padding-top: 1rem;">
+  <!-- Card 1 -->
+  <div class="p-6 rounded-xl bg-gray-mid border border-gray-700 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-[#38bdf8]/10" appReveal>
       <h3 class="text-xl font-semibold text-white mb-3">Recruitment Predictivo</h3>
       <p class="text-gray-400 mb-3">Selección basada en evidencia que integra fit cultural, motivacional y skills.</p>
       <ul class="space-y-1 text-sm text-gray-300">
-        <li>Target Score interno</li>
-        <li>Employer Branding</li>
-        <li>Onboarding que retiene</li>
+        <li>-Target Score interno</li>
+        <li>-Employer Branding</li>
+        <li>-Onboarding que retiene</li>
       </ul>
     </div>
 
     <!-- Card 2 -->
-    <div class="p-8 bg-[#111827] rounded-2xl border border-transparent hover:border-[#38bdf8]/40 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-[#38bdf8]/10 text-left">
+  <div class="p-6 rounded-xl bg-gray-mid border border-gray-700 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-[#38bdf8]/10" appReveal>
       <h3 class="text-xl font-semibold text-white mb-3">Diagnóstico y Desarrollo</h3>
       <p class="text-gray-400 mb-3">Convertimos datos humanos en decisiones estratégicas que impulsan crecimiento.</p>
       <ul class="space-y-1 text-sm text-gray-300">
-        <li>Medición de cultura y compromiso</li>
-        <li>Sesgos y movilidad interna</li>
-        <li>Productividad y equidad</li>
+        <li>-Medición de cultura y compromiso</li>
+        <li>-Sesgos y movilidad interna</li>
+        <li>-Productividad y equidad</li>
       </ul>
     </div>
 
     <!-- Card 3 -->
-    <div class="p-8 bg-[#111827] rounded-2xl border border-transparent hover:border-[#38bdf8]/40 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-[#38bdf8]/10 text-left">
+  <div class="p-6 rounded-xl bg-gray-mid border border-gray-700 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-[#38bdf8]/10" appReveal>
       <h3 class="text-xl font-semibold text-white mb-3">Upskilling & Reskilling</h3>
       <p class="text-gray-400 mb-3">Programas de aprendizaje con impacto medible, orientados al futuro.</p>
       <ul class="space-y-1 text-sm text-gray-300">
-        <li>Competencias digitales</li>
-        <li>Desempeño y empleabilidad</li>
-        <li>Crecimiento sostenible</li>
+        <li>-Competencias digitales</li>
+        <li>-Desempeño y empleabilidad</li>
+        <li>-Crecimiento sostenible</li>
       </ul>
     </div>
 
     <!-- Card 4 -->
-    <div class="p-8 bg-[#111827] rounded-2xl border border-transparent hover:border-[#38bdf8]/40 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-[#38bdf8]/10 text-left">
+  <div class="p-6 rounded-xl bg-gray-mid border border-gray-700 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-[#38bdf8]/10" appReveal>
       <h3 class="text-xl font-semibold text-white mb-3">IA y Automatización para PYMES</h3>
       <p class="text-gray-400 mb-3">Flujos inteligentes con IA generativa para optimizar la eficiencia operativa.</p>
       <ul class="space-y-1 text-sm text-gray-300">
-        <li>Automatización de reclutamiento</li>
-        <li>Reportes y dashboards automáticos</li>
-        <li>Chatbots internos / soporte</li>
+        <li>-Automatización de reclutamiento</li>
+        <li>-Reportes y dashboards automáticos</li>
+        <li>-Chatbots internos / soporte</li>
       </ul>
     </div>
   </div>
@@ -144,9 +148,14 @@
           <p class="text-lg text-gray-400 mb-8">
         Somos una firma boutique que combina inteligencia humana y analítica avanzada para transformar la gestión del talento y la eficiencia organizacional.
 Diseñamos soluciones a medida donde los datos se convierten en decisiones y la tecnología en ventaja competitiva.
-          </p>
-          <a (click)="scrollToSection('contact')" class="cta-button inline-block px-8 py-3 rounded-lg text-sm transition duration-300">🚀 Explora tu próximo reto con nosotros</a>
-        </div>
+</p>
+<a
+  (click)="scrollToSection('contact')"
+  class="inline-block bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-semibold rounded-lg px-8 py-3 shadow-md hover:shadow-cyan-400/50 hover:-translate-y-1 transform transition duration-300"
+>
+  🚀 Explora tu próximo reto con nosotros
+</a>
+</div>
 
   <div class="space-y-6" appReveal style="transition-delay: 0.1s;">
           <!-- Diferenciador 1 -->
@@ -226,7 +235,6 @@ Garantizamos precisión técnica y comprensión del contexto del rol.</p>
         <div class="mt-8 text-center border-t border-gray-700 pt-6">
           <p class="text-gray-400 mb-2">O contáctanos directamente:</p>
           <p class="text-text-light font-medium"><i data-lucide="mail" class="w-4 h-4 inline-block mr-2 text-accent-cyan"></i> Email: <a href="mailto:gmorales@datalentsolutions.com" class="hover:text-accent-cyan">gmorales@datalentsolutions.com</a></p>
-          <p class="text-text-light font-medium mt-1"><i data-lucide="phone" class="w-4 h-4 inline-block mr-2 text-accent-cyan"></i> Teléfono: <a href="tel:+34626554606" class="hover:text-accent-cyan">+34 626 554 606 </a></p>
         </div>
       </div>
       

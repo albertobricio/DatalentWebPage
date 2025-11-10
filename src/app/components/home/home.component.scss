@@ -34,7 +34,7 @@
 .cta-button {
 	background: linear-gradient(90deg, #00eaff, #00aaff);
 	transition: all 0.3s ease;
-	color: #0a0a0a;
+	color: #ffffff;
 	font-weight: 700;
 }
 
@@ -50,4 +50,49 @@
 
 .contact-map-placeholder {
 	min-height: 200px;
+}
+
+/* === Estilo corporativo coherente con los campos del formulario === */
+select {
+  background-color: #1f2633; /* azul grisáceo oscuro como los inputs */
+  color: #bfc7d5; /* gris claro del texto */
+  border: 1px solid #2b3445; /* borde sutil */
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+  width: 100%;
+  appearance: none;
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+}
+
+/* Al pasar el ratón o enfocar (abrir el menú) */
+select:hover,
+select:focus {
+  border-color: #020404; /* borde azul corporativo brillante */
+  box-shadow: #0a0a0a; /* resplandor elegante */
+  outline: none;
+}
+
+/* Opciones del desplegable */
+select option {
+  background-color: #1f2633; /* fondo oscuro */
+  color: #bfc7d5; /* texto gris claro */
+}
+
+/* === Ajuste del color al pasar el ratón o seleccionar una opción === */
+select option:hover,
+select option:checked,
+select option:focus {
+  background-color: #2b3445; /* gris azulado oscuro, en armonía con los campos */
+  color: #bfc7d5; /* texto gris claro, coherente con el resto */
+}
+/* Personalización de la flecha del desplegable */
+select {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23bfc7d5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 12px 8px;
+  padding-right: 36px; /* deja espacio para la flecha */
 }

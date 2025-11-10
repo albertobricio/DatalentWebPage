@@ -1,6 +1,6 @@
-import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { NgIf } from '@angular/common';
 import { FooterComponent } from './components/footer/footer.component';
 import { MainTopbarComponent } from './components/main-topbar/main-topbar.component';
 
@@ -12,14 +12,20 @@ import { MainTopbarComponent } from './components/main-topbar/main-topbar.compon
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  showCookieBanner = localStorage.getItem('cookiesDatalentAccepted') === null;
+  showCookieBanner = !localStorage.getItem('cookiesDatalentAccepted');
 
-  acceptCookies() {
+  constructor(private router: Router) {}
+
+  isNewsletterRoute(): boolean {
+    return this.router.url.includes('newsletter');
+  }
+
+  acceptCookies(): void {
     localStorage.setItem('cookiesDatalentAccepted', 'true');
     this.showCookieBanner = false;
   }
 
-  rejectCookies(){
+  rejectCookies(): void {
     this.showCookieBanner = false;
   }
 }
