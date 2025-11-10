@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:prod": "ng build --configuration production --output-path=dist",
+    "postbuild": "cp src/assets/404.html dist/DatalentWebPage/404.html",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
