@@ -17,7 +17,7 @@ declare const lucide: any;
     CommonModule, 
     FormsModule, 
     RevealDirective, 
-    MapComponent
+    //MapComponent
   ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
