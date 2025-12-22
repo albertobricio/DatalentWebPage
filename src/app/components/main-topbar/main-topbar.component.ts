@@ -47,16 +47,14 @@ export class MainTopbarComponent {
     return this.router.url === '/faq';
   }
 
-  // 👇 Nuevo método agregado correctamente dentro de la clase
-openf(section: string): void {
-  console.log(`Opening section: ${section}`);
+  openf(section: string): void {
+    console.log(`Opening section: ${section}`);
 
-  // (opcional) Comportamiento por defecto para otras secciones
-  const el = document.querySelector(`[data-section="${section}"]`);
-  if (el) {
-    (el as HTMLElement).scrollIntoView({ behavior: 'smooth' });
-  } else {
-    console.warn(`No se encontró el elemento con data-section="${section}"`);
+    const el = document.querySelector(`[data-section="${section}"]`);
+    if (el) {
+      (el as HTMLElement).scrollIntoView({ behavior: 'smooth' });
+    } else {
+      console.warn(`No se encontró el elemento con data-section="${section}"`);
+    }
   }
 }
-} // 

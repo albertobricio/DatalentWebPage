@@ -1,29 +1,34 @@
-<header id="main-header" class="fixed top-0 left-0 right-0 z-50 py-4 px-4 sm:px-8 bg-dark-base/95 backdrop-blur-sm sticky-header">
-  <div class="max-w-7xl mx-auto flex justify-between items-center">
-    <a (click)="scrollToSection('home')"  class="text-2xl font-extrabold text-white tracking-widest uppercase">
-      Data<span class="text-accent-cyan">LENT SOLUTIONS</span>
-    </a>
-
-    <nav class="hidden md:flex space-x-8">
-      <a (click)="scrollToSection('home')" class="nav-link text-text-light hover:text-accent-cyan transition duration-200 py-1" data-section="home">Inicio</a>
-      <a (click)="scrollToSection('services')" class="nav-link text-text-light hover:text-accent-cyan transition duration-200 py-1" data-section="services">Servicios</a>
-      <a (click)="scrollToSection('why-us')" class="nav-link text-text-light hover:text-accent-cyan transition duration-200 py-1" data-section="why-us">Por qué Nosotros</a>
-      <a (click)="openNewsletter()" class="nav-link text-text-light hover:text-accent-cyan transition duration-200 py-1" data-section="newsletter">Newsletter</a>
-      <a (click)="openfaq()" class="nav-link text-text-light hover:text-accent-cyan transition duration-200 py-1" data-section="faq">FaQ</a>
-    </nav>
-  
-    <a (click)="scrollToSection('contact')" class="hidden sm:block cta-button px-5 py-2 rounded-lg text-sm transition duration-300">Contactar Ahora</a>
-
-    <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none" (click)="toggleMobileMenu()">
-      <i data-lucide="menu"></i>
-    </button>
-  </div>
-  <div id="mobile-menu" *ngIf="mobileMenuOpen" class="md:hidden mt-4 space-y-2">
-    <a (click)="scrollToSection('home'); closeMobileMenu()" class="nav-link block text-text-light hover:text-accent-cyan p-2 rounded-lg" data-section="home">Inicio</a>
-    <a (click)="scrollToSection('services'); closeMobileMenu()" class="nav-link block text-text-light hover:text-accent-cyan p-2 rounded-lg" data-section="services">Servicios</a>
-    <a (click)="scrollToSection('why-us'); closeMobileMenu()" class="nav-link block text-text-light hover:text-accent-cyan p-2 rounded-lg" data-section="why-us">Por qué nosotros</a>
-    <a (click)="openfaq(); closeMobileMenu()" class="nav-link block text-text-light hover:text-accent-cyan p-2 rounded-lg" data-section="faq">FaQ</a>
-    <a (click)="openNewsletter(); closeMobileMenu()" class="nav-link block text-text-light hover:text-accent-cyan p-2 rounded-lg" data-section="contact">Newsletter</a>
-    <a (click)="scrollToSection('contact'); closeMobileMenu()" class="block cta-button px-4 py-2 text-center rounded-lg text-sm">Contactar Ahora</a>
+<header>
+  <div class="container">
+      <div class="header-content">
+          <a (click)="scrollToSection('home')" class="logo">
+              <span>◆</span> DATALENT SOLUTIONS
+          </a>
+          <button class="menu-toggle" (click)="toggleMobileMenu()" aria-label="Abrir menú">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
+          <nav [class.open]="mobileMenuOpen">
+              <a (click)="scrollToSection('home'); closeMobileMenu()">Inicio</a>
+              <div class="nav-dropdown">
+                  <a (click)="scrollToSection('services'); closeMobileMenu()">Servicios</a>
+                  <div class="dropdown-menu">
+                      <a (click)="scrollToSection('services'); closeMobileMenu()">Recruitment Predictivo</a>
+                      <a (click)="scrollToSection('services'); closeMobileMenu()">Diagnóstico y Desarrollo</a>
+                      <a (click)="scrollToSection('services'); closeMobileMenu()">Upskilling & Reskilling</a>
+                      <a (click)="scrollToSection('services'); closeMobileMenu()">IA y Automatización</a>
+                  </div>
+              </div>
+              <a (click)="scrollToSection('why-us'); closeMobileMenu()">Nosotros</a>
+              <a href="#blog" (click)="closeMobileMenu()">Blog</a>
+              <a (click)="openNewsletter(); closeMobileMenu()">Newsletter</a>
+              <a (click)="openfaq(); closeMobileMenu()">FaQ</a>
+              <a (click)="scrollToSection('contact'); closeMobileMenu()">Contacto</a>
+          </nav>
+          <button class="cta-header" (click)="scrollToSection('contact')">
+              Solicitar Diagnóstico
+          </button>
+      </div>
   </div>
 </header>
