@@ -16,10 +16,17 @@ export class MapComponent implements AfterViewInit {
     this.map = leaflet.map('map').setView([40.0075171,-3.0144763], 17);
 
     leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors',
+      attribution: '',
     }).addTo(this.map);
 
-    leaflet.marker([40.0075171,-3.0144763]).addTo(this.map)
+    const customIcon = leaflet.icon({
+      iconUrl: 'assets/datalent-icon.png',
+      iconSize: [30, 30], // Tamaño del icono
+      iconAnchor: [12, 30], // Punto de anclaje del icono
+      popupAnchor: [1, -34] // Punto de anclaje del popup
+    });
+
+    leaflet.marker([40.0075171,-3.0144763], { icon: customIcon }).addTo(this.map)
       .bindPopup('Ubicación: Tarancón, Cuenca, España, C/ Romero')
       .openPopup();
   }

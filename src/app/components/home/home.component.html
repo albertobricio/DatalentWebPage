@@ -1,143 +1,142 @@
-<main class="pt-20">
-  <section id="home" class="min-h-screen flex items-center bg-dark-base relative overflow-hidden px-4 py-20 sm:py-32">
-    <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#1f2937 1px, transparent 1px); background-size: 40px 40px;"></div>
-
-  <div class="max-w-7xl mx-auto z-10 text-center" appReveal>
-      <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white leading-tight mb-6">
-        Empowering <span class="text-accent-cyan">smarter talent & business </span> decisions.
-      </h1>
-      <p class="text-xl sm:text-2xl text-gray-400 max-w-4xl mx-auto mb-10">
-        Integramos analítica avanzada, IA generativa y automatización para que las empresas tomen decisiones más humanas, más inteligentes y más eficientes.
-      </p>
- <a
-    (click)="scrollToSection('contact')"
-    class="cta-button inline-block text-lg px-10 py-4 rounded-xl shadow-2xl shadow-cyan-500/50 transition duration-300 transform hover:scale-105"
-  >
-    Consultar Ahora
-  </a>
-</div>
+<main>
+  <section id="home" class="hero">
+<div class="hero-content">
+            <div class="hero-badge">Transformación Digital en RR.HH.</div>
+            <h1>
+                Impulsando decisiones de <span class="highlight">talento y negocio</span> más inteligentes
+            </h1>
+            <p class="hero-subtitle">
+                Integramos analítica avanzada, IA generativa y automatización para que las empresas tomen decisiones más humanas, más inteligentes y más eficientes.
+            </p>
+            <div class="hero-ctas">
+                <button class="cta-primary" (click)="scrollToSection('contact')">
+                    Solicitar Diagnóstico Gratuito
+                </button>
+                <!-- TODO-->
+                <!--<button class="cta-secondary" onclick="document.getElementById('lead-magnet').scrollIntoView()">
+                    Descargar Guía Gratuita
+                </button>-->
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">10</span>
+                    <span class="stat-label">Empresas transformadas</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">65%</span>
+                    <span class="stat-label">Reducción en time-to-hire</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">92%</span>
+                    <span class="stat-label">Retención en primer año</span>
+                </div>
+            </div>
+        </div>
 </section>
 
   <!-- 2. SECCIÓN DE PROPUESTA DE VALOR / PROBLEMA-SOLUCIÓN -->
-  <section id="value-prop" class="py-20 bg-gray-900 px-4" appReveal>
-    <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-white">
-        Qué resolvemos y cómo generamos impacto
-      </h2>
-      <p class="text-xl text-gray-400 mb-12">
-        Transformamos el talento en ventaja competitiva combinando evidencia, tecnología y empatía humana. 
-      </p>
-
-      <div class="grid md:grid-cols-3 gap-8 text-left">
-        <!-- Card 1: Problema Resuelto -->
-  <div class="p-6 rounded-xl bg-gray-mid border border-gray-700" appReveal>
-          <i data-lucide="timer-reset" class="w-8 h-8 text-accent-cyan mb-4"></i>
-          <h3 class="text-xl font-semibold text-white mb-2">Contrataciones más ágiles</h3>
-          <p class="text-gray-400">Reducimos el time-to-hire a semanas, no meses, gracias a analítica predictiva y un pool validado de talento.</p>
+  <section id="value-prop" class="what-we-solve" appReveal>
+    <div style="max-width: 97%;">
+            <div class="section-header">
+                <h2>Qué Resolvemos y Cómo Generamos Impacto</h2>
+                <p>Transformamos el talento en ventaja competitiva combinando evidencia, tecnología y empatía humana.</p>
+            </div>
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">⏱️</div>
+                    <h3>Contrataciones Más Ágiles</h3>
+                    <p>Reducimos el time-to-hire a semanas, no meses, gracias a analítica predictiva y un pool validado de talento.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🎯</div>
+                    <h3>Talento con Precisión</h3>
+                    <p>Identificamos perfiles con las capacidades y la motivación que impulsan resultados sostenibles.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">✓</div>
+                    <h3>Selección sin Riesgos</h3>
+                    <p>Aplicamos validaciones técnicas, competencionales y culturales para garantizar decisiones seguras.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🚀</div>
+                    <h3>Transformación Sostenible</h3>
+                    <p>Diseñamos estrategias integrales de desarrollo, upskilling y liderazgo digital para el futuro del trabajo.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">⚙️</div>
+                    <h3>Procesos Más Inteligentes</h3>
+                    <p>Automatizamos tareas de reclutamiento y selección para liberar tiempo al equipo y mejorar la eficiencia.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">📊</div>
+                    <h3>Decisiones Impulsadas por Datos</h3>
+                    <p>Integramos IA y People Analytics para anticipar rotación, detectar sesgos y optimizar el rendimiento.</p>
+                </div>
+            </div>
         </div>
-
-        <!-- Card 2: Problema Resuelto -->
-  <div class="p-6 rounded-xl bg-gray-mid border border-gray-700" appReveal style="transition-delay: 0.1s;">
-          <i data-lucide="zap" class="w-8 h-8 text-accent-cyan mb-4"></i>
-          <h3 class="text-xl font-semibold text-white mb-2">Talento con precisión</h3>
-          <p class="text-gray-400">Identificamos perfiles con las capacidades y la motivación que impulsan resultados sostenibles.</p>
-        </div>
-
-        <!-- Card 3: Problema Resuelto -->
-  <div class="p-6 rounded-xl bg-gray-mid border border-gray-700" appReveal style="transition-delay: 0.2s;">
-          <i data-lucide="shield-check" class="w-8 h-8 text-accent-cyan mb-4"></i>
-          <h3 class="text-xl font-semibold text-white mb-2">Selección sin riesgos</h3>
-          <p class="text-gray-400">Aplicamos validaciones técnicas, competenciales y culturales para garantizar decisiones seguras.</p>
-        </div>
-        <!-- Card 4: Problema Resuelto -->
-  <div class="p-6 rounded-xl bg-gray-mid border border-gray-700" appReveal style="transition-delay: 0.2s;">
-          <i data-lucide="earth" class="w-8 h-8 text-accent-cyan mb-4"></i>
-          <h3 class="text-xl font-semibold text-white mb-2">Transformación sostenible del talento </h3>
-          <p class="text-gray-400"> Diseñamos estrategias integrales de desarrollo, upskilling y liderazgo digital que preparan a las personas para el futuro del trabajo.</p>
-        </div>
-   <!-- Card 5: Problema Resuelto -->
-  <div class="p-6 rounded-xl bg-gray-mid border border-gray-700" appReveal style="transition-delay: 0.2s;">
-          <i data-lucide="brain" class="w-8 h-8 text-accent-cyan mb-4"></i>
-          <h3 class="text-xl font-semibold text-white mb-2">Procesos más inteligentes </h3>
-          <p class="text-gray-400"> Automatizamos tareas de reclutamiento y selección para liberar tiempo al equipo y mejorar la eficiencia.</p>
-        </div>
-   <!-- Card 6: Problema Resuelto -->
-  <div class="p-6 rounded-xl bg-gray-mid border border-gray-700" appReveal style="transition-delay: 0.2s;">
-          <i data-lucide="database" class="w-8 h-8 text-accent-cyan mb-4"></i>
-          <h3 class="text-xl font-semibold text-white mb-2">Decisiones impulsadas por datos </h3>
-          <p class="text-gray-400"> Integramos IA y People Analytics para anticipar rotación, detectar sesgos y optimizar el rendimiento del talento.</p>
-        </div>
-      </div>
-    </div>
   </section>
 
  <!-- SECCIÓN DE SERVICIOS CLAVE -->
-<section id="services" class="py-24 bg-[#0f172a] px-6">
-  <div class="max-w-7xl mx-auto text-center">
-    <span class="text-sm font-semibold uppercase text-[#38bdf8] tracking-wide"></span>
-    <h2 class="text-3xl sm:text-5xl font-bold text-white mt-3 leading-tight">
-      Soluciones diseñadas para potenciar el talento y la estrategia de tu organización.
-    </h2>
-    <p class="text-gray-400 max-w-3xl mx-auto mt-4 text-lg">
-      Trabajamos junto a líderes, equipos de RR.HH. y dirección para diseñar estrategias de talento basadas en evidencia y propósito.
-    </p>
-  </div>
+<section id="services" class="solutions">
+<div style="max-width: 97%;">
+            <div class="section-header">
+                <h2>Soluciones Diseñadas para Potenciar tu Talento</h2>
+                <p>Trabajamos junto a líderes, equipos de RR.HH. y dirección para diseñar estrategias de talento basadas en evidencia y propósito.</p>
+            </div>
+            <div class="solutions-grid">
+                <div class="solution-card" id="recruitment">
+                    <div class="solution-icon">📊</div>
+                    <h3>Recruitment Predictivo</h3>
+                    <p>Selección basada en evidencia que integra fit cultural, motivacional y skills para encontrar el talento perfecto.</p>
+                    <ul class="solution-features">
+                        <li>Target Score interno personalizado</li>
+                        <li>Employer Branding estratégico</li>
+                        <li>Onboarding que retiene talento</li>
+                    </ul>
+                </div>
 
-  <!-- Cards -->
- <div class="grid md:grid-cols-2 gap-8 text-left" style="padding-top: 1rem;">
-  <!-- Card 1 -->
-  <div class="p-6 rounded-xl bg-gray-mid border border-gray-700 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-[#38bdf8]/10" appReveal>
-      <h3 class="text-xl font-semibold text-white mb-3">Recruitment Predictivo</h3>
-      <p class="text-gray-400 mb-3">Selección basada en evidencia que integra fit cultural, motivacional y skills.</p>
-      <ul class="space-y-1 text-sm text-gray-300">
-        <li>-Target Score interno</li>
-        <li>-Employer Branding</li>
-        <li>-Onboarding que retiene</li>
-      </ul>
-    </div>
+                <div class="solution-card" id="diagnostico">
+                    <div class="solution-icon">🔍</div>
+                    <h3>Diagnóstico y Desarrollo</h3>
+                    <p>Convertimos datos humanos en decisiones estratégicas que impulsan crecimiento organizacional sostenible.</p>
+                    <ul class="solution-features">
+                        <li>Medición de cultura y compromiso</li>
+                        <li>Análisis de sesgos y movilidad interna</li>
+                        <li>Productividad y equidad laboral</li>
+                    </ul>
+                </div>
 
-    <!-- Card 2 -->
-  <div class="p-6 rounded-xl bg-gray-mid border border-gray-700 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-[#38bdf8]/10" appReveal>
-      <h3 class="text-xl font-semibold text-white mb-3">Diagnóstico y Desarrollo</h3>
-      <p class="text-gray-400 mb-3">Convertimos datos humanos en decisiones estratégicas que impulsan crecimiento.</p>
-      <ul class="space-y-1 text-sm text-gray-300">
-        <li>-Medición de cultura y compromiso</li>
-        <li>-Sesgos y movilidad interna</li>
-        <li>-Productividad y equidad</li>
-      </ul>
-    </div>
+                <div class="solution-card" id="upskilling">
+                    <div class="solution-icon">🎓</div>
+                    <h3>Upskilling & Reskilling</h3>
+                    <p>Programas de aprendizaje con impacto medible, orientados al futuro del trabajo y la empleabilidad.</p>
+                    <ul class="solution-features">
+                        <li>Competencias digitales avanzadas</li>
+                        <li>Mejora de desempeño y empleabilidad</li>
+                        <li>Crecimiento sostenible del equipo</li>
+                    </ul>
+                </div>
 
-    <!-- Card 3 -->
-  <div class="p-6 rounded-xl bg-gray-mid border border-gray-700 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-[#38bdf8]/10" appReveal>
-      <h3 class="text-xl font-semibold text-white mb-3">Upskilling & Reskilling</h3>
-      <p class="text-gray-400 mb-3">Programas de aprendizaje con impacto medible, orientados al futuro.</p>
-      <ul class="space-y-1 text-sm text-gray-300">
-        <li>-Competencias digitales</li>
-        <li>-Desempeño y empleabilidad</li>
-        <li>-Crecimiento sostenible</li>
-      </ul>
-    </div>
-
-    <!-- Card 4 -->
-  <div class="p-6 rounded-xl bg-gray-mid border border-gray-700 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg hover:shadow-[#38bdf8]/10" appReveal>
-      <h3 class="text-xl font-semibold text-white mb-3">IA y Automatización para PYMES</h3>
-      <p class="text-gray-400 mb-3">Flujos inteligentes con IA generativa para optimizar la eficiencia operativa.</p>
-      <ul class="space-y-1 text-sm text-gray-300">
-        <li>-Automatización de reclutamiento</li>
-        <li>-Reportes y dashboards automáticos</li>
-        <li>-Chatbots internos / soporte</li>
-      </ul>
-    </div>
-  </div>
+                <div class="solution-card" id="ia-automatizacion">
+                    <div class="solution-icon">⚙️</div>
+                    <h3>IA y Automatización para PYMES</h3>
+                    <p>Flujos inteligentes con IA generativa para optimizar la eficiencia operativa de tu organización.</p>
+                    <ul class="solution-features">
+                        <li>Automatización de procesos de reclutamiento</li>
+                        <li>Reportes y dashboards automáticos</li>
+                        <li>Chatbots internos y soporte inteligente</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 </section>
 
   <!-- 4. SECCIÓN "WHY PARTNER WITH US" (Diferenciadores) -->
-  <section id="why-us" class="py-24 bg-gray-900 px-4">
+  <section id="why-us" class="solutions">
     <div class="max-w-7xl mx-auto">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
   <div appReveal>
-          <span class="text-sm font-semibold uppercase text-accent-cyan">Nuestra Propuesta Única</span>
-          <h2 class="text-4xl sm:text-5xl font-bold text-white mt-2 mb-6">
+          <h2 class="text-4xl sm:text-5xl font-bold mt-2 mb-6">
             Por qué Datalent Solutions es tu socio estratégico
           </h2>
           <p class="text-lg text-gray-400 mb-8">
@@ -154,27 +153,27 @@ Diseñamos soluciones a medida donde los datos se convierten en decisiones y la 
 
   <div class="space-y-6" appReveal style="transition-delay: 0.1s;">
           <!-- Diferenciador 1 -->
-          <div class="flex items-start space-x-4 p-4 rounded-lg border border-accent-cyan/20 bg-dark-base/50">
+          <div class="problem-card">
             <div>
-              <h4 class="text-xl font-semibold text-white">Validación Técnica Profunda</h4>
-              <p class="text-gray-400">Evaluaciones realizadas por expertos en ingeniería y ciencia de datos, no por reclutadores generalistas.
+              <h3>Validación Técnica Profunda</h3>
+              <p>Evaluaciones realizadas por expertos en ingeniería y ciencia de datos, no por reclutadores generalistas.
 Garantizamos precisión técnica y comprensión del contexto del rol.</p>
             </div>
           </div>
 
           <!-- Diferenciador 2 -->
-          <div class="flex items-start space-x-4 p-4 rounded-lg border border-accent-cyan/20 bg-dark-base/50">
+          <div class="problem-card">
             <div>
-              <h4 class="text-xl font-semibold text-white">Foco Geográfico Estratégico</h4>
-              <p class="text-gray-400">Experiencia comprobada en los mercados de España y Europa, y conocimiento de la cultura de negocios local.</p>
+              <h3>Foco Geográfico Estratégico</h3>
+              <p>Experiencia comprobada en los mercados de España y Europa, y conocimiento de la cultura de negocios local.</p>
             </div>
           </div>
 
           <!-- Diferenciador 3 -->
-          <div class="flex items-start space-x-4 p-4 rounded-lg border border-accent-cyan/20 bg-dark-base/50">
+          <div class="problem-card">
             <div>
-              <h4 class="text-xl font-semibold text-white">Rapidez y Precisión</h4>
-              <p class="text-gray-400">Entrega de candidatos de alto calibre en tiempo récord gracias a nuestro pipeline especializado.</p>
+              <h3>Rapidez y Precisión</h3>
+              <p>Entrega de candidatos de alto calibre en tiempo récord gracias a nuestro pipeline especializado.</p>
             </div>
           </div>
         </div>
@@ -232,17 +231,92 @@ Garantizamos precisión técnica y comprensión del contexto del rol.</p>
           <p class="text-text-light font-medium"><i data-lucide="mail" class="w-4 h-4 inline-block mr-2 text-accent-cyan"></i> Email: <a href="mailto:gmorales@datalentsolutions.com" class="hover:text-accent-cyan">gmorales@datalentsolutions.com</a></p>
         </div>
       </div>
+      </div>
+  </section>
       
 <!-- 7. RESEÑAS DE GOOGLE -->
-<section id="reviews" class="py-24 bg-gray-800 px-4 border-t border-gray-700" style="background: transparent;">
-  <div class="max-w-6xl mx-auto text-center reveal-item">
-    <span class="text-sm font-semibold uppercase text-accent-cyan">Opiniones Reales</span>
-    <h2 class="text-4xl sm:text-5xl font-bold text-white mt-2 mb-10">
+<section id="reviews" class="testimonials">
+  <div class="section-header">
+    <h2>
       Lo Que Dicen Nuestros Clientes
     </h2>
+    <p class="text-white mb-10">Descubre cómo Datalent Solutions ha transformado la gestión del talento en empresas líderes.</p>
+  </div>
+  <div class="testimonials-grid">
+     <div class="testimonial-card">
+         <div class="rating">
+             <span class="star">★</span>
+             <span class="star">★</span>
+             <span class="star">★</span>
+             <span class="star">★</span>
+             <span class="star">★</span>
+         </div>
+         <p class="testimonial-text">
+             "Datalent Solutions ha revolucionado nuestro proceso de selección. Pasamos de 3 meses a 2 semanas en la contratación de perfiles técnicos. La precisión en la identificación de candidatos es impresionante."
+         </p>
+         <div class="client-info">
+             <div class="client-avatar">MG</div>
+             <div class="client-details">
+                 <h4>María G.</h4>
+             </div>
+         </div>
+     </div>
 
-    <!-- Widget de Trustindex (Google Reviews) -->
-    <div id="googleReviews" class="trustindex-widget mx-auto max-w-4xl" style="background: white;"></div>
+     <div class="testimonial-card">
+         <div class="rating">
+             <span class="star">★</span>
+             <span class="star">★</span>
+             <span class="star">★</span>
+             <span class="star">★</span>
+             <span class="star">★</span>
+         </div>
+         <p class="testimonial-text">
+             "El diagnóstico de cultura que realizaron fue revelador. Identificaron sesgos que no habíamos visto y nos ayudaron a diseñar un programa de upskilling que mejoró significativamente el engagement."
+         </p>
+         <div class="client-info">
+             <div class="client-avatar">JR</div>
+             <div class="client-details">
+                 <h4>Juan R.</h4>
+             </div>
+         </div>
+     </div>
+    <div class="testimonial-card">
+        <div class="rating">
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+            <span class="star">★</span>
+        </div>
+        <p class="testimonial-text">
+            "La implementación de IA y automatización en nuestros procesos de RR.HH. ha liberado a nuestro equipo de tareas repetitivas. Ahora se enfocan en estrategia y desarrollo de talento."
+        </p>
+        <div class="client-info">
+            <div class="client-avatar">SL</div>
+            <div class="client-details">
+                <h4>Sandra L.</h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="testimonial-card">
+      <div class="rating">
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+      </div>
+      <p class="testimonial-text">
+          "El equipo de Datalent es profesional, accesible y realmente entiende nuestras necesidades. No es solo un proveedor, es un socio estratégico en nuestra transformación digital."
+      </p>
+      <div class="client-info">
+          <div class="client-avatar">CP</div>
+          <div class="client-details">
+              <h4>Carlos P.</h4>
+          </div>
+      </div>
+    </div>
   </div>
 </section>
 
