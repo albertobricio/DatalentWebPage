@@ -1,0 +1,4 @@
+Contact: mailto:gmorales@datalentsolutions.com
+Expires: 2026-12-22
+Preferred-Languages: es, en
+Canonical: https://www.datalentsolutions.com/.well-known/security.txt

@@ -2,6 +2,18 @@
 <router-outlet></router-outlet>
 <app-footer></app-footer>
 
+<!-- Breadcrumbs SEO -->
+<nav aria-label="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList" class="hidden">
+  <ol>
+    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <a itemprop="item" href="/">
+        <span itemprop="name">Inicio</span>
+      </a>
+      <meta itemprop="position" content="1" />
+    </li>
+  </ol>
+</nav>
+
 <!-- Banner de Cookies -->
 <div 
   *ngIf="showCookieBanner"

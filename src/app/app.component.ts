@@ -27,10 +27,23 @@ export class AppComponent {
   acceptCookies(): void {
     localStorage.setItem('cookiesDatalentAccepted', 'true');
     this.showCookieBanner = false;
+    // Evento para Google Analytics/Consent Mode si se implementa
+    if (window['gtag']) {
+      window['gtag']('consent', 'update', {
+        ad_storage: 'granted',
+        analytics_storage: 'granted'
+      });
+    }
   }
 
   rejectCookies(): void {
     this.showCookieBanner = false;
+    if (window['gtag']) {
+      window['gtag']('consent', 'update', {
+        ad_storage: 'denied',
+        analytics_storage: 'denied'
+      });
+    }
   }
 
   @HostListener('window:scroll', [])

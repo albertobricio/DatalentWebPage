@@ -10,6 +10,11 @@ export class EmailService {
   constructor() { }
 
   async sendMail(payload: any): Promise<boolean> {
+    // Validación básica de payload para evitar XSS y abuso
+    if (!payload || typeof payload !== 'object') return false;
+    // todo: agregar más validaciones según el esquema esperado
+    // if (!payload.user_email || !/^[\w-.]+@([\w-]+\.)+[\w-]{2,}$/.test(payload.user_email)) return false;
+    if (payload.message && payload.message.length > 2000) return false;
     try {
       await emailjs.send(
         environment.emailjsServiceId,

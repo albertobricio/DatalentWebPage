@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://www.datalentsolutions.com/sitemap.xml
