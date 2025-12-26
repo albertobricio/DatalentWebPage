@@ -182,56 +182,41 @@ Garantizamos precisión técnica y comprensión del contexto del rol.</p>
   </section>
 
   <!-- 6. FORMULARIO DE CONTACTO RÁPIDO / CTA FINAL -->
-  <section id="contact" class="py-24 bg-gray-900 px-4">
-    <div class="max-w-4xl mx-auto">
-      <div class="text-center mb-12 reveal-item">
-        <span class="text-sm font-semibold uppercase text-accent-cyan">Comienza tu Transformación de Talento</span>
-        <h2 class="text-4xl sm:text-5xl font-bold text-white mt-2">Contacta a Nuestro Equipo de Especialistas</h2>
-      </div>
-
-      <div class="bg-dark-base p-6 sm:p-10 rounded-xl shadow-2xl border border-gray-700" appReveal>
-        <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm" class="space-y-6">
-          <div class="grid sm:grid-cols-2 gap-4">
-            <input name="name" ngModel type="text" id="name" placeholder="Nombre Completo" required class="w-full p-3 rounded-lg bg-gray-mid border border-gray-700 text-text-light focus:ring-accent-cyan focus:border-accent-cyan outline-none">
-            <input name="email" ngModel type="email" id="email" placeholder="Email Corporativo" required class="w-full p-3 rounded-lg bg-gray-mid border border-gray-700 text-text-light focus:ring-accent-cyan focus:border-accent-cyan outline-none">
-          </div>
-
-          <div class="grid sm:grid-cols-2 gap-4">
-            <input name="phone" ngModel type="text" id="phone" placeholder="Teléfono" class="w-full p-3 rounded-lg bg-gray-mid border border-gray-700 text-text-light focus:ring-accent-cyan focus:border-accent-cyan outline-none">
-            <input name="company" ngModel type="text" id="company" placeholder="Empresa" required class="w-full p-3 rounded-lg bg-gray-mid border border-gray-700 text-text-light focus:ring-accent-cyan focus:border-accent-cyan outline-none">
-          </div>
-
-          <select id="service-interest" name="serviceInterest" ngModel required class="w-full p-3 rounded-lg bg-gray-mid border border-gray-700 text-text-light focus:ring-accent-cyan focus:border-accent-cyan outline-none">
-            <option value="" disabled selected>Estoy Interesado en (Seleccionar Servicio)</option>
-            <option value="Recruitment Predictivo">Recruitment Predictivo</option>
-            <option value="Diagnóstico y desarrollo">Diagnóstico y desarrollo</option>
-            <option value="Upskilling & Reskilling">Upskilling & Reskilling</option>
-            <option value="IA y Automatización para PYMES">IA y Automatización para PYMES</option>
-            <option value="general">Consulta General</option>
-          </select>
-
-          <textarea id="message" name="message" ngModel rows="4" placeholder="Describe brevemente tus necesidades de talento o proyecto." required class="w-full p-3 rounded-lg bg-gray-mid border border-gray-700 text-text-light focus:ring-accent-cyan focus:border-accent-cyan outline-none"></textarea>
-
-          <div class="flex items-center">
-            <input type="checkbox" id="privacyConsent" name="privacyConsent" [(ngModel)]="privacyConsentChecked" [required]="true" class="mr-2">
-            <label for="privacyConsent" class="text-gray-400 text-sm">He leído y acepto la <a href="assets/data-privacy.pdf" target="_blank" class="text-accent-cyan underline">política de privacidad</a>.</label>
-          </div>
-
-          <div id="form-status" class="text-center font-medium" role="alert">{{ formStatus }}</div>
-
-          <button type="submit" class="cta-button w-full px-5 py-3 rounded-lg text-lg transition duration-300"
-            [disabled]="!contactForm.valid || !privacyConsentChecked"
-            [ngClass]="{'opacity-50 cursor-not-allowed bg-gray-500 text-gray-300': !contactForm.valid || !privacyConsentChecked, 'bg-accent-cyan': contactForm.valid && privacyConsentChecked}">
-            Enviar Consulta
-          </button>
-        </form>
-
-        <div class="mt-8 text-center border-t border-gray-700 pt-6">
-          <p class="text-gray-400 mb-2">O contáctanos directamente:</p>
-          <p class="text-text-light font-medium"><i data-lucide="mail" class="w-4 h-4 inline-block mr-2 text-accent-cyan"></i> Email: <a href="mailto:gmorales@datalentsolutions.com" class="hover:text-accent-cyan">gmorales@datalentsolutions.com</a></p>
+  <section id="contact" class="contact-section">
+      <div style="max-width: 97%;">
+            <div class="contact-container">
+                <div class="section-header">
+                    <h2>Comienza tu Transformación de Talento</h2>
+                    <p>Contacta a nuestro equipo de especialistas para una consulta gratuita y personalizada.</p>
+                </div>
+                <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
+                    <div class="form-group">
+                        <label for="nombre">Nombre Completo *</label>
+                        <input ngModel type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Corporativo *</label>
+                        <input ngModel type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="empresa">Empresa</label>
+                        <input ngModel type="text" id="empresa" name="empresa">
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje">¿Cuál es tu reto? *</label>
+                        <textarea ngModel id="mensaje" name="mensaje" required></textarea>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="privacidad" name="privacidad" required [(ngModel)]="privacyConsentChecked">
+                        <label for="privacidad">He leído y acepto la <a href="assets/data-privacy.pdf" style="color: var(--color-primary); text-decoration: underline;">política de privacidad</a></label>
+                    </div>
+                    <button type="submit" class="form-submit"
+                    [ngClass]="{'opacity-50 cursor-not-allowed bg-gray-500 text-gray-300': !contactForm.valid || !privacyConsentChecked, 'bg-accent-cyan': contactForm.valid && privacyConsentChecked}"
+                     [disabled]="!contactForm.valid || !privacyConsentChecked" >Enviar Consulta</button>
+                </form>
+                <div id="form-status" class="text-center font-medium" role="alert">{{ formStatus }}</div>
+            </div>
         </div>
-      </div>
-      </div>
   </section>
       
 <!-- 7. RESEÑAS DE GOOGLE -->

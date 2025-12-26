@@ -74,12 +74,11 @@ export class HomeComponent implements AfterViewInit {
     this.formStatus = 'Enviando...';
 
     const payload = {
-      from_name: form.value.name || '',
+      from_name: form.value.nombre || '',
       from_email: form.value.email || '',
-      phone: form.value.phone || '',
-      company: form.value.company || '',
-      service_interest: form.value.serviceInterest || '',
-      message: form.value.message || '',
+      company: form.value.empresa || '',
+      service_interest: 'Consulta general',
+      message: form.value.mensaje || '',
       to_email: environment.contactEmail
     };
 
