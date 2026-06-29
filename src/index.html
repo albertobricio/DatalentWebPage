@@ -7,7 +7,7 @@
   
   <!-- Security Headers -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self' https://api.emailjs.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://unpkg.com https://cdn.jsdelivr.net https://assets.calendly.com; style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://assets.calendly.com; img-src 'self' data: https:; font-src 'self' data: https:; connect-src 'self' https://api.emailjs.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   
   <!-- SEO & Meta Tags -->
@@ -39,6 +39,9 @@
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="assets/datalent-icon.png">
+  <link
+  rel="stylesheet"
+  href="https://assets.calendly.com/assets/external/widget.css">
   
   <!-- Preconnect to external resources for performance -->
   <link rel="preconnect" href="https://cdn.tailwindcss.com">
@@ -75,8 +78,8 @@
       "@type": "Organization",
       "name": "Datalent Solutions",
       "url": "https://www.datalentsolutions.com",
-      "logo": "https://www.datalentsolutions.com/assets/datalent-icon.png",
-      "description": "Transformamos el talento en ventaja competitiva con People Analytics, IA generativa y Recruitment Predictivo",
+      "logo": "https://www.datalentsolutions.com/assets/datalent_logo_modern_3.png",
+      "description": "Transformamos el talento en ventaja competitiva con People Analytics, IA generativa y Gobierno del Dato. Soluciones para PYMES y grandes empresas.",
       "sameAs": [
         "https://linkedin.com/company/datalent-solutions"
       ],
@@ -94,7 +97,7 @@
       "knowsAbout": [
         "People Analytics",
         "IA en RRHH",
-        "Recruitment Predictivo",
+        "Gobierno del Dato",
         "Transformación Digital",
         "Desarrollo de Talento"
       ]
@@ -121,7 +124,12 @@
   }
   </script>
 </head>
-<body class="bg-dark-base antialiased">
+<body class="white-base antialiased">
   <app-root></app-root>
+
+  <script
+    src="https://assets.calendly.com/assets/external/widget.js"
+    async>
+  </script>
 </body>
 </html>

@@ -21,10 +21,7 @@ export class FooterComponent {
                 el.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         }, 50);
-    }
 
-    openNewsletter(): void {
-        this.router.navigate(['newsletter']);
     }
 
     openFaq(): void {

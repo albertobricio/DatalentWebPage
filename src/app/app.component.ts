@@ -16,9 +16,6 @@ export class AppComponent {
 
   constructor(private router: Router) {}
 
-  isNewsletterRoute(): boolean {
-    return this.router.url.includes('newsletter');
-  }
 
   isFaq(): boolean {
     return this.router.url.includes('faq');
@@ -74,11 +71,6 @@ export class AppComponent {
       }
     });
 
-    if (this.isNewsletterRoute()) {
-      current = 'newsletter';
-    } else if (this.isFaq()) {
-      current = 'faq';
-    }
 
     navLinks.forEach(link => {
       link.classList.remove('active');

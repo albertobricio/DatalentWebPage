@@ -30,14 +30,6 @@ export class MainTopbarComponent {
   closeMobileMenu(): void {
     this.mobileMenuOpen = false;
   }
-
-  openNewsletter(): void {
-    this.router.navigate(['newsletter']);
-  }
-
-  isNewsletterRoute(): boolean {
-    return this.router.url === '/newsletter';
-  }
   
   openfaq(): void {
     this.router.navigate(['faq']);

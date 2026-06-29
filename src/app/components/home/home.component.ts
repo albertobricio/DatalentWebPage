@@ -36,9 +36,8 @@ export class HomeComponent implements AfterViewInit {
   constructor() {
     this.title.setTitle('Datalent Solutions');
     this.meta.addTags([
-      { name: 'description', content: 'Datalent Solutions es una consultora especializada en atracción, reclutamiento, selección,\
-        formación y desarrollo de capital humano basado en analítica predictiva, IA y evidencia científica.' },
-      { name: 'keywords', content: 'ofertas de trabajo de tarancon, ofertas de empleo de tarancon, vacantes de tarancon, eurofirms, adecco' },
+      { name: 'description', content: 'Datalent Solutions es una consultora especializada en People Analytics, Gobierno del Dato, e IA aplicada a procesos empresariales' },
+      { name: 'keywords', content: 'gobierno del dato, people analytics, ia aplicada, Tarancón' },
       { name: 'author', content: 'Datalent Solutions' },
       { rel: 'canonical', href: 'https://www.datalentsolutions.com' }
     ]);
@@ -56,10 +55,6 @@ export class HomeComponent implements AfterViewInit {
     script.async = true;
     script.defer = true;
     this.renderer.appendChild(document.getElementById("googleReviews"), script);
-  }
-
-  isNewsletterRoute(): boolean {
-    return this.router.url === '/newsletter';
   }
 
   scrollToSection(sectionId: string) {
