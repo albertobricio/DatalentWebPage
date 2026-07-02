@@ -20,6 +20,13 @@
   color: var(--text-inverse);
   border-top: var(--border-width) solid var(--color-border-dark);
 
+  // Rethemes app-button's secondary variant for this dark surface — without
+  // this, secondary's default ink-colored text is invisible against the
+  // ink background. See button.component.scss's custom-property indirection.
+  --btn-secondary-color: var(--text-inverse);
+  --btn-secondary-border: var(--color-border-dark);
+  --btn-secondary-bg-hover: var(--color-border-dark);
+
   @include respond-to('tablet') {
     flex-direction: row;
     align-items: center;
