@@ -1,7 +1,7 @@
   <div class="container"></div>
-<section id="accordion" class="faq-section" style="color: #ffffff;">
-  <h2 style="color: #ffffff;">Preguntas Frecuentes</h2>
-  <p class="subtitle" style="color: #ffffff;">
+<section id="accordion" class="faq-section">
+  <h2>Preguntas Frecuentes</h2>
+  <p class="subtitle">
     Decisiones más humanas, respaldadas por datos inteligentes.
   </p>
 
@@ -57,156 +57,17 @@
 
   <details>
     <summary>9.¿Cuál es vuestro mensaje central?</summary>
-    <blockquote>“En un mundo guiado por los datos, el valor más grande sigue estando en las personas.  
+    <blockquote>“En un mundo guiado por los datos, el valor más grande sigue estando en las personas.
     Datalent Solutions une ambos mundos: inteligencia y humanidad.”</blockquote>
-  </details> 
+  </details>
 
  <div class="cta">
-  <p style="color: #ffffff;">
+  <p>
     ¿Tienes más preguntas?
-    <a style="color: rgb(0 234 255 / var(--tw-text-opacity, 1)); font-weight:600; text-decoration:none; cursor:pointer;"
-       onmouseover="this.style.color='#19caff'"
-       onmouseout="this.style.color='#ffffff'"
-       (click)="scrollToSection('contact')">
+    <a class="cta-link" (click)="scrollToSection('contact')">
       Contáctanos
     </a>
     y te responderemos en menos de 24 h.
   </p>
 </div>
 </section>
-
-
-<style>
-  :root {
-    --color-bg: #0a0a0a;        /* Fondo general oscuro */
-    --color-text: #ffffff;      /* Texto principal blanco */
-    --color-accent: #19caff;    /* Azul corporativo para títulos y bordes */
-    --color-muted: #e0e0e0;     /* Gris claro para texto secundario */
-    --color-panel: #0b3c59;     /* Azul elegante para los recuadros abiertos */
-  }
-
-  .faq-section {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 4rem 1rem;
-    background: var(--color-bg);
-    color: var(--color-text);
-    font-family: 'Inter', 'Poppins', sans-serif;
-  }
-
-  .faq-section h2 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--color-accent);
-    text-align: center;
-    margin-bottom: 0.5rem;
-  }
-
-  .faq-section .subtitle {
-    text-align: center;
-    font-size: 1rem;
-    color: var(--color-muted);
-    margin-bottom: 3rem;
-  }
-
-  /* Estado cerrado */
-  details {
-    border-bottom: 1px solid rgba(25, 202, 255, 0.3);
-    padding: 1.2rem 0;
-    transition: all 0.3s ease;
-  }
-
-  /* Estado abierto */
-  details[open] {
-    background: var(--color-panel); /* Azul elegante */
-    border-left: 3px solid var(--color-accent);
-    border-radius: 8px;
-    padding: 1.5rem 1rem;
-    box-shadow: 0 0 18px rgba(25, 202, 255, 0.15);
-  }
-
-  summary {
-    font-weight: 600;
-    cursor: pointer;
-    font-size: 1.1rem;
-    color: var(--color-accent);
-    position: relative;
-    padding-right: 1.5rem;
-    transition: color 0.2s ease;
-  }
-
-  summary:hover {
-    color: #66e0ff;
-  }
-
-  summary::-webkit-details-marker {
-    display: none;
-  }
-
-  summary::after {
-    content: '+';
-    position: absolute;
-    right: 0;
-    font-size: 1.2rem;
-    color: var(--color-accent);
-    transition: transform 0.3s ease;
-  }
-
-  details[open] summary::after {
-    content: '−';
-    transform: rotate(180deg);
-  }
-
-  /* Texto dentro de los recuadros */
-  details[open] p,
-  details[open] ul,
-  details[open] li {
-    color: #ffffff; /* Blanco puro dentro de los recuadros */
-  }
-
-  p, ul {
-    margin: 0.7rem 0 0 0;
-    line-height: 1.7;
-    color: var(--color-muted);
-  }
-
-  ul {
-    padding-left: 1.5rem;
-  }
-
-  blockquote {
-    font-style: italic;
-    color: #b5f3ff;
-    border-left: 3px solid var(--color-accent);
-    margin: 1rem 0;
-    padding-left: 1rem;
-  }
-
-  .cta {
-    margin-top: 3rem;
-    text-align: center;
-  }
-
-  .cta-link {
-    color: var(--color-accent);
-    font-weight: 600;
-    text-decoration: none;
-  }
-
-  .cta-link:hover {
-    text-decoration: underline;
-    color: #66e0ff;
-  }
-
-  @media (max-width: 600px) {
-    .faq-section {
-      padding: 2rem 0.8rem;
-    }
-    .faq-section h2 {
-      font-size: 1.6rem;
-    }
-    summary {
-      font-size: 1rem;
-    }
-  }
-</style>

@@ -36,7 +36,7 @@
 
   <!-- 2. SECCIÓN DE PROPUESTA DE VALOR / PROBLEMA-SOLUCIÓN -->
   <section id="value-prop" class="what-we-solve" appReveal>
-    <div style="max-width: 97%;">
+    <div class="section-inner">
             <div class="section-header">
                 <h2>Qué Resolvemos y Cómo Generamos Impacto</h2>
                 <p>Transformamos el talento en ventaja competitiva combinando evidencia, tecnología y empatía humana.</p>
@@ -78,7 +78,7 @@
 
  <!-- SECCIÓN DE SERVICIOS CLAVE -->
 <section id="services" class="solutions">
-<div style="max-width: 97%;">
+<div class="section-inner">
             <div class="section-header">
                 <h2>Soluciones Diseñadas para Potenciar tu Talento</h2>
                 <p>Trabajamos junto a líderes, equipos de RR.HH. y dirección para diseñar estrategias de talento basadas en evidencia y propósito.</p>
@@ -133,25 +133,25 @@
 
   <!-- 4. SECCIÓN "WHY PARTNER WITH US" (Diferenciadores) -->
   <section id="why-us" class="solutions">
-    <div class="max-w-7xl mx-auto">
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <div class="why-us">
+      <div class="why-us-grid">
   <div appReveal>
-          <h2 class="text-4xl sm:text-5xl font-bold mt-2 mb-6">
+          <h2 class="why-us-heading">
             Por qué Datalent Solutions es tu socio estratégico
           </h2>
-          <p class="text-lg text-gray-400 mb-8">
+          <p class="why-us-lead">
         Somos una firma boutique que combina inteligencia humana y analítica avanzada para transformar la gestión del talento y la eficiencia organizacional.
 Diseñamos soluciones a medida donde los datos se convierten en decisiones y la tecnología en ventaja competitiva.
 </p>
 <a
   (click)="scrollToSection('contact')"
-  class="inline-block bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-semibold rounded-lg px-8 py-3 shadow-md hover:shadow-cyan-400/50 hover:-translate-y-1 transform transition duration-300"
+  class="why-us-cta"
 >
   🚀 Explora tu próximo reto con nosotros
 </a>
 </div>
 
-  <div class="space-y-6" appReveal style="transition-delay: 0.1s;">
+  <div class="why-us-differentiators" appReveal style="transition-delay: 0.1s;">
           <!-- Diferenciador 1 -->
           <div class="problem-card">
             <div>
@@ -183,7 +183,7 @@ Garantizamos precisión técnica y comprensión del contexto del rol.</p>
 
   <!-- 6. FORMULARIO DE CONTACTO RÁPIDO / CTA FINAL -->
   <section id="contact" class="contact-section">
-      <div style="max-width: 97%;">
+      <div class="section-inner">
             <div class="contact-container">
                 <div class="section-header">
                     <h2>Comienza tu Transformación de Talento</h2>
@@ -208,24 +208,24 @@ Garantizamos precisión técnica y comprensión del contexto del rol.</p>
                     </div>
                     <div class="checkbox-group">
                         <input type="checkbox" id="privacidad" name="privacidad" required [(ngModel)]="privacyConsentChecked">
-                        <label for="privacidad">He leído y acepto la <a href="assets/data-privacy.pdf" style="color: var(--color-primary); text-decoration: underline;">política de privacidad</a></label>
+                        <label for="privacidad">He leído y acepto la <a href="assets/data-privacy.pdf" class="inline-link">política de privacidad</a></label>
                     </div>
                     <button type="submit" class="form-submit"
-                    [ngClass]="{'opacity-50 cursor-not-allowed bg-gray-500 text-gray-300': !contactForm.valid || !privacyConsentChecked, 'bg-accent-cyan': contactForm.valid && privacyConsentChecked}"
+                    [class.form-submit--disabled]="!contactForm.valid || !privacyConsentChecked"
                      [disabled]="!contactForm.valid || !privacyConsentChecked" >Enviar Consulta</button>
                 </form>
-                <div id="form-status" class="text-center font-medium" role="alert">{{ formStatus }}</div>
+                <div id="form-status" class="form-status" role="alert">{{ formStatus }}</div>
             </div>
         </div>
   </section>
-      
+
 <!-- 7. RESEÑAS DE GOOGLE -->
 <section id="reviews" class="testimonials">
   <div class="section-header">
     <h2>
       Lo Que Dicen Nuestros Clientes
     </h2>
-    <p class="text-white mb-10">Descubre cómo Datalent Solutions ha transformado la gestión del talento en empresas líderes.</p>
+    <p class="testimonials-lead">Descubre cómo Datalent Solutions ha transformado la gestión del talento en empresas líderes.</p>
   </div>
   <div class="testimonials-grid">
      <div class="testimonial-card">
@@ -308,4 +308,3 @@ Garantizamos precisión técnica y comprensión del contexto del rol.</p>
   <!-- Componente Angular del mapa -->
   <!--<app-map></app-map>-->
 </main>
-

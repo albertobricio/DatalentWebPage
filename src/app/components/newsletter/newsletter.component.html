@@ -1,8 +1,8 @@
   <div class="container">
 
     <h1>Decidir con <span class="highlight">criterio humano</span> y <span class="highlight">precisión analítica</span></h1>
-    <p style="text-align:center;">
-      La newsletter donde aprendemos a tomar decisiones más inteligentes sobre talento:  
+    <p class="newsletter-intro">
+      La newsletter donde aprendemos a tomar decisiones más inteligentes sobre talento:
       menos intuición ciega, más claridad, datos y visión humana.
     </p>
 
@@ -49,22 +49,22 @@
     <div class="cta">
       <p>Si te interesa un RRHH más inteligente, basado en evidencia y propósito,  
       <br>únete a una comunidad que piensa distinto, pero con humanidad.</p>
-      <input 
-        name="email" 
-        ngModel 
-        type="email" 
-        id="email" 
+      <input
+        name="email"
+        ngModel
+        type="email"
+        id="email"
         placeholder="Email"
         #emailCtrl="ngModel"
         required
-        class="w-full p-3 rounded-lg bg-gray-mid border border-gray-700 text-text-light focus:ring-accent-cyan focus:border-accent-cyan outline-none">
-      <a 
-        (click)="sendMailToSubscribe()" 
-        [class.pointer-events-none]="emailCtrl.invalid"
-        [class.opacity-50]="emailCtrl.invalid">
+        class="newsletter-input">
+      <a
+        class="newsletter-submit"
+        (click)="sendMailToSubscribe()"
+        [class.newsletter-submit--disabled]="emailCtrl.invalid">
         Suscribirme
       </a>
-      <div id="form-status" class="text-center font-medium" role="alert">{{ formStatus }}</div>
+      <div id="form-status" class="form-status" role="alert">{{ formStatus }}</div>
     </div>
 
     <p class="question">¿Qué decisión reciente tomarías distinto si aplicaras más datos que intuición?</p>
