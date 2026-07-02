@@ -35,6 +35,13 @@ const routes: Routes = [
         (m) => m.CompensationTotalRewardsComponent,
       ),
   },
+  {
+    path: 'servicios/workforce-intelligence',
+    loadComponent: () =>
+      import('./pages/services/workforce-intelligence/workforce-intelligence.component').then(
+        (m) => m.WorkforceIntelligenceComponent,
+      ),
+  },
   { path: '**', redirectTo: '' }
 ];
 

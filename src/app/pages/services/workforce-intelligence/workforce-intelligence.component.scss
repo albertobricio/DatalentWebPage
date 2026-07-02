@@ -1,0 +1,16 @@
+@use 'tokens' as *;
+
+// Follows the same minimal pattern as Agentic AI, Compensation & Total
+// Rewards, and AI Governance: section-intro, section-disclaimer,
+// text-link, faq-more, the card grid, and cta-banner are all global
+// utilities (src/styles/theme/_content-patterns.scss, Sprint 4.5) — this
+// file only holds what's genuinely specific to this page's own headings.
+
+h2 {
+  margin-bottom: var(--space-lg);
+}
+
+h3 {
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-sm);
+}

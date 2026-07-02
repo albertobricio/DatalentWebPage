@@ -14,14 +14,3 @@ h3 {
   margin-top: var(--space-xl);
   margin-bottom: var(--space-sm);
 }
-
-// The single related-content card in "Sigue explorando" — not a grid
-// (only one item), so it doesn't use the card-grid mixin; unique to this
-// page, not duplicated elsewhere.
-.related-grid {
-  max-width: 24rem;
-
-  app-feature-card {
-    display: block;
-  }
-}

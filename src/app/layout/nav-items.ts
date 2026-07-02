@@ -30,7 +30,7 @@ export const NAV_ITEMS: readonly NavItem[] = [
       { label: 'People Analytics' },
       { label: 'Compensación y Total Rewards', path: '/servicios/compensacion-total-rewards' },
       { label: 'Gobernanza de IA', path: '/servicios/gobernanza-ia' },
-      { label: 'Workforce Intelligence' },
+      { label: 'Workforce Intelligence', path: '/servicios/workforce-intelligence' },
     ],
   },
   { label: 'Por qué Datalent' },
