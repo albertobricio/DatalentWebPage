@@ -1,0 +1,52 @@
+// Global theme — utility classes.
+// Deliberately minimal: this is not a utility-class framework (that
+// register belongs to the Tailwind approach this system replaces — see
+// design-tokens.md's Cross-Document Consistency Note and docs/architecture.md's
+// finding on Tailwind CDN). Each class here exists to satisfy a specific,
+// named accessibility or layout requirement, not as a general-purpose
+// styling shortcut.
+@use 'tokens' as *;
+
+// Visually hides content while keeping it available to assistive
+// technology — the standard, WCAG-safe "sr-only" pattern.
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+// Skip-to-content link — WCAG 2.4.1 (Bypass Blocks). Hidden until focused,
+// then moves fully into view. Used by app.component's skip link (Task 4).
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-md);
+  z-index: 100;
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  border-radius: var(--radius-sm);
+  transition: top var(--motion-fast) var(--motion-easing);
+
+  &:focus-visible {
+    top: var(--space-md);
+    outline: 2px solid var(--color-paper);
+    outline-offset: 2px;
+  }
+}
+
+// Constrains a text block to the reading measure defined in
+// typography.scss — for standalone text containers that aren't a <p>
+// (which already gets this via _base.scss).
+.measure {
+  max-width: var(--measure-body);
+}

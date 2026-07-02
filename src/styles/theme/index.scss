@@ -1,0 +1,7 @@
+// Global theme — single entry point.
+// Forwards base element styles, the container system, the grid, and
+// utility classes. Loaded once, globally, from src/styles.scss.
+@forward 'base';
+@forward 'container';
+@forward 'grid';
+@forward 'utilities';

@@ -1,0 +1,36 @@
+// Global theme — grid system.
+// design-system.md: 12-column grid at desktop/wide, collapsing to a
+// single-column stack at base/tablet.
+@use 'tokens' as *;
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+
+  @include respond-to('desktop') {
+    grid-template-columns: repeat(12, 1fr);
+  }
+}
+
+// Common, named column patterns (rather than a full utility-class matrix,
+// which would reintroduce the kind of sprawling class system this design
+// system deliberately moves away from — see design-system.md's rejection of
+// app-dashboard density and the decision not to reach for Tailwind).
+.grid--cols-2 {
+  @include respond-to('desktop') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.grid--cols-3 {
+  @include respond-to('desktop') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.grid--cols-4 {
+  @include respond-to('desktop') {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

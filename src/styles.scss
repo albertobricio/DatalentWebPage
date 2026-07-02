@@ -6,7 +6,5 @@
 // declared anywhere in this file or in any component stylesheet; every one
 // of them is a var(--token-name) reference into that system.
 //
-// Base element styles, the container system, the grid, and utility classes
-// are layered on top of the tokens in src/styles/theme/ (added in Sprint 1
-// Task 2 — Global Theme).
 @use 'tokens';
+@use 'theme';
