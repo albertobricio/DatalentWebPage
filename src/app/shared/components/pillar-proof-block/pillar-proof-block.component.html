@@ -1,0 +1,9 @@
+<ul class="pillar-block">
+  @for (pillar of pillars; track pillar.marker) {
+    <li class="pillar-block__item">
+      <span class="pillar-block__marker" aria-hidden="true">{{ pillar.marker }}</span>
+      <h3 class="pillar-block__name">{{ pillar.name }}</h3>
+      <p class="pillar-block__statement">{{ pillar.statement }}</p>
+    </li>
+  }
+</ul>

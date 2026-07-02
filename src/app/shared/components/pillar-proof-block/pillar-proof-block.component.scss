@@ -1,0 +1,40 @@
+@use 'tokens' as *;
+
+.pillar-block {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include respond-to('desktop') {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+  }
+}
+
+.pillar-block__item {
+  border-top: var(--border-width) solid var(--color-border);
+  padding-top: var(--space-md);
+}
+
+.pillar-block__marker {
+  display: block;
+  margin-bottom: var(--space-sm);
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-h3);
+  color: var(--color-signal);
+}
+
+.pillar-block__name {
+  margin: 0 0 var(--space-xs) 0;
+  color: var(--color-ink);
+}
+
+.pillar-block__statement {
+  margin: 0;
+  color: var(--color-slate);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+}

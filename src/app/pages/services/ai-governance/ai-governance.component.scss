@@ -65,7 +65,7 @@ h3 {
   display: inline-block;
   margin-top: var(--space-sm);
   font-size: var(--font-size-body-sm);
-  color: var(--color-mist);
+  color: var(--color-slate); // color-mist fails WCAG AA contrast on paper at this size
 }
 
 .related-grid__link {

@@ -3,7 +3,7 @@ import { ButtonComponent } from '../button/button.component';
 
 export type CtaVariant = 'diagnostico' | 'briefing';
 
-const CTA_LABELS: Record<CtaVariant, string> = {
+export const CTA_LABELS: Record<CtaVariant, string> = {
   diagnostico: 'Solicitar diagnóstico gratuito',
   briefing: 'Reservar briefing ejecutivo',
 };
