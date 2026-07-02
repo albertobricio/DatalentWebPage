@@ -1,0 +1,22 @@
+@use 'tokens' as *;
+
+.card {
+  padding: var(--space-lg);
+  background-color: var(--color-paper);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+// Subtle lift only — no glow, no scale-transform. A deliberate correction of
+// the current site's `.service-card:hover { transform: translateY(-8px)
+// scale(1.02); box-shadow: 0 20px 25px -5px rgba(0, 234, 255, 0.2)... }`.
+.card--hoverable {
+  transition:
+    box-shadow var(--motion-fast) var(--motion-easing),
+    transform var(--motion-fast) var(--motion-easing);
+
+  &:hover {
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-2px);
+  }
+}

@@ -1,0 +1,29 @@
+@if (routerLink()) {
+  <a
+    class="btn btn--{{ variant() }}"
+    [routerLink]="routerLink()"
+    [queryParams]="queryParams() ?? null"
+    [attr.aria-label]="ariaLabel() ?? null"
+    [attr.aria-disabled]="disabled() ? true : null"
+  >
+    <ng-content />
+  </a>
+} @else if (href()) {
+  <a
+    class="btn btn--{{ variant() }}"
+    [href]="href()"
+    [attr.aria-label]="ariaLabel() ?? null"
+    [attr.aria-disabled]="disabled() ? true : null"
+  >
+    <ng-content />
+  </a>
+} @else {
+  <button
+    class="btn btn--{{ variant() }}"
+    [type]="type()"
+    [disabled]="disabled()"
+    [attr.aria-label]="ariaLabel() ?? null"
+  >
+    <ng-content />
+  </button>
+}

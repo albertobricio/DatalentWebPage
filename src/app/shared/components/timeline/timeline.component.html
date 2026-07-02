@@ -1,0 +1,11 @@
+<ol class="timeline">
+  @for (step of steps(); track step.label; let i = $index) {
+    <li class="timeline__step">
+      <span class="timeline__marker" aria-hidden="true">{{ i + 1 }}</span>
+      <div class="timeline__content">
+        <h3 class="timeline__label">{{ step.label }}</h3>
+        <p class="timeline__description">{{ step.description }}</p>
+      </div>
+    </li>
+  }
+</ol>

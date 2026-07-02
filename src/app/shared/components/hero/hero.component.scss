@@ -1,0 +1,37 @@
+@use 'tokens' as *;
+
+.hero {
+  padding-block: var(--space-2xl);
+  max-width: 40rem; // readable measure for headline + subtext block
+  text-align: left; // never centered — see class-level doc comment
+
+  @include respond-to('desktop') {
+    padding-block: var(--space-3xl);
+  }
+}
+
+.hero__breadcrumb {
+  display: block;
+  margin-bottom: var(--space-lg);
+}
+
+.hero__eyebrow {
+  margin: 0 0 var(--space-sm) 0;
+  color: var(--color-signal);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  line-height: var(--line-height-label);
+  text-transform: none; // sentence case, not uppercase — typography-rules.md
+}
+
+.hero__title {
+  margin-bottom: var(--space-md);
+}
+
+.hero__description {
+  margin: 0 0 var(--space-xl) 0;
+  color: var(--color-slate);
+  font-size: var(--font-size-body-lg);
+  line-height: var(--line-height-body-lg);
+  max-width: var(--measure-body);
+}

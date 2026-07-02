@@ -1,0 +1,34 @@
+@use 'tokens' as *;
+
+.breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-xs);
+  font-size: var(--font-size-body-sm);
+  line-height: var(--line-height-body-sm);
+}
+
+.breadcrumb__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.breadcrumb__link {
+  color: var(--color-slate);
+  text-decoration: underline;
+
+  &:hover {
+    color: var(--link-color-hover);
+  }
+}
+
+.breadcrumb__current {
+  color: var(--color-ink);
+  font-weight: var(--font-weight-semibold);
+}
+
+.breadcrumb__separator {
+  color: var(--color-slate);
+}

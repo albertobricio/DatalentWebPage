@@ -1,0 +1,21 @@
+@use 'tokens' as *;
+
+.quote {
+  margin: 0;
+  padding-left: var(--space-lg);
+  border-left: var(--border-width) solid var(--color-signal);
+}
+
+.quote__text {
+  margin: 0;
+  font-size: var(--font-size-body-lg);
+  line-height: var(--line-height-body-lg);
+  color: var(--color-ink);
+  max-width: var(--measure-body);
+}
+
+.quote__attribution {
+  margin-top: var(--space-sm);
+  font-size: var(--font-size-body-sm);
+  color: var(--color-slate);
+}

@@ -1,0 +1,24 @@
+@use 'tokens' as *;
+
+.section {
+  padding-block: var(--space-2xl);
+
+  @include respond-to('desktop') {
+    padding-block: var(--space-3xl);
+  }
+}
+
+.section--primary {
+  background-color: var(--surface-primary);
+  color: var(--text-primary);
+}
+
+.section--secondary {
+  background-color: var(--surface-secondary);
+  color: var(--text-primary);
+}
+
+.section--inverse {
+  background-color: var(--surface-inverse);
+  color: var(--text-inverse);
+}

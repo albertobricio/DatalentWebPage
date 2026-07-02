@@ -1,0 +1,22 @@
+@use 'tokens' as *;
+
+.stat__value {
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-h2);
+  color: var(--color-ink);
+  font-variant-numeric: tabular-nums; // typography-rules.md: tabular numerals for aligned data
+
+  @include respond-to('desktop') {
+    font-size: var(--font-size-h2-desktop);
+  }
+}
+
+.stat__label {
+  margin: var(--space-xs) 0 0 0;
+  font-size: var(--font-size-body-sm);
+  line-height: var(--line-height-body-sm);
+  color: var(--color-slate);
+}

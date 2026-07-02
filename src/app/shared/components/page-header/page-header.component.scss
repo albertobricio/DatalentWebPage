@@ -1,0 +1,13 @@
+@use 'tokens' as *;
+
+.page-header {
+  margin-bottom: var(--space-xl);
+}
+
+.page-header__description {
+  margin-top: var(--space-sm);
+  color: var(--color-slate);
+  font-size: var(--font-size-body-lg);
+  line-height: var(--line-height-body-lg);
+  max-width: var(--measure-body);
+}

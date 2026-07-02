@@ -1,0 +1,29 @@
+@use 'tokens' as *;
+
+:host {
+  display: block;
+}
+
+.trust-card {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  background-color: var(--surface-secondary);
+  border-color: var(--color-border);
+}
+
+.trust-card__marker {
+  flex-shrink: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-top: 0.4rem;
+  border-radius: 50%;
+  background-color: var(--color-signal);
+}
+
+.trust-card__statement {
+  margin: 0;
+  font-size: var(--font-size-body-sm);
+  line-height: var(--line-height-body-sm);
+  color: var(--color-ink);
+}

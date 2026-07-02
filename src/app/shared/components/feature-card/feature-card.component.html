@@ -1,0 +1,8 @@
+<app-card class="feature-card" [hoverable]="true">
+  <app-badge>{{ badge() }}</app-badge>
+  <h3 class="feature-card__title">{{ title() }}</h3>
+  <p class="feature-card__description">{{ description() }}</p>
+  <a class="feature-card__link" [routerLink]="link()">
+    {{ linkLabel() }} <span aria-hidden="true">→</span>
+  </a>
+</app-card>

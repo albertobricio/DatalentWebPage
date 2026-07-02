@@ -1,0 +1,21 @@
+@use 'tokens' as *;
+
+.badge {
+  display: inline-block;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  line-height: var(--line-height-label);
+}
+
+.badge--neutral {
+  background-color: var(--color-paper-alt);
+  color: var(--color-ink);
+}
+
+.badge--accent {
+  background-color: rgba(166, 128, 61, 0.15); // color.bronze at reduced opacity
+  color: var(--color-ink);
+}
