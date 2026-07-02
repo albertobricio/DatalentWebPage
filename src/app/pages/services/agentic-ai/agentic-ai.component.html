@@ -1,0 +1,231 @@
+<article>
+  <app-hero
+    eyebrow="Agentic AI"
+    title="Agentic AI para RR. HH., con un límite de autonomía que puedes auditar"
+    description="Diseñamos agentes que planifican y ejecutan flujos completos de RR. HH. — pero solo dentro de límites de autonomía documentados, con un punto de control humano en cada decisión que afecta a una persona."
+    ctaVariant="briefing"
+    [breadcrumbItems]="breadcrumbItems"
+  />
+
+  <app-section>
+    <div class="container container--prose">
+      <h2>¿Qué es la IA agéntica?</h2>
+      <p class="section__intro">
+        Un sistema es agéntico solo si cumple las tres condiciones a la vez: planifica una
+        secuencia de pasos hacia un objetivo sin que una persona elija cada paso de
+        antemano, ejecuta acciones reales dentro de ese plan — no solo recomendaciones — y
+        tiene límites explícitos y predefinidos sobre lo que puede decidir solo frente a lo
+        que debe escalar.
+      </p>
+      <p>
+        Si falta cualquiera de las tres condiciones, no es un agente — es
+        <strong>automatización asistida</strong>: una persona activa y revisa cada paso
+        (un chatbot, un script, un flujo RPA). Usamos la palabra «agente» solo cuando se
+        cumple el test completo, nunca como etiqueta de marketing para un script.
+      </p>
+
+      <h3>Aplicado a un caso real: cribado de candidatos</h3>
+      <p>
+        <strong>Automatización asistida:</strong> el sistema genera un ranking de
+        candidatos y una persona revisa y decide en cada paso, uno por uno.
+      </p>
+      <p>
+        <strong>Agente:</strong> el sistema criba el volumen completo de candidaturas,
+        preselecciona y redacta el contacto inicial para los perfiles por encima del
+        umbral definido — pero cualquier candidatura con una puntuación a menos de 5
+        puntos del umbral de corte se escala automáticamente a un reclutador, y el agente
+        nunca decide ni comunica un rechazo o una oferta final por sí mismo. El límite de
+        autonomía y el punto de control humano están definidos antes del despliegue, no
+        improvisados si algo falla.
+      </p>
+    </div>
+  </app-section>
+
+  <app-section background="secondary">
+    <div class="container container--prose">
+      <h2>Por qué importa la gobernanza</h2>
+      <p>
+        El Artículo 22 del RGPD reconoce el derecho a no estar sujeto a una decisión
+        basada únicamente en tratamiento automatizado cuando produce efectos legales o te
+        afecta de forma significativa. Un agente de RR. HH. que decide sin supervisión
+        humana sobre selección, promoción o despido no es solo un riesgo reputacional —
+        es, en la mayoría de los casos, un incumplimiento legal directo.
+      </p>
+      <p>
+        Por eso ningún agente que diseñamos toma la decisión final sobre una persona: la
+        prepara, la acelera, la documenta — y la deja donde debe estar.
+      </p>
+      <p>
+        Hay una segunda razón, específica de quién construye el agente. Un proveedor de
+        plataforma no puede autocertificar de forma creíble el cumplimiento de su propia
+        función de IA ante un departamento de Legal o un comité de empresa escéptico — es
+        un conflicto de interés estructural. Si tu organización está evaluando o pilotando
+        una función agéntica de un proveedor de plataforma, el papel de Datalent no es
+        sustituir esa plataforma, sino actuar como la capa de gobernanza independiente que
+        audita, valida o co-diseña ese despliegue concreto.
+      </p>
+    </div>
+  </app-section>
+
+  <app-section>
+    <div class="container container--prose">
+      <h2>Human-in-the-loop</h2>
+      <p class="section__intro">
+        La autonomía no es binaria — es un espectro, y el punto correcto en ese espectro
+        es una decisión de diseño, no un techo tecnológico.
+      </p>
+      <h3>Tres posturas, y cuándo usamos cada una</h3>
+      <p>
+        <strong>Human-in-the-loop (HITL):</strong> una persona debe aprobar antes de que
+        la acción se ejecute. Es la postura por defecto para cualquier paso con impacto
+        directo en el resultado laboral de una persona.
+      </p>
+      <p>
+        <strong>Human-on-the-loop (HOTL):</strong> el agente actúa y una persona
+        supervisa, con capacidad de intervenir o anular después del hecho. Reservado para
+        pasos de bajo riesgo y fácilmente revisables — redactar un borrador de informe, no
+        decidir sobre una persona.
+      </p>
+      <p>
+        <strong>Sin punto de control humano:</strong> no lo usamos en flujos de RR. HH.
+        con impacto en personas. No es una opción de diseño válida para este dominio.
+      </p>
+      <p>
+        En la práctica, la mayoría de los agentes que desplegamos operan en el nivel 2–3
+        de una escala de autonomía de cinco niveles: ejecutan casos rutinarios de forma
+        autónoma dentro de su límite definido y escalan cualquier excepción — nunca el
+        nivel 4–5 de autonomía amplia con auditoría solo posterior, cuando la decisión
+        afecta a una persona.
+      </p>
+    </div>
+  </app-section>
+
+  <app-section background="secondary">
+    <div class="container container--prose">
+      <h2>Implicaciones del Reglamento Europeo de IA</h2>
+      <p class="section__intro">
+        El Anexo III del Reglamento (UE) 2024/1689 incluye el empleo como categoría de
+        alto riesgo explícita — cribado y evaluación de candidatos, decisiones de
+        promoción o despido, y asignación de tareas basada en el comportamiento. La
+        mayoría de los agentes que diseñamos para RR. HH. parten, por defecto, de esa
+        clasificación de alto riesgo.
+      </p>
+      <p>
+        Eso determina el diseño desde el primer día, no una revisión posterior: el
+        Artículo 14 exige que el sistema permita una supervisión humana efectiva — la
+        capacidad real de anular, revertir o interrumpir el agente —, y muchos despliegues
+        en contexto laboral requieren una Evaluación de Impacto en los Derechos
+        Fundamentales (Artículo 27) antes de la puesta en servicio. Determinamos si tu
+        organización actúa como <strong>proveedor</strong> o
+        <strong>responsable del despliegue</strong> para cada agente antes de clasificar
+        nada, porque las obligaciones son distintas y no se transfieren solo por comprar
+        una herramienta de un tercero.
+      </p>
+      <p>
+        Este es el tratamiento de diseño; el tratamiento completo de clasificación de
+        riesgo y auditoría de cumplimiento vive en la página de Gobernanza de IA.
+      </p>
+      <a class="section__link" routerLink="/servicios/gobernanza-ia">
+        Ver Gobernanza de IA <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </app-section>
+
+  <app-section>
+    <div class="container">
+      <h2>Casos de uso empresariales típicos</h2>
+      <div class="use-case-grid">
+        <app-card>
+          <app-badge>Selección</app-badge>
+          <h3>Cribado y evaluación de candidatos</h3>
+          <p>
+            El agente criba el volumen completo y preselecciona dentro de su límite
+            definido; cualquier puntuación cerca del umbral de corte se escala a un
+            reclutador, y la decisión final de rechazo u oferta nunca la toma el agente.
+          </p>
+        </app-card>
+        <app-card>
+          <app-badge>Operaciones</app-badge>
+          <h3>Reporting y soporte interno de RR. HH.</h3>
+          <p>
+            El agente genera informes recurrentes y resuelve consultas rutinarias de
+            empleados; cualquier consulta que implique una excepción de política se
+            escala directamente a una persona del equipo de RR. HH.
+          </p>
+        </app-card>
+        <app-card>
+          <app-badge>Gobernanza</app-badge>
+          <h3>Auditoría independiente de un piloto de plataforma</h3>
+          <p>
+            Si tu organización ya está pilotando una función agéntica de tu plataforma de
+            RR. HH. actual, auditamos, validamos o co-diseñamos ese despliegue concreto —
+            como capa de gobernanza independiente, no como sustituto de la plataforma.
+          </p>
+        </app-card>
+      </div>
+    </div>
+  </app-section>
+
+  <app-section background="secondary">
+    <div class="container container--prose">
+      <h2>Metodología de entrega</h2>
+      <app-timeline [steps]="steps" />
+    </div>
+  </app-section>
+
+  <app-section>
+    <div class="container container--prose">
+      <h2>Preguntas frecuentes</h2>
+      <details>
+        <summary>
+          ¿Vuestra IA toma decisiones de forma autónoma o siempre hay supervisión humana?
+        </summary>
+        <p>
+          Nuestros agentes de IA operan dentro de límites de autonomía que definimos junto
+          a cada cliente. Ejecutan tareas completas — cribado, análisis, reporting — pero
+          cada decisión con impacto en una persona pasa por un punto de revisión humana
+          antes de ser definitiva. No automatizamos decisiones; automatizamos trabajo, y
+          dejamos las decisiones donde deben estar.
+        </p>
+      </details>
+      <details>
+        <summary>¿Dónde se alojan y procesan los datos de un agente desplegado?</summary>
+        <p>
+          Depende del engagement concreto: confirmamos y documentamos la jurisdicción de
+          alojamiento real, la base legal del tratamiento y la clasificación de riesgo del
+          agente antes del despliegue — nunca lo afirmamos en genérico, verificado caso
+          por caso.
+        </p>
+      </details>
+      <details>
+        <summary>¿Qué pasa si el agente se equivoca?</summary>
+        <p>
+          Cada agente que diseñamos registra la acción y el razonamiento que la originó,
+          lo que permite reconstruir cualquier decisión después del hecho. El límite de
+          autonomía y los triggers de escalado están pensados precisamente para que un
+          error se detecte y se corrija en el punto de control humano, no después de que
+          afecte a una persona.
+        </p>
+      </details>
+      <p class="faq-more">
+        <a routerLink="/faq">Ver todas las preguntas frecuentes <span aria-hidden="true">→</span></a>
+      </p>
+    </div>
+  </app-section>
+
+  <app-section background="inverse">
+    <div class="container cta-banner">
+      <h2>Habla con quien va a diseñar el límite de autonomía, no con un formulario</h2>
+      <p>
+        Un briefing ejecutivo de 30 minutos para aplicar el test agéntico-vs-automatización
+        a tu caso concreto.
+      </p>
+      <div class="cta-banner__actions">
+        <app-cta variant="briefing" />
+        <a class="cta-banner__link" routerLink="/servicios/gobernanza-ia">
+          Ver Gobernanza de IA <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </app-section>
+</article>

@@ -26,7 +26,7 @@ export const NAV_ITEMS: readonly NavItem[] = [
   {
     label: 'Servicios',
     children: [
-      { label: 'Agentic AI para RR. HH.' },
+      { label: 'Agentic AI para RR. HH.', path: '/servicios/agentic-ai-rrhh' },
       { label: 'People Analytics' },
       { label: 'Compensación y Total Rewards' },
       { label: 'Gobernanza de IA', path: '/servicios/gobernanza-ia' },

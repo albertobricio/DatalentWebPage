@@ -11,40 +11,38 @@ import { RouterLink } from '@angular/router';
 import { Meta, Title } from '@angular/platform-browser';
 import { HeroComponent } from '../../../shared/components/hero/hero.component';
 import { TimelineComponent, TimelineStep } from '../../../shared/components/timeline/timeline.component';
-import { TrustCardComponent } from '../../../shared/components/trust-card/trust-card.component';
 import { CardComponent } from '../../../shared/components/card/card.component';
 import { BadgeComponent } from '../../../shared/components/badge/badge.component';
-import { FeatureCardComponent } from '../../../shared/components/feature-card/feature-card.component';
 import { CtaComponent } from '../../../shared/components/cta/cta.component';
 import { SectionComponent } from '../../../shared/components/section/section.component';
 import { BreadcrumbItem } from '../../../shared/components/breadcrumb/breadcrumb.component';
 
 /**
- * The first Wave 1 service page. Follows page-specs.md's AI Governance
- * entry exactly: the deepest structural home of Pillars 1 (Governed
- * Autonomy) and 2 (European by Design), written to survive being forwarded
- * internally to Legal — the highest reputational stakes of any Sprint 1
- * page, per that spec's own Expected Conversion Role note.
+ * The single most important page for positioning.md's category-creation
+ * goal (page-specs.md §3) — the page a search for "agentic AI RRHH" should
+ * land on, and the page where the agentic-vs-automation test has to hold
+ * up under scrutiny from a technically-skeptical evaluator (Tier 3 /
+ * ideal-client-profiles.md). Every autonomy claim on this page pairs with
+ * its governance boundary in the same breath, per
+ * .claude/intelligence/reasoning-patterns.md Pattern 5.
  */
 @Component({
-  selector: 'app-ai-governance',
+  selector: 'app-agentic-ai',
   standalone: true,
   imports: [
     RouterLink,
     HeroComponent,
     TimelineComponent,
-    TrustCardComponent,
     CardComponent,
     BadgeComponent,
-    FeatureCardComponent,
     CtaComponent,
     SectionComponent,
   ],
-  templateUrl: './ai-governance.component.html',
-  styleUrl: './ai-governance.component.scss',
+  templateUrl: './agentic-ai.component.html',
+  styleUrl: './agentic-ai.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AiGovernanceComponent implements OnDestroy {
+export class AgenticAiComponent implements OnDestroy {
   private readonly title = inject(Title);
   private readonly meta = inject(Meta);
   private readonly renderer = inject(Renderer2);
@@ -55,42 +53,44 @@ export class AiGovernanceComponent implements OnDestroy {
   protected readonly breadcrumbItems: BreadcrumbItem[] = [
     { label: 'Inicio', url: '/' },
     { label: 'Servicios' },
-    { label: 'Gobernanza de IA' },
+    { label: 'Agentic AI' },
   ];
 
-  // service-catalog.md §5's own Entry Point → Design & Deployment →
-  // Retained structure, verbatim in substance.
+  // service-catalog.md §1's Entry Point → Design & Deployment → Retained
+  // structure, in the exact anatomy agent-spec-template.md requires for
+  // the middle step (goal, autonomy boundary, escalation triggers, human
+  // checkpoint, governance status).
   protected readonly steps: TimelineStep[] = [
     {
-      label: 'Entrada: clasificación de riesgo',
+      label: 'Entrada: Agentic Workflow Feasibility Review',
       description:
-        'Clasificación de riesgo bajo el Reglamento Europeo de IA para un sistema concreto — propio o de un proveedor externo. El punto de partida más rápido y mejor definido de todo el catálogo.',
+        'Aplicamos el test agéntico-vs-automatización a un proceso concreto de RR. HH. — cribado, reporting, soporte interno — y entregamos una recomendación de seguir o no antes de construir nada.',
     },
     {
-      label: 'Diseño y despliegue',
+      label: 'Diseño y despliegue: especificación completa del agente',
       description:
-        'Diseño completo del marco de gobernanza — metodología de auditoría de sesgo, diseño de supervisión humana y documentación de residencia de datos — para uno o varios sistemas de IA.',
+        'Objetivo, límite de autonomía, triggers de escalado concretos, punto de control humano y estado de gobernanza — documentados antes del despliegue, no reconstruidos después si algo falla.',
     },
     {
-      label: 'Retenido: monitorización continua',
+      label: 'Retenido: Governed Agent Retainer',
       description:
-        'La mitad de cumplimiento del Governed Agent Retainer: monitorización continua de la conformidad a medida que cambian la normativa, la guía regulatoria o el propio sistema.',
+        'Monitorización continua de la tasa de escalado, la tasa de anulación humana y la deriva del agente respecto a su límite de autonomía original.',
     },
   ];
 
   constructor() {
     this.title.setTitle(
-      'Gobernanza de IA para RR. HH. | Clasificación de riesgo EU AI Act | Datalent Solutions',
+      'Agentic AI para RR. HH. | Agentes de IA gobernados, no automatización disfrazada | Datalent Solutions',
     );
     this.meta.updateTag({
       name: 'description',
       content:
-        'Clasificación de riesgo, diseño de supervisión humana y auditoría de sesgo para IA en RR. HH., alineado con el Reglamento Europeo de IA (UE) 2024/1689 y el RGPD.',
+        'Diseñamos agentes de IA que planifican y ejecutan flujos completos de RR. HH. dentro de límites de autonomía documentados, con un punto de control humano en cada decisión que afecta a una persona.',
     });
     this.meta.updateTag({
       name: 'keywords',
       content:
-        'clasificación de riesgo IA Reglamento Europeo, cumplimiento EU AI Act RRHH, auditoría de sesgo IA selección de personal',
+        'agentic AI RRHH, IA agéntica recursos humanos, agentes de IA gobernados RRHH, automatización RRHH con supervisión humana',
     });
     this.meta.updateTag({ name: 'robots', content: 'index, follow' });
 
@@ -111,7 +111,7 @@ export class AiGovernanceComponent implements OnDestroy {
     script.text = JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'Service',
-      serviceType: 'Gobernanza de IA para RR. HH.',
+      serviceType: 'Agentic AI para RR. HH.',
       provider: {
         '@type': 'Organization',
         name: 'Datalent Solutions',
@@ -124,7 +124,7 @@ export class AiGovernanceComponent implements OnDestroy {
       },
       areaServed: 'ES',
       description:
-        'Clasificación de riesgo, diseño de supervisión humana y auditoría de sesgo para sistemas de IA usados en procesos de RR. HH., alineado con el Reglamento Europeo de IA y el RGPD.',
+        'Diseño, especificación y gobernanza de agentes de IA para flujos de RR. HH., con límites de autonomía documentados y supervisión humana en cada decisión que afecta a una persona.',
     });
     this.renderer.appendChild(document.head, script);
     this.structuredDataScript = script;

@@ -48,7 +48,8 @@ h3 {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  app-card {
+  app-card,
+  app-feature-card {
     display: block;
   }
 

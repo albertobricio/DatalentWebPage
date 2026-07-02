@@ -21,6 +21,13 @@ const routes: Routes = [
         (m) => m.AiGovernanceComponent,
       ),
   },
+  {
+    path: 'servicios/agentic-ai-rrhh',
+    loadComponent: () =>
+      import('./pages/services/agentic-ai/agentic-ai.component').then(
+        (m) => m.AgenticAiComponent,
+      ),
+  },
   { path: '**', redirectTo: '' }
 ];
 
