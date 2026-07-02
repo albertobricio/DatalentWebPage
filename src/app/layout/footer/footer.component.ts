@@ -8,18 +8,18 @@ interface FooterLink {
 }
 
 /**
- * Lists all six practices, not a curated subset — "the footer is where a
- * full, honest inventory of the offer belongs, consistent with
- * positioning.md Pillar 4's 'integrated, not six disconnected point
- * solutions' claim." See site-map.md's Footer Navigation. Only Gobernanza
- * de IA has a real route this sprint (Task 6); the rest are documented,
- * not yet built, and rendered inactive rather than linked.
+ * Lists all six practices as five entries — Compensation & Benefits and
+ * Total Rewards are one combined page per page-specs.md §5 (Total Rewards
+ * nests inside the Comp & Benefits relationship rather than standing
+ * alone), matching nav-items.ts's own single "Compensación y Total
+ * Rewards" entry. See site-map.md's Footer Navigation. Entries with no
+ * `path` are documented, not yet built, and rendered inactive rather than
+ * linked.
  */
 const PRACTICES: readonly FooterLink[] = [
-  { label: 'Agentic AI' },
+  { label: 'Agentic AI', path: '/servicios/agentic-ai-rrhh' },
   { label: 'People Analytics' },
-  { label: 'Compensación y Beneficios' },
-  { label: 'Total Rewards' },
+  { label: 'Compensación y Total Rewards', path: '/servicios/compensacion-total-rewards' },
   { label: 'Gobernanza de IA', path: '/servicios/gobernanza-ia' },
   { label: 'Workforce Intelligence' },
 ];

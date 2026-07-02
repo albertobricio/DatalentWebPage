@@ -1,39 +1,58 @@
 @use 'tokens' as *;
 
-// Sprint 1.5 migration: moved out of the inline <style> block that used to
-// live in faq.component.html (hardcoded dark-cyan hex values, #0a0a0a /
-// #19caff / #0b3c59) into this file, using design tokens throughout. Same
-// accordion structure, same content, same open/closed behavior.
-
-:host {
-  display: block;
-  background-color: var(--color-paper);
+h2 {
+  margin-bottom: var(--space-lg);
 }
 
-.faq-section {
-  max-width: 50rem;
-  margin: 0 auto;
-  padding: var(--space-3xl) var(--space-md);
-  font-family: var(--font-family-base);
-  color: var(--color-ink);
-}
-
-.faq-section h2 {
-  font-size: var(--font-size-h2);
-  color: var(--color-signal);
-  text-align: center;
+h3 {
+  margin-top: var(--space-xl);
   margin-bottom: var(--space-sm);
+}
+
+.section__intro {
+  margin: 0 0 var(--space-xl) 0;
+  color: var(--color-slate);
+  font-size: var(--font-size-body-lg);
+  line-height: var(--line-height-body-lg);
+}
+
+.section__disclaimer {
+  margin-top: var(--space-xl);
+  padding: var(--space-md);
+  background-color: var(--color-paper);
+  border-left: 3px solid var(--color-bronze);
+  font-size: var(--font-size-body-sm);
+  color: var(--color-slate);
+}
+
+.engagement-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
 
   @include respond-to('desktop') {
-    font-size: var(--font-size-h2-desktop);
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  app-card {
+    display: block;
+  }
+
+  h3 {
+    margin-top: 0;
+  }
+
+  p {
+    color: var(--color-slate);
   }
 }
 
-.faq-section .subtitle {
-  text-align: center;
-  font-size: var(--font-size-body);
-  color: var(--color-slate);
-  margin-bottom: var(--space-2xl);
+.related-grid {
+  max-width: 24rem;
+
+  app-feature-card {
+    display: block;
+  }
 }
 
 details {
@@ -43,7 +62,7 @@ details {
 }
 
 details[open] {
-  background-color: var(--color-paper-alt);
+  background-color: var(--color-paper);
   border-left: 3px solid var(--color-signal);
   border-radius: var(--radius-sm);
   padding: var(--space-lg) var(--space-md);
@@ -92,43 +111,42 @@ details[open] summary {
   color: var(--color-signal);
 }
 
-p,
-ul {
+details p {
   margin: var(--space-sm) 0 0 0;
   line-height: var(--line-height-body-lg);
   color: var(--color-slate);
 }
 
-ul {
-  padding-left: var(--space-lg);
+.faq-more {
+  margin-top: var(--space-lg);
+
+  a {
+    color: var(--color-signal);
+    font-weight: var(--font-weight-label);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
-blockquote {
-  font-style: italic;
-  color: var(--color-ink);
-  border-left: 3px solid var(--color-signal);
-  margin: var(--space-md) 0;
-  padding-left: var(--space-md);
-}
+.cta-banner {
+  text-align: left;
+  max-width: var(--measure-body);
 
-.cta {
-  margin-top: var(--space-2xl);
-  text-align: center;
-}
-
-.cta-link {
-  color: var(--color-signal);
-  font-weight: var(--font-weight-label);
-  text-decoration: none;
-  cursor: pointer;
-
-  &:hover {
-    color: var(--color-signal-dark);
-    text-decoration: underline;
+  h2 {
+    margin-bottom: var(--space-sm);
   }
 
-  &:focus-visible {
-    outline: 2px solid var(--focus-ring-color);
-    outline-offset: 2px;
+  p {
+    margin: 0 0 var(--space-lg) 0;
+    color: var(--text-muted-on-dark);
   }
+}
+
+.cta-banner__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
 }

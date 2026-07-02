@@ -65,6 +65,8 @@ details[open] {
 }
 
 summary {
+  display: block; // suppresses the native ::marker triangle in modern Chromium,
+                   // not just the older ::-webkit-details-marker pseudo-element
   font-weight: var(--font-weight-semibold);
   cursor: pointer;
   font-size: var(--font-size-body-lg);

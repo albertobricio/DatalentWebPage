@@ -28,6 +28,13 @@ const routes: Routes = [
         (m) => m.AgenticAiComponent,
       ),
   },
+  {
+    path: 'servicios/compensacion-total-rewards',
+    loadComponent: () =>
+      import('./pages/services/compensation-total-rewards/compensation-total-rewards.component').then(
+        (m) => m.CompensationTotalRewardsComponent,
+      ),
+  },
   { path: '**', redirectTo: '' }
 ];
 
