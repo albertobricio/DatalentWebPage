@@ -1,0 +1,20 @@
+// Design token system — single entry point.
+//
+// Usage from any component stylesheet:
+//   @use 'tokens' as *;
+//   .my-block { @include respond-to('desktop') { padding: var(--space-xl); } }
+//
+// (requires stylePreprocessorOptions.includePaths: ["src/styles"] in
+// angular.json, already configured — see that file's build options.)
+//
+// This file forwards every token partial. No token value is declared here or
+// anywhere else — colors.scss, spacing.scss, typography.scss, shadows.scss,
+// radius.scss, and motion.scss are each the single source of truth for their
+// own category. See projects/datalent-v2/design-tokens.md.
+
+@forward 'colors';
+@forward 'spacing';
+@forward 'typography';
+@forward 'shadows';
+@forward 'radius';
+@forward 'motion';

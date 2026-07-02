@@ -1,0 +1,42 @@
+// Design tokens — color
+// Single source of truth for every color used in this codebase.
+// See projects/datalent-v2/design-tokens.md for values and WCAG AA contrast verification.
+// Do not declare a color value anywhere outside this file.
+
+:root {
+  // Core palette
+  --color-ink: #14171c;
+  --color-paper: #fafaf8;
+  --color-paper-alt: #f1f0ec;
+  --color-signal: #2952cc;
+  --color-signal-dark: #1e3d99;
+  --color-bronze: #a6803d;
+  --color-slate: #5b6270;
+  --color-mist: #a8acb4;
+  --color-border: #dddbd4;
+  --color-border-dark: #33363d;
+
+  // Semantic / status
+  --color-success: #1e7a4c;
+  --color-warning: #8a5a0a;
+  --color-error: #b3261e;
+
+  // Semantic aliases — components consume these, never the core palette directly,
+  // so a future palette revision only ever touches this file.
+  --surface-primary: var(--color-paper);
+  --surface-secondary: var(--color-paper-alt);
+  --surface-inverse: var(--color-ink);
+
+  --text-primary: var(--color-ink);
+  --text-inverse: var(--color-paper);
+  --text-muted-on-light: var(--color-slate);
+  --text-muted-on-dark: var(--color-mist);
+
+  --border-color: var(--color-border);
+  --border-color-inverse: var(--color-border-dark);
+
+  --link-color: var(--color-signal);
+  --link-color-hover: var(--color-signal-dark);
+
+  --focus-ring-color: var(--color-signal);
+}

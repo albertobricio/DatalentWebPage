@@ -1,0 +1,20 @@
+// Design tokens — motion
+// See projects/datalent-v2/design-tokens.md ("Motion").
+// Every component transitions using these variables only, so
+// `prefers-reduced-motion` is honored globally in one place instead of a
+// repeated media query in every component (no duplicated CSS).
+
+:root {
+  --motion-fast: 150ms;
+  --motion-default: 250ms;
+  --motion-slow: 400ms;
+  --motion-easing: cubic-bezier(0.4, 0, 0.2, 1); // standard ease-out, never bouncy/elastic
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 0ms;
+    --motion-default: 0ms;
+    --motion-slow: 0ms;
+  }
+}

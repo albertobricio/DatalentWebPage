@@ -1,0 +1,12 @@
+// Design tokens — radius and border
+// See projects/datalent-v2/design-tokens.md ("Radius, Border, Elevation").
+// Restrained values, deliberately not the fully-rounded "pill" style
+// associated with the consumer-SaaS register design-system.md rules out.
+
+:root {
+  --radius-sm: 0.25rem; // 4px — inputs, small badges
+  --radius-md: 0.5rem; // 8px — cards, buttons
+  --radius-lg: 1rem; // 16px — large panels, hero containers
+
+  --border-width: 1px; // hairline only; hierarchy comes from spacing and type
+}
