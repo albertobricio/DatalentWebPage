@@ -1,3 +1,7 @@
+<ng-template #label>
+  <ng-content />
+</ng-template>
+
 @if (routerLink()) {
   <a
     class="btn btn--{{ variant() }}"
@@ -6,7 +10,7 @@
     [attr.aria-label]="ariaLabel() ?? null"
     [attr.aria-disabled]="disabled() ? true : null"
   >
-    <ng-content />
+    <ng-container [ngTemplateOutlet]="label" />
   </a>
 } @else if (href()) {
   <a
@@ -15,7 +19,7 @@
     [attr.aria-label]="ariaLabel() ?? null"
     [attr.aria-disabled]="disabled() ? true : null"
   >
-    <ng-content />
+    <ng-container [ngTemplateOutlet]="label" />
   </a>
 } @else {
   <button
@@ -24,6 +28,6 @@
     [disabled]="disabled()"
     [attr.aria-label]="ariaLabel() ?? null"
   >
-    <ng-content />
+    <ng-container [ngTemplateOutlet]="label" />
   </button>
 }

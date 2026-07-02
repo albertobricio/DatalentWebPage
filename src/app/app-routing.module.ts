@@ -14,6 +14,13 @@ const routes: Routes = [
     loadComponent: () =>
       import('./pages/contact/contact.component').then((m) => m.ContactComponent),
   },
+  {
+    path: 'servicios/gobernanza-ia',
+    loadComponent: () =>
+      import('./pages/services/ai-governance/ai-governance.component').then(
+        (m) => m.AiGovernanceComponent,
+      ),
+  },
   { path: '**', redirectTo: '' }
 ];
 

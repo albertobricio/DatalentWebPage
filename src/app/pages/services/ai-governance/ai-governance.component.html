@@ -1,0 +1,125 @@
+<article>
+  <app-hero
+    eyebrow="Gobernanza de IA"
+    title="Gobernanza de IA para RR. HH., con la misma exigencia que aplicaría un regulador"
+    description="Clasificamos el riesgo, diseñamos la supervisión humana y documentamos cada decisión — antes de que un regulador, un comité de empresa o tu propio departamento legal te lo pidan."
+    ctaVariant="briefing"
+    [breadcrumbItems]="breadcrumbItems"
+  />
+
+  <app-section>
+    <div class="container container--prose">
+      <h2>Qué hacemos</h2>
+      <app-timeline [steps]="steps" />
+    </div>
+  </app-section>
+
+  <app-section background="secondary">
+    <div class="container container--prose">
+      <h2>Qué significa «nivel de riesgo, con razonamiento»</h2>
+      <p class="section__intro">
+        No clasificamos un sistema como «de alto riesgo» o «conforme» sin mostrar el
+        razonamiento detrás. Esto es lo que cubre cada clasificación que entregamos.
+      </p>
+
+      <h3>Los cuatro niveles del Reglamento Europeo de IA</h3>
+      <p>
+        El Reglamento (UE) 2024/1689 clasifica los sistemas de IA por el riesgo que suponen
+        para la salud, la seguridad o los derechos fundamentales — no por la tecnología que
+        usan. Cuatro niveles: <strong>riesgo inaceptable</strong> (prohibido),
+        <strong>alto riesgo</strong> (obligaciones estrictas de gestión de riesgo,
+        documentación técnica y supervisión humana), <strong>riesgo limitado</strong>
+        (obligaciones de transparencia) y <strong>riesgo mínimo</strong> (sin obligaciones
+        específicas).
+      </p>
+
+      <h3>El empleo es una categoría de alto riesgo explícita</h3>
+      <p>
+        El Anexo III del Reglamento incluye explícitamente el empleo como categoría de alto
+        riesgo: cribado y evaluación de candidatos, colocación de anuncios de empleo
+        dirigidos, decisiones de promoción o despido, asignación de tareas basada en el
+        comportamiento, y evaluación del desempeño. La mayoría de las herramientas
+        predictivas o de puntuación usadas en RR. HH. son de alto riesgo por defecto — lo
+        afirmamos con esta referencia explícita, nunca como una etiqueta genérica.
+      </p>
+
+      <h3>Proveedor o responsable del despliegue: importa quién eres</h3>
+      <p>
+        El Reglamento distingue entre quien construye o comercializa un sistema
+        (<strong>proveedor</strong>) y quien lo usa bajo su propia autoridad
+        (<strong>responsable del despliegue</strong>). Comprar una herramienta de un
+        proveedor externo no elimina las obligaciones propias como responsable del
+        despliegue — determinamos este rol para cada sistema antes de clasificar nada.
+      </p>
+
+      <h3>Supervisión humana, no solo automatización</h3>
+      <p>
+        El Artículo 14 exige que los sistemas de alto riesgo permitan una supervisión
+        humana efectiva: la capacidad real de una persona de anular, revertir o interrumpir
+        el sistema. Esto se combina con el Artículo 22 del RGPD, que limita las decisiones
+        basadas únicamente en tratamiento automatizado cuando producen efectos legales o
+        significativos sobre una persona. Todo agente que diseñamos incorpora un punto de
+        control humano documentado por esta razón — no como buena práctica opcional, sino
+        como requisito legal.
+      </p>
+
+      <p class="section__disclaimer">
+        No afirmamos que un sistema haya superado una evaluación de conformidad o cuente
+        con una certificación salvo que así sea, verificado caso por caso.
+      </p>
+    </div>
+  </app-section>
+
+  <app-section>
+    <div class="container trust-strip">
+      <app-trust-card>
+        Cada agente que diseñamos lleva un límite de autonomía documentado y un punto de
+        control humano — nunca decisiones automatizadas sin supervisión.
+      </app-trust-card>
+      <app-trust-card>
+        Clasificación de riesgo con razonamiento explícito, citando el Anexo III, nunca una
+        etiqueta genérica.
+      </app-trust-card>
+      <app-trust-card>
+        Metodología alineada con el Reglamento (UE) 2024/1689 y el RGPD, revisada a medida
+        que evoluciona la normativa.
+      </app-trust-card>
+    </div>
+  </app-section>
+
+  <app-section>
+    <div class="container">
+      <h2>Sigue explorando</h2>
+      <div class="related-grid">
+        <app-card>
+          <app-badge>Agentic AI</app-badge>
+          <h3>Agentic AI para RR. HH.</h3>
+          <p>
+            El diseño funcional de los agentes que esta práctica gobierna — límites de
+            autonomía, puntos de escalado y especificación completa.
+          </p>
+          <span class="related-grid__soon">Próximamente</span>
+        </app-card>
+        <app-card>
+          <app-badge>Confianza</app-badge>
+          <h3>Preguntas frecuentes sobre datos y gobernanza</h3>
+          <p>Respuestas directas sobre autonomía, residencia de datos y auditoría de sesgo.</p>
+          <a class="related-grid__link" routerLink="/faq">
+            Ver preguntas frecuentes <span aria-hidden="true">→</span>
+          </a>
+        </app-card>
+      </div>
+    </div>
+  </app-section>
+
+  <app-section background="inverse">
+    <div class="container cta-banner">
+      <h2>Habla con quien va a clasificar tu sistema, no con un formulario</h2>
+      <p>
+        Un briefing ejecutivo de 30 minutos para entender tu caso y el nivel de riesgo real
+        al que te enfrentas.
+      </p>
+      <app-cta variant="briefing" />
+    </div>
+  </app-section>
+</article>
