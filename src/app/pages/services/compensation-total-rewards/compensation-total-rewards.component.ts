@@ -17,6 +17,10 @@ import { FeatureCardComponent } from '../../../shared/components/feature-card/fe
 import { CtaComponent } from '../../../shared/components/cta/cta.component';
 import { SectionComponent } from '../../../shared/components/section/section.component';
 import { BreadcrumbItem } from '../../../shared/components/breadcrumb/breadcrumb.component';
+import {
+  FaqAccordionComponent,
+  FaqItem,
+} from '../../../shared/components/faq-accordion/faq-accordion.component';
 
 /**
  * The direct fix for docs/business-audit-v2.md's original finding: the
@@ -40,6 +44,7 @@ import { BreadcrumbItem } from '../../../shared/components/breadcrumb/breadcrumb
     FeatureCardComponent,
     CtaComponent,
     SectionComponent,
+    FaqAccordionComponent,
   ],
   templateUrl: './compensation-total-rewards.component.html',
   styleUrl: './compensation-total-rewards.component.scss',
@@ -77,6 +82,24 @@ export class CompensationTotalRewardsComponent implements OnDestroy {
       label: 'Retenido: re-benchmarking y monitorización de cumplimiento',
       description:
         'Re-benchmarking periódico a medida que los datos de mercado envejecen, y monitorización continua del cumplimiento de la Directiva de Transparencia Retributiva conforme evoluciona la normativa en cada jurisdicción.',
+    },
+  ];
+
+  protected readonly faqItems: readonly FaqItem[] = [
+    {
+      question: '¿Publicáis cifras de brecha salarial en vuestra web?',
+      answer:
+        '<p>No, nunca. Cualquier cifra de brecha salarial es información específica de cada organización, obtenida y verificada dentro de un engagement concreto — nunca un dato genérico de marketing publicado para parecer creíbles.</p>',
+    },
+    {
+      question: '¿Qué diferencia hay entre la brecha salarial bruta y la ajustada?',
+      answer:
+        '<p>La bruta compara la retribución media sin controlar factores como puesto, nivel o ubicación; la ajustada sí los controla, para aislar la diferencia que no se explica por ninguno de ellos. Reportar solo una de las dos, sin la otra, es engañoso en cualquier dirección.</p>',
+    },
+    {
+      question: '¿Ofrecéis servicios de equidad retributiva o benchmarking salarial?',
+      answer:
+        '<p>Sí. Es el punto de entrada de esta práctica: una auditoría de equidad retributiva o un benchmark de mercado para un conjunto de roles definido, siguiendo la metodología de brecha bruta frente a ajustada descrita en esta página.</p>',
     },
   ];
 

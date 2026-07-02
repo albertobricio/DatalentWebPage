@@ -10,7 +10,7 @@
   <app-section>
     <div class="container container--prose">
       <h2>¿Qué es la IA agéntica?</h2>
-      <p class="section__intro">
+      <p class="section-intro">
         Un sistema es agéntico solo si cumple las tres condiciones a la vez: planifica una
         secuencia de pasos hacia un objetivo sin que una persona elija cada paso de
         antemano, ejecuta acciones reales dentro de ese plan — no solo recomendaciones — y
@@ -70,7 +70,7 @@
   <app-section>
     <div class="container container--prose">
       <h2>Human-in-the-loop</h2>
-      <p class="section__intro">
+      <p class="section-intro">
         La autonomía no es binaria — es un espectro, y el punto correcto en ese espectro
         es una decisión de diseño, no un techo tecnológico.
       </p>
@@ -103,7 +103,7 @@
   <app-section background="secondary">
     <div class="container container--prose">
       <h2>Implicaciones del Reglamento Europeo de IA</h2>
-      <p class="section__intro">
+      <p class="section-intro">
         El Anexo III del Reglamento (UE) 2024/1689 incluye el empleo como categoría de
         alto riesgo explícita — cribado y evaluación de candidatos, decisiones de
         promoción o despido, y asignación de tareas basada en el comportamiento. La
@@ -125,7 +125,7 @@
         Este es el tratamiento de diseño; el tratamiento completo de clasificación de
         riesgo y auditoría de cumplimiento vive en la página de Gobernanza de IA.
       </p>
-      <a class="section__link" routerLink="/servicios/gobernanza-ia">
+      <a class="text-link" routerLink="/servicios/gobernanza-ia">
         Ver Gobernanza de IA <span aria-hidden="true">→</span>
       </a>
     </div>
@@ -134,7 +134,7 @@
   <app-section>
     <div class="container">
       <h2>Casos de uso empresariales típicos</h2>
-      <div class="use-case-grid">
+      <div class="card-grid--3">
         <app-card>
           <app-badge>Selección</app-badge>
           <h3>Cribado y evaluación de candidatos</h3>
@@ -176,39 +176,9 @@
   <app-section>
     <div class="container container--prose">
       <h2>Preguntas frecuentes</h2>
-      <details>
-        <summary>
-          ¿Vuestra IA toma decisiones de forma autónoma o siempre hay supervisión humana?
-        </summary>
-        <p>
-          Nuestros agentes de IA operan dentro de límites de autonomía que definimos junto
-          a cada cliente. Ejecutan tareas completas — cribado, análisis, reporting — pero
-          cada decisión con impacto en una persona pasa por un punto de revisión humana
-          antes de ser definitiva. No automatizamos decisiones; automatizamos trabajo, y
-          dejamos las decisiones donde deben estar.
-        </p>
-      </details>
-      <details>
-        <summary>¿Dónde se alojan y procesan los datos de un agente desplegado?</summary>
-        <p>
-          Depende del engagement concreto: confirmamos y documentamos la jurisdicción de
-          alojamiento real, la base legal del tratamiento y la clasificación de riesgo del
-          agente antes del despliegue — nunca lo afirmamos en genérico, verificado caso
-          por caso.
-        </p>
-      </details>
-      <details>
-        <summary>¿Qué pasa si el agente se equivoca?</summary>
-        <p>
-          Cada agente que diseñamos registra la acción y el razonamiento que la originó,
-          lo que permite reconstruir cualquier decisión después del hecho. El límite de
-          autonomía y los triggers de escalado están pensados precisamente para que un
-          error se detecte y se corrija en el punto de control humano, no después de que
-          afecte a una persona.
-        </p>
-      </details>
+      <app-faq-accordion [items]="faqItems" />
       <p class="faq-more">
-        <a routerLink="/faq">Ver todas las preguntas frecuentes <span aria-hidden="true">→</span></a>
+        <a class="text-link" routerLink="/faq">Ver todas las preguntas frecuentes <span aria-hidden="true">→</span></a>
       </p>
     </div>
   </app-section>

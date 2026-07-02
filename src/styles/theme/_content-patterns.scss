@@ -1,0 +1,154 @@
+// Global theme — shared content-section patterns.
+// Extracted in Sprint 4.5 from near-identical copies across four+ page
+// components (Agentic AI, Compensation & Total Rewards, AI Governance,
+// Home) — each of these blocks existed almost verbatim in every one of
+// them before this file existed. See docs/release-notes-v2-sprint-04-5.md
+// for the before/after duplication count.
+@use 'tokens' as *;
+
+// Lead paragraph directly under a section h2 — larger body text, slate.
+.section-intro {
+  margin: 0 0 var(--space-xl) 0;
+  color: var(--color-slate);
+  font-size: var(--font-size-body-lg);
+  line-height: var(--line-height-body-lg);
+}
+
+// A caveat/disclaimer callout — bronze left border, small print. Used
+// wherever a page states what it does NOT claim (non-fabrication policy
+// made visible in the UI, not just in authoring guidance).
+.section-disclaimer {
+  margin-top: var(--space-xl);
+  padding: var(--space-md);
+  background-color: var(--color-paper);
+  border-left: 3px solid var(--color-bronze);
+  font-size: var(--font-size-body-sm);
+  color: var(--color-slate);
+}
+
+// Wraps a single .text-link that follows a content block (e.g. an FAQ
+// section's "see all" link) with the same top spacing everywhere.
+.faq-more {
+  margin-top: var(--space-lg);
+}
+
+// A ghost-style inline text link. Pages provide their own trailing arrow
+// span (aria-hidden) rather than a CSS-generated one, so the arrow is
+// always real, readable markup if a page chooses not to hide it.
+.text-link {
+  display: inline-block;
+  margin-top: var(--space-sm);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  color: var(--color-signal);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+// The closing dark CTA banner every service-style page ends with
+// (app-section background="inverse"), always used as
+// class="container cta-banner" on the same element (every call site).
+// The compound selector below is deliberate: a page's own
+// view-encapsulated `h2 { margin-bottom: ... }` rule compiles with an
+// attribute selector, so a plain `.cta-banner h2` (class + element) would
+// tie its specificity exactly and leave the winner to source order.
+// `.container.cta-banner` (two classes) reliably outranks it.
+.container.cta-banner {
+  text-align: left;
+  max-width: var(--measure-body);
+
+  h2 {
+    margin-bottom: var(--space-sm);
+  }
+
+  p {
+    margin: 0 0 var(--space-lg) 0;
+    color: var(--text-muted-on-dark);
+  }
+}
+
+.cta-banner__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.cta-banner__link {
+  color: var(--text-inverse);
+  font-weight: var(--font-weight-label);
+  text-decoration: underline;
+
+  &:hover {
+    color: var(--color-signal);
+  }
+}
+
+// N-column grid of Card/FeatureCard instances — mobile stacks, desktop
+// expands. The column count is the only thing that ever varied between
+// the four copies this replaces (service grids, use-case grids, related-
+// content grids), so it's the mixin's one parameter.
+@mixin card-grid($columns: 3) {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+
+  @include respond-to('desktop') {
+    grid-template-columns: repeat($columns, 1fr);
+  }
+
+  app-card,
+  app-feature-card {
+    display: block;
+
+    // Extra type-selector specificity is deliberate: a page's own
+    // (view-encapsulated) `h3 { margin-top: ... }` rule compiles with an
+    // attribute-selector, tying this global rule at equal specificity if
+    // it were written as the bare `.card-grid--N h3` most other frameworks
+    // use — a tie that source order shouldn't be left to settle.
+    h3 {
+      margin-top: 0;
+    }
+
+    p {
+      color: var(--color-slate);
+    }
+  }
+}
+
+.card-grid--2 {
+  @include card-grid(2);
+}
+
+.card-grid--3 {
+  @include card-grid(3);
+}
+
+// "Próximamente" label on an inactive grid card. Must be color-slate, not
+// color-mist — color-mist on paper fails WCAG AA contrast at this size
+// (Sprint 2 audit: ~2.2:1, needs 4.5:1).
+.card-grid__soon {
+  display: inline-block;
+  margin-top: var(--space-sm);
+  font-size: var(--font-size-body-sm);
+  color: var(--color-slate);
+}
+
+// A row of app-trust-card instances — mobile stacks, desktop goes inline
+// with each card sharing the row equally.
+.trust-strip {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+
+  @include respond-to('desktop') {
+    flex-direction: row;
+
+    app-trust-card {
+      flex: 1;
+    }
+  }
+}

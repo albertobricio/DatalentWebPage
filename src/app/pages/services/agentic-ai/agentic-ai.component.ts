@@ -16,6 +16,10 @@ import { BadgeComponent } from '../../../shared/components/badge/badge.component
 import { CtaComponent } from '../../../shared/components/cta/cta.component';
 import { SectionComponent } from '../../../shared/components/section/section.component';
 import { BreadcrumbItem } from '../../../shared/components/breadcrumb/breadcrumb.component';
+import {
+  FaqAccordionComponent,
+  FaqItem,
+} from '../../../shared/components/faq-accordion/faq-accordion.component';
 
 /**
  * The single most important page for positioning.md's category-creation
@@ -37,6 +41,7 @@ import { BreadcrumbItem } from '../../../shared/components/breadcrumb/breadcrumb
     BadgeComponent,
     CtaComponent,
     SectionComponent,
+    FaqAccordionComponent,
   ],
   templateUrl: './agentic-ai.component.html',
   styleUrl: './agentic-ai.component.scss',
@@ -75,6 +80,25 @@ export class AgenticAiComponent implements OnDestroy {
       label: 'Retenido: Governed Agent Retainer',
       description:
         'Monitorización continua de la tasa de escalado, la tasa de anulación humana y la deriva del agente respecto a su límite de autonomía original.',
+    },
+  ];
+
+  protected readonly faqItems: readonly FaqItem[] = [
+    {
+      question:
+        '¿Vuestra IA toma decisiones de forma autónoma o siempre hay supervisión humana?',
+      answer:
+        '<p>Nuestros agentes de IA operan dentro de límites de autonomía que definimos junto a cada cliente. Ejecutan tareas completas — cribado, análisis, reporting — pero cada decisión con impacto en una persona pasa por un punto de revisión humana antes de ser definitiva. No automatizamos decisiones; automatizamos trabajo, y dejamos las decisiones donde deben estar.</p>',
+    },
+    {
+      question: '¿Dónde se alojan y procesan los datos de un agente desplegado?',
+      answer:
+        '<p>Depende del engagement concreto: confirmamos y documentamos la jurisdicción de alojamiento real, la base legal del tratamiento y la clasificación de riesgo del agente antes del despliegue — nunca lo afirmamos en genérico, verificado caso por caso.</p>',
+    },
+    {
+      question: '¿Qué pasa si el agente se equivoca?',
+      answer:
+        '<p>Cada agente que diseñamos registra la acción y el razonamiento que la originó, lo que permite reconstruir cualquier decisión después del hecho. El límite de autonomía y los triggers de escalado están pensados precisamente para que un error se detecte y se corrija en el punto de control humano, no después de que afecte a una persona.</p>',
     },
   ];
 

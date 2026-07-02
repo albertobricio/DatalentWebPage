@@ -1,0 +1,87 @@
+@use 'tokens' as *;
+
+:host {
+  display: block;
+}
+
+details {
+  border-bottom: var(--border-width) solid var(--color-border);
+  padding: var(--space-md) 0;
+  transition: background-color var(--motion-default) var(--motion-easing);
+}
+
+details[open] {
+  // paper-alt against a paper (or paper-alt) page background is what
+  // actually gives the open item visible contrast — verified against the
+  // page background at render time, not assumed (Sprint 4.5 audit found
+  // two pages using --color-paper here, identical to their own section
+  // background, making the open state invisible).
+  background-color: var(--color-paper-alt);
+  border-left: 3px solid var(--color-signal);
+  border-radius: var(--radius-sm);
+  padding: var(--space-lg) var(--space-md);
+}
+
+summary {
+  display: block; // suppresses the native ::marker triangle in modern Chromium,
+                   // not just the older ::-webkit-details-marker pseudo-element
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  font-size: var(--font-size-body-lg);
+  color: var(--color-ink);
+  position: relative;
+  padding-right: var(--space-xl);
+  transition: color var(--motion-fast) var(--motion-easing);
+
+  &:hover {
+    color: var(--color-signal);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: 2px;
+  }
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::after {
+  content: '+';
+  position: absolute;
+  right: 0;
+  font-size: var(--font-size-h3);
+  color: var(--color-signal);
+  transition: transform var(--motion-default) var(--motion-easing);
+}
+
+details[open] summary::after {
+  content: '\2212';
+  transform: rotate(180deg);
+}
+
+details[open] summary {
+  color: var(--color-signal);
+}
+
+.faq-accordion__answer {
+  p,
+  ul {
+    margin: var(--space-sm) 0 0 0;
+    line-height: var(--line-height-body-lg);
+    color: var(--color-slate);
+  }
+
+  ul {
+    padding-left: var(--space-lg);
+  }
+
+  blockquote {
+    font-style: italic;
+    color: var(--color-ink);
+    border-left: 3px solid var(--color-signal);
+    margin: var(--space-md) 0;
+    padding-left: var(--space-md);
+  }
+}

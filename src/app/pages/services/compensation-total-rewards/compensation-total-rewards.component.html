@@ -11,7 +11,7 @@
   <app-section>
     <div class="container container--prose">
       <h2>Por qué importa la estrategia retributiva</h2>
-      <p class="section__intro">
+      <p class="section-intro">
         Antes de comparar un solo puesto con el mercado, una organización tiene que decidir
         si quiere liderar, igualar o quedarse por debajo del mercado — esa decisión, ligada
         a la estrategia de talento y al presupuesto, determina cómo se interpreta cada cifra
@@ -37,7 +37,7 @@
   <app-section background="secondary">
     <div class="container container--prose">
       <h2>Transparencia retributiva</h2>
-      <p class="section__intro">
+      <p class="section-intro">
         La transparencia retributiva — divulgar rangos salariales, criterios y datos de
         brecha — ha pasado de buena práctica a obligación legal en la UE. Y dentro de la
         transparencia, hay una distinción que decide si un hallazgo es honesto o
@@ -57,7 +57,7 @@
         intencionado. Cualquier auditoría que entregamos muestra las dos cifras, con el
         nivel de confianza de la estimación ajustada, nunca una sola cifra suelta.
       </p>
-      <p class="section__disclaimer">
+      <p class="section-disclaimer">
         No publicamos ninguna cifra de brecha salarial en esta página — es información
         específica de cada organización, nunca un dato genérico de marketing.
       </p>
@@ -67,7 +67,7 @@
   <app-section>
     <div class="container container--prose">
       <h2>Directiva Europea de Transparencia Retributiva</h2>
-      <p class="section__intro">
+      <p class="section-intro">
         La Directiva (UE) 2023/970 tiene plazo de transposición por los Estados miembro
         del 7 de junio de 2026 — una fecha ya pasada. No es una consideración de futuro:
         es un requisito de cumplimiento vigente hoy para cualquier organización que opere
@@ -91,7 +91,7 @@
   <app-section background="secondary">
     <div class="container container--prose">
       <h2>Marco de Total Rewards</h2>
-      <p class="section__intro">
+      <p class="section-intro">
         Total Rewards es más amplio que el salario. El modelo de referencia de WorldatWork
         define cinco elementos: <strong>compensación</strong>, <strong>beneficios</strong>,
         <strong>bienestar</strong>, <strong>reconocimiento</strong> y
@@ -109,7 +109,7 @@
   <app-section>
     <div class="container">
       <h2>Casos de consultoría típicos</h2>
-      <div class="engagement-grid">
+      <div class="card-grid--3">
         <app-card>
           <app-badge>Equidad retributiva</app-badge>
           <h3>Auditoría de equidad retributiva</h3>
@@ -166,33 +166,9 @@
   <app-section>
     <div class="container container--prose">
       <h2>Preguntas frecuentes</h2>
-      <details>
-        <summary>¿Publicáis cifras de brecha salarial en vuestra web?</summary>
-        <p>
-          No, nunca. Cualquier cifra de brecha salarial es información específica de cada
-          organización, obtenida y verificada dentro de un engagement concreto — nunca un
-          dato genérico de marketing publicado para parecer creíbles.
-        </p>
-      </details>
-      <details>
-        <summary>¿Qué diferencia hay entre la brecha salarial bruta y la ajustada?</summary>
-        <p>
-          La bruta compara la retribución media sin controlar factores como puesto, nivel
-          o ubicación; la ajustada sí los controla, para aislar la diferencia que no se
-          explica por ninguno de ellos. Reportar solo una de las dos, sin la otra, es
-          engañoso en cualquier dirección.
-        </p>
-      </details>
-      <details>
-        <summary>¿Ofrecéis servicios de equidad retributiva o benchmarking salarial?</summary>
-        <p>
-          Sí. Es el punto de entrada de esta práctica: una auditoría de equidad retributiva
-          o un benchmark de mercado para un conjunto de roles definido, siguiendo la
-          metodología de brecha bruta frente a ajustada descrita en esta página.
-        </p>
-      </details>
+      <app-faq-accordion [items]="faqItems" />
       <p class="faq-more">
-        <a routerLink="/faq">Ver todas las preguntas frecuentes <span aria-hidden="true">→</span></a>
+        <a class="text-link" routerLink="/faq">Ver todas las preguntas frecuentes <span aria-hidden="true">→</span></a>
       </p>
     </div>
   </app-section>
