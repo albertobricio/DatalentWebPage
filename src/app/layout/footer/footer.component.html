@@ -1,0 +1,72 @@
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__about">
+        <p class="footer__wordmark">Datalent Solutions</p>
+        <p class="footer__tagline">
+          Agentic AI para RR. HH., diseñada y gobernada en Europa.
+        </p>
+        <p class="footer__location">Tarancón, Cuenca, España</p>
+        <a
+          class="footer__social"
+          href="https://linkedin.com/company/datalent-solutions"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn
+        </a>
+      </div>
+
+      <div class="footer__column">
+        <h3 class="footer__heading">Prácticas</h3>
+        <ul class="footer__list">
+          @for (item of practices; track item.label) {
+            <li>
+              @if (item.path) {
+                <a [routerLink]="item.path">{{ item.label }}</a>
+              } @else {
+                <span class="footer__inactive">
+                  {{ item.label }}
+                  <span class="footer__soon">Próximamente</span>
+                </span>
+              }
+            </li>
+          }
+        </ul>
+      </div>
+
+      <div class="footer__column">
+        <h3 class="footer__heading">Empresa</h3>
+        <ul class="footer__list">
+          @for (item of companyLinks; track item.label) {
+            <li>
+              @if (item.path) {
+                <a [routerLink]="item.path">{{ item.label }}</a>
+              } @else {
+                <span class="footer__inactive">
+                  {{ item.label }}
+                  <span class="footer__soon">Próximamente</span>
+                </span>
+              }
+            </li>
+          }
+        </ul>
+      </div>
+
+      <div class="footer__column">
+        <h3 class="footer__heading">Legal</h3>
+        <ul class="footer__list">
+          @for (item of legalLinks; track item.label) {
+            <li>
+              <a [href]="item.href" target="_blank" rel="noopener noreferrer">{{ item.label }}</a>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; {{ currentYear }} Datalent Solutions. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>

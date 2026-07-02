@@ -1,0 +1,54 @@
+<div
+  class="mobile-menu__backdrop"
+  [class.mobile-menu__backdrop--open]="open()"
+  (click)="onBackdropClick()"
+  aria-hidden="true"
+></div>
+
+<div
+  #panel
+  class="mobile-menu"
+  [class.mobile-menu--open]="open()"
+  [attr.inert]="open() ? null : ''"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Menú de navegación"
+>
+  <nav aria-label="Móvil">
+    <ul class="mobile-menu__list">
+      @for (item of items(); track item.label) {
+        <li>
+          @if (item.children) {
+            <p class="mobile-menu__group-label">{{ item.label }}</p>
+            <ul class="mobile-menu__sublist">
+              @for (child of item.children; track child.label) {
+                <li>
+                  @if (child.path) {
+                    <a [routerLink]="child.path" (click)="onLinkClick()">{{ child.label }}</a>
+                  } @else {
+                    <span class="mobile-menu__inactive">
+                      {{ child.label }}
+                      <span class="mobile-menu__soon">Próximamente</span>
+                    </span>
+                  }
+                </li>
+              }
+            </ul>
+          } @else if (item.path) {
+            <a class="mobile-menu__link" [routerLink]="item.path" (click)="onLinkClick()">{{ item.label }}</a>
+          } @else {
+            <span class="mobile-menu__inactive">
+              {{ item.label }}
+              <span class="mobile-menu__soon">Próximamente</span>
+            </span>
+          }
+        </li>
+      }
+    </ul>
+  </nav>
+
+  <div class="mobile-menu__ctas">
+    <app-cta variant="diagnostico" />
+    <app-cta variant="briefing" />
+  </div>
+</div>

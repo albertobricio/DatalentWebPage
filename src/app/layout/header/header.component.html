@@ -1,0 +1,80 @@
+<header class="header">
+  <div class="container header__bar">
+    <a class="header__logo" routerLink="/" (click)="closeMobileMenu()">Datalent Solutions</a>
+
+    <nav class="header__nav" aria-label="Principal">
+      <ul class="header__nav-list">
+        @for (item of navItems; track item.label) {
+          <li class="header__nav-item">
+            @if (item.children) {
+              <button
+                type="button"
+                class="header__nav-trigger"
+                [attr.aria-expanded]="openDropdown() === item.label"
+                [attr.aria-controls]="item.label + '-menu'"
+                (click)="toggleDropdown(item.label)"
+              >
+                {{ item.label }}
+                <span aria-hidden="true" class="header__nav-caret">▾</span>
+              </button>
+              <ul
+                [id]="item.label + '-menu'"
+                class="header__dropdown"
+                [class.header__dropdown--open]="openDropdown() === item.label"
+              >
+                @for (child of item.children; track child.label) {
+                  <li>
+                    @if (child.path) {
+                      <a [routerLink]="child.path" (click)="closeDropdowns()">{{ child.label }}</a>
+                    } @else {
+                      <span class="header__nav-inactive">
+                        {{ child.label }}
+                        <span class="header__soon">Próximamente</span>
+                      </span>
+                    }
+                  </li>
+                }
+              </ul>
+            } @else if (item.path) {
+              <a class="header__nav-link" [routerLink]="item.path" routerLinkActive="header__nav-link--active" [routerLinkActiveOptions]="{ exact: item.path === '/' }">
+                {{ item.label }}
+              </a>
+            } @else {
+              <span class="header__nav-inactive">
+                {{ item.label }}
+                <span class="header__soon">Próximamente</span>
+              </span>
+            }
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <div class="header__ctas">
+      <app-cta variant="diagnostico" />
+      <app-cta variant="briefing" />
+    </div>
+
+    <button
+      type="button"
+      class="header__mobile-trigger"
+      [attr.aria-expanded]="mobileMenuOpen()"
+      aria-controls="mobile-menu"
+      [attr.aria-label]="mobileMenuOpen() ? 'Cerrar menú' : 'Abrir menú'"
+      (click)="toggleMobileMenu()"
+    >
+      <span class="header__mobile-icon" [class.header__mobile-icon--open]="mobileMenuOpen()" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+  </div>
+
+  <app-mobile-menu
+    id="mobile-menu"
+    [open]="mobileMenuOpen()"
+    [items]="navItems"
+    (closed)="closeMobileMenu()"
+  />
+</header>

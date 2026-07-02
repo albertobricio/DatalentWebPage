@@ -1,44 +1,25 @@
-<app-main-topbar></app-main-topbar>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+<a class="skip-link" href="#main-content">Saltar al contenido principal</a>
 
-<!-- Breadcrumbs SEO -->
-<nav aria-label="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList" class="hidden">
-  <ol>
-    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-      <a itemprop="item" href="/">
-        <span itemprop="name">Inicio</span>
-      </a>
-      <meta itemprop="position" content="1" />
-    </li>
-  </ol>
-</nav>
+<app-header />
 
-<!-- Banner de Cookies -->
-<div 
-  *ngIf="showCookieBanner"
-  class="fixed bottom-0 left-0 right-0 bg-dark-base text-white p-5 z-50 shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-accent-cyan/20"
->
-  <span class="text-sm text-gray-300 text-center sm:text-left">
-    Usamos cookies para mejorar tu experiencia y analizar el uso del sitio.
-    Puedes aceptar o rechazar su uso. Consulta nuestra
-    <a href="assets/cookie-policy.pdf" target="_blank" class="text-accent-cyan underline hover:text-accent-cyan/80">
-      política de cookies
-    </a>.
-  </span>
+<main id="main-content" tabindex="-1">
+  <router-outlet />
+</main>
 
-  <div class="flex flex-col sm:flex-row gap-3">
-    <button 
-      (click)="acceptCookies()" 
-      class="px-4 py-2 bg-accent-cyan text-dark-base rounded-lg font-semibold text-sm hover:bg-accent-cyan/80 transition"
-    >
-      Aceptar
-    </button>
-    <button 
-      (click)="rejectCookies()" 
-      class="px-4 py-2 border border-accent-cyan text-accent-cyan rounded-lg font-semibold text-sm hover:bg-accent-cyan/10 transition"
-    >
-      Rechazar
-    </button>
+<app-footer />
+
+@if (showCookieBanner()) {
+  <div class="cookie-banner" role="region" aria-label="Aviso de cookies">
+    <p class="cookie-banner__text">
+      Usamos cookies para mejorar tu experiencia y analizar el uso del sitio. Puedes
+      aceptar o rechazar su uso. Consulta nuestra
+      <a href="assets/cookie-policy.pdf" target="_blank" rel="noopener noreferrer"
+        >política de cookies</a
+      >.
+    </p>
+    <div class="cookie-banner__actions">
+      <app-button variant="secondary" (click)="rejectCookies()">Rechazar</app-button>
+      <app-button variant="primary" (click)="acceptCookies()">Aceptar</app-button>
+    </div>
   </div>
-</div>
+}
