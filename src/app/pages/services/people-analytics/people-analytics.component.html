@@ -1,0 +1,214 @@
+<article>
+  <app-hero
+    eyebrow="People Analytics"
+    title="People Analytics con la metodología a la vista, no solo el número"
+    description="Convertimos datos de plantilla en una decisión, mostrando la fuente, la muestra y el método — nunca solo un panel de indicadores. Si ya usas una plataforma como Visier, actuamos como la capa de validación de metodología y gobernanza, no como sustituto."
+    ctaVariant="diagnostico"
+    secondaryCtaVariant="briefing"
+    [breadcrumbItems]="breadcrumbItems"
+  />
+
+  <app-section>
+    <div class="container container--prose">
+      <h2>Qué es People Analytics</h2>
+      <p class="section-intro">
+        People Analytics es RR. HH. basada en evidencia: cada hallazgo sigue una cadena
+        explícita de datos → insight → decisión → acción. Un insight sin una decisión
+        asociada es un dashboard, no people analytics.
+      </p>
+      <h3>HR Analytics no es lo mismo que People Analytics</h3>
+      <p>
+        HR Analytics suele describir informes operativos sobre los propios procesos de
+        RR. HH. — tiempo de cobertura de una vacante, coste por contratación, volumen de
+        headcount. People Analytics es más amplio: trata los datos de plantilla como un
+        activo estratégico conectado a resultados de negocio, no solo a la eficiencia
+        interna del departamento.
+      </p>
+      <h3>Correlación no es causalidad</h3>
+      <p>
+        People analytics es especialmente propenso a hallazgos confundidos — «las
+        personas de alto desempeño que se marcharon tenían puntuaciones de compromiso
+        más bajas» puede reflejar que el desánimo causó la salida, o que la decisión de
+        marcharse causó después un compromiso más bajo en la encuesta. La dirección
+        importa para saber qué hacer al respecto. Usamos «asociado con», nunca «causa»,
+        salvo que el diseño del análisis lo soporte genuinamente.
+      </p>
+      <h3>Calidad y gobierno del dato</h3>
+      <p>
+        Un número sin fuente declarada, tamaño de muestra y ventana temporal no es un
+        hallazgo analítico — es una afirmación. Todo análisis que entregamos declara de
+        qué sistema viene el dato (HRIS, ATS, encuesta), qué cubre y qué deja fuera.
+      </p>
+      <h3>Interpretabilidad, no cajas negras</h3>
+      <p>
+        Un modelo que no puede explicar por qué produjo una puntuación concreta no es
+        apto para ninguna decisión que afecte de forma material a una persona,
+        independientemente de su precisión. Documentamos qué variables alimentan
+        cualquier puntuación y con qué peso — nunca una puntuación de caja negra.
+      </p>
+    </div>
+  </app-section>
+
+  <app-section background="secondary">
+    <div class="container container--prose">
+      <h2>Nivel de madurez analítica</h2>
+      <p class="section-intro">
+        La mayoría de las organizaciones — y la mayoría de las herramientas — declaran
+        operar en un escalón más alto del que realmente practican. Aplicamos este marco
+        para diagnosticar con honestidad, no de forma aspiracional.
+      </p>
+      <p>
+        <strong>Descriptivo:</strong> qué ha pasado — la rotación fue del 15 % el
+        trimestre pasado.
+      </p>
+      <p>
+        <strong>Diagnóstico:</strong> por qué ha pasado — la rotación se concentra en
+        antigüedad de 12–18 meses, asociada a un cambio de manager.
+      </p>
+      <p>
+        <strong>Predictivo:</strong> qué es probable que pase — esta persona tiene una
+        puntuación de riesgo de salida elevada, con las variables que la alimentan
+        documentadas.
+      </p>
+      <p>
+        <strong>Prescriptivo:</strong> qué deberíamos hacer — intervenir con estas tres
+        acciones, priorizadas por impacto esperado.
+      </p>
+      <p>
+        <strong>Decision Intelligence:</strong> el escalón que va más allá de lo
+        prescriptivo — no solo qué hacer, sino diseñar el propio proceso de decisión:
+        quién decide, con qué información, y bajo qué punto de control humano. Es aquí
+        donde la analítica se conecta directamente con el Artículo 22 del RGPD y con el
+        Reglamento Europeo de IA, no un paso puramente técnico.
+      </p>
+    </div>
+  </app-section>
+
+  <app-section>
+    <div class="container container--prose">
+      <h2>Metodología Datalent</h2>
+      <app-timeline [steps]="steps" />
+
+      <h3>Así se ve una divulgación de metodología</h3>
+      <p>
+        Esto es un ejemplo ilustrativo de estructura — no un dato real de ningún
+        cliente — para mostrar qué acompaña siempre a un hallazgo, nunca solo el número:
+      </p>
+      <app-card class="methodology-example">
+        <p><strong>Fuente:</strong> encuesta de compromiso, sistema HRIS del cliente.</p>
+        <p><strong>Muestra:</strong> [n y tasa de respuesta específicos del engagement].</p>
+        <p><strong>Método:</strong> análisis de cohortes por antigüedad, con rotación
+        deseada y no deseada separadas.</p>
+        <p><strong>Confianza:</strong> [nivel de confianza de la estimación, declarado
+        explícitamente].</p>
+      </app-card>
+      <p class="section-disclaimer">
+        Los corchetes marcan dónde va el dato real de cada cliente — nunca publicamos
+        una cifra de ejemplo que pueda leerse como un resultado real.
+      </p>
+    </div>
+  </app-section>
+
+  <app-section background="secondary">
+    <div class="container">
+      <h2>Casos de uso</h2>
+      <div class="card-grid--3">
+        <app-card>
+          <app-badge>Cultura</app-badge>
+          <h3>Diagnóstico de cultura y compromiso</h3>
+          <p>
+            Triangulación de datos de encuesta con datos de comportamiento — movilidad,
+            rotación, desempeño — en vez de depender solo de la encuesta anual de
+            compromiso.
+          </p>
+        </app-card>
+        <app-card>
+          <app-badge>Rotación</app-badge>
+          <h3>Análisis de rotación con metodología</h3>
+          <p>
+            Separación entre rotación deseada y no deseada, análisis de cohortes por
+            antigüedad — nunca una única «tasa de rotación» que oculta la señal real.
+          </p>
+        </app-card>
+        <app-card>
+          <app-badge>Equidad</app-badge>
+          <h3>Auditoría de sesgo de un proceso o modelo existente</h3>
+          <p>
+            Cribado con la regla del 4/5 sobre un proceso de selección o promoción, y
+            documentación de qué variables alimentan cualquier modelo ya en uso — incluida
+            la validación de un modelo que ya operas en otra plataforma.
+          </p>
+        </app-card>
+      </div>
+    </div>
+  </app-section>
+
+  <app-section>
+    <div class="container container--prose">
+      <h2>KPIs alineados con ISO 30414</h2>
+      <p class="section-intro">
+        Cada indicador se define aquí como concepto de seguimiento — el valor real es
+        siempre específico de cada organización, nunca una cifra de referencia genérica.
+      </p>
+      <p>
+        <strong>Precisión del modelo:</strong> exactitud, precisión y recall de cualquier
+        modelo predictivo, medidos contra una muestra de reserva genuina, no contra los
+        propios datos de entrenamiento.
+      </p>
+      <p>
+        <strong>Completitud del dato:</strong> proporción de campos requeridos con datos
+        reales en la población relevante.
+      </p>
+      <p>
+        <strong>Tiempo hasta el insight:</strong> desde que se plantea la pregunta hasta
+        que se entrega la respuesta.
+      </p>
+      <p>
+        <strong>Tasa de adopción:</strong> proporción de managers o líderes elegibles que
+        realmente usan los resultados de la analítica en una decisión.
+      </p>
+      <p>
+        <strong>Conversión de decisión a acción:</strong> proporción de recomendaciones
+        analíticas que terminan en una acción registrada.
+      </p>
+      <p>
+        <strong>Ratio de impacto dispar:</strong> resultado frente al umbral de la regla
+        del 4/5, seguido de forma recurrente para cualquier modelo que influya en
+        decisiones de personas.
+      </p>
+      <p class="section-disclaimer">
+        Estos indicadores están alineados con el marco de reporting de capital humano
+        ISO 30414 (rotación, diversidad, liderazgo). No publicamos cifras de referencia en
+        esta página — cada valor se calcula con los datos reales del cliente.
+      </p>
+      <a class="text-link" routerLink="/servicios/compensacion-total-rewards">
+        Ver Compensación &amp; Total Rewards <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </app-section>
+
+  <app-section background="secondary">
+    <div class="container container--prose">
+      <h2>Preguntas frecuentes</h2>
+      <app-faq-accordion [items]="faqItems" />
+      <p class="faq-more">
+        <a class="text-link" routerLink="/faq">Ver todas las preguntas frecuentes <span aria-hidden="true">→</span></a>
+      </p>
+    </div>
+  </app-section>
+
+  <app-section background="inverse">
+    <div class="container cta-banner">
+      <h2>Habla con quien va a mostrarte el método, no solo el número</h2>
+      <p>
+        Un diagnóstico gratuito si quieres explorar un caso de cultura o rotación
+        concreto, o un briefing ejecutivo si ya sabes que necesitas validar un modelo que
+        ya tienes en producción.
+      </p>
+      <div class="cta-banner__actions">
+        <app-cta variant="diagnostico" />
+        <app-cta variant="briefing" />
+      </div>
+    </div>
+  </app-section>
+</article>

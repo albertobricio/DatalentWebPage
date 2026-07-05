@@ -4,8 +4,6 @@ import { HeroComponent } from '../../shared/components/hero/hero.component';
 import { PillarProofBlockComponent } from '../../shared/components/pillar-proof-block/pillar-proof-block.component';
 import { SectionComponent } from '../../shared/components/section/section.component';
 import { FeatureCardComponent } from '../../shared/components/feature-card/feature-card.component';
-import { CardComponent } from '../../shared/components/card/card.component';
-import { BadgeComponent } from '../../shared/components/badge/badge.component';
 import { TrustCardComponent } from '../../shared/components/trust-card/trust-card.component';
 import { CtaComponent } from '../../shared/components/cta/cta.component';
 
@@ -29,8 +27,6 @@ import { CtaComponent } from '../../shared/components/cta/cta.component';
     PillarProofBlockComponent,
     SectionComponent,
     FeatureCardComponent,
-    CardComponent,
-    BadgeComponent,
     TrustCardComponent,
     CtaComponent,
   ],

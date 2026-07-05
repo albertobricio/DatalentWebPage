@@ -42,6 +42,13 @@ const routes: Routes = [
         (m) => m.WorkforceIntelligenceComponent,
       ),
   },
+  {
+    path: 'servicios/people-analytics',
+    loadComponent: () =>
+      import('./pages/services/people-analytics/people-analytics.component').then(
+        (m) => m.PeopleAnalyticsComponent,
+      ),
+  },
   { path: '**', redirectTo: '' }
 ];
 
