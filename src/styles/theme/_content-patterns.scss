@@ -137,6 +137,102 @@
   color: var(--color-slate);
 }
 
+// Sprint 7: a labeled form field (label + input/select/textarea + inline
+// error), extracted from the Contact page when the Newsletter page needed
+// an identical second copy — same reasoning as every other extraction in
+// this file.
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+
+  label {
+    font-size: var(--font-size-label);
+    font-weight: var(--font-weight-label);
+    color: var(--color-ink);
+  }
+
+  input[type='text'],
+  input[type='email'],
+  select,
+  textarea {
+    padding: var(--space-sm) var(--space-md);
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-body);
+    color: var(--color-ink);
+    background-color: var(--color-paper);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius-sm);
+    min-height: 2.75rem;
+
+    &:focus-visible {
+      outline: 2px solid var(--focus-ring-color);
+      outline-offset: 2px;
+      border-color: var(--color-signal);
+    }
+
+    &[aria-invalid='true'] {
+      border-color: var(--color-error);
+    }
+  }
+
+  textarea {
+    min-height: 8rem;
+    resize: vertical;
+  }
+}
+
+.form-field--checkbox {
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+
+  input[type='checkbox'] {
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-top: 0.15rem;
+
+    &:focus-visible {
+      outline: 2px solid var(--focus-ring-color);
+      outline-offset: 2px;
+    }
+  }
+
+  label {
+    font-size: var(--font-size-body-sm);
+    font-weight: var(--font-weight-regular);
+    color: var(--color-slate);
+
+    a {
+      color: var(--color-signal);
+    }
+  }
+}
+
+.form-field__error {
+  margin: 0;
+  font-size: var(--font-size-body-sm);
+  color: var(--color-error);
+}
+
+.form-status {
+  margin: 0;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-body-sm);
+}
+
+.form-status--success {
+  background-color: rgba(30, 122, 76, 0.1);
+  color: var(--color-success);
+}
+
+.form-status--error {
+  background-color: rgba(179, 38, 30, 0.1);
+  color: var(--color-error);
+}
+
 // A row of app-trust-card instances — mobile stacks, desktop goes inline
 // with each card sharing the row equally.
 .trust-strip {

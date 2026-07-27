@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import emailjs from '@emailjs/browser';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'

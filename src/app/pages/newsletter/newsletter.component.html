@@ -1,0 +1,95 @@
+<article>
+  <app-section>
+    <div class="container container--prose newsletter-hero">
+      <h1>El Radar Agéntico</h1>
+      <p class="section-intro">
+        Cada dos semanas, un caso real (o un patrón de mercado) donde IA agéntica y
+        criterio humano se combinaron para tomar una mejor decisión de talento — con la
+        fuente siempre citada.
+      </p>
+    </div>
+  </app-section>
+
+  <app-section background="secondary">
+    <div class="container">
+      <h2>Qué recibirás en cada número</h2>
+      <div class="card-grid--2">
+        <app-card>
+          <app-badge>🤖 Caso Agéntico de la Quincena</app-badge>
+          <p>
+            Qué hizo el agente, qué decidió una persona, y qué aprendimos — un caso real
+            (con cliente identificado o anonimizado apropiadamente) o un patrón de
+            mercado citado, nunca un caso inventado presentado como real.
+          </p>
+        </app-card>
+        <app-card>
+          <app-badge>📊 El Dato, con Fuente</app-badge>
+          <p>
+            Una sola estadística, siempre con fuente y fecha verificables — nunca un
+            número suelto sin forma de comprobarlo.
+          </p>
+        </app-card>
+        <app-card>
+          <app-badge>💬 Pregunta para tu Próximo Comité de Dirección</app-badge>
+          <p>
+            Una pregunta accionable que un CHRO o Director de Personas pueda llevar a su
+            próxima reunión.
+          </p>
+        </app-card>
+        <app-card>
+          <app-badge>🔗 Archivo</app-badge>
+          <p>
+            Enlace a los números anteriores, a medida que se publican — construido desde
+            el primer envío.
+          </p>
+        </app-card>
+      </div>
+      <p class="section-disclaimer">
+        Ningún número que compartimos está inventado, y ningún caso se presenta como real
+        si no lo es — el mismo estándar que aplicamos en el resto del sitio.
+      </p>
+    </div>
+  </app-section>
+
+  <app-section>
+    <div class="container container--prose">
+      <h2>Suscríbete</h2>
+      <p class="section-intro">
+        Suscríbete y recibe el próximo Radar Agéntico — sin spam, cancelación en un
+        clic, y la fuente de cada dato que compartimos.
+      </p>
+
+      <form class="newsletter-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <div class="form-field">
+          <label for="email">
+            Email
+            <span class="visually-hidden">(obligatorio)</span>
+          </label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            required
+            autocomplete="email"
+            placeholder="tu@empresa.com"
+            [attr.aria-invalid]="form.controls.email.invalid && form.controls.email.touched"
+            aria-describedby="email-error"
+          />
+          @if (form.controls.email.invalid && form.controls.email.touched) {
+            <p id="email-error" class="form-field__error">Indica un email válido.</p>
+          }
+        </div>
+
+        <app-button type="submit" [disabled]="submitting()">
+          {{ submitting() ? 'Enviando…' : 'Suscribirme' }}
+        </app-button>
+
+        @if (submitStatus(); as status) {
+          <p class="form-status form-status--{{ status.type }}" role="alert">
+            {{ status.message }}
+          </p>
+        }
+      </form>
+    </div>
+  </app-section>
+</article>

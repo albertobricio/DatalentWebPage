@@ -34,7 +34,7 @@
       </div>
 
       <form class="contact-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
-        <div class="contact-form__field">
+        <div class="form-field">
           <label for="nombre">
             Nombre completo *
             <span class="visually-hidden">(obligatorio)</span>
@@ -49,11 +49,11 @@
             aria-describedby="nombre-error"
           />
           @if (form.controls.nombre.invalid && form.controls.nombre.touched) {
-            <p id="nombre-error" class="contact-form__error">Indica tu nombre completo.</p>
+            <p id="nombre-error" class="form-field__error">Indica tu nombre completo.</p>
           }
         </div>
 
-        <div class="contact-form__field">
+        <div class="form-field">
           <label for="email">
             Email corporativo *
             <span class="visually-hidden">(obligatorio)</span>
@@ -68,16 +68,16 @@
             aria-describedby="email-error"
           />
           @if (form.controls.email.invalid && form.controls.email.touched) {
-            <p id="email-error" class="contact-form__error">Indica un email corporativo válido.</p>
+            <p id="email-error" class="form-field__error">Indica un email corporativo válido.</p>
           }
         </div>
 
-        <div class="contact-form__field">
+        <div class="form-field">
           <label for="empresa">Empresa</label>
           <input id="empresa" type="text" formControlName="empresa" autocomplete="organization" />
         </div>
 
-        <div class="contact-form__field">
+        <div class="form-field">
           <label for="servicio">
             Servicio de interés *
             <span class="visually-hidden">(obligatorio)</span>
@@ -89,7 +89,7 @@
           </select>
         </div>
 
-        <div class="contact-form__field">
+        <div class="form-field">
           <label for="mensaje">
             ¿Cuál es tu reto? *
             <span class="visually-hidden">(obligatorio)</span>
@@ -104,11 +104,11 @@
             aria-describedby="mensaje-error"
           ></textarea>
           @if (form.controls.mensaje.invalid && form.controls.mensaje.touched) {
-            <p id="mensaje-error" class="contact-form__error">Cuéntanos brevemente tu reto (máx. 2000 caracteres).</p>
+            <p id="mensaje-error" class="form-field__error">Cuéntanos brevemente tu reto (máx. 2000 caracteres).</p>
           }
         </div>
 
-        <div class="contact-form__field contact-form__field--checkbox">
+        <div class="form-field form-field--checkbox">
           <input
             id="privacidad"
             type="checkbox"
@@ -126,7 +126,7 @@
             <span class="visually-hidden">(obligatorio)</span>
           </label>
           @if (form.controls.privacidad.invalid && form.controls.privacidad.touched) {
-            <p id="privacidad-error" class="contact-form__error">
+            <p id="privacidad-error" class="form-field__error">
               Debes aceptar la política de privacidad para continuar.
             </p>
           }
@@ -137,7 +137,7 @@
         </app-button>
 
         @if (submitStatus(); as status) {
-          <p class="contact-form__status contact-form__status--{{ status.type }}" role="alert">
+          <p class="form-status form-status--{{ status.type }}" role="alert">
             {{ status.message }}
           </p>
         }

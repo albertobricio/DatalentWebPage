@@ -1,0 +1,39 @@
+@use 'tokens' as *;
+
+// section-intro, section-disclaimer, the card grid, and the form-field /
+// form-status rules are all global utilities
+// (src/styles/theme/_content-patterns.scss). This file holds only what's
+// specific to this page.
+
+h2 {
+  margin-bottom: var(--space-lg);
+}
+
+.newsletter-hero {
+  h1 {
+    margin-bottom: var(--space-md);
+  }
+}
+
+// The four format segments carry an emoji badge as their heading, so the
+// badge needs to sit on its own line above the description rather than
+// inline as it does in a service card.
+.card-grid--2 {
+  app-badge {
+    display: inline-block;
+    margin-bottom: var(--space-sm);
+  }
+}
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  align-items: flex-start;
+  max-width: 28rem;
+  margin-top: var(--space-lg);
+
+  .form-field {
+    width: 100%;
+  }
+}
