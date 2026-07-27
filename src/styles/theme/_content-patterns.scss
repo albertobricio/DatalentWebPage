@@ -103,6 +103,7 @@
   app-card,
   app-feature-card {
     display: block;
+    height: 100%;
 
     // Extra type-selector specificity is deliberate: a page's own
     // (view-encapsulated) `h3 { margin-top: ... }` rule compiles with an

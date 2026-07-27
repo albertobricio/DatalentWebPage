@@ -1,6 +1,13 @@
 @use 'tokens' as *;
 
+// height:100% + flex column so a card in a grid row fills the row height.
+// Without it the host stretched but this inner box did not, leaving ragged
+// card bottoms and CTAs at different heights (measured 283 / 258 / 286px
+// inside identical 286px grid cells).
 .card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   padding: var(--space-lg);
   background-color: var(--color-paper);
   border: var(--border-width) solid var(--color-border);

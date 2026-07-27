@@ -13,7 +13,13 @@
   --color-bronze: #a6803d;
   --color-slate: #5b6270;
   --color-mist: #a8acb4;
-  --color-border: #dddbd4;
+  // Sprint 8: was #dddbd4, which is 1.33:1 on paper — card and accordion
+  // edges were barely perceptible, reading as unfinished rather than
+  // restrained. #c0bcb0 is 1.82:1: clearly visible while staying a hairline.
+  // Not pushed to the 3:1 of WCAG 1.4.11, which governs borders that
+  // *identify* a control; these are decorative, and 3:1 here would need a
+  // mid-grey that fights the design's restraint.
+  --color-border: #c0bcb0;
   --color-border-dark: #33363d;
 
   // Semantic / status
