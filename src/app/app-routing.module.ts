@@ -20,6 +20,13 @@ const routes: Routes = [
       import('./pages/contact/contact.component').then((m) => m.ContactComponent),
   },
   {
+    path: 'servicios',
+    loadComponent: () =>
+      import('./pages/services/services-hub/services-hub.component').then(
+        (m) => m.ServicesHubComponent,
+      ),
+  },
+  {
     path: 'servicios/gobernanza-ia',
     loadComponent: () =>
       import('./pages/services/ai-governance/ai-governance.component').then(
@@ -53,6 +60,11 @@ const routes: Routes = [
       import('./pages/services/people-analytics/people-analytics.component').then(
         (m) => m.PeopleAnalyticsComponent,
       ),
+  },
+  {
+    path: 'por-que-datalent',
+    loadComponent: () =>
+      import('./pages/why-datalent/why-datalent.component').then((m) => m.WhyDatalentComponent),
   },
   { path: '**', redirectTo: '' }
 ];

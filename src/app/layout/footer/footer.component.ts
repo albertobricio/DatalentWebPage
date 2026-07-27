@@ -19,6 +19,7 @@ interface FooterLink {
  * built.
  */
 const PRACTICES: readonly FooterLink[] = [
+  { label: 'Todos los servicios', path: '/servicios' },
   { label: 'Agentic AI', path: '/servicios/agentic-ai-rrhh' },
   { label: 'People Analytics', path: '/servicios/people-analytics' },
   { label: 'Compensación y Total Rewards', path: '/servicios/compensacion-total-rewards' },
@@ -30,7 +31,7 @@ const COMPANY_LINKS: readonly FooterLink[] = [
   { label: 'Contacto', path: '/contacto' },
   { label: 'Insights (Radar Agéntico)', path: '/newsletter' },
   { label: 'Preguntas frecuentes', path: '/faq' },
-  { label: 'Por qué Datalent' },
+  { label: 'Por qué Datalent', path: '/por-que-datalent' },
 ];
 
 const LEGAL_LINKS: readonly FooterLink[] = [

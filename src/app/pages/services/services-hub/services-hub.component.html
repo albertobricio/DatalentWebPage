@@ -1,0 +1,116 @@
+<article>
+  <app-hero
+    eyebrow="Servicios"
+    title="Seis prácticas que funcionan como un solo sistema"
+    description="Cada práctica tiene un punto de entrada acotado y de alcance cerrado, para que puedas evaluar el trabajo antes de comprometerte a nada mayor. Y todas comparten el mismo estándar: ningún sistema entra en producción sin un límite de autonomía documentado y un punto de control humano."
+    ctaVariant="briefing"
+    secondaryCtaVariant="diagnostico"
+    [breadcrumbItems]="breadcrumbItems"
+  />
+
+  <app-section>
+    <div class="container container--prose">
+      <h2>¿Software o servicio?</h2>
+      <p class="section-intro">
+        Servicio. Datalent es <strong>advisory-led y technology-enabled</strong>: no
+        vendemos una plataforma que configuras en solitario, ni entregamos un informe y
+        desaparecemos.
+      </p>
+      <p>
+        Diseñamos, desplegamos y gobernamos agentes de IA y sistemas analíticos para la
+        función de RR. HH. de cada cliente, y seguimos siendo responsables de la
+        gobernanza de lo que construimos. Si ya operas una plataforma — Workday, SAP
+        SuccessFactors, Visier — no pedimos sustituirla: trabajamos sobre ella como capa
+        independiente de validación de metodología y gobernanza.
+      </p>
+    </div>
+  </app-section>
+
+  <app-section background="secondary">
+    <div class="container">
+      <h2>Las prácticas</h2>
+      <div class="card-grid--3">
+        <app-feature-card
+          badge="Agentic AI"
+          title="Agentic AI para RR. HH."
+          description="Revisión de viabilidad de un proceso concreto — cribado, reporting, soporte interno — frente al test agéntico-vs-automatización, con una recomendación de seguir o no antes de construir nada."
+          link="/servicios/agentic-ai-rrhh"
+        />
+        <app-feature-card
+          badge="People Analytics"
+          title="People Analytics"
+          description="Un diagnóstico acotado — cultura, compromiso, rotación, o una revisión de sesgo y equidad de un proceso existente — entregado con metodología y linaje de datos a la vista, no solo un número de salida."
+          link="/servicios/people-analytics"
+        />
+        <app-feature-card
+          badge="Compensación & Total Rewards"
+          title="Compensación & Total Rewards"
+          description="Una auditoría de equidad retributiva o un benchmark de mercado para un conjunto de roles definido, con la brecha bruta y la ajustada siempre mostradas por separado."
+          link="/servicios/compensacion-total-rewards"
+        />
+        <app-feature-card
+          badge="Gobernanza de IA"
+          title="Gobernanza de IA"
+          description="Clasificación de riesgo bajo el Reglamento Europeo de IA para un sistema concreto, propio o de proveedor — el punto de entrada más rápido y mejor delimitado de todo el catálogo."
+          link="/servicios/gobernanza-ia"
+        />
+        <app-feature-card
+          badge="Workforce Intelligence"
+          title="Workforce Intelligence"
+          description="Una sesión de planificación de escenarios para una decisión concreta — un plan de plantilla, una decisión de construir, contratar, subcontratar o automatizar — con al menos dos escenarios, nunca una previsión única."
+          link="/servicios/workforce-intelligence"
+        />
+      </div>
+    </div>
+  </app-section>
+
+  <app-section>
+    <div class="container">
+      <h2>Dos combinaciones que vendemos como paquete</h2>
+      <p class="section-intro">
+        Porque la integración entre prácticas es la diferencia, no un extra: estas dos
+        combinaciones existen como paquetes con nombre propio, no como seis líneas
+        sueltas de presupuesto.
+      </p>
+      <div class="card-grid--2">
+        <app-card>
+          <app-badge>Agentic AI + Gobernanza de IA</app-badge>
+          <h3>Compliant Launch</h3>
+          <p>
+            Para desplegar tu primer sistema agéntico con la gobernanza incorporada desde
+            el primer día — no añadida después de que Legal ponga una objeción.
+          </p>
+          <a class="text-link" routerLink="/servicios/agentic-ai-rrhh">
+            Empezar por Agentic AI <span aria-hidden="true">→</span>
+          </a>
+        </app-card>
+        <app-card>
+          <app-badge>People Analytics + Compensación & Total Rewards</app-badge>
+          <h3>Evidence-Based Talent</h3>
+          <p>
+            Para tener un único sistema coherente de decisión sobre talento — analítica,
+            retribución y recompensa total — en lugar de tres proveedores distintos que no
+            se hablan entre sí.
+          </p>
+          <a class="text-link" routerLink="/servicios/people-analytics">
+            Empezar por People Analytics <span aria-hidden="true">→</span>
+          </a>
+        </app-card>
+      </div>
+    </div>
+  </app-section>
+
+  <app-section background="inverse">
+    <div class="container cta-banner">
+      <h2>¿No sabes cuál necesitas? Esa es justo la primera conversación</h2>
+      <p>
+        Un briefing ejecutivo de 30 minutos para identificar el punto de entrada correcto,
+        o un diagnóstico gratuito si prefieres empezar por un caso más acotado.
+      </p>
+      <div class="cta-banner__actions">
+        <app-cta variant="briefing" />
+        <app-cta variant="diagnostico" />
+      </div>
+    </div>
+  </app-section>
+</article>

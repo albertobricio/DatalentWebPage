@@ -34,6 +34,8 @@ const ROUTES = [
   '/home',
   '/newsletter',
   '/faq',
+  '/servicios',
+  '/por-que-datalent',
   '/contacto',
   '/servicios/gobernanza-ia',
   '/servicios/agentic-ai-rrhh',

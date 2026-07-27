@@ -1,0 +1,118 @@
+<article>
+  <app-hero
+    eyebrow="Por qué Datalent"
+    title="Cuatro pilares, y una lista explícita de lo que no hacemos"
+    description="Un posicionamiento que no descarta nada no es un posicionamiento. Esto es lo que sostenemos, y — con la misma claridad — lo que no somos."
+    ctaVariant="briefing"
+    secondaryCtaVariant="diagnostico"
+    [breadcrumbItems]="breadcrumbItems"
+  />
+
+  <app-section background="secondary">
+    <div class="container">
+      <app-pillar-proof-block />
+    </div>
+  </app-section>
+
+  <app-section>
+    <div class="container container--prose">
+      <h2>Autonomía gobernada, no automatización</h2>
+      <p>
+        Nuestros agentes planifican y ejecutan flujos completos de RR. HH. dentro de
+        límites de autonomía definidos con cada cliente, y escalan cualquier excepción a
+        una persona. Usamos la palabra «agente» solo cuando se cumple el test completo:
+        planifica sin que alguien elija cada paso, ejecuta acciones reales, y tiene
+        límites explícitos sobre lo que puede decidir solo. Un chatbot no es un agente.
+        Un script tampoco. Esa precisión <em>es</em> el valor del término — usarlo a la
+        ligera lo destruye.
+      </p>
+
+      <h2>Diseñado en Europa, no adaptado después</h2>
+      <p>
+        Residencia del dato, diseño nativo bajo RGPD y clasificación de riesgo conforme al
+        Reglamento (UE) 2024/1689 son compromisos estructurales, no una capa de marketing
+        añadida al final. A medida que madura la aplicación del Reglamento Europeo de IA,
+        un comprador europeo tiene una razón real — no simbólica — para preferir un socio
+        gobernado en Europa.
+      </p>
+
+      <h2>Criterio senior, trato directo</h2>
+      <p>
+        Datalent es hoy una práctica boutique dirigida por una sola profesional. No hay
+        equipos junior intermedios porque no hay capas: quien te atiende en el primer
+        diagnóstico es quien diseña y ejecuta el trabajo. Cuando un encargo excede esa
+        capacidad, lo decimos antes de aceptarlo.
+      </p>
+
+      <h2>El ciclo de vida del talento, integrado</h2>
+      <p>
+        Seis prácticas diseñadas desde el principio para referenciarse entre sí: la
+        rotación que detecta People Analytics suele terminar en una pregunta de
+        retribución; el escenario de plantilla que modela Workforce Intelligence acaba en
+        una decisión de automatizar que necesita gobernanza. No competimos por tamaño;
+        competimos por integración.
+      </p>
+    </div>
+  </app-section>
+
+  <app-section background="secondary">
+    <div class="container">
+      <h2>Lo que no somos</h2>
+      <p class="section-intro">
+        Dicho explícitamente, porque decidir dónde no competir es parte de la decisión.
+      </p>
+      <div class="card-grid--2">
+        <app-card>
+          <app-badge>No somos</app-badge>
+          <h3>Una plataforma SaaS</h3>
+          <p>
+            No vendemos un producto que el cliente configura en solitario. Cada sistema
+            desplegado lleva asociada una relación de gobernanza con un responsable
+            humano. Competir como software sería competir donde las plataformas son
+            estructuralmente más fuertes.
+          </p>
+        </app-card>
+        <app-card>
+          <app-badge>No somos</app-badge>
+          <h3>Una consultora generalista de RR. HH.</h3>
+          <p>
+            No hacemos diseño organizativo genérico ni gestión del cambio desconectada de
+            la evidencia y de la gobernanza de IA. Ese es el terreno de las grandes firmas,
+            y competir ahí es competir a una escala que no tenemos.
+          </p>
+        </app-card>
+        <app-card>
+          <app-badge>No somos</app-badge>
+          <h3>Una agencia de selección ni un RPO</h3>
+          <p>
+            El reclutamiento predictivo es un servicio dentro de People Analytics, no la
+            firma entera. No trabajamos por volumen de vacantes.
+          </p>
+        </app-card>
+        <app-card>
+          <app-badge>No somos</app-badge>
+          <h3>El revendedor europeo de una plataforma estadounidense</h3>
+          <p>
+            La capa de gobernanza está diseñada para ser creíble de forma independiente,
+            incluso cuando audita o complementa un despliegue que el cliente ya tiene. Es
+            una relación de socio, no de distribución.
+          </p>
+        </app-card>
+      </div>
+    </div>
+  </app-section>
+
+  <app-section background="inverse">
+    <div class="container cta-banner">
+      <h2>La forma corta de comprobarlo es una conversación</h2>
+      <p>
+        Un briefing ejecutivo de 30 minutos, o un diagnóstico gratuito si prefieres
+        empezar por un caso concreto.
+      </p>
+      <div class="cta-banner__actions">
+        <app-cta variant="briefing" />
+        <app-cta variant="diagnostico" />
+      </div>
+    </div>
+  </app-section>
+</article>

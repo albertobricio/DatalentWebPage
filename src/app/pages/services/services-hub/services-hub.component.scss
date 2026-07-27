@@ -1,0 +1,13 @@
+@use 'tokens' as *;
+
+// section-intro, the card grids, text-link and cta-banner are global
+// utilities (src/styles/theme/_content-patterns.scss).
+
+h2 {
+  margin-bottom: var(--space-lg);
+}
+
+h3 {
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-sm);
+}
