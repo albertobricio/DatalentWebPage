@@ -4,6 +4,8 @@
   padding-block: var(--space-2xl);
   background-color: var(--color-ink);
   color: var(--text-inverse);
+  // See .section--inverse: the navy accent is unusable as a focus ring on ink.
+  --focus-ring-color: var(--color-signal-on-dark);
 
   @include respond-to('desktop') {
     padding-block: var(--space-3xl);
@@ -67,7 +69,10 @@
   text-decoration: none;
 
   &:hover {
-    color: var(--color-signal);
+    // Not --color-signal: on ink that was already only 2.68:1 with the old
+    // blue and is 1.69:1 with the navy, so hovering a footer link would have
+    // made it *harder* to read than not hovering it.
+    color: var(--color-signal-on-dark);
     text-decoration: underline;
   }
 }

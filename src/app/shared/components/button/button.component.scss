@@ -33,12 +33,17 @@
   }
 }
 
+// Primary reads through the same custom-property indirection secondary and
+// ghost already use (see the note below). It needs it for the same reason
+// they do: every CTA banner and the cookie banner sit on --color-ink, where
+// a navy fill is 1.69:1 against its own background — the button would have
+// no discernible boundary, failing WCAG 1.4.11's 3:1 for control identity.
 .btn--primary {
-  background-color: var(--color-signal);
-  color: var(--color-paper);
+  background-color: var(--btn-primary-bg, var(--color-signal));
+  color: var(--btn-primary-color, var(--color-paper));
 
   &:hover {
-    background-color: var(--color-signal-dark);
+    background-color: var(--btn-primary-bg-hover, var(--color-signal-dark));
   }
 }
 

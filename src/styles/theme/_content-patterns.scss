@@ -83,7 +83,9 @@
   text-decoration: underline;
 
   &:hover {
-    color: var(--color-signal);
+    // Sits on --color-ink (the banner is always background="inverse"), where
+    // the accent is unreadable — see --color-signal-on-dark in colors.scss.
+    color: var(--color-signal-on-dark);
   }
 }
 

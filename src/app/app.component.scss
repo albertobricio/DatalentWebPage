@@ -27,6 +27,14 @@
   --btn-secondary-border: var(--color-border-dark);
   --btn-secondary-bg-hover: var(--color-border-dark);
 
+  // Same treatment .section--inverse gives its CTA buttons — "Aceptar" is a
+  // primary button on ink, where a navy fill would be 1.69:1 against the
+  // banner and read as an unclickable dark patch.
+  --btn-primary-bg: var(--color-signal-on-dark);
+  --btn-primary-color: var(--color-ink);
+  --btn-primary-bg-hover: #b6c8ea;
+  --focus-ring-color: var(--color-signal-on-dark);
+
   @include respond-to('tablet') {
     flex-direction: row;
     align-items: center;

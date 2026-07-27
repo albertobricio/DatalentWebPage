@@ -21,4 +21,18 @@
 .section--inverse {
   background-color: var(--surface-inverse);
   color: var(--text-inverse);
+  // Any focus ring landing inside a dark section inherits this instead of
+  // the navy accent, which is 1.69:1 on ink — invisible, and below the 3:1
+  // WCAG 2.4.11 requires of a focus indicator. Set as a custom property so
+  // it cascades to descendants through view encapsulation (same mechanism
+  // app.component.scss uses for the cookie banner's button variables).
+  --focus-ring-color: var(--color-signal-on-dark);
+
+  // Every page's closing CTA banner is an inverse section containing primary
+  // buttons. Inverted here so the fill is the light tint and the label is
+  // ink: 7.57:1 for the label, and the same 7.57:1 for the button's own edge
+  // against the section background.
+  --btn-primary-bg: var(--color-signal-on-dark);
+  --btn-primary-color: var(--color-ink);
+  --btn-primary-bg-hover: #b6c8ea;
 }
