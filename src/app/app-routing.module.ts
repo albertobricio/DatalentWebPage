@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { FaqComponent } from './components/faq/faq.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -11,7 +10,10 @@ const routes: Routes = [
     loadComponent: () =>
       import('./pages/newsletter/newsletter.component').then((m) => m.NewsletterComponent),
   },
-  { path: 'faq', component: FaqComponent },
+  {
+    path: 'faq',
+    loadComponent: () => import('./pages/faq/faq.component').then((m) => m.FaqComponent),
+  },
   {
     path: 'contacto',
     loadComponent: () =>

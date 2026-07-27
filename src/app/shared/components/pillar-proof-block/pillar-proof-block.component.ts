@@ -36,8 +36,16 @@ export class PillarProofBlockComponent {
     },
     {
       marker: '03',
-      name: 'Criterio senior, escala boutique',
-      statement: 'Cada cuenta liderada por un experto senior del área.',
+      // Sprint 7 honesty pass: this previously read "Cada cuenta liderada por
+      // un experto senior del área", which implies a bench of area
+      // specialists. Datalent is currently a single practitioner operating as
+      // autónoma, pre-incorporation, so that claim asserted a scale that does
+      // not exist — the same class of problem as the fabricated statistics
+      // removed elsewhere in this sprint, and especially costly for a firm
+      // whose product is regulatory trust. The honest version is also the
+      // stronger one: no hand-off, no junior layer, ever.
+      name: 'Criterio senior, trato directo',
+      statement: 'Trabajas siempre con quien diseña y ejecuta. Sin equipos junior de por medio.',
     },
     {
       marker: '04',
