@@ -1,14 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  PLATFORM_ID,
-  Renderer2,
-  inject,
-} from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Meta, Title } from '@angular/platform-browser';
 import { HeroComponent } from '../../../shared/components/hero/hero.component';
 import { TimelineComponent, TimelineStep } from '../../../shared/components/timeline/timeline.component';
 import { TrustCardComponent } from '../../../shared/components/trust-card/trust-card.component';
@@ -18,6 +9,7 @@ import { FeatureCardComponent } from '../../../shared/components/feature-card/fe
 import { CtaComponent } from '../../../shared/components/cta/cta.component';
 import { SectionComponent } from '../../../shared/components/section/section.component';
 import { BreadcrumbItem } from '../../../shared/components/breadcrumb/breadcrumb.component';
+import { SeoService } from '../../../shared/seo.service';
 
 /**
  * The first Wave 1 service page. Follows page-specs.md's AI Governance
@@ -44,13 +36,8 @@ import { BreadcrumbItem } from '../../../shared/components/breadcrumb/breadcrumb
   styleUrl: './ai-governance.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AiGovernanceComponent implements OnDestroy {
-  private readonly title = inject(Title);
-  private readonly meta = inject(Meta);
-  private readonly renderer = inject(Renderer2);
-  private readonly platformId = inject(PLATFORM_ID);
-
-  private structuredDataScript: HTMLScriptElement | null = null;
+export class AiGovernanceComponent {
+  private readonly seo = inject(SeoService);
 
   protected readonly breadcrumbItems: BreadcrumbItem[] = [
     { label: 'Inicio', url: '/' },
@@ -79,54 +66,35 @@ export class AiGovernanceComponent implements OnDestroy {
   ];
 
   constructor() {
-    this.title.setTitle(
-      'Gobernanza de IA para RR. HH. | Clasificación de riesgo EU AI Act | Datalent Solutions',
-    );
-    this.meta.updateTag({
-      name: 'description',
-      content:
-        'Clasificación de riesgo, diseño de supervisión humana y auditoría de sesgo para IA en RR. HH., alineado con el Reglamento Europeo de IA (UE) 2024/1689 y el RGPD.',
-    });
-    this.meta.updateTag({
-      name: 'keywords',
-      content:
-        'clasificación de riesgo IA Reglamento Europeo, cumplimiento EU AI Act RRHH, auditoría de sesgo IA selección de personal',
-    });
-    this.meta.updateTag({ name: 'robots', content: 'index, follow' });
-
-    if (isPlatformBrowser(this.platformId)) {
-      this.injectStructuredData();
-    }
-  }
-
-  ngOnDestroy(): void {
-    if (this.structuredDataScript) {
-      this.renderer.removeChild(document.head, this.structuredDataScript);
-    }
-  }
-
-  private injectStructuredData(): void {
-    const script = this.renderer.createElement('script') as HTMLScriptElement;
-    script.type = 'application/ld+json';
-    script.text = JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'Service',
-      serviceType: 'Gobernanza de IA para RR. HH.',
-      provider: {
-        '@type': 'Organization',
-        name: 'Datalent Solutions',
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: 'Tarancón',
-          addressRegion: 'Cuenca',
-          addressCountry: 'ES',
-        },
-      },
-      areaServed: 'ES',
+    this.seo.set({
+      title:
+        'Gobernanza de IA para RR. HH. | Clasificación de riesgo EU AI Act | Datalent Solutions',
       description:
-        'Clasificación de riesgo, diseño de supervisión humana y auditoría de sesgo para sistemas de IA usados en procesos de RR. HH., alineado con el Reglamento Europeo de IA y el RGPD.',
+        'Clasificación de riesgo, diseño de supervisión humana y auditoría de sesgo para IA en RR. HH., alineado con el Reglamento Europeo de IA (UE) 2024/1689 y el RGPD.',
+      keywords:
+        'clasificación de riesgo IA Reglamento Europeo, cumplimiento EU AI Act RRHH, auditoría de sesgo IA selección de personal',
+      path: '/servicios/gobernanza-ia',
+      ogTitle: 'Gobernanza de IA para RR. HH. | Datalent Solutions',
+      ogDescription:
+        'Clasificación de riesgo, supervisión humana y auditoría de sesgo para IA en RR. HH., alineado con el Reglamento Europeo de IA y el RGPD.',
+      jsonLd:{
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        serviceType: 'Gobernanza de IA para RR. HH.',
+        provider: {
+          '@type': 'Organization',
+          name: 'Datalent Solutions',
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Tarancón',
+            addressRegion: 'Cuenca',
+            addressCountry: 'ES',
+          },
+        },
+        areaServed: 'ES',
+        description:
+          'Clasificación de riesgo, diseño de supervisión humana y auditoría de sesgo para sistemas de IA usados en procesos de RR. HH., alineado con el Reglamento Europeo de IA y el RGPD.',
+      },
     });
-    this.renderer.appendChild(document.head, script);
-    this.structuredDataScript = script;
   }
 }

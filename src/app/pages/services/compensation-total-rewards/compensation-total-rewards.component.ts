@@ -1,14 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  PLATFORM_ID,
-  Renderer2,
-  inject,
-} from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Meta, Title } from '@angular/platform-browser';
 import { HeroComponent } from '../../../shared/components/hero/hero.component';
 import { TimelineComponent, TimelineStep } from '../../../shared/components/timeline/timeline.component';
 import { CardComponent } from '../../../shared/components/card/card.component';
@@ -21,6 +12,7 @@ import {
   FaqAccordionComponent,
   FaqItem,
 } from '../../../shared/components/faq-accordion/faq-accordion.component';
+import { SeoService } from '../../../shared/seo.service';
 
 /**
  * The direct fix for docs/business-audit-v2.md's original finding: the
@@ -50,13 +42,8 @@ import {
   styleUrl: './compensation-total-rewards.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CompensationTotalRewardsComponent implements OnDestroy {
-  private readonly title = inject(Title);
-  private readonly meta = inject(Meta);
-  private readonly renderer = inject(Renderer2);
-  private readonly platformId = inject(PLATFORM_ID);
-
-  private structuredDataScript: HTMLScriptElement | null = null;
+export class CompensationTotalRewardsComponent {
+  private readonly seo = inject(SeoService);
 
   protected readonly breadcrumbItems: BreadcrumbItem[] = [
     { label: 'Inicio', url: '/' },
@@ -104,54 +91,35 @@ export class CompensationTotalRewardsComponent implements OnDestroy {
   ];
 
   constructor() {
-    this.title.setTitle(
-      'Compensación & Total Rewards | Auditoría de equidad retributiva y cumplimiento UE | Datalent Solutions',
-    );
-    this.meta.updateTag({
-      name: 'description',
-      content:
-        'Auditoría de equidad retributiva, benchmarking salarial y diseño de Total Rewards, con la Directiva Europea de Transparencia Retributiva como marco de cumplimiento vigente.',
-    });
-    this.meta.updateTag({
-      name: 'keywords',
-      content:
-        'auditoría de brecha salarial España, cumplimiento directiva transparencia retributiva UE, benchmarking salarial RRHH, total rewards RRHH',
-    });
-    this.meta.updateTag({ name: 'robots', content: 'index, follow' });
-
-    if (isPlatformBrowser(this.platformId)) {
-      this.injectStructuredData();
-    }
-  }
-
-  ngOnDestroy(): void {
-    if (this.structuredDataScript) {
-      this.renderer.removeChild(document.head, this.structuredDataScript);
-    }
-  }
-
-  private injectStructuredData(): void {
-    const script = this.renderer.createElement('script') as HTMLScriptElement;
-    script.type = 'application/ld+json';
-    script.text = JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'Service',
-      serviceType: 'Compensación & Total Rewards',
-      provider: {
-        '@type': 'Organization',
-        name: 'Datalent Solutions',
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: 'Tarancón',
-          addressRegion: 'Cuenca',
-          addressCountry: 'ES',
-        },
-      },
-      areaServed: 'ES',
+    this.seo.set({
+      title:
+        'Compensación & Total Rewards | Auditoría de equidad retributiva y cumplimiento UE | Datalent Solutions',
       description:
-        'Auditoría de equidad retributiva, benchmarking de mercado y diseño de Total Rewards, alineado con la Directiva Europea de Transparencia Retributiva (UE) 2023/970.',
+        'Auditoría de equidad retributiva, benchmarking salarial y diseño de Total Rewards, con la Directiva Europea de Transparencia Retributiva como marco de cumplimiento vigente.',
+      keywords:
+        'auditoría de brecha salarial España, cumplimiento directiva transparencia retributiva UE, benchmarking salarial RRHH, total rewards RRHH',
+      path: '/servicios/compensacion-total-rewards',
+      ogTitle: 'Compensación & Total Rewards | Datalent Solutions',
+      ogDescription:
+        'Auditoría de equidad retributiva, benchmarking de mercado y diseño de Total Rewards bajo la Directiva Europea de Transparencia Retributiva.',
+      jsonLd:{
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        serviceType: 'Compensación & Total Rewards',
+        provider: {
+          '@type': 'Organization',
+          name: 'Datalent Solutions',
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Tarancón',
+            addressRegion: 'Cuenca',
+            addressCountry: 'ES',
+          },
+        },
+        areaServed: 'ES',
+        description:
+          'Auditoría de equidad retributiva, benchmarking de mercado y diseño de Total Rewards, alineado con la Directiva Europea de Transparencia Retributiva (UE) 2023/970.',
+      },
     });
-    this.renderer.appendChild(document.head, script);
-    this.structuredDataScript = script;
   }
 }

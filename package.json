@@ -5,11 +5,12 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:prod": "ng build --configuration production --output-path=dist",
-    "postbuild": "cp src/assets/404.html dist/DatalentWebPage/404.html",
+    "build:prod": "ng build --configuration production && node prerender.mjs",
+    "postbuild": "cp src/assets/404.html dist/datalent-web-page/404.html",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "prerender": "node prerender.mjs"
   },
   "private": true,
   "dependencies": {
@@ -40,6 +41,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "puppeteer": "^25.3.0",
     "typescript": "~5.8.0"
   }
 }

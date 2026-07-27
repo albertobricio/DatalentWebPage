@@ -1,14 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  PLATFORM_ID,
-  Renderer2,
-  inject,
-} from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Meta, Title } from '@angular/platform-browser';
 import { HeroComponent } from '../../../shared/components/hero/hero.component';
 import { TimelineComponent, TimelineStep } from '../../../shared/components/timeline/timeline.component';
 import { CardComponent } from '../../../shared/components/card/card.component';
@@ -20,6 +11,7 @@ import {
   FaqAccordionComponent,
   FaqItem,
 } from '../../../shared/components/faq-accordion/faq-accordion.component';
+import { SeoService } from '../../../shared/seo.service';
 
 /**
  * Wave 1 per page-specs.md §4. Primary CTA is "diagnostico", not
@@ -47,13 +39,8 @@ import {
   styleUrl: './people-analytics.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PeopleAnalyticsComponent implements OnDestroy {
-  private readonly title = inject(Title);
-  private readonly meta = inject(Meta);
-  private readonly renderer = inject(Renderer2);
-  private readonly platformId = inject(PLATFORM_ID);
-
-  private structuredDataScript: HTMLScriptElement | null = null;
+export class PeopleAnalyticsComponent {
+  private readonly seo = inject(SeoService);
 
   protected readonly breadcrumbItems: BreadcrumbItem[] = [
     { label: 'Inicio', url: '/' },
@@ -106,101 +93,35 @@ export class PeopleAnalyticsComponent implements OnDestroy {
   ];
 
   constructor() {
-    this.title.setTitle(
-      'People Analytics | Diagnóstico de cultura y rotación con metodología a la vista | Datalent Solutions',
-    );
-    this.meta.updateTag({
-      name: 'description',
-      content:
-        'Diagnóstico de cultura organizacional y análisis de rotación basado en evidencia, con la metodología y el linaje de datos mostrados — nunca solo el número de salida.',
-    });
-    this.meta.updateTag({
-      name: 'keywords',
-      content:
-        'people analytics España, diagnóstico de cultura organizacional con datos, análisis de rotación basado en evidencia, auditoría de sesgo RRHH',
-    });
-    this.meta.updateTag({ name: 'robots', content: 'index, follow' });
-    this.meta.updateTag({ property: 'og:type', content: 'website' });
-    this.meta.updateTag({
-      property: 'og:title',
-      content: 'People Analytics | Datalent Solutions',
-    });
-    this.meta.updateTag({
-      property: 'og:description',
-      content:
-        'Diagnóstico de cultura organizacional y análisis de rotación basado en evidencia, con la metodología y el linaje de datos mostrados.',
-    });
-    this.meta.updateTag({
-      property: 'og:url',
-      content: 'https://www.datalentsolutions.com/servicios/people-analytics',
-    });
-    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
-    this.meta.updateTag({
-      name: 'twitter:title',
-      content: 'People Analytics | Datalent Solutions',
-    });
-    this.meta.updateTag({
-      name: 'twitter:description',
-      content:
-        'Diagnóstico de cultura y rotación con metodología a la vista, no solo el número.',
-    });
-
-    if (isPlatformBrowser(this.platformId)) {
-      this.injectStructuredData();
-      this.setCanonicalLink();
-    }
-  }
-
-  ngOnDestroy(): void {
-    if (this.structuredDataScript) {
-      this.renderer.removeChild(document.head, this.structuredDataScript);
-    }
-    // The canonical <link> is a single, shared, non-view-encapsulated
-    // element — restore it on exit so navigating away doesn't leave every
-    // other route pointing at this page's URL (see Sprint 5's fix for the
-    // same issue on the Workforce Intelligence page).
-    const link = document.querySelector('link[rel="canonical"]');
-    if (link) {
-      this.renderer.setAttribute(link, 'href', 'https://www.datalentsolutions.com');
-    }
-  }
-
-  private setCanonicalLink(): void {
-    let link = document.querySelector('link[rel="canonical"]');
-    if (!link) {
-      link = this.renderer.createElement('link');
-      this.renderer.setAttribute(link, 'rel', 'canonical');
-      this.renderer.appendChild(document.head, link);
-    }
-    this.renderer.setAttribute(
-      link,
-      'href',
-      'https://www.datalentsolutions.com/servicios/people-analytics',
-    );
-  }
-
-  private injectStructuredData(): void {
-    const script = this.renderer.createElement('script') as HTMLScriptElement;
-    script.type = 'application/ld+json';
-    script.text = JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'Service',
-      serviceType: 'People Analytics',
-      provider: {
-        '@type': 'Organization',
-        name: 'Datalent Solutions',
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: 'Tarancón',
-          addressRegion: 'Cuenca',
-          addressCountry: 'ES',
-        },
-      },
-      areaServed: 'ES',
+    this.seo.set({
+      title:
+        'People Analytics | Diagnóstico de cultura y rotación con metodología a la vista | Datalent Solutions',
       description:
-        'Diagnóstico de cultura, compromiso y rotación basado en evidencia, con metodología y linaje de datos mostrados, y auditoría de sesgo para cualquier modelo predictivo antes de su uso operativo.',
+        'Diagnóstico de cultura organizacional y análisis de rotación basado en evidencia, con la metodología y el linaje de datos mostrados — nunca solo el número de salida.',
+      keywords:
+        'people analytics España, diagnóstico de cultura organizacional con datos, análisis de rotación basado en evidencia, auditoría de sesgo RRHH',
+      path: '/servicios/people-analytics',
+      ogTitle: 'People Analytics | Datalent Solutions',
+      ogDescription:
+        'Diagnóstico de cultura organizacional y análisis de rotación basado en evidencia, con la metodología y el linaje de datos mostrados.',
+      jsonLd: {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        serviceType: 'People Analytics',
+        provider: {
+          '@type': 'Organization',
+          name: 'Datalent Solutions',
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Tarancón',
+            addressRegion: 'Cuenca',
+            addressCountry: 'ES',
+          },
+        },
+        areaServed: 'ES',
+        description:
+          'Diagnóstico de cultura, compromiso y rotación basado en evidencia, con metodología y linaje de datos mostrados, y auditoría de sesgo para cualquier modelo predictivo antes de su uso operativo.',
+      },
     });
-    this.renderer.appendChild(document.head, script);
-    this.structuredDataScript = script;
   }
 }

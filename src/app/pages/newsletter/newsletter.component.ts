@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Meta, Title } from '@angular/platform-browser';
 import { environment } from '../../../environments/environment';
 import { EmailService } from '../../providers/email.service';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { SectionComponent } from '../../shared/components/section/section.component';
 import { CardComponent } from '../../shared/components/card/card.component';
 import { BadgeComponent } from '../../shared/components/badge/badge.component';
+import { SeoService } from '../../shared/seo.service';
 
 /**
  * "El Radar Agéntico" — the recurring format `.claude/templates/newsletter-issue-template.md`
@@ -35,8 +35,7 @@ import { BadgeComponent } from '../../shared/components/badge/badge.component';
 export class NewsletterComponent {
   private readonly fb = inject(FormBuilder);
   private readonly emailService = inject(EmailService);
-  private readonly title = inject(Title);
-  private readonly meta = inject(Meta);
+  private readonly seo = inject(SeoService);
 
   protected readonly submitting = signal(false);
   protected readonly submitStatus = signal<{ type: 'success' | 'error'; message: string } | null>(
@@ -48,13 +47,12 @@ export class NewsletterComponent {
   });
 
   constructor() {
-    this.title.setTitle('El Radar Agéntico | Newsletter quincenal | Datalent Solutions');
-    this.meta.updateTag({
-      name: 'description',
-      content:
+    this.seo.set({
+      title: 'El Radar Agéntico | Newsletter quincenal | Datalent Solutions',
+      description:
         'Cada dos semanas, un caso real o un patrón de mercado donde IA agéntica y criterio humano se combinaron para una mejor decisión de talento — con la fuente siempre citada.',
+      path: '/newsletter',
     });
-    this.meta.updateTag({ name: 'robots', content: 'index, follow' });
   }
 
   protected async onSubmit(): Promise<void> {

@@ -4,6 +4,7 @@ import {
   FaqAccordionComponent,
   FaqItem,
 } from '../../shared/components/faq-accordion/faq-accordion.component';
+import { SeoService } from '../../shared/seo.service';
 
 @Component({
   selector: 'app-faq',
@@ -14,6 +15,19 @@ import {
 })
 export class FaqComponent implements OnInit, AfterViewInit {
   private router = inject(Router);
+  private readonly seo = inject(SeoService);
+
+  constructor() {
+    // This page previously set no title, description or canonical at all, so
+    // it inherited index.html's — which after prerendering would have told
+    // Google it was a duplicate of the homepage.
+    this.seo.set({
+      title: 'Preguntas frecuentes | Datalent Solutions',
+      description:
+        'Respuestas directas sobre autonomía de los agentes, supervisión humana, residencia de datos, auditoría de sesgo y cómo trabajamos en cada una de las seis prácticas.',
+      path: '/faq',
+    });
+  }
 
   protected readonly items: readonly FaqItem[] = [
     {

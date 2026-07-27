@@ -1,14 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  PLATFORM_ID,
-  Renderer2,
-  inject,
-} from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Meta, Title } from '@angular/platform-browser';
 import { HeroComponent } from '../../../shared/components/hero/hero.component';
 import { TimelineComponent, TimelineStep } from '../../../shared/components/timeline/timeline.component';
 import { CardComponent } from '../../../shared/components/card/card.component';
@@ -20,6 +11,7 @@ import {
   FaqAccordionComponent,
   FaqItem,
 } from '../../../shared/components/faq-accordion/faq-accordion.component';
+import { SeoService } from '../../../shared/seo.service';
 
 /**
  * The single most important page for positioning.md's category-creation
@@ -47,13 +39,8 @@ import {
   styleUrl: './agentic-ai.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AgenticAiComponent implements OnDestroy {
-  private readonly title = inject(Title);
-  private readonly meta = inject(Meta);
-  private readonly renderer = inject(Renderer2);
-  private readonly platformId = inject(PLATFORM_ID);
-
-  private structuredDataScript: HTMLScriptElement | null = null;
+export class AgenticAiComponent {
+  private readonly seo = inject(SeoService);
 
   protected readonly breadcrumbItems: BreadcrumbItem[] = [
     { label: 'Inicio', url: '/' },
@@ -103,54 +90,35 @@ export class AgenticAiComponent implements OnDestroy {
   ];
 
   constructor() {
-    this.title.setTitle(
-      'Agentic AI para RR. HH. | Agentes de IA gobernados, no automatización disfrazada | Datalent Solutions',
-    );
-    this.meta.updateTag({
-      name: 'description',
-      content:
-        'Diseñamos agentes de IA que planifican y ejecutan flujos completos de RR. HH. dentro de límites de autonomía documentados, con un punto de control humano en cada decisión que afecta a una persona.',
-    });
-    this.meta.updateTag({
-      name: 'keywords',
-      content:
-        'agentic AI RRHH, IA agéntica recursos humanos, agentes de IA gobernados RRHH, automatización RRHH con supervisión humana',
-    });
-    this.meta.updateTag({ name: 'robots', content: 'index, follow' });
-
-    if (isPlatformBrowser(this.platformId)) {
-      this.injectStructuredData();
-    }
-  }
-
-  ngOnDestroy(): void {
-    if (this.structuredDataScript) {
-      this.renderer.removeChild(document.head, this.structuredDataScript);
-    }
-  }
-
-  private injectStructuredData(): void {
-    const script = this.renderer.createElement('script') as HTMLScriptElement;
-    script.type = 'application/ld+json';
-    script.text = JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'Service',
-      serviceType: 'Agentic AI para RR. HH.',
-      provider: {
-        '@type': 'Organization',
-        name: 'Datalent Solutions',
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: 'Tarancón',
-          addressRegion: 'Cuenca',
-          addressCountry: 'ES',
-        },
-      },
-      areaServed: 'ES',
+    this.seo.set({
+      title:
+        'Agentic AI para RR. HH. | Agentes de IA gobernados, no automatización disfrazada | Datalent Solutions',
       description:
-        'Diseño, especificación y gobernanza de agentes de IA para flujos de RR. HH., con límites de autonomía documentados y supervisión humana en cada decisión que afecta a una persona.',
+        'Diseñamos agentes de IA que planifican y ejecutan flujos completos de RR. HH. dentro de límites de autonomía documentados, con un punto de control humano en cada decisión que afecta a una persona.',
+      keywords:
+        'agentic AI RRHH, IA agéntica recursos humanos, agentes de IA gobernados RRHH, automatización RRHH con supervisión humana',
+      path: '/servicios/agentic-ai-rrhh',
+      ogTitle: 'Agentic AI para RR. HH. | Datalent Solutions',
+      ogDescription:
+        'Agentes de IA que ejecutan flujos completos de RR. HH. dentro de límites de autonomía documentados, con punto de control humano.',
+      jsonLd:{
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        serviceType: 'Agentic AI para RR. HH.',
+        provider: {
+          '@type': 'Organization',
+          name: 'Datalent Solutions',
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Tarancón',
+            addressRegion: 'Cuenca',
+            addressCountry: 'ES',
+          },
+        },
+        areaServed: 'ES',
+        description:
+          'Diseño, especificación y gobernanza de agentes de IA para flujos de RR. HH., con límites de autonomía documentados y supervisión humana en cada decisión que afecta a una persona.',
+      },
     });
-    this.renderer.appendChild(document.head, script);
-    this.structuredDataScript = script;
   }
 }

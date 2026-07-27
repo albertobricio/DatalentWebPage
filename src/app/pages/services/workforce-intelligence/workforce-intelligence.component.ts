@@ -1,14 +1,5 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  PLATFORM_ID,
-  Renderer2,
-  inject,
-} from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Meta, Title } from '@angular/platform-browser';
 import { HeroComponent } from '../../../shared/components/hero/hero.component';
 import { TimelineComponent, TimelineStep } from '../../../shared/components/timeline/timeline.component';
 import { CardComponent } from '../../../shared/components/card/card.component';
@@ -20,6 +11,7 @@ import {
   FaqAccordionComponent,
   FaqItem,
 } from '../../../shared/components/faq-accordion/faq-accordion.component';
+import { SeoService } from '../../../shared/seo.service';
 
 /**
  * Wave 2 per site-map.md, brought forward into Wave 1 implementation by
@@ -49,13 +41,8 @@ import {
   styleUrl: './workforce-intelligence.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class WorkforceIntelligenceComponent implements OnDestroy {
-  private readonly title = inject(Title);
-  private readonly meta = inject(Meta);
-  private readonly renderer = inject(Renderer2);
-  private readonly platformId = inject(PLATFORM_ID);
-
-  private structuredDataScript: HTMLScriptElement | null = null;
+export class WorkforceIntelligenceComponent {
+  private readonly seo = inject(SeoService);
 
   protected readonly breadcrumbItems: BreadcrumbItem[] = [
     { label: 'Inicio', url: '/' },
@@ -108,92 +95,35 @@ export class WorkforceIntelligenceComponent implements OnDestroy {
   ];
 
   constructor() {
-    this.title.setTitle(
-      'Workforce Intelligence | Planificación de escenarios y skills intelligence | Datalent Solutions',
-    );
-    this.meta.updateTag({
-      name: 'description',
-      content:
-        'Planificación estratégica de plantilla basada en escenarios, no en dashboards: Build-Buy-Borrow-Bot-Bridge, análisis de skills y planificación por horizontes, con al menos dos escenarios en cada decisión.',
-    });
-    this.meta.updateTag({
-      name: 'keywords',
-      content:
-        'workforce intelligence RRHH, planificación de plantilla, workforce planning España, análisis de skills, Build Buy Borrow Bot',
-    });
-    this.meta.updateTag({ name: 'robots', content: 'index, follow' });
-    this.meta.updateTag({ property: 'og:type', content: 'website' });
-    this.meta.updateTag({
-      property: 'og:title',
-      content: 'Workforce Intelligence | Datalent Solutions',
-    });
-    this.meta.updateTag({
-      property: 'og:description',
-      content:
-        'Planificación estratégica de plantilla basada en escenarios — Build-Buy-Borrow-Bot-Bridge, análisis de skills y planificación por horizontes.',
-    });
-    this.meta.updateTag({
-      property: 'og:url',
-      content: 'https://www.datalentsolutions.com/servicios/workforce-intelligence',
-    });
-
-    if (isPlatformBrowser(this.platformId)) {
-      this.injectStructuredData();
-      this.setCanonicalLink();
-    }
-  }
-
-  ngOnDestroy(): void {
-    if (this.structuredDataScript) {
-      this.renderer.removeChild(document.head, this.structuredDataScript);
-    }
-    // The canonical <link> is a single, shared, non-view-encapsulated
-    // element (originally set once in index.html) — mutating its href on
-    // enter without restoring it on leave would leave every other route
-    // pointing at this page's URL after the user navigates away, since no
-    // other page currently manages its own canonical. Restore it here.
-    const link = document.querySelector('link[rel="canonical"]');
-    if (link) {
-      this.renderer.setAttribute(link, 'href', 'https://www.datalentsolutions.com');
-    }
-  }
-
-  private setCanonicalLink(): void {
-    let link = document.querySelector('link[rel="canonical"]');
-    if (!link) {
-      link = this.renderer.createElement('link');
-      this.renderer.setAttribute(link, 'rel', 'canonical');
-      this.renderer.appendChild(document.head, link);
-    }
-    this.renderer.setAttribute(
-      link,
-      'href',
-      'https://www.datalentsolutions.com/servicios/workforce-intelligence',
-    );
-  }
-
-  private injectStructuredData(): void {
-    const script = this.renderer.createElement('script') as HTMLScriptElement;
-    script.type = 'application/ld+json';
-    script.text = JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'Service',
-      serviceType: 'Workforce Intelligence',
-      provider: {
-        '@type': 'Organization',
-        name: 'Datalent Solutions',
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: 'Tarancón',
-          addressRegion: 'Cuenca',
-          addressCountry: 'ES',
-        },
-      },
-      areaServed: 'ES',
+    this.seo.set({
+      title:
+        'Workforce Intelligence | Planificación de escenarios y skills intelligence | Datalent Solutions',
       description:
-        'Planificación estratégica de plantilla basada en escenarios — modelado de decisiones de headcount y skills, marco Build-Buy-Borrow-Bot-Bridge, y planificación por horizontes.',
+        'Planificación estratégica de plantilla basada en escenarios, no en dashboards: Build-Buy-Borrow-Bot-Bridge, análisis de skills y planificación por horizontes, con al menos dos escenarios en cada decisión.',
+      keywords:
+        'workforce intelligence RRHH, planificación de plantilla, workforce planning España, análisis de skills, Build Buy Borrow Bot',
+      path: '/servicios/workforce-intelligence',
+      ogTitle: 'Workforce Intelligence | Datalent Solutions',
+      ogDescription:
+        'Planificación estratégica de plantilla basada en escenarios — Build-Buy-Borrow-Bot-Bridge, análisis de skills y planificación por horizontes.',
+      jsonLd:{
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        serviceType: 'Workforce Intelligence',
+        provider: {
+          '@type': 'Organization',
+          name: 'Datalent Solutions',
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Tarancón',
+            addressRegion: 'Cuenca',
+            addressCountry: 'ES',
+          },
+        },
+        areaServed: 'ES',
+        description:
+          'Planificación estratégica de plantilla basada en escenarios — modelado de decisiones de headcount y skills, marco Build-Buy-Borrow-Bot-Bridge, y planificación por horizontes.',
+      },
     });
-    this.renderer.appendChild(document.head, script);
-    this.structuredDataScript = script;
   }
 }

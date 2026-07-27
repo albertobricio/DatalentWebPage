@@ -23,7 +23,10 @@
   color: var(--color-ink);
 }
 
-.faq-section h2 {
+// Sprint 7: this was an <h2> with no <h1> anywhere on the page — an SEO
+// and accessibility defect surfaced by the prerender step, which could not
+// find a heading to wait on. It is the page title, so it is now an <h1>.
+.faq-section h1 {
   font-size: var(--font-size-h2);
   color: var(--color-signal);
   text-align: center;

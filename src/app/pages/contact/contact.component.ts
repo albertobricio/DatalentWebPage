@@ -1,20 +1,11 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  PLATFORM_ID,
-  Renderer2,
-  inject,
-  signal,
-} from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Meta, Title } from '@angular/platform-browser';
 import { environment } from '../../../environments/environment';
 import { EmailService } from '../../providers/email.service';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { BadgeComponent } from '../../shared/components/badge/badge.component';
+import { SeoService } from '../../shared/seo.service';
 
 interface ServiceOption {
   readonly value: string;
@@ -55,16 +46,11 @@ const MOTIVO_DEFAULT_SERVICE: Readonly<Record<string, string>> = {
   styleUrl: './contact.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContactComponent implements OnDestroy {
+export class ContactComponent {
   private readonly fb = inject(FormBuilder);
   private readonly route = inject(ActivatedRoute);
-  private readonly title = inject(Title);
-  private readonly meta = inject(Meta);
   private readonly emailService = inject(EmailService);
-  private readonly renderer = inject(Renderer2);
-  private readonly platformId = inject(PLATFORM_ID);
-
-  private structuredDataScript: HTMLScriptElement | null = null;
+  private readonly seo = inject(SeoService);
 
   protected readonly serviceOptions = SERVICE_OPTIONS;
   protected readonly contactEmail = environment.contactEmail;
@@ -85,29 +71,35 @@ export class ContactComponent implements OnDestroy {
   });
 
   constructor() {
-    this.title.setTitle('Contacto | Datalent Solutions');
-    this.meta.updateTag({
-      name: 'description',
-      content:
+    this.seo.set({
+      title: 'Contacto | Datalent Solutions',
+      description:
         'Habla con Datalent Solutions sobre agentic AI para RR. HH., people analytics, compensación o gobernanza de IA. Respuesta de un especialista en menos de 24 horas hábiles.',
+      path: '/contacto',
+      jsonLd: {
+        '@context': 'https://schema.org',
+        '@type': 'ContactPage',
+        name: 'Contacto | Datalent Solutions',
+        about: {
+          '@type': 'Organization',
+          name: 'Datalent Solutions',
+          email: environment.contactEmail,
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Tarancón',
+            addressRegion: 'Cuenca',
+            addressCountry: 'ES',
+          },
+        },
+      },
     });
-    this.meta.updateTag({ name: 'robots', content: 'index, follow' });
 
     const motivo = this.route.snapshot.queryParamMap.get('motivo');
     if (motivo) {
       this.applyMotivo(motivo);
     }
-
-    if (isPlatformBrowser(this.platformId)) {
-      this.injectStructuredData();
-    }
   }
 
-  ngOnDestroy(): void {
-    if (this.structuredDataScript) {
-      this.renderer.removeChild(document.head, this.structuredDataScript);
-    }
-  }
 
   protected async onSubmit(): Promise<void> {
     if (this.form.invalid || this.submitting()) {
@@ -163,28 +155,5 @@ export class ContactComponent implements OnDestroy {
       this.form.controls.servicio.setValue(defaultService);
       this.contextLabel.set(label);
     }
-  }
-
-  private injectStructuredData(): void {
-    const script = this.renderer.createElement('script') as HTMLScriptElement;
-    script.type = 'application/ld+json';
-    script.text = JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'ContactPage',
-      name: 'Contacto | Datalent Solutions',
-      about: {
-        '@type': 'Organization',
-        name: 'Datalent Solutions',
-        email: this.contactEmail,
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: 'Tarancón',
-          addressRegion: 'Cuenca',
-          addressCountry: 'ES',
-        },
-      },
-    });
-    this.renderer.appendChild(document.head, script);
-    this.structuredDataScript = script;
   }
 }

@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
 import { HeroComponent } from '../../shared/components/hero/hero.component';
 import { PillarProofBlockComponent } from '../../shared/components/pillar-proof-block/pillar-proof-block.component';
 import { SectionComponent } from '../../shared/components/section/section.component';
 import { FeatureCardComponent } from '../../shared/components/feature-card/feature-card.component';
 import { TrustCardComponent } from '../../shared/components/trust-card/trust-card.component';
 import { CtaComponent } from '../../shared/components/cta/cta.component';
+import { SeoService } from '../../shared/seo.service';
 
 /**
  * Website v2 Sprint 2 — Home. Section order and content sourcing follow
@@ -35,27 +35,20 @@ import { CtaComponent } from '../../shared/components/cta/cta.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
-  private readonly title = inject(Title);
-  private readonly meta = inject(Meta);
+  private readonly seo = inject(SeoService);
 
   constructor() {
     // SEO goal per page-specs.md: rank for the category terms, explicitly
     // excluding job-seeker and competitor-brand terms (the prior meta
     // keywords included "eurofirms, adecco" — docs/business-analysis.md
     // flagged this as diluting the B2B positioning).
-    this.title.setTitle(
-      'Datalent Solutions | Agentic AI para RR. HH., diseñada y gobernada en Europa',
-    );
-    this.meta.updateTag({
-      name: 'description',
-      content:
+    this.seo.set({
+      title: 'Datalent Solutions | Agentic AI para RR. HH., diseñada y gobernada en Europa',
+      description:
         'Diseñamos, desplegamos y gobernamos agentes de IA para RR. HH. con límites de autonomía documentados, un punto de control humano y gobernanza de datos europea desde el primer día.',
-    });
-    this.meta.updateTag({
-      name: 'keywords',
-      content:
+      keywords:
         'agentic AI RRHH, IA agéntica recursos humanos, people analytics España, gobernanza de IA RRHH, EU AI Act recursos humanos',
+      path: '/',
     });
-    this.meta.updateTag({ name: 'robots', content: 'index, follow' });
   }
 }
