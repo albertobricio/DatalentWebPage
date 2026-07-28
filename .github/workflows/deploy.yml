@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+  # Permite lanzar el deploy a mano desde la pestaña Actions sin tener que
+  # hacer un push vacío a main.
+  workflow_dispatch:
 
 # allow the workflow to push the gh-pages branch
 permissions:
@@ -29,12 +32,37 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Sin argumentos extra. `npm run build:prod -- <args>` los pegaba al final
+      # de la cadena "ng build ... && node prerender.mjs", con lo que
+      # --output-path y --base-href acababan en prerender.mjs (que los ignora)
+      # y nunca llegaban a ng build. El outputPath sale de angular.json y el
+      # base href de <base href="/"> en src/index.html, que es lo correcto para
+      # un dominio propio en la raíz.
       - name: Build production
-        run: npm run build:prod -- --configuration=production --output-path=dist/DatalentWebPage --base-href=/ && npm run postbuild
+        run: npm run build:prod
 
+      # El prerender escribe una carpeta por ruta, así que aquí deben existir
+      # 12 index.html. Si el build no prerenderiza, el deploy sube un cascarón
+      # vacío sin que nadie se entere; esto lo convierte en un fallo ruidoso.
+      - name: Verificar que el prerender ha producido las 12 rutas
+        run: |
+          count=$(find dist/datalent-web-page -name index.html | wc -l)
+          echo "index.html encontrados: $count"
+          find dist/datalent-web-page -name index.html | sort
+          if [ "$count" -ne 12 ]; then
+            echo "::error::Se esperaban 12 rutas prerenderizadas y hay $count."
+            exit 1
+          fi
+          if grep -q '<app-root></app-root>' dist/datalent-web-page/index.html; then
+            echo "::error::index.html sigue siendo el cascarón sin prerenderizar."
+            exit 1
+          fi
+
+      # Minúsculas. Los runners son Linux y distinguen mayúsculas, así que
+      # ./dist/DatalentWebPage no existía y el paso fallaba.
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist/DatalentWebPage
+          publish_dir: ./dist/datalent-web-page
           cname: datalentsolutions.com

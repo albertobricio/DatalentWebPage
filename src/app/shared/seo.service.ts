@@ -17,14 +17,14 @@ export interface SeoConfig {
   readonly jsonLd?: Record<string, unknown>;
 }
 
-const ORIGIN = 'https://www.datalentsolutions.com';
+const ORIGIN = 'https://datalentsolutions.com';
 
 /**
  * One place that owns every per-page SEO tag.
  *
  * Why this exists (Sprint 7): canonical handling had been added ad hoc to
  * only two pages, so the other eight served the index.html canonical —
- * `<link rel="canonical" href="https://www.datalentsolutions.com">` — which
+ * `<link rel="canonical" href="https://datalentsolutions.com">` — which
  * tells Google that /faq, /contacto, /newsletter and three service pages are
  * duplicates of the homepage and should be dropped from the index. That is
  * worse than having no canonical at all. It was largely inert while nothing
