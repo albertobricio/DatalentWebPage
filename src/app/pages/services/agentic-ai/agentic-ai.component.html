@@ -25,19 +25,12 @@
       </p>
 
       <h3>Aplicado a un caso real: cribado de candidatos</h3>
-      <p>
-        <strong>Automatización asistida:</strong> el sistema genera un ranking de
-        candidatos y una persona revisa y decide en cada paso, uno por uno.
-      </p>
-      <p>
-        <strong>Agente:</strong> el sistema criba el volumen completo de candidaturas,
-        preselecciona y redacta el contacto inicial para los perfiles por encima del
-        umbral definido. Cualquier candidatura con una puntuación a menos de 5 puntos del
-        umbral de corte se escala automáticamente a un reclutador, y el agente
-        nunca decide ni comunica un rechazo o una oferta final por sí mismo. El límite de
-        autonomía y el punto de control humano están definidos antes del despliegue, no
-        improvisados si algo falla.
-      </p>
+      <dl class="term-list">
+        <dt>Automatización asistida</dt>
+        <dd>el sistema genera un ranking de candidatos y una persona revisa y decide en cada paso, uno por uno.</dd>
+        <dt>Agente</dt>
+        <dd>el sistema criba el volumen completo de candidaturas, preselecciona y redacta el contacto inicial para los perfiles por encima del umbral definido. Cualquier candidatura con una puntuación a menos de 5 puntos del umbral de corte se escala automáticamente a un reclutador, y el agente nunca decide ni comunica un rechazo o una oferta final por sí mismo. El límite de autonomía y el punto de control humano están definidos antes del despliegue, no improvisados si algo falla.</dd>
+      </dl>
     </div>
   </app-section>
 
@@ -75,20 +68,14 @@
         decisión de diseño, no un techo tecnológico.
       </p>
       <h3>Tres posturas, y cuándo usamos cada una</h3>
-      <p>
-        <strong>Human-in-the-loop (HITL):</strong> una persona debe aprobar antes de que
-        la acción se ejecute. Es la postura por defecto para cualquier paso con impacto
-        directo en el resultado laboral de una persona.
-      </p>
-      <p>
-        <strong>Human-on-the-loop (HOTL):</strong> el agente actúa y una persona
-        supervisa, con capacidad de intervenir o anular después del hecho. Reservado para
-        pasos de bajo riesgo y fácilmente revisables, como redactar un borrador de informe.
-      </p>
-      <p>
-        <strong>Sin punto de control humano:</strong> no lo usamos en flujos de RR. HH.
-        con impacto en personas. No es una opción de diseño válida para este dominio.
-      </p>
+      <dl class="term-list">
+        <dt>Human-in-the-loop (HITL)</dt>
+        <dd>una persona debe aprobar antes de que la acción se ejecute. Es la postura por defecto para cualquier paso con impacto directo en el resultado laboral de una persona.</dd>
+        <dt>Human-on-the-loop (HOTL)</dt>
+        <dd>el agente actúa y una persona supervisa, con capacidad de intervenir o anular después del hecho. Reservado para pasos de bajo riesgo y fácilmente revisables, como redactar un borrador de informe.</dd>
+        <dt>Sin punto de control humano</dt>
+        <dd>no lo usamos en flujos de RR. HH. con impacto en personas. No es una opción de diseño válida para este dominio.</dd>
+      </dl>
       <p>
         En la práctica, la mayoría de los agentes que desplegamos operan en el nivel 2–3
         de una escala de autonomía de cinco niveles: ejecutan casos rutinarios de forma

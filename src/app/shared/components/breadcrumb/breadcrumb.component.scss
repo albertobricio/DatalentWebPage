@@ -16,6 +16,10 @@
 }
 
 .breadcrumb__link {
+  // Ver .text-link: 21px de alto medidos en móvil, por debajo del 24x24 de
+  // WCAG 2.5.8.
+  display: inline-block;
+  padding-block: var(--space-xs);
   color: var(--color-slate);
   text-decoration: underline;
 

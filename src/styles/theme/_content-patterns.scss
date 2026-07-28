@@ -38,6 +38,10 @@
 .text-link {
   display: inline-block;
   margin-top: var(--space-sm);
+  // Medido en móvil: sin este relleno el enlace queda en 21px de alto, por
+  // debajo del mínimo de 24x24 que pide WCAG 2.5.8. El texto no cambia de
+  // sitio porque el relleno es simétrico.
+  padding-block: var(--space-xs);
   font-size: var(--font-size-label);
   font-weight: var(--font-weight-label);
   color: var(--color-signal);
@@ -45,6 +49,36 @@
 
   &:hover {
     text-decoration: underline;
+  }
+}
+
+// Lista de definiciones para los bloques de "Término: explicación".
+//
+// Antes eran párrafos sueltos con <strong>Término:</strong> al principio, y
+// eso producía rachas de hasta 8 párrafos seguidos sin nada que rompiera el
+// bloque: imposible de escanear y, para un lector de pantalla, ocho párrafos
+// sin relación declarada en vez de pares término/definición.
+//
+// El filete vertical de cada definición es lo que da el ritmo visual que
+// permite saltar de término a término sin leerlo todo.
+.term-list {
+  margin: 0 0 var(--space-lg) 0;
+
+  dt {
+    margin-top: var(--space-lg);
+    font-weight: var(--font-weight-label);
+    color: var(--color-ink);
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+
+  dd {
+    margin: var(--space-xs) 0 0 0;
+    padding-left: var(--space-md);
+    border-left: var(--border-width) solid var(--color-border);
+    color: var(--color-slate);
   }
 }
 

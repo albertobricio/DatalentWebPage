@@ -35,4 +35,11 @@
   --btn-primary-bg: var(--color-signal-on-dark);
   --btn-primary-color: var(--color-ink);
   --btn-primary-bg-hover: var(--color-signal-on-dark-hover);
+
+  // El CTA alternativo de cada banner de cierre usa la variante secundaria,
+  // que por defecto pinta el texto en tinta y sería invisible aquí. Mismo
+  // retematizado que app.component.scss aplica al banner de cookies.
+  --btn-secondary-color: var(--text-inverse);
+  --btn-secondary-border: var(--color-control-border-dark);
+  --btn-secondary-bg-hover: var(--color-border-dark);
 }

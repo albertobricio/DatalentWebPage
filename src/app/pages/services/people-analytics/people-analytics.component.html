@@ -57,29 +57,18 @@
         operar en un escalón más alto del que realmente practican. Aplicamos este marco
         para diagnosticar dónde está el cliente hoy.
       </p>
-      <p>
-        <strong>Descriptivo:</strong> qué ha pasado. La rotación fue del 15 % el
-        trimestre pasado.
-      </p>
-      <p>
-        <strong>Diagnóstico:</strong> por qué ha pasado. La rotación se concentra en
-        antigüedad de 12–18 meses, asociada a un cambio de manager.
-      </p>
-      <p>
-        <strong>Predictivo:</strong> qué es probable que pase. Esta persona tiene una
-        puntuación de riesgo de salida elevada, con las variables que la alimentan
-        documentadas.
-      </p>
-      <p>
-        <strong>Prescriptivo:</strong> qué deberíamos hacer. Intervenir con estas tres
-        acciones, priorizadas por impacto esperado.
-      </p>
-      <p>
-        <strong>Decision Intelligence:</strong> el escalón que va más allá de lo
-        prescriptivo. Aquí se diseña el propio proceso de decisión: quién decide, con qué
-        información y bajo qué punto de control humano. Es el punto donde la analítica se
-        conecta directamente con el Artículo 22 del RGPD y con el Reglamento Europeo de IA.
-      </p>
+      <dl class="term-list">
+        <dt>Descriptivo</dt>
+        <dd>qué ha pasado. La rotación fue del 15 % el trimestre pasado.</dd>
+        <dt>Diagnóstico</dt>
+        <dd>por qué ha pasado. La rotación se concentra en antigüedad de 12–18 meses, asociada a un cambio de manager.</dd>
+        <dt>Predictivo</dt>
+        <dd>qué es probable que pase. Esta persona tiene una puntuación de riesgo de salida elevada, con las variables que la alimentan documentadas.</dd>
+        <dt>Prescriptivo</dt>
+        <dd>qué deberíamos hacer. Intervenir con estas tres acciones, priorizadas por impacto esperado.</dd>
+        <dt>Decision Intelligence</dt>
+        <dd>el escalón que va más allá de lo prescriptivo. Aquí se diseña el propio proceso de decisión: quién decide, con qué información y bajo qué punto de control humano. Es el punto donde la analítica se conecta directamente con el Artículo 22 del RGPD y con el Reglamento Europeo de IA.</dd>
+      </dl>
     </div>
   </app-section>
 
@@ -94,12 +83,16 @@
         mostrar qué acompaña siempre a un hallazgo:
       </p>
       <app-card class="methodology-example">
-        <p><strong>Fuente:</strong> encuesta de compromiso, sistema HRIS del cliente.</p>
-        <p><strong>Muestra:</strong> [n y tasa de respuesta específicos del engagement].</p>
-        <p><strong>Método:</strong> análisis de cohortes por antigüedad, con rotación
-        deseada y no deseada separadas.</p>
-        <p><strong>Confianza:</strong> [nivel de confianza de la estimación, declarado
-        explícitamente].</p>
+        <dl class="term-list">
+          <dt>Fuente</dt>
+          <dd>encuesta de compromiso, sistema HRIS del cliente.</dd>
+          <dt>Muestra</dt>
+          <dd>[n y tasa de respuesta específicos del engagement].</dd>
+          <dt>Método</dt>
+          <dd>análisis de cohortes por antigüedad, con rotación deseada y no deseada separadas.</dd>
+          <dt>Confianza</dt>
+          <dd>[nivel de confianza de la estimación, declarado explícitamente].</dd>
+        </dl>
       </app-card>
       <p class="section-disclaimer">
         Los corchetes marcan dónde va el dato real de cada cliente. No publicamos cifras
@@ -149,32 +142,20 @@
         Cada indicador se define aquí como concepto de seguimiento. El valor real es
         siempre específico de cada organización.
       </p>
-      <p>
-        <strong>Precisión del modelo:</strong> exactitud, precisión y recall de cualquier
-        modelo predictivo, medidos contra una muestra de reserva genuina, no contra los
-        propios datos de entrenamiento.
-      </p>
-      <p>
-        <strong>Completitud del dato:</strong> proporción de campos requeridos con datos
-        reales en la población relevante.
-      </p>
-      <p>
-        <strong>Tiempo hasta el insight:</strong> desde que se plantea la pregunta hasta
-        que se entrega la respuesta.
-      </p>
-      <p>
-        <strong>Tasa de adopción:</strong> proporción de managers o líderes elegibles que
-        realmente usan los resultados de la analítica en una decisión.
-      </p>
-      <p>
-        <strong>Conversión de decisión a acción:</strong> proporción de recomendaciones
-        analíticas que terminan en una acción registrada.
-      </p>
-      <p>
-        <strong>Ratio de impacto dispar:</strong> resultado frente al umbral de la regla
-        del 4/5, seguido de forma recurrente para cualquier modelo que influya en
-        decisiones de personas.
-      </p>
+      <dl class="term-list">
+        <dt>Precisión del modelo</dt>
+        <dd>exactitud, precisión y recall de cualquier modelo predictivo, medidos contra una muestra de reserva genuina, no contra los propios datos de entrenamiento.</dd>
+        <dt>Completitud del dato</dt>
+        <dd>proporción de campos requeridos con datos reales en la población relevante.</dd>
+        <dt>Tiempo hasta el insight</dt>
+        <dd>desde que se plantea la pregunta hasta que se entrega la respuesta.</dd>
+        <dt>Tasa de adopción</dt>
+        <dd>proporción de managers o líderes elegibles que realmente usan los resultados de la analítica en una decisión.</dd>
+        <dt>Conversión de decisión a acción</dt>
+        <dd>proporción de recomendaciones analíticas que terminan en una acción registrada.</dd>
+        <dt>Ratio de impacto dispar</dt>
+        <dd>resultado frente al umbral de la regla del 4/5, seguido de forma recurrente para cualquier modelo que influya en decisiones de personas.</dd>
+      </dl>
       <p class="section-disclaimer">
         Estos indicadores están alineados con el marco de reporting de capital humano
         ISO 30414 (rotación, diversidad, liderazgo). Cada valor se calcula con los datos
@@ -206,7 +187,7 @@
       </p>
       <div class="cta-banner__actions">
         <app-cta variant="diagnostico" />
-        <app-cta variant="briefing" />
+        <app-cta variant="briefing" emphasis="secondary" />
       </div>
     </div>
   </app-section>

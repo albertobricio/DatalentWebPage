@@ -24,7 +24,7 @@
   // this, secondary's default ink-colored text is invisible against the
   // ink background. See button.component.scss's custom-property indirection.
   --btn-secondary-color: var(--text-inverse);
-  --btn-secondary-border: var(--color-border-dark);
+  --btn-secondary-border: var(--color-control-border-dark);
   --btn-secondary-bg-hover: var(--color-border-dark);
 
   // Same treatment .section--inverse gives its CTA buttons — "Aceptar" is a

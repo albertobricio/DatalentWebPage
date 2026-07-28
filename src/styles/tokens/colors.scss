@@ -40,6 +40,12 @@
   --color-signal-on-dark: #93aade; // 7.63:1 sobre ink
   --color-signal-on-dark-hover: #bccbec; // 10.88:1 sobre ink
 
+  // Borde de un CONTROL sobre fondo oscuro, distinto de --color-border-dark.
+  // Ese vale para separadores decorativos (1.43:1 basta), pero en un botón
+  // secundario el borde es lo único que delimita la zona pulsable, y WCAG
+  // 1.4.11 exige 3:1 para eso. 3.28:1 sobre ink.
+  --color-control-border-dark: #6e6a5e;
+
   // Extremo saturado de la rampa cálida. Un único trabajo: la regla vertical de
   // los avisos editoriales (.section-disclaimer). 3.91:1, por encima del 3:1 de
   // elemento no textual.

@@ -19,7 +19,7 @@ export const CTA_LABELS: Record<CtaVariant, string> = {
   standalone: true,
   imports: [ButtonComponent],
   template: `
-    <app-button variant="primary" routerLink="/contacto" [queryParams]="queryParams()">
+    <app-button [variant]="emphasis()" routerLink="/contacto" [queryParams]="queryParams()">
       {{ label() }}
     </app-button>
   `,
@@ -27,6 +27,15 @@ export const CTA_LABELS: Record<CtaVariant, string> = {
 })
 export class CtaComponent {
   readonly variant = input.required<CtaVariant>();
+
+  /**
+   * Peso visual del botón. Todos los banners de cierre del sitio ponían dos
+   * CTA seguidos y ambos salían en primario, con el mismo relleno y el mismo
+   * color: dos botones de peso idéntico que obligan a elegir sin orientar.
+   * La acción recomendada de cada página se queda en 'primary' y la
+   * alternativa pasa a 'secondary'.
+   */
+  readonly emphasis = input<'primary' | 'secondary'>('primary');
 
   protected readonly label = computed(() => CTA_LABELS[this.variant()]);
   protected readonly queryParams = computed(() => ({ motivo: this.variant() }));
