@@ -15,6 +15,11 @@
   line-height: var(--line-height-label);
   text-decoration: none;
   cursor: pointer;
+  // La etiqueta de un botón no se parte a mitad de frase. En la cabecera los
+  // dos botones de llamada salían a dos líneas. No puede arreglarse desde el
+  // scss de la cabecera: .btn vive en este componente y la encapsulación de
+  // vista impide que un selector del padre lo alcance.
+  white-space: nowrap;
   transition:
     background-color var(--motion-fast) var(--motion-easing),
     color var(--motion-fast) var(--motion-easing),

@@ -1,33 +1,43 @@
-<div class="hero" [class.hero--with-mark]="showSignalMark()">
-  <div class="hero__content">
-    @if (breadcrumbItems(); as items) {
-      <app-breadcrumb class="hero__breadcrumb" [items]="items" />
-    }
-    <p class="hero__eyebrow">{{ eyebrow() }}</p>
-    <h1 class="hero__title">{{ title() }}</h1>
-    <p class="hero__description">{{ description() }}</p>
-    <div class="hero__actions">
-      <app-cta [variant]="ctaVariant()" />
-      @if (secondaryCtaVariant(); as variant) {
-        <app-button variant="ghost" routerLink="/contacto" [queryParams]="secondaryCtaQueryParams()">
-          {{ secondaryCtaLabel() }}
-        </app-button>
+<!--
+  El marco del contenedor va aquí dentro, no en cada página. Antes las siete
+  plantillas montaban <app-hero> directo dentro de <article>, sin contenedor,
+  así que el <h1> y las migas se renderizaban pegados al borde del viewport
+  mientras el logo y todos los <h2> quedaban a 160px en una pantalla de 1440.
+  Era el desajuste de márgenes más visible del sitio y aparecía en todas las
+  páginas.
+-->
+<div class="container">
+  <div class="hero" [class.hero--with-mark]="showSignalMark()">
+    <div class="hero__content">
+      @if (breadcrumbItems(); as items) {
+        <app-breadcrumb class="hero__breadcrumb" [items]="items" />
       }
+      <p class="hero__eyebrow">{{ eyebrow() }}</p>
+      <h1 class="hero__title">{{ title() }}</h1>
+      <p class="hero__description">{{ description() }}</p>
+      <div class="hero__actions">
+        <app-cta [variant]="ctaVariant()" />
+        @if (secondaryCtaVariant(); as variant) {
+          <app-button variant="ghost" routerLink="/contacto" [queryParams]="secondaryCtaQueryParams()">
+            {{ secondaryCtaLabel() }}
+          </app-button>
+        }
+      </div>
     </div>
-  </div>
 
-  @if (showSignalMark()) {
-    <div class="hero__mark" aria-hidden="true">
-      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="100" cy="100" r="28" fill="var(--color-signal)" />
-        <path
-          d="M 100 40 A 60 60 0 1 1 47 130"
-          fill="none"
-          stroke="var(--color-signal)"
-          stroke-width="3"
-          stroke-linecap="round"
-        />
-      </svg>
-    </div>
-  }
+    @if (showSignalMark()) {
+      <div class="hero__mark" aria-hidden="true">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="100" r="28" fill="var(--color-signal)" />
+          <path
+            d="M 100 40 A 60 60 0 1 1 47 130"
+            fill="none"
+            stroke="var(--color-signal)"
+            stroke-width="3"
+            stroke-linecap="round"
+          />
+        </svg>
+      </div>
+    }
+  </div>
 </div>

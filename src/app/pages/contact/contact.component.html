@@ -13,30 +13,33 @@
           <app-badge variant="accent">Solicitud: {{ label }}</app-badge>
         }
 
+        <!--
+          Eran tres bloques apilados, cada uno con su propia pregunta retórica
+          ("¿Prefieres...?", "¿Aún no listo...?", "¿Tienes una pregunta...?"),
+          repitiendo la misma estructura tres veces antes de llegar al
+          formulario. Ahora es una sola lista de alternativas: la misma
+          información, un tercio del texto y una única entradilla.
+        -->
         <div class="contact__alt">
-          <p>¿Prefieres escribirnos directamente?</p>
-          <a [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>
-        </div>
-
-        <div class="contact__newsletter">
-          <p>
-            ¿Aún no listo para hablar? Suscríbete a
-            <a routerLink="/newsletter">El Radar Agéntico</a>, nuestra newsletter quincenal.
-          </p>
-        </div>
-
-        <div class="contact__faq-link">
-          <p>
-            ¿Tienes una pregunta general antes de escribirnos?
-            <a routerLink="/faq">Consulta las preguntas frecuentes</a>.
-          </p>
+          <p class="contact__alt-lead">Si prefieres otra vía:</p>
+          <ul class="contact__alt-list">
+            <li>
+              Escríbenos a <a [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>
+            </li>
+            <li>
+              Suscríbete a <a routerLink="/newsletter">El Radar Agéntico</a>, la newsletter quincenal
+            </li>
+            <li>
+              Consulta las <a routerLink="/faq">preguntas frecuentes</a>
+            </li>
+          </ul>
         </div>
       </div>
 
       <form class="contact-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
         <div class="form-field">
           <label for="nombre">
-            Nombre completo *
+            Nombre completo
             <span class="visually-hidden">(obligatorio)</span>
           </label>
           <input
@@ -55,7 +58,7 @@
 
         <div class="form-field">
           <label for="email">
-            Email corporativo *
+            Email corporativo
             <span class="visually-hidden">(obligatorio)</span>
           </label>
           <input
@@ -73,13 +76,13 @@
         </div>
 
         <div class="form-field">
-          <label for="empresa">Empresa</label>
+          <label for="empresa">Empresa <span class="form-field__optional">(opcional)</span></label>
           <input id="empresa" type="text" formControlName="empresa" autocomplete="organization" />
         </div>
 
         <div class="form-field">
           <label for="servicio">
-            Servicio de interés *
+            Servicio de interés
             <span class="visually-hidden">(obligatorio)</span>
           </label>
           <select id="servicio" formControlName="servicio" required>
@@ -91,7 +94,7 @@
 
         <div class="form-field">
           <label for="mensaje">
-            ¿Cuál es tu reto? *
+            ¿Cuál es tu reto?
             <span class="visually-hidden">(obligatorio)</span>
           </label>
           <textarea
@@ -122,7 +125,6 @@
             <a href="assets/data-privacy.pdf" target="_blank" rel="noopener noreferrer"
               >política de privacidad</a
             >
-            *
             <span class="visually-hidden">(obligatorio)</span>
           </label>
           @if (form.controls.privacidad.invalid && form.controls.privacidad.touched) {

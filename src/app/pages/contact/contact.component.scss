@@ -40,19 +40,31 @@
   max-width: var(--measure-body);
 }
 
-.contact__alt,
-.contact__newsletter,
-.contact__faq-link {
-  margin-top: var(--space-lg);
+.contact__alt {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: var(--border-width) solid var(--color-border);
   font-size: var(--font-size-body-sm);
   color: var(--color-slate);
 
-  p {
-    margin: 0;
-  }
-
   a {
     text-decoration: underline;
+  }
+}
+
+.contact__alt-lead {
+  margin: 0 0 var(--space-sm) 0;
+  font-weight: var(--font-weight-label);
+  color: var(--color-ink);
+}
+
+.contact__alt-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+
+  li {
+    line-height: var(--line-height-body-sm);
   }
 }
 

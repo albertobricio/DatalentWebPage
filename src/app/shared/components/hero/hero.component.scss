@@ -1,5 +1,9 @@
 @use 'tokens' as *;
 
+:host {
+  display: block;
+}
+
 .hero {
   padding-block: var(--space-2xl);
   max-width: 40rem; // readable measure for headline + subtext block

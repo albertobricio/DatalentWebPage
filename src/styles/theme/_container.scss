@@ -14,16 +14,32 @@
   }
 }
 
-// A narrower container for dense explanatory content (page-wireframes.md's
-// "Qué Hacemos" and Methodology/Evidence blocks: "single wide column,
-// max-width constrained... not laid out in a grid").
+// Columna única para contenido explicativo denso (los bloques "Qué Hacemos" y
+// Metodología de page-wireframes.md: "single wide column, max-width
+// constrained... not laid out in a grid").
+//
+// El límite de medida va sobre el CONTENIDO, no sobre el marco. Antes lo tenía
+// el propio contenedor, y como también llevaba margin-inline:auto, se centraba
+// respecto a la página mientras .container se alineaba al borde del contenedor.
+// Resultado medido: dos bordes izquierdos distintos en la misma página, con una
+// desalineación de 47px a 800px de ancho y de 247px a partir de 1280px. Como
+// las páginas de servicio alternan prosa con rejillas de tarjetas, el texto
+// saltaba de izquierda a derecha al bajar.
+//
+// Ahora el marco es idéntico al de .container, así que todo el sitio comparte
+// un único borde izquierdo, y la línea de texto sigue limitada a la medida
+// legible.
 .container--prose {
   width: 100%;
-  max-width: var(--measure-body);
+  max-width: var(--container-max-width);
   margin-inline: auto;
   padding-inline: var(--container-padding-base);
 
   @include respond-to('desktop') {
     padding-inline: var(--container-padding-desktop);
+  }
+
+  > * {
+    max-width: var(--measure-body);
   }
 }

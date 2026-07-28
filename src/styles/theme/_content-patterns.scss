@@ -92,7 +92,16 @@
 // `.container.cta-banner` (two classes) reliably outranks it.
 .container.cta-banner {
   text-align: left;
-  max-width: var(--measure-body);
+
+  // Mismo arreglo que .container--prose: el límite de medida va sobre el
+  // contenido, no sobre el marco. Con max-width en el propio contenedor, el
+  // banner se centraba respecto a la página mientras el resto se alineaba al
+  // borde del contenedor, y el cierre de cada página quedaba desplazado
+  // respecto a todo lo que tenía encima.
+  h2,
+  p {
+    max-width: var(--measure-body);
+  }
 
   h2 {
     margin-bottom: var(--space-sm);
@@ -251,6 +260,16 @@
   margin: 0;
   font-size: var(--font-size-body-sm);
   color: var(--color-error);
+}
+
+// Se marca el campo OPCIONAL, no los obligatorios. Cuatro de los seis campos
+// del formulario son obligatorios, así que el asterisco marcaba la mayoría en
+// vez de la excepción, y además no había leyenda que explicara qué significaba.
+// La obligatoriedad la comunican el atributo required y el "(obligatorio)"
+// oculto que ya llevaba cada etiqueta.
+.form-field__optional {
+  font-weight: var(--font-weight-regular);
+  color: var(--color-slate);
 }
 
 .form-status {

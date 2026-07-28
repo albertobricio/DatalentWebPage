@@ -42,6 +42,16 @@
   @include respond-to('desktop') {
     display: flex;
   }
+
+  // Medido a 1440px: "Por qué Datalent" y los dos botones de llamada partían a
+  // dos líneas en mitad de la frase, con la cabecera creciendo a 86px de alto
+  // para acomodarlos. Una etiqueta de navegación nunca debe partirse: o cabe
+  // entera o el contenedor tiene que ceder.
+  a,
+  button,
+  .btn {
+    white-space: nowrap;
+  }
 }
 
 .header__nav-list {

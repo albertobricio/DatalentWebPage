@@ -49,8 +49,17 @@
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  // Reading measure — typography-rules.md, closing design-review.md's
-  // Readability finding. Applied as max-width on body text containers,
-  // independent of the surrounding grid width.
-  --measure-body: 70ch;
+  // Medida de lectura (typography-rules.md, hallazgo de legibilidad de
+  // design-review.md). Se aplica como max-width al texto, con independencia del
+  // ancho de la rejilla que lo rodea.
+  //
+  // En rem, no en ch. La unidad ch se resuelve contra la fuente del elemento
+  // donde se usa, así que el mismo token daba topes distintos según dónde
+  // cayera: medido en navegador, 795px sobre un párrafo del cuerpo y 1132px
+  // sobre un h2, o sea ningún límite real en los encabezados. 44rem equivale a
+  // los 70ch originales sobre la tipografía del cuerpo, y ahora vale lo mismo
+  // en todas partes. 42rem = 672px, que es la anchura efectiva que tenía la
+  // columna antes de este cambio (707px de tope menos 32px de relleno), para
+  // no ensanchar la línea de lectura sin querer.
+  --measure-body: 42rem;
 }
