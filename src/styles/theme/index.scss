@@ -1,7 +1,11 @@
 // Global theme — single entry point.
-// Forwards base element styles, the container system, the grid, utility
-// classes, and shared content-section patterns. Loaded once, globally,
-// from src/styles.scss.
+// Forwards the self-hosted @font-face declarations, base element styles, the
+// container system, the grid, utility classes, and shared content-section
+// patterns. Loaded once, globally, from src/styles.scss.
+//
+// 'fonts' va primero: las declaraciones @font-face deben conocerse antes de
+// que cualquier regla las use.
+@forward 'fonts';
 @forward 'base';
 @forward 'container';
 @forward 'grid';
