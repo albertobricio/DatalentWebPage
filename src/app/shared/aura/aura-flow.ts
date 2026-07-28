@@ -63,7 +63,7 @@ const IR_A_CONTACTO: AuraAction = {
 const IR_A_FAQ: AuraAction = { label: 'Ver todas las preguntas frecuentes', path: '/faq' };
 
 /**
- * Las seis prácticas, con la ruta real de cada una. El texto es el punto de
+ * Las cinco prácticas, con la ruta real de cada una. El texto es el punto de
  * entrada de service-catalog.md, no una descripción nueva.
  */
 const PRACTICAS: readonly { id: string; label: string; path: string; resumen: string }[] = [
@@ -107,7 +107,7 @@ const PRACTICAS: readonly { id: string; label: string; path: string; resumen: st
     label: 'Todavía no lo tengo claro',
     path: '/servicios',
     resumen:
-      'Sin problema. Las seis prácticas funcionan como un solo sistema, y el punto de entrada habitual es un diagnóstico gratuito de unos 30 minutos: revisamos tu caso concreto y te decimos si hay encaje, incluida la respuesta honesta de que no lo hay.',
+      'Sin problema. Las cinco prácticas funcionan como un solo sistema, y el punto de entrada habitual es un diagnóstico gratuito de unos 30 minutos: revisamos tu caso concreto y te decimos si hay encaje, incluida la respuesta honesta de que no lo hay.',
   },
 ];
 
@@ -125,9 +125,13 @@ const FAQ_OFRECIDAS: readonly { indice: number; etiqueta: string }[] = [
 export const AURA_FLOW: readonly AuraStep[] = [
   {
     id: 'inicio',
+    // La declaración de qué es Aura vive aquí, en el saludo, y no en un bloque
+    // fijo. El bloque ocupaba un tercio del panel en móvil para repetir algo
+    // que este mensaje ya dice. Lo que sí se recupera de él es la frase de
+    // privacidad, que no estaba en ningún otro sitio.
     says: [
       'Hola. Soy Aura, el asistente guiado de Datalent Solutions.',
-      'No soy un agente ni entiendo texto libre: te ofrezco opciones y respondo con lo que ya está publicado en esta web. ¿Por dónde empezamos?',
+      'No soy un agente ni entiendo texto libre: te ofrezco opciones, respondo con lo que ya está publicado aquí y no envío nada fuera de tu navegador. ¿Por dónde empezamos?',
     ],
     options: [
       { label: 'Tengo un problema concreto', nextId: 'practicas' },
@@ -174,12 +178,3 @@ export const AURA_FLOW: readonly AuraStep[] = [
 ];
 
 export const AURA_INICIO = 'inicio';
-
-/**
- * La nota de gobernanza que Aura lleva siempre visible. Es el mismo estándar
- * que el sitio exige a cualquier sistema de un cliente: qué es, qué no puede
- * hacer y dónde está la persona.
- */
-export const AURA_NOTA_GOBERNANZA =
-  'Aura es un asistente guiado, no un agente: sigue un guion cerrado, no genera texto y no toma ninguna decisión. ' +
-  'No procesa datos personales ni envía nada fuera de tu navegador. Para cualquier cosa que no esté aquí, te pasa con una persona.';

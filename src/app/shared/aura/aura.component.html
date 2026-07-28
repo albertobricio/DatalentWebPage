@@ -29,7 +29,6 @@
     role="dialog"
     aria-modal="false"
     aria-labelledby="aura-titulo"
-    aria-describedby="aura-nota"
     tabindex="-1"
   >
     <header class="aura__cabecera">
@@ -42,14 +41,6 @@
         <span aria-hidden="true">×</span>
       </button>
     </header>
-
-    <!--
-      La nota de gobernanza va dentro del panel y siempre visible, no escondida
-      tras un enlace. Es el mismo estándar que la práctica de Gobernanza de IA
-      exige a los sistemas de cliente: qué es, qué no puede hacer, dónde está
-      la persona.
-    -->
-    <p id="aura-nota" class="aura__nota">{{ nota }}</p>
 
     <!--
       aria-live="polite" para que un lector de pantalla anuncie cada respuesta

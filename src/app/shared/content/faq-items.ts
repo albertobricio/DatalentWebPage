@@ -14,7 +14,7 @@ export const SITE_FAQ_ITEMS: readonly FaqItem[] = [
     {
       question: '¿Qué hace exactamente Datalent Solutions?',
       answer:
-        '<p>Diseñamos, desplegamos y gobernamos agentes de IA y sistemas analíticos para la función de RR. HH., dentro de seis prácticas que funcionan como un solo sistema: <strong>Agentic AI</strong>, <strong>People Analytics</strong>, <strong>Compensación &amp; Total Rewards</strong>, <strong>Gobernanza de IA</strong> y <strong>Workforce Intelligence</strong>. El hilo común es que cada sistema que entra en producción lleva un límite de autonomía documentado y un punto de control humano.</p>',
+        '<p>Diseñamos, desplegamos y gobernamos agentes de IA y sistemas analíticos para la función de RR. HH., dentro de cinco prácticas que funcionan como un solo sistema: <strong>Agentic AI</strong>, <strong>People Analytics</strong>, <strong>Compensación &amp; Total Rewards</strong>, <strong>Gobernanza de IA</strong> y <strong>Workforce Intelligence</strong>. El hilo común es que cada sistema que entra en producción lleva un límite de autonomía documentado y un punto de control humano.</p>',
     },
     {
       question: '¿Sois software o consultoría?',

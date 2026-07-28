@@ -10,7 +10,6 @@ import { RouterLink } from '@angular/router';
 import {
   AURA_FLOW,
   AURA_INICIO,
-  AURA_NOTA_GOBERNANZA,
   AuraAction,
   AuraOption,
   AuraStep,
@@ -61,7 +60,6 @@ export class AuraComponent {
   protected readonly paso = signal<AuraStep>(this.buscar(AURA_INICIO));
   protected readonly turnos = signal<readonly Turno[]>([]);
 
-  protected readonly nota = AURA_NOTA_GOBERNANZA;
 
   protected abrir(): void {
     if (this.turnos().length === 0) {

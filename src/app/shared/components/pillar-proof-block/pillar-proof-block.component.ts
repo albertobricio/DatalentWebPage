@@ -45,12 +45,12 @@ export class PillarProofBlockComponent {
       // whose product is regulatory trust. The honest version is also the
       // stronger one: no hand-off, no junior layer, ever.
       name: 'Criterio senior, trato directo',
-      statement: 'Trabajas siempre con quien diseña y ejecuta. Sin equipos junior de por medio.',
+      statement: 'Trabajas siempre con quien diseña y ejecuta.',
     },
     {
       marker: '04',
       name: 'Ciclo de vida del talento, integrado',
-      statement: 'Seis prácticas, un solo sistema.',
+      statement: 'Cinco prácticas, un solo sistema.',
     },
   ];
 }

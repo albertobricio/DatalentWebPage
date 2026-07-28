@@ -47,7 +47,7 @@ export class ServicesHubComponent {
 
   constructor() {
     this.seo.set({
-      title: 'Servicios | Seis prácticas, un solo sistema | Datalent Solutions',
+      title: 'Servicios | Cinco prácticas, un solo sistema | Datalent Solutions',
       description:
         'Agentic AI, People Analytics, Compensación & Total Rewards, Gobernanza de IA y Workforce Intelligence. Consultoría advisory-led y technology-enabled, no una plataforma que configuras en solitario.',
       keywords:
@@ -55,7 +55,7 @@ export class ServicesHubComponent {
       path: '/servicios',
       ogTitle: 'Servicios | Datalent Solutions',
       ogDescription:
-        'Seis prácticas que funcionan como un solo sistema: agentic AI, people analytics, compensación, gobernanza de IA y workforce intelligence.',
+        'Cinco prácticas que funcionan como un solo sistema: agentic AI, people analytics, compensación, gobernanza de IA y workforce intelligence.',
       jsonLd: {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
