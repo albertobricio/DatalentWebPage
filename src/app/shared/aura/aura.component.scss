@@ -89,6 +89,33 @@
   border-bottom: var(--border-width) solid var(--color-border);
 }
 
+.aura__identidad {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+// Disco con el signal mark dentro. Abstracto a propósito: la imagen de Aura
+// no puede sugerir que hay una persona respondiendo.
+.aura__avatar {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--color-ink);
+  border-radius: 50%;
+
+  svg {
+    display: block;
+    width: 1.4rem;
+    height: 1.4rem;
+    // Sobre ink el acento cae a 1.69:1 y el arco se perdería.
+    fill: var(--color-signal-on-dark);
+    stroke: var(--color-signal-on-dark);
+  }
+}
+
 .aura__titulo {
   margin: 0;
   font-size: var(--font-size-h3);

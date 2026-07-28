@@ -32,9 +32,34 @@
     tabindex="-1"
   >
     <header class="aura__cabecera">
-      <div>
-        <h2 id="aura-titulo" class="aura__titulo">Aura</h2>
-        <p class="aura__subtitulo">Asistente guiado</p>
+      <!--
+        La imagen de Aura es una marca abstracta, no un rostro. Un retrato
+        fotorrealista comunica "hay una persona al otro lado" más deprisa de lo
+        que cualquier texto puede desmentirlo, y anularía la primera frase que
+        dice Aura. El Reglamento Europeo de IA obliga a que se sepa que se
+        interactúa con un sistema de IA cuando no resulte evidente: una cara lo
+        hace menos evidente, no más.
+
+        Es el mismo círculo sólido con arco abierto del signal mark, del
+        lanzador y del diagrama de límite de autonomía. Una sola gramática
+        visual en todo el sitio.
+      -->
+      <div class="aura__identidad">
+        <span class="aura__avatar" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <circle cx="12" cy="12" r="4.5" />
+            <path
+              d="M 12 2.5 A 9.5 9.5 0 1 1 3.6 17"
+              fill="none"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </span>
+        <div>
+          <h2 id="aura-titulo" class="aura__titulo">Aura</h2>
+          <p class="aura__subtitulo">Asistente guiado</p>
+        </div>
       </div>
       <button type="button" class="aura__cerrar" (click)="cerrar()">
         <span class="visually-hidden">Cerrar Aura</span>
