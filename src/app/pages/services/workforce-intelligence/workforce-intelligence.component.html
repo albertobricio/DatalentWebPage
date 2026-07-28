@@ -2,7 +2,7 @@
   <app-hero
     eyebrow="Workforce Intelligence"
     title="Workforce Intelligence: planificación estratégica de plantilla, no un dashboard más"
-    description="Escenarios, no previsiones únicas. Capacidades, no solo vacantes. Modelamos las decisiones de plantilla — headcount, skills, estructura — bajo al menos dos futuros distintos, nunca uno solo presentado como certeza."
+    description="Modelamos las decisiones de plantilla (headcount, skills, estructura) bajo al menos dos futuros distintos, con los supuestos de cada uno declarados. Ningún escenario se presenta como certeza."
     ctaVariant="briefing"
     secondaryCtaVariant="diagnostico"
     [breadcrumbItems]="breadcrumbItems"
@@ -13,17 +13,16 @@
       <h2>Qué es Workforce Intelligence</h2>
       <p class="section-intro">
         Workforce Intelligence combina planificación interna hacia delante con señal
-        externa del mercado laboral. No es un panel de métricas sobre lo que ya ha
-        pasado — eso es
+        externa del mercado laboral. Su objeto es decidir qué necesitará la organización,
+        bajo qué supuestos y con qué margen de incertidumbre declarado. Medir lo que ya ha
+        pasado corresponde a
         <a routerLink="/servicios/people-analytics">People Analytics</a>.
-        Es el ejercicio de decidir qué necesitará la organización, bajo qué supuestos, y
-        con qué margen de incertidumbre declarado.
       </p>
-      <h3>Escenarios, no un solo número</h3>
+      <h3>Por qué trabajamos con escenarios</h3>
       <p>
         El futuro es incierto por definición. Un plan de plantilla creíble presenta un
-        número reducido de escenarios distintos, con supuestos explícitos — nunca una
-        cifra única presentada con una confianza que ningún pronóstico real puede tener.
+        número reducido de escenarios distintos, cada uno con sus supuestos explícitos.
+        Una cifra única transmite una confianza que ningún pronóstico real puede sostener.
       </p>
       <h3>Las skills son la unidad real de planificación</h3>
       <p>
@@ -34,11 +33,10 @@
       </p>
       <h3>El horizonte temporal cambia el método</h3>
       <p>
-        La planificación operativa (0–12 meses) requiere un método distinto — y más
-        preciso — que la planificación estratégica (3 o más años), que es
-        necesariamente de escenarios y con bandas de incertidumbre más amplias. Aplicar
-        el método equivocado a cada horizonte es un error de planificación habitual que
-        evitamos por diseño.
+        La planificación operativa (0–12 meses) admite un método más preciso que la
+        estratégica (3 años o más), que trabaja necesariamente por escenarios y con bandas
+        de incertidumbre más amplias. Aplicar a un horizonte el método del otro es un
+        error habitual, y lo evitamos por diseño.
       </p>
     </div>
   </app-section>
@@ -53,15 +51,14 @@
       </p>
       <h3>De la cifra única al escenario</h3>
       <p>
-        En vez de una previsión de headcount presentada como cierta, entregamos al menos
-        dos escenarios con supuestos declarados — crecimiento, rotación, condiciones de
-        mercado — para que la decisión se tome con la incertidumbre real a la vista, no
-        oculta detrás de una falsa precisión.
+        Entregamos al menos dos escenarios, con sus supuestos declarados: crecimiento,
+        rotación y condiciones de mercado. Así la decisión se toma con la incertidumbre
+        real a la vista, en lugar de oculta detrás de una falsa precisión.
       </p>
       <h3>Del puesto a la capacidad</h3>
       <p>
         La planificación tradicional razona por puesto y headcount. Nosotros razonamos
-        también por capacidad y skills — un enfoque de organización basada en
+        también por capacidad y skills, con un enfoque de organización basada en
         capacidades (Skills-Based Organization) que hace más rápidas y más granulares las
         decisiones de construir, contratar, subcontratar o automatizar.
       </p>
@@ -72,13 +69,13 @@
       </p>
       <h3>De los datos internos a la señal de mercado</h3>
       <p>
-        Un plan construido solo con datos internos — headcount actual, tendencia de
-        rotación actual — está incompleto sin contexto externo: escasez de talento,
-        inflación salarial, disponibilidad de skills en el mercado.
+        Un plan construido solo con datos internos (headcount actual, tendencia de
+        rotación) queda incompleto sin contexto externo: escasez de talento, inflación
+        salarial, disponibilidad de skills en el mercado.
       </p>
       <p class="section-disclaimer">
         Cualquier afirmación sobre condiciones de mercado externas cita una fuente
-        verificable — Eurostat, INE, u otra fuente laboral citable — nunca una impresión
+        verificable: Eurostat, INE u otra estadística laboral citable. Nunca una impresión
         general.
       </p>
     </div>
@@ -88,8 +85,8 @@
     <div class="container container--prose">
       <h2>Framework Build · Buy · Borrow · Bot · Bridge</h2>
       <p class="section-intro">
-        El marco que aplicamos a toda decisión de cómo cubrir una capacidad — cinco
-        palancas, no solo la contratación por defecto.
+        El marco que aplicamos a cada decisión sobre cómo cubrir una capacidad. Son cinco
+        palancas, y contratar es solo una de ellas.
       </p>
       <p>
         <strong>Build (construir):</strong> desarrollar la capacidad internamente, cuando
@@ -106,9 +103,9 @@
       </p>
       <p>
         <strong>Bot (automatizar):</strong> evaluar si la tarea es candidata real a un
-        flujo de automatización agéntica en lugar de requerir una persona — siempre
+        flujo de automatización agéntica en lugar de requerir una persona. Siempre
         coordinado con gobernanza de IA, para no limitarse a trasladar el riesgo a un
-        despliegue de IA sin gobernar.
+        despliegue sin gobernar.
       </p>
       <p>
         <strong>Bridge (transicionar):</strong> gestionar la salida ordenada del talento
@@ -129,9 +126,8 @@
           <app-badge>Plantilla</app-badge>
           <h3>Planificación de plantilla</h3>
           <p>
-            Modelado de headcount bajo al menos dos escenarios — crecimiento base y una
-            variante de estrés — atado al presupuesto real, no una cifra única
-            presentada como cierta.
+            Modelado de headcount bajo al menos dos escenarios, crecimiento base y una
+            variante de estrés, atado al presupuesto real de la compañía.
           </p>
         </app-card>
         <app-card>
@@ -156,18 +152,17 @@
           <app-badge>Reorganización</app-badge>
           <h3>Reorganizaciones</h3>
           <p>
-            Modelado de escenarios de cambio estructural — fusión de equipos, cambio de
-            modelo operativo — con impacto en capacidades y cobertura de roles evaluado
-            antes de ejecutar, no después.
+            Modelado de escenarios de cambio estructural (fusión de equipos, cambio de
+            modelo operativo), con el impacto en capacidades y cobertura de roles evaluado
+            antes de ejecutar.
           </p>
         </app-card>
         <app-card>
           <app-badge>Capacidad</app-badge>
           <h3>Planificación de capacidad ante escenarios económicos</h3>
           <p>
-            Modelos de capacidad bajo condiciones de mercado alternativas —
-            expansión, desaceleración — con la fuente de cada supuesto externo
-            declarada explícitamente.
+            Modelos de capacidad bajo condiciones de mercado alternativas (expansión,
+            desaceleración), con la fuente de cada supuesto externo declarada.
           </p>
         </app-card>
         <app-card>
@@ -175,8 +170,7 @@
           <h3>Decisión Build-Buy-Borrow-Bot</h3>
           <p>
             Aplicación del marco completo a una capacidad concreta que el cliente
-            necesita cubrir, con una recomendación razonada entre las cinco palancas, no
-            una contratación por defecto.
+            necesita cubrir, con una recomendación razonada entre las cinco palancas.
           </p>
         </app-card>
       </div>
@@ -190,9 +184,8 @@
 
       <h3>Indicadores que seguimos</h3>
       <p class="section-intro">
-        Cada indicador se define aquí como concepto de seguimiento — nunca con una cifra
-        de referencia inventada; el valor real es siempre específico de cada
-        organización.
+        Cada indicador se define aquí como concepto de seguimiento. No publicamos cifras
+        de referencia: el valor real es siempre específico de cada organización.
       </p>
       <p>
         <strong>Critical Role Coverage:</strong> qué proporción de los roles críticos o
@@ -207,13 +200,13 @@
         cierre en un periodo definido.
       </p>
       <p>
-        <strong>Time to Productivity:</strong> tiempo real hasta que una persona —
-        contratada o redistribuida internamente — alcanza el nivel de productividad
+        <strong>Time to Productivity:</strong> tiempo real hasta que una persona,
+        contratada o redistribuida internamente, alcanza el nivel de productividad
         esperado en su nuevo rol.
       </p>
       <p>
         <strong>Workforce Cost:</strong> coste total de plantilla frente al plan
-        financiero — el grado de alineación entre el plan de plantilla y el plan de
+        financiero, como medida de alineación entre el plan de plantilla y el plan de
         negocio.
       </p>
       <p>
@@ -223,8 +216,8 @@
       </p>
       <p class="section-disclaimer">
         Estos indicadores están alineados con el marco de reporting de capital humano
-        ISO 30414. No publicamos cifras de referencia en esta página — cada valor es
-        específico del engagement y se calcula con los datos reales del cliente.
+        ISO 30414. Cada valor es específico del engagement y se calcula con los datos
+        reales del cliente.
       </p>
     </div>
   </app-section>

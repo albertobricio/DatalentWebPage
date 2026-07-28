@@ -76,7 +76,7 @@ export class CompensationTotalRewardsComponent {
     {
       question: '¿Publicáis cifras de brecha salarial en vuestra web?',
       answer:
-        '<p>No, nunca. Cualquier cifra de brecha salarial es información específica de cada organización, obtenida y verificada dentro de un engagement concreto — nunca un dato genérico de marketing publicado para parecer creíbles.</p>',
+        '<p>No, nunca. Cualquier cifra de brecha salarial es información específica de cada organización, obtenida y verificada dentro de un engagement concreto. Nunca un dato genérico de marketing publicado para parecer creíbles.</p>',
     },
     {
       question: '¿Qué diferencia hay entre la brecha salarial bruta y la ajustada?',

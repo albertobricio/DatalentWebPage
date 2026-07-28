@@ -50,7 +50,7 @@ export class NewsletterComponent {
     this.seo.set({
       title: 'El Radar Agéntico | Newsletter quincenal | Datalent Solutions',
       description:
-        'Cada dos semanas, un caso real o un patrón de mercado donde IA agéntica y criterio humano se combinaron para una mejor decisión de talento — con la fuente siempre citada.',
+        'Cada dos semanas, un caso real o un patrón de mercado donde IA agéntica y criterio humano se combinaron para una mejor decisión de talento, con la fuente siempre citada.',
       path: '/newsletter',
     });
   }

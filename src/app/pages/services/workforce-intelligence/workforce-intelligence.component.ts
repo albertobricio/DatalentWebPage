@@ -56,12 +56,12 @@ export class WorkforceIntelligenceComponent {
     {
       label: 'Entrada: sesión de planificación de escenarios',
       description:
-        'Una sesión de planificación de escenarios para una decisión concreta — un plan de plantilla, una decisión de construir, contratar, subcontratar o automatizar — produciendo siempre al menos dos escenarios, nunca una previsión única presentada como cierta.',
+        'Una sesión de planificación de escenarios para una decisión concreta, como un plan de plantilla o una decisión de construir, contratar, subcontratar o automatizar. Siempre con al menos dos escenarios.',
     },
     {
       label: 'Diseño y despliegue: plan estratégico de plantilla',
       description:
-        'Un plan estratégico de plantilla completo, atado al presupuesto real y a las decisiones de diseño organizativo del cliente — no un ejercicio académico desconectado del plan de negocio.',
+        'Un plan estratégico de plantilla completo, atado al presupuesto real y a las decisiones de diseño organizativo del cliente, lejos del ejercicio académico desconectado del plan de negocio.',
     },
     {
       label: 'Retenido: actualización periódica de escenarios',
@@ -74,13 +74,13 @@ export class WorkforceIntelligenceComponent {
     {
       question: '¿Esto es un dashboard de RR. HH.?',
       answer:
-        '<p>No. Un dashboard describe lo que ya ha pasado. Workforce Intelligence es planificación hacia delante: escenarios, simulación de decisiones de plantilla y análisis de brechas de capacidades, con supuestos explícitos — no un panel de métricas históricas. El análisis del estado actual (rotación, compromiso, desempeño) es People Analytics; esta práctica empieza donde esa termina.</p>',
+        '<p>No. Un dashboard describe lo que ya ha pasado. Workforce Intelligence es planificación hacia delante: escenarios, simulación de decisiones de plantilla y análisis de brechas de capacidades, con supuestos explícitos. El análisis del estado actual (rotación, compromiso, desempeño) es People Analytics; esta práctica empieza donde esa termina.</p>',
     },
     {
       question:
         '¿Cómo elegís entre construir, contratar, subcontratar o automatizar una capacidad?',
       answer:
-        '<p>Aplicamos el marco Build-Buy-Borrow-Bot-Bridge: si la capacidad es desarrollable internamente en el tiempo disponible, se construye; si es escasa en el mercado y crítica a largo plazo, se contrata; si la necesidad es temporal o muy especializada, se subcontrata; si la tarea es candidata real a automatización agéntica, se evalúa como Bot — coordinado con gobernanza de IA antes de descartar a una persona; y si una capacidad deja de ser necesaria, se gestiona la transición de forma ordenada (Bridge).</p>',
+        '<p>Aplicamos el marco Build-Buy-Borrow-Bot-Bridge: si la capacidad es desarrollable internamente en el tiempo disponible, se construye; si es escasa en el mercado y crítica a largo plazo, se contrata; si la necesidad es temporal o muy especializada, se subcontrata; si la tarea es candidata real a automatización agéntica, se evalúa como Bot, coordinado con gobernanza de IA antes de descartar a una persona; y si una capacidad deja de ser necesaria, se gestiona la transición de forma ordenada (Bridge).</p>',
     },
     {
       question: '¿Cómo gobernáis un sistema de forecasting o scenario-planning asistido por IA?',
@@ -105,7 +105,7 @@ export class WorkforceIntelligenceComponent {
       path: '/servicios/workforce-intelligence',
       ogTitle: 'Workforce Intelligence | Datalent Solutions',
       ogDescription:
-        'Planificación estratégica de plantilla basada en escenarios — Build-Buy-Borrow-Bot-Bridge, análisis de skills y planificación por horizontes.',
+        'Planificación estratégica de plantilla basada en escenarios: Build-Buy-Borrow-Bot-Bridge, análisis de skills y planificación por horizontes.',
       jsonLd:{
         '@context': 'https://schema.org',
         '@type': 'Service',
@@ -122,7 +122,7 @@ export class WorkforceIntelligenceComponent {
         },
         areaServed: 'ES',
         description:
-          'Planificación estratégica de plantilla basada en escenarios — modelado de decisiones de headcount y skills, marco Build-Buy-Borrow-Bot-Bridge, y planificación por horizontes.',
+          'Planificación estratégica de plantilla basada en escenarios: modelado de decisiones de headcount y skills, marco Build-Buy-Borrow-Bot-Bridge, y planificación por horizontes.',
       },
     });
   }

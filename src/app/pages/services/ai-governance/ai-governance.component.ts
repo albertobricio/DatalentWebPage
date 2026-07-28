@@ -51,12 +51,12 @@ export class AiGovernanceComponent {
     {
       label: 'Entrada: clasificación de riesgo',
       description:
-        'Clasificación de riesgo bajo el Reglamento Europeo de IA para un sistema concreto — propio o de un proveedor externo. El punto de partida más rápido y mejor definido de todo el catálogo.',
+        'Clasificación de riesgo bajo el Reglamento Europeo de IA para un sistema concreto, propio o de un proveedor externo. El punto de partida más rápido y mejor definido de todo el catálogo.',
     },
     {
       label: 'Diseño y despliegue',
       description:
-        'Diseño completo del marco de gobernanza — metodología de auditoría de sesgo, diseño de supervisión humana y documentación de residencia de datos — para uno o varios sistemas de IA.',
+        'Diseño completo del marco de gobernanza para uno o varios sistemas de IA: metodología de auditoría de sesgo, diseño de supervisión humana y documentación de residencia de datos.',
     },
     {
       label: 'Retenido: monitorización continua',

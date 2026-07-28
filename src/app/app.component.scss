@@ -32,7 +32,7 @@
   // banner and read as an unclickable dark patch.
   --btn-primary-bg: var(--color-signal-on-dark);
   --btn-primary-color: var(--color-ink);
-  --btn-primary-bg-hover: #b6c8ea;
+  --btn-primary-bg-hover: var(--color-signal-on-dark-hover);
   --focus-ring-color: var(--color-signal-on-dark);
 
   @include respond-to('tablet') {

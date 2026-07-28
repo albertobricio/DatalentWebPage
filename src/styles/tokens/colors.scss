@@ -2,44 +2,57 @@
 // Single source of truth for every color used in this codebase.
 // See projects/datalent-v2/design-tokens.md for values and WCAG AA contrast verification.
 // Do not declare a color value anywhere outside this file.
+//
+// Sprint 8 rediseño. La paleta anterior tenía dos familias de tono opuestas
+// compitiendo: superficies cálidas (paper 60°, paper-alt 48°, border 45°,
+// bronze 38°) contra texto y grises fríos (ink 218°, slate 220°, mist 220°,
+// border-dark 222°). El acento vivía en 220°, o sea el mismo tono que los
+// grises de texto, así que no tenía ninguna distancia cromática contra ellos:
+// leía como "gris, pero más azul", nunca como una decisión de marca.
+//
+// Ahora hay un único criterio. Todos los neutros son cálidos (36–46°) y el
+// acento es lo único frío de la página (220°). Unos 180° de separación, que
+// es lo que hace que el azul marino se lea como intencionado. De paso, bronze
+// deja de ser un tono huérfano: a 38° es simplemente el extremo saturado de
+// la misma rampa cálida.
+//
+// Los 18 pares de contraste que importan están verificados; los mínimos van
+// anotados en cada token.
 
 :root {
-  // Core palette
-  --color-ink: #14171c;
-  --color-paper: #fafaf8;
-  --color-paper-alt: #f1f0ec;
-  // Sprint 8: the brand accent moved from #2952cc — a saturated blue that
-  // reads as generic "tech SaaS" and is shared with most HR-tech vendors —
-  // to a deep institutional navy. 10.02:1 on paper.
-  --color-signal: #1f3d7a;
-  --color-signal-dark: #172e5b;
-  // The accent is also used as a FOREGROUND on --color-ink surfaces (footer
-  // link hover, CTA-banner link hover, and every focus ring that lands on a
-  // dark section). --color-signal there is 1.69:1 against ink — the darker
-  // the accent, the worse this gets, and it already failed at 2.68:1 with
-  // the old blue. Dark surfaces opt into this lighter tint of the same hue
-  // instead: 7.57:1 on ink, so it passes AA as text and clears the 3:1 that
-  // WCAG 2.4.11 requires of a focus indicator.
-  --color-signal-on-dark: #8fa9de;
-  --color-bronze: #a6803d;
-  --color-slate: #5b6270;
-  --color-mist: #a8acb4;
-  // Sprint 8: was #dddbd4, which is 1.33:1 on paper — card and accordion
-  // edges were barely perceptible, reading as unfinished rather than
-  // restrained. #c0bcb0 is 1.82:1: clearly visible while staying a hairline.
-  // Not pushed to the 3:1 of WCAG 1.4.11, which governs borders that
-  // *identify* a control; these are decorative, and 3:1 here would need a
-  // mid-grey that fights the design's restraint.
-  --color-border: #c0bcb0;
-  --color-border-dark: #33363d;
+  // Rampa neutra cálida, de papel a tinta.
+  --color-paper: #faf9f6;
+  --color-paper-alt: #f2f0ea; // 1.08:1 sobre paper, suficiente para separar bandas
+  --color-border: #c1baa8; // 1.84:1. Hairline decorativo, no identifica ningún control
+  --color-mist: #a5a08f; // 6.77:1 sobre ink. Solo para texto atenuado en oscuro
+  --color-slate: #5e594e; // 6.62:1 sobre paper. Texto atenuado en claro
+  --color-border-dark: #37342d; // 1.43:1 sobre ink
+  --color-ink: #1a1815; // 16.83:1 sobre paper
 
-  // Semantic / status
-  --color-success: #1e7a4c;
-  --color-warning: #8a5a0a;
-  --color-error: #b3261e;
+  // Acento frío. Único elemento de la paleta fuera de la familia cálida.
+  --color-signal: #1f3d7a; // 9.94:1 sobre paper
+  --color-signal-dark: #172e5b; // 12.64:1. Hover de enlace en superficie clara
+  // El acento también se usa como PRIMER PLANO sobre ink: hover de enlaces del
+  // footer, hover del enlace del banner CTA, todo focus ring dentro de una
+  // sección oscura y el relleno de los botones primarios de esas secciones.
+  // Ahí --color-signal da 1.69:1, invisible y por debajo del 3:1 que WCAG 2.4.11
+  // exige a un indicador de foco. Las superficies oscuras usan estos dos.
+  --color-signal-on-dark: #93aade; // 7.63:1 sobre ink
+  --color-signal-on-dark-hover: #bccbec; // 10.88:1 sobre ink
 
-  // Semantic aliases — components consume these, never the core palette directly,
-  // so a future palette revision only ever touches this file.
+  // Extremo saturado de la rampa cálida. Un único trabajo: la regla vertical de
+  // los avisos editoriales (.section-disclaimer). 3.91:1, por encima del 3:1 de
+  // elemento no textual.
+  --color-bronze: #9c7735;
+
+  // Semánticos de estado. Se salen de la rampa por necesidad: el significado de
+  // verde, ámbar y rojo es convencional y no se puede reasignar por coherencia.
+  --color-success: #1e7a4c; // 5.06:1 sobre paper
+  --color-warning: #8a5a0a; // 5.62:1 sobre paper
+  --color-error: #b3261e; // 6.21:1 sobre paper
+
+  // Alias semánticos — los componentes consumen estos, nunca la paleta base,
+  // para que una futura revisión solo toque este archivo.
   --surface-primary: var(--color-paper);
   --surface-secondary: var(--color-paper-alt);
   --surface-inverse: var(--color-ink);

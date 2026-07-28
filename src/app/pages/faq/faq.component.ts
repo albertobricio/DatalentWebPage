@@ -55,17 +55,17 @@ export class FaqComponent implements OnInit, AfterViewInit {
     {
       question: '¿Vuestra IA toma decisiones de forma autónoma o siempre hay supervisión humana?',
       answer:
-        '<p>Nuestros agentes de IA operan dentro de límites de autonomía que definimos junto a cada cliente. Ejecutan tareas completas — cribado, análisis, reporting — pero cada decisión con impacto en una persona pasa por un punto de revisión humana antes de ser definitiva. No automatizamos decisiones; automatizamos trabajo, y dejamos las decisiones donde deben estar.</p>',
+        '<p>Nuestros agentes de IA operan dentro de límites de autonomía que definimos junto a cada cliente. Ejecutan tareas completas (cribado, análisis, reporting), pero cada decisión con impacto en una persona pasa por un punto de revisión humana antes de ser definitiva. No automatizamos decisiones; automatizamos trabajo, y dejamos las decisiones donde deben estar.</p>',
     },
     {
       question: '¿Dónde se alojan y procesan nuestros datos? ¿Cumplís el RGPD y el EU AI Act?',
       answer:
-        '<p>La jurisdicción de alojamiento, la base legal del tratamiento y la clasificación de riesgo se determinan y documentan para cada sistema concreto antes del despliegue — no son una promesa genérica de web, porque dependen de qué datos entran y desde dónde. Lo que sí es estructural: diseñamos bajo marco europeo, y todo sistema que influya en una decisión de empleo parte de la premisa del Anexo III del Reglamento (UE) 2024/1689 como categoría de alto riesgo, más el Artículo 22 del RGPD sobre decisiones automatizadas.</p>',
+        '<p>La jurisdicción de alojamiento, la base legal del tratamiento y la clasificación de riesgo se determinan y documentan para cada sistema concreto antes del despliegue. No son una promesa genérica de web, porque dependen de qué datos entran y desde dónde. Lo que sí es estructural: diseñamos bajo marco europeo, y todo sistema que influya en una decisión de empleo parte de la premisa del Anexo III del Reglamento (UE) 2024/1689 como categoría de alto riesgo, más el Artículo 22 del RGPD sobre decisiones automatizadas.</p>',
     },
     {
       question: '¿Cómo evitáis que un modelo introduzca sesgo en la selección?',
       answer:
-        '<p>Con auditoría de sesgo obligatoria <em>antes</em> de que un modelo influya en una decisión real, no después: cribado de impacto dispar frente al umbral de la regla del 4/5, documentación de qué variables alimentan el modelo y con qué peso — nunca una puntuación de caja negra — y re-validación periódica, porque un modelo que no se mantiene se degrada en silencio.</p>',
+        '<p>Con auditoría de sesgo obligatoria <em>antes</em> de que un modelo influya en una decisión real, no después: cribado de impacto dispar frente al umbral de la regla del 4/5, documentación de qué variables alimentan el modelo y con qué peso, y re-validación periódica, porque un modelo que no se mantiene se degrada en silencio.</p>',
     },
     {
       question: '¿Ofrecéis equidad retributiva o benchmarking salarial?',
@@ -80,7 +80,7 @@ export class FaqComponent implements OnInit, AfterViewInit {
     {
       question: '¿Cómo empiezo?',
       answer:
-        '<p>Con un diagnóstico gratuito de unos 30 minutos: revisamos tu caso concreto y te decimos si hay encaje — incluida la respuesta honesta de que no lo hay, si es el caso. De ahí sale una recomendación de punto de entrada, no una propuesta cerrada.</p>',
+        '<p>Con un diagnóstico gratuito de unos 30 minutos: revisamos tu caso concreto y te decimos si hay encaje, incluida la respuesta honesta de que no lo hay. De ahí sale una recomendación de punto de entrada, no una propuesta cerrada.</p>',
     },
     {
       question: '¿Imponéis permanencia o contratos largos?',

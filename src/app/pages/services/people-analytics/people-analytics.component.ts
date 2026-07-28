@@ -54,17 +54,17 @@ export class PeopleAnalyticsComponent {
     {
       label: 'Entrada: diagnóstico acotado',
       description:
-        'Medición de cultura/compromiso, análisis de rotación, o una revisión de sesgo y equidad de un proceso existente — entregado con metodología y linaje de datos a la vista, nunca solo un número de salida.',
+        'Medición de cultura/compromiso, análisis de rotación, o una revisión de sesgo y equidad de un proceso existente, entregado con metodología y linaje de datos a la vista.',
     },
     {
       label: 'Diseño y despliegue: analítica recurrente',
       description:
-        'Dashboards y, cuando está justificado, un modelo predictivo validado contra una muestra de reserva real — con una fase explícita de auditoría de sesgo antes de que el resultado influya en una decisión real de contratación, promoción o despido.',
+        'Dashboards y, cuando está justificado, un modelo predictivo validado contra una muestra de reserva real, con una fase explícita de auditoría de sesgo antes de que el resultado influya en una decisión real de contratación, promoción o despido.',
     },
     {
       label: 'Retenido: mantenimiento y re-validación',
       description:
-        'Mantenimiento continuo de dashboards y modelos, y re-validación periódica — la analítica que no se mantiene se degrada en silencio, y esta fase existe para evitar exactamente eso.',
+        'Mantenimiento continuo de dashboards y modelos, y re-validación periódica. La analítica que no se mantiene se degrada en silencio, y esta fase existe para evitar exactamente eso.',
     },
   ];
 
@@ -72,23 +72,23 @@ export class PeopleAnalyticsComponent {
     {
       question: '¿Qué diferencia hay entre HR Analytics y People Analytics?',
       answer:
-        '<p>HR Analytics suele referirse a informes operativos sobre los propios procesos de RR. HH. — tiempo de cobertura de una vacante, coste por contratación, volumen de headcount. People Analytics es más amplio: trata los datos de plantilla como un activo estratégico conectado a resultados de negocio, con una cadena explícita de datos → insight → decisión → acción, no solo un reporte de eficiencia interna.</p>',
+        '<p>HR Analytics suele referirse a informes operativos sobre los propios procesos de RR. HH.: tiempo de cobertura de una vacante, coste por contratación, volumen de headcount. People Analytics es más amplio y trata los datos de plantilla como un activo estratégico conectado a resultados de negocio, con una cadena explícita de datos → insight → decisión → acción.</p>',
     },
     {
       question: '¿Cómo evitáis confundir correlación con causalidad?',
       answer:
-        '<p>Usamos el lenguaje que corresponde al diseño del análisis: «asociado con», no «causa», salvo que el diseño lo soporte genuinamente — por ejemplo, un experimento controlado. Cualquier hallazgo correlacional se presenta como tal, con el tamaño de muestra y las variables de confusión conocidas declaradas explícitamente.</p>',
+        '<p>Usamos el lenguaje que corresponde al diseño del análisis: «asociado con», no «causa», salvo que el diseño lo soporte genuinamente, por ejemplo un experimento controlado. Cualquier hallazgo correlacional se presenta como tal, con el tamaño de muestra y las variables de confusión conocidas declaradas explícitamente.</p>',
     },
     {
       question: '¿Auditáis modelos que ya usamos en otra plataforma, como Visier?',
       answer:
-        '<p>Sí. No competimos con la infraestructura de dashboards de una plataforma ya desplegada — actuamos como la capa de validación de metodología y gobernanza sobre ella: ¿el modelo supera una auditoría de sesgo?, ¿qué variables lo alimentan y con qué peso?, ¿está clasificado por riesgo bajo el Reglamento Europeo de IA? Esas preguntas son nuestro valor, no sustituir la plataforma.</p>',
+        '<p>Sí. No competimos con la infraestructura de dashboards de una plataforma ya desplegada. Actuamos como la capa de validación de metodología y gobernanza sobre ella: ¿el modelo supera una auditoría de sesgo?, ¿qué variables lo alimentan y con qué peso?, ¿está clasificado por riesgo bajo el Reglamento Europeo de IA? Ahí está nuestro valor.</p>',
     },
     {
       question:
         '¿Cómo gobernáis un modelo predictivo que influye en decisiones de contratación o promoción?',
       answer:
-        '<p>Con auditoría de sesgo obligatoria antes de cualquier uso operativo, documentación de qué variables alimentan el modelo y su peso — nunca una puntuación de caja negra — y un punto de control humano antes de que el resultado se convierta en decisión, conforme al Artículo 22 del RGPD y al Reglamento Europeo de IA. El tratamiento completo de esa clasificación de riesgo vive en la página de Gobernanza de IA.</p>',
+        '<p>Con auditoría de sesgo obligatoria antes de cualquier uso operativo, documentación de qué variables alimentan el modelo y su peso, y un punto de control humano antes de que el resultado se convierta en decisión, conforme al Artículo 22 del RGPD y al Reglamento Europeo de IA. El tratamiento completo de esa clasificación de riesgo vive en la página de Gobernanza de IA.</p>',
     },
   ];
 
@@ -97,7 +97,7 @@ export class PeopleAnalyticsComponent {
       title:
         'People Analytics | Diagnóstico de cultura y rotación con metodología a la vista | Datalent Solutions',
       description:
-        'Diagnóstico de cultura organizacional y análisis de rotación basado en evidencia, con la metodología y el linaje de datos mostrados — nunca solo el número de salida.',
+        'Diagnóstico de cultura organizacional y análisis de rotación basado en evidencia, con la metodología y el linaje de datos siempre a la vista.',
       keywords:
         'people analytics España, diagnóstico de cultura organizacional con datos, análisis de rotación basado en evidencia, auditoría de sesgo RRHH',
       path: '/servicios/people-analytics',

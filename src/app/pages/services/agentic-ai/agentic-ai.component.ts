@@ -56,12 +56,12 @@ export class AgenticAiComponent {
     {
       label: 'Entrada: Agentic Workflow Feasibility Review',
       description:
-        'Aplicamos el test agéntico-vs-automatización a un proceso concreto de RR. HH. — cribado, reporting, soporte interno — y entregamos una recomendación de seguir o no antes de construir nada.',
+        'Aplicamos el test agéntico-vs-automatización a un proceso concreto de RR. HH. (cribado, reporting, soporte interno) y entregamos una recomendación de seguir o no antes de construir nada.',
     },
     {
       label: 'Diseño y despliegue: especificación completa del agente',
       description:
-        'Objetivo, límite de autonomía, triggers de escalado concretos, punto de control humano y estado de gobernanza — documentados antes del despliegue, no reconstruidos después si algo falla.',
+        'Objetivo, límite de autonomía, triggers de escalado concretos, punto de control humano y estado de gobernanza, documentados antes del despliegue y no reconstruidos después si algo falla.',
     },
     {
       label: 'Retenido: Governed Agent Retainer',
@@ -75,12 +75,12 @@ export class AgenticAiComponent {
       question:
         '¿Vuestra IA toma decisiones de forma autónoma o siempre hay supervisión humana?',
       answer:
-        '<p>Nuestros agentes de IA operan dentro de límites de autonomía que definimos junto a cada cliente. Ejecutan tareas completas — cribado, análisis, reporting — pero cada decisión con impacto en una persona pasa por un punto de revisión humana antes de ser definitiva. No automatizamos decisiones; automatizamos trabajo, y dejamos las decisiones donde deben estar.</p>',
+        '<p>Nuestros agentes de IA operan dentro de límites de autonomía que definimos junto a cada cliente. Ejecutan tareas completas (cribado, análisis, reporting), pero cada decisión con impacto en una persona pasa por un punto de revisión humana antes de ser definitiva. No automatizamos decisiones; automatizamos trabajo, y dejamos las decisiones donde deben estar.</p>',
     },
     {
       question: '¿Dónde se alojan y procesan los datos de un agente desplegado?',
       answer:
-        '<p>Depende del engagement concreto: confirmamos y documentamos la jurisdicción de alojamiento real, la base legal del tratamiento y la clasificación de riesgo del agente antes del despliegue — nunca lo afirmamos en genérico, verificado caso por caso.</p>',
+        '<p>Depende del engagement concreto: confirmamos y documentamos la jurisdicción de alojamiento real, la base legal del tratamiento y la clasificación de riesgo del agente antes del despliegue. Nunca lo afirmamos en genérico: se verifica caso por caso.</p>',
     },
     {
       question: '¿Qué pasa si el agente se equivoca?',
