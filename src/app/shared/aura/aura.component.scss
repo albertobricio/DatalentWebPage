@@ -1,0 +1,256 @@
+@use 'tokens' as *;
+
+:host {
+  display: block;
+}
+
+// ---------------------------------------------------------------- lanzador
+
+.aura__lanzador {
+  position: fixed;
+  right: var(--space-md);
+  bottom: var(--space-md);
+  z-index: 60; // por debajo del banner de cookies (70), que manda mientras esté
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-height: 2.75rem;
+  padding: var(--space-sm) var(--space-md);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  color: var(--text-inverse);
+  background-color: var(--color-ink);
+  border: var(--border-width) solid var(--color-ink);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: background-color var(--motion-fast) var(--motion-easing);
+
+  &:hover {
+    background-color: var(--color-signal-dark);
+    border-color: var(--color-signal-dark);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: 2px;
+  }
+
+  @include respond-to('desktop') {
+    right: var(--space-xl);
+    bottom: var(--space-xl);
+  }
+}
+
+// La marca del lanzador es el círculo y el arco del signal mark, no un icono
+// de burbuja de chat: la misma gramática que el logo y el diagrama.
+.aura__lanzador-marca svg {
+  display: block;
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: var(--color-signal-on-dark);
+  stroke: var(--color-signal-on-dark);
+}
+
+// ------------------------------------------------------------------- panel
+
+.aura__panel {
+  position: fixed;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-paper);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-lg);
+
+  // En móvil ocupa la pantalla salvo un margen: un panel flotante pequeño en
+  // 375px deja el hilo en cuatro líneas visibles y obliga a hacer scroll
+  // dentro de un scroll.
+  inset: var(--space-sm);
+
+  @include respond-to('tablet') {
+    inset: auto var(--space-xl) var(--space-xl) auto;
+    width: min(26rem, calc(100vw - 2 * var(--space-xl)));
+    max-height: min(38rem, calc(100vh - 2 * var(--space-xl)));
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: 2px;
+  }
+}
+
+.aura__cabecera {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  border-bottom: var(--border-width) solid var(--color-border);
+}
+
+.aura__titulo {
+  margin: 0;
+  font-size: var(--font-size-h3);
+}
+
+.aura__subtitulo {
+  margin: 0;
+  font-size: var(--font-size-body-sm);
+  color: var(--color-slate);
+}
+
+.aura__cerrar {
+  flex-shrink: 0;
+  width: 2.75rem;
+  height: 2.75rem;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--color-ink);
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-paper-alt);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: 2px;
+  }
+}
+
+.aura__nota {
+  margin: 0;
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-paper-alt);
+  border-bottom: var(--border-width) solid var(--color-border);
+  border-left: 3px solid var(--color-bronze);
+  font-size: var(--font-size-body-sm);
+  line-height: var(--line-height-body-sm);
+  color: var(--color-slate);
+}
+
+// -------------------------------------------------------------------- hilo
+
+.aura__hilo {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-md);
+}
+
+.aura__turnos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.aura__turno p {
+  margin: 0 0 var(--space-sm) 0;
+  font-size: var(--font-size-body-sm);
+  line-height: var(--line-height-body-sm);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.aura__turno--aura {
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-paper-alt);
+  border-radius: var(--radius-md);
+  color: var(--color-ink);
+}
+
+// El turno del visitante se alinea a la derecha y va en el acento, para que
+// se distinga del de Aura sin depender solo del color.
+.aura__turno--tu {
+  align-self: flex-end;
+  max-width: 85%;
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-signal);
+  border-radius: var(--radius-md);
+  color: var(--text-inverse);
+  font-weight: var(--font-weight-label);
+}
+
+// -------------------------------------------------------------------- pie
+
+.aura__pie {
+  padding: var(--space-md);
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+.aura__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.aura__accion {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: var(--space-sm) var(--space-md);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  color: var(--text-inverse);
+  background-color: var(--color-signal);
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+
+  &:hover {
+    background-color: var(--color-signal-dark);
+    color: var(--text-inverse);
+    text-decoration: none;
+  }
+}
+
+.aura__opciones {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.aura__opcion {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: var(--space-sm) var(--space-md);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body-sm);
+  text-align: left;
+  color: var(--color-signal);
+  background-color: var(--color-paper);
+  border: var(--border-width) solid var(--color-signal);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-paper-alt);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: 2px;
+  }
+}
+
+.aura__reiniciar {
+  margin-top: var(--space-md);
+  padding: var(--space-xs) 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-body-sm);
+  color: var(--color-slate);
+  background: none;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring-color);
+    outline-offset: 2px;
+  }
+}

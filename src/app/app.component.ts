@@ -4,6 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { ButtonComponent } from './shared/components/button/button.component';
+import { AuraComponent } from './shared/aura/aura.component';
 
 declare global {
   interface Window {
@@ -14,7 +15,7 @@ declare global {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, ButtonComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, ButtonComponent, AuraComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

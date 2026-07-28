@@ -8,6 +8,21 @@
 
 <app-footer />
 
+<!--
+  Aura va después del footer en el orden del documento, así que el lector de
+  pantalla y el tabulador la encuentran al final, cuando ya han recorrido la
+  página. Un asistente que se cuela antes del contenido estorba.
+
+  Y no aparece mientras el aviso de cookies siga sin resolver. Los dos son
+  elementos fijos en la esquina inferior, así que el panel de Aura quedaba
+  tapado por el banner; pero además superponer un asistente comercial a una
+  puerta de consentimiento es exactamente lo que no debe hacer una firma que
+  vende gobernanza. Primero el consentimiento, luego todo lo demás.
+-->
+@if (!showCookieBanner()) {
+  <app-aura />
+}
+
 @if (showCookieBanner()) {
   <div class="cookie-banner" role="region" aria-label="Aviso de cookies">
     <p class="cookie-banner__text">

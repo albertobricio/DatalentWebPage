@@ -1,0 +1,110 @@
+<!--
+  El lanzador se marca con aria-expanded y aria-controls porque abre un panel
+  que vive en el mismo documento. Y se oculta con [hidden] mientras el panel
+  está abierto para que no quede un botón "abrir" detrás de lo que ya abrió.
+-->
+<button
+  #lanzador
+  type="button"
+  class="aura__lanzador"
+  [attr.aria-expanded]="abierto()"
+  aria-controls="aura-panel"
+  [hidden]="abierto()"
+  (click)="abrir()"
+>
+  <span class="aura__lanzador-marca" aria-hidden="true">
+    <svg viewBox="0 0 24 24" focusable="false">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M 12 3 A 9 9 0 1 1 4.1 16.5" fill="none" stroke-width="2" stroke-linecap="round" />
+    </svg>
+  </span>
+  Preguntar a Aura
+</button>
+
+@if (abierto()) {
+  <div
+    #panel
+    id="aura-panel"
+    class="aura__panel"
+    role="dialog"
+    aria-modal="false"
+    aria-labelledby="aura-titulo"
+    aria-describedby="aura-nota"
+    tabindex="-1"
+  >
+    <header class="aura__cabecera">
+      <div>
+        <h2 id="aura-titulo" class="aura__titulo">Aura</h2>
+        <p class="aura__subtitulo">Asistente guiado</p>
+      </div>
+      <button type="button" class="aura__cerrar" (click)="cerrar()">
+        <span class="visually-hidden">Cerrar Aura</span>
+        <span aria-hidden="true">×</span>
+      </button>
+    </header>
+
+    <!--
+      La nota de gobernanza va dentro del panel y siempre visible, no escondida
+      tras un enlace. Es el mismo estándar que la práctica de Gobernanza de IA
+      exige a los sistemas de cliente: qué es, qué no puede hacer, dónde está
+      la persona.
+    -->
+    <p id="aura-nota" class="aura__nota">{{ nota }}</p>
+
+    <!--
+      aria-live="polite" para que un lector de pantalla anuncie cada respuesta
+      nueva sin interrumpir lo que esté leyendo. El hilo es una lista porque
+      eso es: una secuencia ordenada de turnos.
+    -->
+    <div #hilo class="aura__hilo" aria-live="polite">
+      <ol class="aura__turnos">
+        @for (turno of turnos(); track $index) {
+          <li class="aura__turno aura__turno--{{ turno.quien }}">
+            <span class="visually-hidden">{{ turno.quien === 'aura' ? 'Aura dice:' : 'Tú elegiste:' }}</span>
+            @for (linea of turno.lineas; track $index) {
+              <p>{{ linea }}</p>
+            }
+          </li>
+        }
+      </ol>
+    </div>
+
+    <div class="aura__pie">
+      @if (paso().actions?.length) {
+        <div class="aura__acciones">
+          @for (accion of paso().actions; track accion.label) {
+            <a
+              class="aura__accion"
+              [routerLink]="accion.path"
+              [queryParams]="paramsDe(accion)"
+              (click)="alNavegar()"
+            >
+              {{ accion.label }}
+            </a>
+          }
+        </div>
+      }
+
+      @if (paso().options?.length) {
+        <!--
+          Solo opciones, sin campo de texto libre. Aura no interpreta lenguaje
+          natural, así que ofrecer una caja de escritura prometería algo que no
+          puede cumplir y convertiría cada intento fallido en una decepción.
+        -->
+        <ul class="aura__opciones">
+          @for (opcion of paso().options; track opcion.nextId) {
+            <li>
+              <button type="button" class="aura__opcion" (click)="elegir(opcion)">
+                {{ opcion.label }}
+              </button>
+            </li>
+          }
+        </ul>
+      }
+
+      <button type="button" class="aura__reiniciar" (click)="reiniciar()">
+        Empezar de nuevo
+      </button>
+    </div>
+  </div>
+}
