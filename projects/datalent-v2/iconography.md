@@ -1,5 +1,26 @@
 # Iconography
 
+> **CORREGIDO EL 28-07-2026.** Este documento especificaba un sistema de iconos
+> basado en Lucide. **Lucide se eliminó del sitio por seguridad**: se cargaba
+> desde `https://unpkg.com` sin atributo `integrity`, es decir 358 kB de
+> JavaScript ejecutable de un CDN de terceros sin comprobación de integridad, y
+> servía a un `IconComponent` que no se usaba en ninguna plantilla. Ver
+> `docs/seguridad.md`.
+>
+> **El sitio v2 no tiene sistema de iconos.** Los únicos glifos que aparecen son
+> la flecha `→` de los enlaces de texto (marcado real, con `aria-hidden`), el
+> `▾` del desplegable de navegación, la `×` de cerrar, y SVG en línea propios:
+> el logotipo, el diagrama de límite de autonomía y el avatar de Aura.
+>
+> Lo que sigue vigente de este documento son sus PRINCIPIOS, no su
+> implementación: construcción geométrica de trazo único, nada de emoji como
+> icono funcional o decorativo (regla que se aplicó al eliminar los cuatro
+> emoji de la newsletter), y un glifo por concepto en lugar de variedad visual.
+>
+> Si algún día se reintroduce un sistema de iconos, la condición es que se
+> empaquete con el sitio, nunca desde un CDN externo, y que exista una página
+> que realmente lo use.
+
 **Objective this document serves:** a real, evidence-based icon system — built on what's actually already loaded on the current site rather than introducing a new dependency, and directly fixing two concrete findings from `docs/website-audit.md`.
 
 ## The Starting Fact This Builds On

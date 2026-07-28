@@ -1,5 +1,17 @@
 # Architecture
 
+> **INSTANTÁNEA DE LA v1, NO EL SITIO ACTUAL.** Documento de auditoría escrito
+> antes de la reconstrucción v2. Se conserva porque explica de dónde venía el
+> proyecto y por qué se tomaron varias decisiones, pero **nada de lo que
+> describe sigue en pie**: no hay Tailwind por CDN, ni Leaflet, ni
+> `MapComponent`, ni `main-topbar`, ni botón de chatbot sin integrar, ni
+> `<style>` en línea dentro de `faq.component.html`, ni el script de Lucide, y
+> la ruta de despliegue ya no es `dist/DatalentWebPage`.
+>
+> Para la arquitectura vigente: `projects/datalent-v2/` (especificaciones),
+> `docs/seguridad.md` (postura de seguridad) y las notas de versión de cada
+> sprint en este mismo directorio.
+
 ## Stack
 
 - **Framework:** Angular 20, hybrid standalone/NgModule bootstrap
