@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="refresh" content="0; url=./index.html">
+    <!--
+      Rutas absolutas, no './index.html'. Desde que el sitio se prerenderiza
+      cada ruta es su propia carpeta, así que './' desde /servicios/loquesea
+      resolvía a /servicios/index.html y dejaba al visitante en el hub de
+      servicios como si fuera la página que había pedido.
+    -->
+    <meta http-equiv="refresh" content="0; url=/">
     <script>
-      window.location.replace('./index.html');
+      window.location.replace('/');
     </script>
   </head>
   <body>
