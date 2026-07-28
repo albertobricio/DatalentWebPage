@@ -34,7 +34,14 @@
   <meta name="author" content="Datalent Solutions">
   <meta name="language" content="es">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <meta name="google-site-verification" content="">
+  <!--
+    PENDIENTE: pegar aquí el token de Google Search Console y añadir el de Bing.
+    Vacío no verifica nada, y sin verificar la propiedad no se puede pedir
+    reindexación ni enviar el sitemap. Es lo que hoy bloquea que los buscadores
+    dejen de mostrar el título y la descripción de la web anterior.
+      <meta name="google-site-verification" content="TOKEN">
+      <meta name="msvalidate.01" content="TOKEN">
+  -->
 
   <!-- Open Graph / Social Media -->
   <meta property="og:type" content="website">
@@ -82,10 +89,28 @@
   <!-- JSON-LD Schema for SEO. A single Organization block, site-wide — this
        used to be two duplicate/conflicting blocks (docs/website-audit.md),
        one of them still describing the pre-v2 positioning. -->
+  <!--
+    WebSite, además de Organization. Es la señal documentada que usa Google para
+    decidir qué nombre de sitio muestra en los resultados; con solo Organization
+    puede acabar inventándoselo a partir del <title> o del dominio.
+  -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Datalent Solutions",
+    "alternateName": "Datalent",
+    "url": "https://datalentsolutions.com",
+    "inLanguage": "es-ES",
+    "publisher": { "@id": "https://datalentsolutions.com/#organization" }
+  }
+  </script>
+
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Organization",
+      "@id": "https://datalentsolutions.com/#organization",
       "name": "Datalent Solutions",
       "url": "https://datalentsolutions.com",
       "logo": "https://datalentsolutions.com/assets/favicon-180.png",
