@@ -1,0 +1,67 @@
+<figure class="autonomy-diagram">
+  <!--
+    El SVG vive en su propio contenedor con scroll horizontal y un ancho
+    mínimo. Escalarlo a 343px en móvil dejaría los rótulos por debajo de 7px,
+    ilegibles; y la página nunca hace scroll horizontal, solo este bloque.
+    La descripción completa va en <desc>, así que quien no ve el diagrama no
+    depende de poder desplazarlo.
+  -->
+  <div class="autonomy-diagram__frame">
+    <svg
+      class="autonomy-diagram__svg"
+      viewBox="0 0 700 420"
+      role="img"
+      aria-labelledby="autonomy-diagram-title autonomy-diagram-desc"
+    >
+      <title id="autonomy-diagram-title">{{ caption() }}</title>
+      <desc id="autonomy-diagram-desc">{{ description() }}</desc>
+
+      <!-- Región delimitada: disco relleno más arco abierto. Las mismas
+           primitivas que la marca, ahora explicando en vez de identificar. -->
+      <circle cx="250" cy="215" r="175" class="autonomy-diagram__field" />
+      <path
+        d="M 401.6 127.5 A 175 175 0 1 0 401.6 302.5"
+        class="autonomy-diagram__boundary"
+        fill="none"
+      />
+
+      <!-- Centrado sobre el eje del disco: a esta altura mide 271px de ancho,
+           y alineado a la izquierda el rótulo se salía sobre el arco. -->
+      <text x="250" y="104" text-anchor="middle" class="autonomy-diagram__field-label">
+        DENTRO DEL LÍMITE DE AUTONOMÍA
+      </text>
+
+      @for (step of steps(); track step.label; let i = $index) {
+        <circle cx="115" [attr.cy]="stepY(i, steps().length)" r="5" class="autonomy-diagram__dot" />
+        <text x="134" [attr.y]="stepY(i, steps().length) + 5" class="autonomy-diagram__step">
+          {{ step.label }}
+        </text>
+      }
+
+      <!-- La apertura del arco. Es el mecanismo, no un adorno. -->
+      <text x="425" y="183" text-anchor="middle" class="autonomy-diagram__escalation-label">
+        Punto de escalado
+      </text>
+      <circle cx="425" cy="215" r="9" class="autonomy-diagram__escalation" />
+
+      <line x1="436" y1="215" x2="530" y2="215" class="autonomy-diagram__link" />
+      <path d="M 530 209 L 540 215 L 530 221 Z" class="autonomy-diagram__arrow" />
+
+      <!-- La persona, deliberadamente fuera del límite y fija. -->
+      <circle cx="574" cy="215" r="32" class="autonomy-diagram__human" />
+      <text x="574" y="273" text-anchor="middle" class="autonomy-diagram__human-label">
+        {{ oversightLabel() }}
+      </text>
+      <text x="574" y="294" text-anchor="middle" class="autonomy-diagram__human-detail">
+        {{ oversightDetail() }}
+      </text>
+    </svg>
+  </div>
+
+  <!-- Pie y nota como HTML real, no como <text> dentro del SVG: así fluyen,
+       se ajustan al ancho y escalan con la tipografía del usuario. -->
+  <figcaption class="autonomy-diagram__caption">
+    <span class="autonomy-diagram__caption-title">{{ caption() }}</span>
+    <span class="autonomy-diagram__footnote">{{ footnote() }}</span>
+  </figcaption>
+</figure>

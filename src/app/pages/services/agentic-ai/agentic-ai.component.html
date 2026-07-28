@@ -31,6 +31,14 @@
         <dt>Agente</dt>
         <dd>el sistema criba el volumen completo de candidaturas, preselecciona y redacta el contacto inicial para los perfiles por encima del umbral definido. Cualquier candidatura con una puntuación a menos de 5 puntos del umbral de corte se escala automáticamente a un reclutador, y el agente nunca decide ni comunica un rechazo o una oferta final por sí mismo. El límite de autonomía y el punto de control humano están definidos antes del despliegue, no improvisados si algo falla.</dd>
       </dl>
+
+      <app-autonomy-boundary-diagram
+        caption="Límite de autonomía de un agente de cribado de candidaturas"
+        [steps]="autonomySteps"
+        oversightDetail="HITL: aprueba antes de que se ejecute"
+        [footnote]="autonomyFootnote"
+        [description]="autonomyDescription"
+      />
     </div>
   </app-section>
 

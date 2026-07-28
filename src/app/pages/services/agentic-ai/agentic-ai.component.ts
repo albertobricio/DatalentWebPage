@@ -11,6 +11,10 @@ import {
   FaqAccordionComponent,
   FaqItem,
 } from '../../../shared/components/faq-accordion/faq-accordion.component';
+import {
+  AutonomyBoundaryDiagramComponent,
+  AutonomyStep,
+} from '../../../shared/components/autonomy-boundary-diagram/autonomy-boundary-diagram.component';
 import { SeoService } from '../../../shared/seo.service';
 
 /**
@@ -34,6 +38,7 @@ import { SeoService } from '../../../shared/seo.service';
     CtaComponent,
     SectionComponent,
     FaqAccordionComponent,
+    AutonomyBoundaryDiagramComponent,
   ],
   templateUrl: './agentic-ai.component.html',
   styleUrl: './agentic-ai.component.scss',
@@ -41,6 +46,31 @@ import { SeoService } from '../../../shared/seo.service';
 })
 export class AgenticAiComponent {
   private readonly seo = inject(SeoService);
+
+  /**
+   * Los tres pasos del ejemplo trabajado que la propia página ya describe en
+   * "Aplicado a un caso real: cribado de candidatos". El diagrama ilustra esa
+   * copia; no introduce ninguna afirmación nueva.
+   */
+  protected readonly autonomySteps: readonly AutonomyStep[] = [
+    { label: 'Criba el volumen de candidaturas' },
+    { label: 'Preselecciona sobre el umbral' },
+    { label: 'Redacta el contacto inicial' },
+  ];
+
+  protected readonly autonomyFootnote =
+    'Nivel 2–3 de una escala de autonomía de cinco niveles. Ninguna decisión ' +
+    'que afecte a una persona se cierra dentro del límite: toda excepción sale ' +
+    'por el punto de escalado, y el agente nunca comunica un rechazo ni una ' +
+    'oferta final por sí mismo.';
+
+  protected readonly autonomyDescription =
+    'Una región cerrada por un arco contiene los tres pasos que el agente ' +
+    'ejecuta de forma autónoma: cribar el volumen completo de candidaturas, ' +
+    'preseleccionar los perfiles por encima del umbral definido y redactar el ' +
+    'contacto inicial. El arco se abre en un único punto de escalado, del que ' +
+    'sale una línea hacia un círculo separado, fuera del límite, que representa ' +
+    'la supervisión humana: una persona aprueba antes de que la acción se ejecute.';
 
   protected readonly breadcrumbItems: BreadcrumbItem[] = [
     { label: 'Inicio', url: '/' },

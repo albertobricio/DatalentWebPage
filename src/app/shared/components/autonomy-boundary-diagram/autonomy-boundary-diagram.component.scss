@@ -1,0 +1,111 @@
+@use 'tokens' as *;
+
+:host {
+  display: block;
+  margin-block: var(--space-xl);
+}
+
+.autonomy-diagram {
+  margin: 0;
+}
+
+// El único bloque de la página que puede desplazarse en horizontal. El cuerpo
+// nunca lo hace: se comprobó que no hay desbordamiento en 375px.
+.autonomy-diagram__frame {
+  overflow-x: auto;
+  padding-bottom: var(--space-xs);
+}
+
+.autonomy-diagram__svg {
+  display: block;
+  width: 100%;
+  // Por debajo de esto los rótulos bajan de 9px y dejan de leerse.
+  min-width: 34rem;
+  height: auto;
+}
+
+// Colores solo por token, y solo dos: tinta para lo humano, acento para lo
+// que el agente hace por su cuenta. La regla de dos tonos de
+// illustration-style.md existe para que el color signifique algo.
+.autonomy-diagram__field {
+  fill: var(--color-paper-alt);
+}
+
+.autonomy-diagram__boundary {
+  stroke: var(--color-signal);
+  stroke-width: 2;
+}
+
+.autonomy-diagram__field-label {
+  fill: var(--color-signal);
+  font-size: 12.5px;
+  font-weight: var(--font-weight-label);
+  letter-spacing: 0.05em;
+}
+
+.autonomy-diagram__dot {
+  fill: var(--color-signal);
+}
+
+.autonomy-diagram__step {
+  fill: var(--color-ink);
+  font-size: 14px;
+}
+
+.autonomy-diagram__escalation-label {
+  fill: var(--color-signal);
+  font-size: 12.5px;
+  font-weight: var(--font-weight-label);
+}
+
+// Círculo hueco: es una apertura en el límite, no un nodo más.
+.autonomy-diagram__escalation {
+  fill: var(--color-paper);
+  stroke: var(--color-signal);
+  stroke-width: 2;
+}
+
+.autonomy-diagram__link {
+  stroke: var(--color-ink);
+  stroke-width: 2;
+}
+
+.autonomy-diagram__arrow {
+  fill: var(--color-ink);
+}
+
+.autonomy-diagram__human {
+  fill: var(--color-ink);
+}
+
+.autonomy-diagram__human-label {
+  fill: var(--color-ink);
+  font-size: 14px;
+  font-weight: var(--font-weight-bold);
+}
+
+.autonomy-diagram__human-detail {
+  fill: var(--color-slate);
+  font-size: 12.5px;
+}
+
+.autonomy-diagram__caption {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: var(--border-width) solid var(--color-border);
+}
+
+.autonomy-diagram__caption-title {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  color: var(--color-ink);
+}
+
+.autonomy-diagram__footnote {
+  font-size: var(--font-size-body-sm);
+  line-height: var(--line-height-body-sm);
+  color: var(--color-slate);
+}
