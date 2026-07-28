@@ -46,11 +46,6 @@
   // 1.4.11 exige 3:1 para eso. 3.28:1 sobre ink.
   --color-control-border-dark: #6e6a5e;
 
-  // Extremo saturado de la rampa cálida. Un único trabajo: la regla vertical de
-  // los avisos editoriales (.section-disclaimer). 3.91:1, por encima del 3:1 de
-  // elemento no textual.
-  --color-bronze: #9c7735;
-
   // Semánticos de estado. Se salen de la rampa por necesidad: el significado de
   // verde, ámbar y rojo es convencional y no se puede reasignar por coherencia.
   --color-success: #1e7a4c; // 5.06:1 sobre paper

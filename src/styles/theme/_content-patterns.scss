@@ -14,18 +14,6 @@
   line-height: var(--line-height-body-lg);
 }
 
-// A caveat/disclaimer callout — bronze left border, small print. Used
-// wherever a page states what it does NOT claim (non-fabrication policy
-// made visible in the UI, not just in authoring guidance).
-.section-disclaimer {
-  margin-top: var(--space-xl);
-  padding: var(--space-md);
-  background-color: var(--color-paper);
-  border-left: 3px solid var(--color-bronze);
-  font-size: var(--font-size-body-sm);
-  color: var(--color-slate);
-}
-
 // Wraps a single .text-link that follows a content block (e.g. an FAQ
 // section's "see all" link) with the same top spacing everywhere.
 .faq-more {
