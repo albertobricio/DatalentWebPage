@@ -25,20 +25,34 @@
   <meta property="og:title" content="Datalent Solutions | Agentic AI para RR. HH., diseñada y gobernada en Europa">
   <meta property="og:description" content="Agentes de IA para RR. HH. con límites de autonomía documentados, un punto de control humano y gobernanza de datos europea.">
   <meta property="og:image" content="https://datalentsolutions.com/assets/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Datalent Solutions. Agentic AI para RR. HH., diseñada y gobernada en Europa.">
   <meta property="og:locale" content="es_ES">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Datalent Solutions | Agentic AI para RR. HH., diseñada y gobernada en Europa">
   <meta name="twitter:description" content="Agentes de IA para RR. HH. con límites de autonomía documentados y gobernanza de datos europea.">
+  <meta name="twitter:image" content="https://datalentsolutions.com/assets/og-image.png">
   
   <!-- Canonical URL -->
   <link rel="canonical" href="https://datalentsolutions.com">
   <base href="/">
   
-  <!-- Favicon -->
+  <!--
+    Iconos. Todos salen de src/assets/logo-simbolo.svg vía `npm run marca`.
+    El SVG lo prefieren los navegadores modernos porque escala sin bordes
+    dentados; el PNG de 32 y el .ico quedan como respaldo, y el .ico además
+    porque muchos rastreadores piden /favicon.ico por convención.
+    Antes: favicon.ico pesaba 0 bytes y el apple-touch-icon apuntaba al icono
+    dorado de personas de la v1, que no tiene nada que ver con la marca.
+  -->
+  <link rel="icon" type="image/svg+xml" href="assets/logo-simbolo.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="apple-touch-icon" href="assets/datalent-icon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
   
   <!-- Preconnect to external resources for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,7 +76,7 @@
       "@type": "Organization",
       "name": "Datalent Solutions",
       "url": "https://datalentsolutions.com",
-      "logo": "https://datalentsolutions.com/assets/datalent-icon.png",
+      "logo": "https://datalentsolutions.com/assets/favicon-180.png",
       "description": "Boutique agentic AI y people-analytics partner que diseña, despliega y gobierna agentes de IA para RR. HH. con límites de autonomía explícitos y gobernanza europea.",
       "sameAs": [
         "https://linkedin.com/company/datalent-solutions"

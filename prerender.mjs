@@ -154,3 +154,28 @@ if (failures) {
   process.exit(1);
 }
 console.log(`\nPrerendered ${ROUTES.length} routes into ${DIST}/`);
+
+/**
+ * El sitemap se genera aquí, a partir del mismo ROUTES que se acaba de
+ * prerenderizar, y no como fichero estático. Escrito a mano, los dos listados
+ * divergen en cuanto se añade una página: el sitemap acabaría anunciando
+ * rutas que no existen, u omitiendo las nuevas.
+ *
+ * /home queda fuera a propósito: sirve el mismo contenido que la raíz y su
+ * canónico apunta a "/". Anunciar en el sitemap una URL que canonicaliza a
+ * otra es pedirle al buscador que ignore lo que le acabas de dar.
+ */
+const ORIGIN = 'https://datalentsolutions.com';
+const hoy = new Date().toISOString().slice(0, 10);
+const enSitemap = ROUTES.filter((r) => r !== '/home');
+
+const sitemap =
+  '<?xml version="1.0" encoding="UTF-8"?>\n' +
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+  enSitemap
+    .map((r) => `  <url>\n    <loc>${ORIGIN}${r === '/' ? '/' : r}</loc>\n    <lastmod>${hoy}</lastmod>\n  </url>`)
+    .join('\n') +
+  '\n</urlset>\n';
+
+await writeFile(join(DIST, 'sitemap.xml'), sitemap, 'utf8');
+console.log(`Sitemap con ${enSitemap.length} URLs (/home excluida por canónico) en ${DIST}/sitemap.xml`);

@@ -1,0 +1,547 @@
+# Datalent Solutions AI Operating System — Master Registry
+#
+# This file is the authoritative dependency declaration for every file in .claude/.
+# It exists because docs/framework-audit.md found that three of four layers
+# (knowledge/, intelligence/, execution/ — 76% of the system's word count) had
+# zero inbound references from the two layers Claude Code actually invokes
+# (agents/, commands/). Rather than retrofitting cross-references into 39
+# existing files — a large, error-prone edit with no mechanical guarantee of
+# staying consistent — this registry centralizes every declaration in one place.
+#
+# RULE: where this file's declarations disagree with a source file's own prose,
+# THIS FILE GOVERNS. See versioning.md and validation-map.md for how that's
+# enforced and kept current.
+
+schema_version: "1.0"
+registry_version: "1.0.0"
+last_updated: "2026-07-02"
+source_of_truth: true
+total_files_registered: 65
+
+# ---------------------------------------------------------------------------
+# CONSTITUTION
+# ---------------------------------------------------------------------------
+constitution:
+  - id: claude-md
+    path: .claude/CLAUDE.md
+    type: constitution
+    declares_layers: [agents, commands, memory, templates]
+    known_gap: "Folder map predates knowledge/, intelligence/, execution/, integration/ — see docs/framework-audit.md §1.1. This registry is the current source of truth on folder structure until CLAUDE.md is next revised."
+    consumed_by: { all: true }
+
+# ---------------------------------------------------------------------------
+# AGENTS  (requirement 1: every agent declares which files it loads)
+# ---------------------------------------------------------------------------
+agents:
+  - id: agentic-ai-architect
+    path: .claude/agents/agentic-ai-architect.md
+    primary_tags: [agentic-design]
+    secondary_tags: [governance-classification]
+    loads:
+      memory: [positioning-decisions, compliance-glossary]
+      knowledge: [agentic-ai, ai-governance, eu-ai-act]
+      intelligence: [capability-matrix, coordination-protocol, quality-gates, reasoning-patterns]
+      templates: [agent-spec-template]
+    invoked_by: { commands: [agent-design] }
+    reviewed_by: ai-governance-auditor
+
+  - id: ai-governance-auditor
+    path: .claude/agents/ai-governance-auditor.md
+    primary_tags: [governance-classification, bias-audit]
+    secondary_tags: [agentic-design]
+    loads:
+      memory: [compliance-glossary, non-fabrication-policy]
+      knowledge: [ai-governance, eu-ai-act, agentic-ai]
+      intelligence: [capability-matrix, coordination-protocol, quality-gates, reasoning-patterns, conflict-resolution, evaluation-engine]
+      templates: [ai-governance-brief-template]
+    invoked_by: { commands: [ai-risk-classify], conditional_on_tags: [agentic-design, bias-audit, governance-classification] }
+    reviewed_by: agentic-ai-architect
+    authority: "Veto power over agentic-design and governance-classification outputs — see conflict-resolution.md"
+
+  - id: people-analytics-analyst
+    path: .claude/agents/people-analytics-analyst.md
+    primary_tags: [attrition-analysis, culture-diagnostic]
+    secondary_tags: [bias-audit, hr-operating-model]
+    loads:
+      memory: [service-lines, non-fabrication-policy]
+      knowledge: [people-analytics, hr-strategy, ai-governance]
+      intelligence: [capability-matrix, coordination-protocol, quality-gates, reasoning-patterns]
+    invoked_by: { commands: [], note: "no dedicated command — see docs/framework-audit.md §6, routing.md dynamic-selection fallback" }
+    reviewed_by: workforce-intelligence-strategist
+
+  - id: compensation-benefits-specialist
+    path: .claude/agents/compensation-benefits-specialist.md
+    primary_tags: [comp-benchmark, pay-equity]
+    secondary_tags: [governance-classification]
+    loads:
+      memory: [compliance-glossary, non-fabrication-policy]
+      knowledge: [compensation-total-rewards, eu-ai-act]
+      intelligence: [capability-matrix, coordination-protocol, quality-gates, reasoning-patterns]
+    invoked_by: { commands: [comp-benchmark, pay-equity-audit] }
+    reviewed_by: total-rewards-strategist
+
+  - id: total-rewards-strategist
+    path: .claude/agents/total-rewards-strategist.md
+    primary_tags: [total-rewards-synthesis]
+    secondary_tags: [comp-benchmark, attrition-analysis]
+    loads:
+      memory: [service-lines, non-fabrication-policy]
+      knowledge: [compensation-total-rewards, hr-strategy, people-analytics]
+      intelligence: [capability-matrix, coordination-protocol, quality-gates, reasoning-patterns]
+    invoked_by: { commands: [], note: "no dedicated command — see docs/framework-audit.md §6, routing.md dynamic-selection fallback" }
+    reviewed_by: compensation-benefits-specialist
+
+  - id: workforce-intelligence-strategist
+    path: .claude/agents/workforce-intelligence-strategist.md
+    primary_tags: [workforce-scenario, labor-market-signal]
+    secondary_tags: [attrition-analysis, hr-operating-model]
+    loads:
+      memory: [non-fabrication-policy]
+      knowledge: [workforce-intelligence, people-analytics, hr-strategy]
+      intelligence: [capability-matrix, coordination-protocol, quality-gates, reasoning-patterns]
+    invoked_by: { commands: [workforce-forecast] }
+    reviewed_by: people-analytics-analyst
+
+  - id: competitive-positioning-analyst
+    path: .claude/agents/competitive-positioning-analyst.md
+    primary_tags: [positioning-review, competitive-benchmark]
+    secondary_tags: [sales-methodology]
+    loads:
+      memory: [positioning-decisions, competitive-landscape, non-fabrication-policy]
+      knowledge: [marketing, enterprise-sales, hr-strategy]
+      intelligence: [capability-matrix, coordination-protocol, quality-gates, reasoning-patterns, evaluation-engine]
+      templates: [competitive-battlecard-template]
+    invoked_by: { commands: [positioning-check], mandatory_on_tags: [client-facing-output] }
+    reviewed_by: client-content-writer
+
+  - id: client-content-writer
+    path: .claude/agents/client-content-writer.md
+    primary_tags: [content-drafting]
+    secondary_tags: [all]
+    loads:
+      memory: [brand-voice, positioning-decisions, non-fabrication-policy]
+      knowledge: [consulting-methodologies, marketing]
+      intelligence: [capability-matrix, coordination-protocol, quality-gates, reasoning-patterns, workflow-library]
+      templates: [case-study-template, client-proposal-template, newsletter-issue-template, faq-entry-template]
+    invoked_by: { commands: [case-study, proposal, newsletter-issue, faq-entry] }
+    reviewed_by: competitive-positioning-analyst
+    constraint: "must never originate domain analysis — pulls from the owning specialist first"
+
+# ---------------------------------------------------------------------------
+# COMMANDS  (requirement 2: every command declares which agents it invokes)
+# ---------------------------------------------------------------------------
+commands:
+  - id: agent-design
+    path: .claude/commands/agent-design.md
+    invokes: { primary: agentic-ai-architect, mandatory: [ai-governance-auditor] }
+    uses_templates: [agent-spec-template]
+    maps_to_workflow: agentic-ai-design
+    quality_gates: [1, 2, 3, 5, 6]
+
+  - id: ai-risk-classify
+    path: .claude/commands/ai-risk-classify.md
+    invokes: { primary: ai-governance-auditor, optional: [agentic-ai-architect] }
+    uses_templates: [ai-governance-brief-template]
+    maps_to_workflow: ai-risk-classification
+    quality_gates: [1, 3, 5, 6]
+
+  - id: case-study
+    path: .claude/commands/case-study.md
+    invokes: { primary: client-content-writer, dynamic: [owning-specialist], mandatory: [competitive-positioning-analyst] }
+    uses_templates: [case-study-template]
+    maps_to_workflow: case-study
+    quality_gates: [1, 2, 4, 5, 6]
+    conditional_gates: { "3": "if engagement described an AI system" }
+
+  - id: comp-benchmark
+    path: .claude/commands/comp-benchmark.md
+    invokes: { primary: compensation-benefits-specialist, downstream_consumer: total-rewards-strategist }
+    uses_templates: []
+    maps_to_workflow: compensation-benchmark
+    quality_gates: [1, 2, 5, 6]
+
+  - id: faq-entry
+    path: .claude/commands/faq-entry.md
+    invokes: { primary: client-content-writer, conditional: [ai-governance-auditor] }
+    uses_templates: [faq-entry-template]
+    maps_to_workflow: faq-entry
+    quality_gates: [1, 2, 4, 5, 6]
+    conditional_gates: { "3": "if entry addresses AI/data/governance topics" }
+
+  - id: newsletter-issue
+    path: .claude/commands/newsletter-issue.md
+    invokes: { primary: client-content-writer, mandatory: [competitive-positioning-analyst] }
+    uses_templates: [newsletter-issue-template]
+    maps_to_workflow: newsletter-issue
+    quality_gates: [1, 4, 5, 6]
+    conditional_gates: { "2": "per domain of featured case", "3": "if featured case is agentic-AI-related" }
+
+  - id: pay-equity-audit
+    path: .claude/commands/pay-equity-audit.md
+    invokes: { primary: compensation-benefits-specialist, conditional: [ai-governance-auditor] }
+    uses_templates: [pay-equity-audit-report-template]
+    maps_to_workflow: pay-equity-audit
+    quality_gates: [1, 2, 5, 6]
+    conditional_gates: { "3": "if automated pay-setting tool involved", "4": "if client-facing report" }
+
+  - id: positioning-check
+    path: .claude/commands/positioning-check.md
+    invokes: { primary: competitive-positioning-analyst, handoff: client-content-writer }
+    uses_templates: [competitive-battlecard-template]
+    maps_to_workflow: positioning-check
+    quality_gates: [1, 4, 5, 6]
+    note: "Gate 4 IS this workflow's core function, not an external check on it"
+
+  - id: proposal
+    path: .claude/commands/proposal.md
+    invokes: { primary: client-content-writer, dynamic: [service-line-specialists], conditional: [ai-governance-auditor], mandatory: [competitive-positioning-analyst] }
+    uses_templates: [client-proposal-template]
+    maps_to_workflow: client-proposal
+    quality_gates: [1, 2, 4, 5, 6]
+    conditional_gates: { "3": "if AI/agentic work is proposed" }
+
+  - id: workforce-forecast
+    path: .claude/commands/workforce-forecast.md
+    invokes: { primary: workforce-intelligence-strategist, input_from: [people-analytics-analyst] }
+    uses_templates: []
+    maps_to_workflow: workforce-forecast
+    quality_gates: [1, 2, 5, 6]
+
+# ---------------------------------------------------------------------------
+# MEMORY
+# ---------------------------------------------------------------------------
+memory:
+  - id: memory-index
+    path: .claude/memory/MEMORY.md
+    type: index
+    consumed_by: { all: true }
+
+  - id: non-fabrication-policy
+    path: .claude/memory/non-fabrication-policy.md
+    type: feedback
+    priority: mandatory-always
+    consumed_by:
+      agents: [all]
+      commands: [all]
+      intelligence: [quality-gates, evaluation-engine, reasoning-patterns, conflict-resolution, learning-loop]
+      execution: [testing-engine, documentation-engine, release-engine]
+
+  - id: positioning-decisions
+    path: .claude/memory/positioning-decisions.md
+    type: project
+    consumed_by:
+      agents: [agentic-ai-architect, competitive-positioning-analyst, client-content-writer]
+      intelligence: [knowledge-graph, evaluation-engine]
+
+  - id: brand-voice
+    path: .claude/memory/brand-voice.md
+    type: reference
+    consumed_by: { agents: [client-content-writer, competitive-positioning-analyst] }
+
+  - id: service-lines
+    path: .claude/memory/service-lines.md
+    type: reference
+    consumed_by: { agents: [people-analytics-analyst, total-rewards-strategist, client-content-writer] }
+
+  - id: competitive-landscape
+    path: .claude/memory/competitive-landscape.md
+    type: reference
+    consumed_by: { agents: [competitive-positioning-analyst] }
+    decay_risk: high
+    staleness_review: learning-loop.md
+
+  - id: compliance-glossary
+    path: .claude/memory/compliance-glossary.md
+    type: reference
+    consumed_by: { agents: [agentic-ai-architect, ai-governance-auditor, compensation-benefits-specialist] }
+    decay_risk: high
+    staleness_review: learning-loop.md
+
+# ---------------------------------------------------------------------------
+# TEMPLATES
+# ---------------------------------------------------------------------------
+templates:
+  - id: agent-spec-template
+    path: .claude/templates/agent-spec-template.md
+    used_by: { commands: [agent-design], agents: [agentic-ai-architect] }
+
+  - id: ai-governance-brief-template
+    path: .claude/templates/ai-governance-brief-template.md
+    used_by: { commands: [ai-risk-classify], agents: [ai-governance-auditor] }
+
+  - id: case-study-template
+    path: .claude/templates/case-study-template.md
+    used_by: { commands: [case-study], agents: [client-content-writer] }
+
+  - id: client-proposal-template
+    path: .claude/templates/client-proposal-template.md
+    used_by: { commands: [proposal], agents: [client-content-writer] }
+
+  - id: pay-equity-audit-report-template
+    path: .claude/templates/pay-equity-audit-report-template.md
+    used_by: { commands: [pay-equity-audit], agents: [compensation-benefits-specialist] }
+
+  - id: newsletter-issue-template
+    path: .claude/templates/newsletter-issue-template.md
+    used_by: { commands: [newsletter-issue], agents: [client-content-writer] }
+
+  - id: faq-entry-template
+    path: .claude/templates/faq-entry-template.md
+    used_by: { commands: [faq-entry], agents: [client-content-writer] }
+
+  - id: competitive-battlecard-template
+    path: .claude/templates/competitive-battlecard-template.md
+    used_by: { commands: [positioning-check], agents: [competitive-positioning-analyst] }
+    orphan_status: resolved
+    orphan_note: "Zero inbound references at time of docs/framework-audit.md §5. Registered here and in routing.md's battlecard-request rule as consumed by competitive-positioning-analyst; positioning-check.md now lists it under uses_templates in this registry. No dedicated command exists yet — see routing.md."
+
+# ---------------------------------------------------------------------------
+# KNOWLEDGE  (requirement 3: every knowledge file declares which agents consume it)
+# ---------------------------------------------------------------------------
+knowledge:
+  - id: knowledge-readme
+    path: .claude/knowledge/README.md
+    type: index
+    consumed_by: { all: true }
+
+  - id: agentic-ai
+    path: .claude/knowledge/agentic-ai.md
+    consumed_by: { agents: [agentic-ai-architect, ai-governance-auditor] }
+
+  - id: ai-governance
+    path: .claude/knowledge/ai-governance.md
+    consumed_by: { agents: [ai-governance-auditor, agentic-ai-architect, people-analytics-analyst] }
+
+  - id: eu-ai-act
+    path: .claude/knowledge/eu-ai-act.md
+    consumed_by: { agents: [ai-governance-auditor, agentic-ai-architect, compensation-benefits-specialist] }
+    decay_risk: high
+    staleness_review: learning-loop.md
+
+  - id: hr-strategy
+    path: .claude/knowledge/hr-strategy.md
+    consumed_by: { agents: [people-analytics-analyst, total-rewards-strategist, workforce-intelligence-strategist, competitive-positioning-analyst] }
+    coverage_gap: "no dedicated owning agent — cross-cutting by design, see knowledge-graph.md and capability-matrix.md Coverage Gaps"
+
+  - id: people-analytics
+    path: .claude/knowledge/people-analytics.md
+    consumed_by: { agents: [people-analytics-analyst, workforce-intelligence-strategist, total-rewards-strategist] }
+
+  - id: compensation-total-rewards
+    path: .claude/knowledge/compensation-total-rewards.md
+    consumed_by: { agents: [compensation-benefits-specialist, total-rewards-strategist] }
+
+  - id: workforce-intelligence
+    path: .claude/knowledge/workforce-intelligence.md
+    consumed_by: { agents: [workforce-intelligence-strategist, people-analytics-analyst] }
+
+  - id: enterprise-sales
+    path: .claude/knowledge/enterprise-sales.md
+    consumed_by: { agents: [competitive-positioning-analyst, client-content-writer] }
+    coverage_gap: "no dedicated owning agent — see knowledge-graph.md and capability-matrix.md Coverage Gaps"
+
+  - id: marketing
+    path: .claude/knowledge/marketing.md
+    consumed_by: { agents: [competitive-positioning-analyst, client-content-writer] }
+
+  - id: consulting-methodologies
+    path: .claude/knowledge/consulting-methodologies.md
+    consumed_by:
+      agents: [client-content-writer]
+      execution: [project-manager, planning-engine, task-engine, documentation-engine]
+
+# ---------------------------------------------------------------------------
+# INTELLIGENCE
+# ---------------------------------------------------------------------------
+intelligence:
+  - id: knowledge-graph
+    path: .claude/intelligence/knowledge-graph.md
+    depends_on: {}
+    consumed_by:
+      intelligence: [capability-matrix, decision-engine, coordination-protocol]
+      execution: [planning-engine, task-engine]
+
+  - id: capability-matrix
+    path: .claude/intelligence/capability-matrix.md
+    depends_on: { intelligence: [knowledge-graph] }
+    consumed_by:
+      agents: [all]
+      execution: [task-engine, planning-engine, implementation-engine]
+
+  - id: evaluation-engine
+    path: .claude/intelligence/evaluation-engine.md
+    depends_on: { memory: [non-fabrication-policy] }
+    consumed_by:
+      intelligence: [quality-gates]
+      execution: [review-engine, testing-engine, continuous-improvement]
+    conflict: "AI Quality scoring assignment conflicts with execution/testing-engine.md — see resolved_conflicts.ai-quality-scorer-conflict below"
+
+  - id: quality-gates
+    path: .claude/intelligence/quality-gates.md
+    depends_on: { intelligence: [evaluation-engine], memory: [non-fabrication-policy] }
+    consumed_by:
+      execution: [testing-engine]
+      commands: [all]
+
+  - id: decision-engine
+    path: .claude/intelligence/decision-engine.md
+    depends_on: { intelligence: [capability-matrix] }
+    consumed_by: { execution: [all], agents: [all] }
+
+  - id: reasoning-patterns
+    path: .claude/intelligence/reasoning-patterns.md
+    depends_on: { memory: [non-fabrication-policy], knowledge: [consulting-methodologies, agentic-ai] }
+    consumed_by: { agents: [all] }
+
+  - id: coordination-protocol
+    path: .claude/intelligence/coordination-protocol.md
+    depends_on: { intelligence: [capability-matrix, decision-engine] }
+    consumed_by: { execution: [implementation-engine], agents: [all] }
+
+  - id: workflow-library
+    path: .claude/intelligence/workflow-library.md
+    depends_on: { intelligence: [quality-gates] }
+    consumed_by: { execution: [planning-engine], commands: [all] }
+
+  - id: conflict-resolution
+    path: .claude/intelligence/conflict-resolution.md
+    depends_on: { memory: [non-fabrication-policy] }
+    consumed_by: { execution: [review-engine, testing-engine], agents: [ai-governance-auditor] }
+
+  - id: learning-loop
+    path: .claude/intelligence/learning-loop.md
+    depends_on: { intelligence: [decision-engine] }
+    consumed_by: { execution: [continuous-improvement] }
+
+# ---------------------------------------------------------------------------
+# EXECUTION  (requirement 4: every execution workflow declares dependencies)
+# ---------------------------------------------------------------------------
+execution:
+  - id: project-manager
+    path: .claude/execution/project-manager.md
+    phase: discovery
+    depends_on: { intelligence: [decision-engine, conflict-resolution] }
+    invoked_by: { commands: [], routing_rule: "project-scale-request — see routing.md" }
+
+  - id: planning-engine
+    path: .claude/execution/planning-engine.md
+    phase: planning
+    depends_on: { execution: [project-manager], intelligence: [capability-matrix, knowledge-graph], knowledge: [consulting-methodologies] }
+
+  - id: task-engine
+    path: .claude/execution/task-engine.md
+    phase: cross-cutting
+    depends_on: { execution: [planning-engine], intelligence: [capability-matrix, knowledge-graph] }
+
+  - id: implementation-engine
+    path: .claude/execution/implementation-engine.md
+    phase: implementation
+    depends_on: { execution: [task-engine], intelligence: [coordination-protocol] }
+
+  - id: review-engine
+    path: .claude/execution/review-engine.md
+    phase: review
+    depends_on: { execution: [implementation-engine], intelligence: [evaluation-engine] }
+
+  - id: testing-engine
+    path: .claude/execution/testing-engine.md
+    phase: testing
+    depends_on: { execution: [review-engine], intelligence: [quality-gates, evaluation-engine] }
+    conflict: "AI Quality scorer assignment and 'six-gate structure' equivalence claim — see resolved_conflicts below"
+
+  - id: documentation-engine
+    path: .claude/execution/documentation-engine.md
+    phase: cross-cutting
+    depends_on: { execution: [all], intelligence: [learning-loop], knowledge: [consulting-methodologies] }
+
+  - id: release-engine
+    path: .claude/execution/release-engine.md
+    phase: release
+    depends_on: { execution: [testing-engine, documentation-engine] }
+
+  - id: continuous-improvement
+    path: .claude/execution/continuous-improvement.md
+    phase: retrospective
+    depends_on: { execution: [release-engine], intelligence: [learning-loop, decision-engine] }
+
+  - id: workflow-orchestrator
+    path: .claude/execution/workflow-orchestrator.md
+    phase: cross-cutting
+    depends_on:
+      execution: [project-manager, planning-engine, task-engine, implementation-engine, review-engine, testing-engine, documentation-engine, release-engine, continuous-improvement]
+      intelligence: [coordination-protocol, quality-gates, decision-engine]
+    invoked_by: { commands: [], routing_rule: "project-scale-request — see routing.md" }
+    orphan_status: resolved
+    orphan_note: "Entire execution/ layer had zero inbound references at time of docs/framework-audit.md §5/§6. Now reachable via routing.md's project-scale-request rule and bootstrap.md's boot sequence."
+
+# ---------------------------------------------------------------------------
+# CONFLICTS FOUND IN docs/framework-audit.md — RESOLVED HERE
+# (requirements 7 and 8: eliminate duplicated/contradictory logic, single source of truth)
+# ---------------------------------------------------------------------------
+resolved_conflicts:
+  - id: ai-quality-scorer-conflict
+    source: "docs/framework-audit.md §7.1"
+    conflicting_files:
+      - .claude/intelligence/evaluation-engine.md
+      - .claude/execution/testing-engine.md
+    resolution: >
+      ai-governance-auditor is the authoritative final scorer for both Governance and
+      AI Quality, always — matching evaluation-engine.md's "Who Scores" section.
+      testing-engine.md's Domain-Accuracy Testing may still run a first-pass self-check
+      by the owning specialist (e.g. agentic-ai-architect), but that self-score is
+      provisional only; it does not satisfy the AI Quality dimension until
+      ai-governance-auditor confirms it — the same two-pass pattern evaluation-engine.md
+      already applies to Evidence scoring.
+    status: resolved-in-registry
+    note: "Source files retain their original text; this registry entry governs actual behavior until those files are next revised."
+
+  - id: six-gate-equivalence-claim
+    source: "docs/framework-audit.md §7.2"
+    conflicting_files:
+      - .claude/execution/testing-engine.md
+    resolution: >
+      testing-engine.md's five test types plus composite scoring are NOT identical to
+      quality-gates.md's six gates. Canonical mapping: Non-Fabrication Testing = Gate 1;
+      Domain-Accuracy Testing = Gate 2; Governance/Compliance Testing = Gate 3;
+      Persona-Panel Adversarial Testing = Gate 4; composite scoring step = Gate 5.
+      Regression Testing has no Gate counterpart (it is a genuine addition, unique to
+      running multi-task projects over time). Gate 6 (Human-Readiness Check) has no
+      named Testing-phase counterpart and must still run — it is folded into the
+      Testing phase's final pass per this registry, not dropped.
+    status: resolved-in-registry
+
+  - id: testing-engine-internal-ordering
+    source: "docs/framework-audit.md §7.3"
+    conflicting_files:
+      - .claude/execution/testing-engine.md
+    resolution: >
+      Canonical execution order is the "Full Battery Sequencing" diagram's order:
+      Non-Fabrication, Domain-Accuracy, Governance/Compliance, Regression,
+      Persona-Panel, then Composite Scoring (folding in the Gate 6 Human-Readiness
+      check per the resolution above). The file's numbered section headers
+      (1 Non-Fabrication, 2 Persona-Panel, 3 Governance, 4 Domain-Accuracy,
+      5 Regression) reflect documentation order only, not execution order.
+    status: resolved-in-registry
+
+# ---------------------------------------------------------------------------
+# ORPHAN FILES FOUND IN docs/framework-audit.md — RESOLVED HERE
+# (requirement 6: eliminate orphan files)
+# ---------------------------------------------------------------------------
+orphans_resolved:
+  - path: .claude/templates/competitive-battlecard-template.md
+    previously: "Zero inbound references from any command or agent — docs/framework-audit.md §5"
+    now: "Registered as used_by competitive-positioning-analyst and positioning-check; reachable via routing.md's battlecard-request rule"
+
+  - path: .claude/execution/
+    previously: "Entire 10-file layer had zero inbound references from commands/ or agents/ — docs/framework-audit.md §5, §6"
+    now: "Reachable via routing.md's project-scale-request rule and bootstrap.md's mandatory boot sequence"
+
+# ---------------------------------------------------------------------------
+# METADATA GAP (docs/framework-audit.md §1.3)
+# ---------------------------------------------------------------------------
+metadata_centralization_note: >
+  knowledge/, intelligence/, and execution/ (31 files) carry no inline YAML
+  frontmatter, unlike memory/. Rather than retrofitting frontmatter into each
+  file — a content edit outside this layer's scope — this registry serves as
+  the canonical, centralized metadata layer for all 65 files, including those
+  31. See versioning.md for how this registry itself is kept current.

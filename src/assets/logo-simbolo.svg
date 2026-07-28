@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" role="img" aria-label="Datalent Solutions">
+  <!--
+    FUENTE ÚNICA del símbolo. De aquí salen el favicon, el apple-touch-icon,
+    la imagen OpenGraph y el logo de los datos estructurados, vía
+    scripts/generar-marca.mjs.
+
+    ATENCIÓN: es una reconstrucción geométrica a partir de una imagen del
+    logotipo, no el archivo de marca original. Cuando exista el vector real,
+    se sustituye ESTE fichero y se relanza el generador: todo lo demás se
+    regenera solo.
+
+    La geometría es la misma que LogoComponent, que es quien lo pinta en
+    cabecera y pie. Si se toca una, hay que tocar la otra.
+  -->
+  <defs>
+    <linearGradient id="dl" gradientUnits="userSpaceOnUse" x1="24" y1="0" x2="376" y2="0">
+      <stop offset="0" stop-color="#2ec9c4"/>
+      <stop offset="0.34" stop-color="#2b96b4"/>
+      <stop offset="0.66" stop-color="#22608e"/>
+      <stop offset="1" stop-color="#1b3f6b"/>
+    </linearGradient>
+  </defs>
+  <g stroke="url(#dl)" fill="none">
+    <path d="M 182.8 161.8 A 70 70 0 1 1 182.8 38.2" stroke-width="20"/>
+    <path d="M 217.2 38.2 A 70 70 0 1 1 217.2 161.8" stroke-width="20"/>
+    <line x1="60" y1="100" x2="340" y2="100" stroke-width="10"/>
+    <circle cx="42" cy="100" r="13" stroke-width="10"/>
+    <circle cx="358" cy="100" r="13" stroke-width="10"/>
+  </g>
+  <circle cx="186" cy="100" r="8" fill="url(#dl)"/>
+  <circle cx="214" cy="100" r="8" fill="url(#dl)"/>
+</svg>

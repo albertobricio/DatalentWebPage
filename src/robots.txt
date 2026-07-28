@@ -1,0 +1,13 @@
+# Datalent Solutions
+#
+# El sitio es enteramente público y se quiere indexar: no hay áreas privadas,
+# ni buscador interno, ni parámetros que generen duplicados. Por eso no hay
+# ninguna regla Disallow, que es lo correcto aquí y no un olvido.
+#
+# /home sirve el mismo contenido que la raíz y lleva canónico a "/", así que
+# queda fuera del sitemap a propósito.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://datalentsolutions.com/sitemap.xml
