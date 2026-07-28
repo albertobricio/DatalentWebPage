@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { LogoComponent } from '../../shared/components/logo/logo.component';
 import { NAV_ITEMS } from '../nav-items';
 import { CtaComponent } from '../../shared/components/cta/cta.component';
 import { MobileMenuComponent } from '../mobile-menu/mobile-menu.component';
@@ -13,7 +14,7 @@ import { MobileMenuComponent } from '../mobile-menu/mobile-menu.component';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, CtaComponent, MobileMenuComponent],
+  imports: [RouterLink, RouterLinkActive, CtaComponent, MobileMenuComponent, LogoComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

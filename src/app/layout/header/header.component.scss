@@ -21,6 +21,12 @@
 }
 
 .header__logo {
+  // El símbolo y el texto forman una unidad: alineados por su eje óptico y
+  // sin que el hueco entre ambos pueda partirse al reducir el ancho.
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  white-space: nowrap;
   font-size: var(--font-size-h3);
   font-weight: var(--font-weight-bold);
   color: var(--color-ink);
@@ -190,4 +196,9 @@
   span:nth-child(3) {
     transform: translateY(-0.45rem) rotate(-45deg);
   }
+}
+
+// Altura atada a la del texto del wordmark, para que crezcan juntos.
+.header__logo-mark {
+  height: 1.5rem;
 }

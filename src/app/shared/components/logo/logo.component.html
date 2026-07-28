@@ -1,0 +1,36 @@
+<!--
+  aria-hidden porque el logotipo nunca aparece solo: siempre acompaña al texto
+  "Datalent Solutions", que es quien aporta el nombre accesible. Anunciarlo
+  también aquí duplicaría la marca en cada lectura.
+-->
+<svg class="logo" viewBox="0 0 400 200" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- userSpaceOnUse, no objectBoundingBox: el degradado tiene que recorrer
+         la marca entera de izquierda a derecha, y además sobre la barra
+         horizontal (altura cero) un degradado en unidades de caja no
+         renderiza nada en absoluto. -->
+    <linearGradient [id]="gradId" gradientUnits="userSpaceOnUse" x1="24" y1="0" x2="376" y2="0">
+      <stop offset="0" [attr.stop-color]="paradas()[0]" />
+      <stop offset="0.34" [attr.stop-color]="paradas()[1]" />
+      <stop offset="0.66" [attr.stop-color]="paradas()[2]" />
+      <stop offset="1" [attr.stop-color]="paradas()[3]" />
+    </linearGradient>
+  </defs>
+
+  <g [attr.stroke]="'url(#' + gradId + ')'" fill="none">
+    <!-- Los dos anillos abiertos, con apertura de ±62° enfrentadas. Con
+         aperturas menores los trazos se cruzan en la zona de solape y la
+         marca se convierte en un amasijo. -->
+    <path d="M 182.8 161.8 A 70 70 0 1 1 182.8 38.2" stroke-width="20" />
+    <path d="M 217.2 38.2 A 70 70 0 1 1 217.2 161.8" stroke-width="20" />
+
+    <!-- La barra termina en el BORDE EXTERIOR de los anillos terminales, no
+         en su centro: atravesándolos les dejaba una muesca blanca. -->
+    <line x1="60" y1="100" x2="340" y2="100" stroke-width="10" />
+    <circle cx="42" cy="100" r="13" stroke-width="10" />
+    <circle cx="358" cy="100" r="13" stroke-width="10" />
+  </g>
+
+  <circle cx="186" cy="100" r="8" [attr.fill]="'url(#' + gradId + ')'" />
+  <circle cx="214" cy="100" r="8" [attr.fill]="'url(#' + gradId + ')'" />
+</svg>

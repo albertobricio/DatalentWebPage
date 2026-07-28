@@ -1,6 +1,9 @@
 <header class="header">
   <div class="container header__bar">
-    <a class="header__logo" routerLink="/" (click)="closeMobileMenu()">Datalent Solutions</a>
+    <a class="header__logo" routerLink="/" (click)="closeMobileMenu()">
+      <app-logo class="header__logo-mark" />
+      <span>Datalent Solutions</span>
+    </a>
 
     <nav class="header__nav" aria-label="Principal">
       <ul class="header__nav-list">

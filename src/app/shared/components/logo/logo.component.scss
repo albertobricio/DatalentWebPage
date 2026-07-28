@@ -1,0 +1,11 @@
+:host {
+  display: inline-block;
+  // La altura la fija quien lo usa; el ancho sale de la proporción 2:1.
+  line-height: 0;
+}
+
+.logo {
+  display: block;
+  height: 100%;
+  width: auto;
+}
