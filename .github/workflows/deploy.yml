@@ -42,15 +42,15 @@ jobs:
         run: npm run build:prod
 
       # El prerender escribe una carpeta por ruta, así que aquí deben existir
-      # 12 index.html. Si el build no prerenderiza, el deploy sube un cascarón
+      # 11 index.html. Si el build no prerenderiza, el deploy sube un cascarón
       # vacío sin que nadie se entere; esto lo convierte en un fallo ruidoso.
-      - name: Verificar que el prerender ha producido las 12 rutas
+      - name: Verificar que el prerender ha producido las 11 rutas
         run: |
           count=$(find dist/datalent-web-page -name index.html | wc -l)
           echo "index.html encontrados: $count"
           find dist/datalent-web-page -name index.html | sort
-          if [ "$count" -ne 12 ]; then
-            echo "::error::Se esperaban 12 rutas prerenderizadas y hay $count."
+          if [ "$count" -ne 11 ]; then
+            echo "::error::Se esperaban 11 rutas prerenderizadas y hay $count."
             exit 1
           fi
           if grep -q '<app-root></app-root>' dist/datalent-web-page/index.html; then

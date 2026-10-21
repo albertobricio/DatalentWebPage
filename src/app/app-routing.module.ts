@@ -6,11 +6,6 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
   {
-    path: 'newsletter',
-    loadComponent: () =>
-      import('./pages/newsletter/newsletter.component').then((m) => m.NewsletterComponent),
-  },
-  {
     path: 'faq',
     loadComponent: () => import('./pages/faq/faq.component').then((m) => m.FaqComponent),
   },

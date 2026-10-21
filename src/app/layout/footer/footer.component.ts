@@ -30,7 +30,6 @@ const PRACTICES: readonly FooterLink[] = [
 
 const COMPANY_LINKS: readonly FooterLink[] = [
   { label: 'Contacto', path: '/contacto' },
-  { label: 'Insights (Radar Agéntico)', path: '/newsletter' },
   { label: 'Preguntas frecuentes', path: '/faq' },
   { label: 'Por qué Datalent', path: '/por-que-datalent' },
 ];

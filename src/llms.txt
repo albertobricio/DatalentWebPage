@@ -17,7 +17,3 @@ Datalent trabaja en modelo advisory-led: no vende una plataforma SaaS autoconfig
 - [Por qué Datalent](https://datalentsolutions.com/por-que-datalent): pilares y posicionamiento.
 - [Preguntas frecuentes](https://datalentsolutions.com/faq)
 - [Contacto](https://datalentsolutions.com/contacto)
-
-## Opcional
-
-- [El Radar Agéntico (newsletter)](https://datalentsolutions.com/newsletter)

@@ -32,7 +32,6 @@ const PORT = 4321;
 const ROUTES = [
   '/',
   '/home',
-  '/newsletter',
   '/faq',
   '/servicios',
   '/por-que-datalent',

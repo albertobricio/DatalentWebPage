@@ -41,12 +41,6 @@ export const NAV_ITEMS: readonly NavItem[] = [
     ],
   },
   { label: 'Por qué Datalent', path: '/por-que-datalent' },
-  {
-    label: 'Recursos',
-    children: [
-      { label: 'Insights (Radar Agéntico)', path: '/newsletter' },
-      { label: 'Preguntas frecuentes', path: '/faq' },
-    ],
-  },
+  { label: 'Preguntas frecuentes', path: '/faq' },
   { label: 'Contacto', path: '/contacto' },
 ] as const;
