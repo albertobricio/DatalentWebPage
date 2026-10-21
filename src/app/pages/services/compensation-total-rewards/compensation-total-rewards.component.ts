@@ -108,6 +108,7 @@ export class CompensationTotalRewardsComponent {
         serviceType: 'Compensación & Total Rewards',
         provider: {
           '@type': 'Organization',
+          '@id': 'https://datalentsolutions.com/#organization',
           name: 'Datalent Solutions',
           address: {
             '@type': 'PostalAddress',

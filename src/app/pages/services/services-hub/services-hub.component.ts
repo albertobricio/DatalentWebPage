@@ -64,6 +64,7 @@ export class ServicesHubComponent {
           'Catálogo de las prácticas de Datalent Solutions para la función de RR. HH., con su punto de entrada acotado en cada una.',
         about: {
           '@type': 'Organization',
+          '@id': 'https://datalentsolutions.com/#organization',
           name: 'Datalent Solutions',
           address: {
             '@type': 'PostalAddress',

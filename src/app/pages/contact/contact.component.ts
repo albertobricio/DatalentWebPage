@@ -82,6 +82,7 @@ export class ContactComponent {
         name: 'Contacto | Datalent Solutions',
         about: {
           '@type': 'Organization',
+          '@id': 'https://datalentsolutions.com/#organization',
           name: 'Datalent Solutions',
           email: environment.contactEmail,
           address: {

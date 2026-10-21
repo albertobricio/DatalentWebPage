@@ -110,6 +110,7 @@ export class PeopleAnalyticsComponent {
         serviceType: 'People Analytics',
         provider: {
           '@type': 'Organization',
+          '@id': 'https://datalentsolutions.com/#organization',
           name: 'Datalent Solutions',
           address: {
             '@type': 'PostalAddress',

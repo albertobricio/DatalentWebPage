@@ -90,6 +90,11 @@
        used to be two duplicate/conflicting blocks (docs/website-audit.md),
        one of them still describing the pre-v2 positioning. -->
   <!--
+    Organization + ProfessionalService (subtipo de LocalBusiness): la auditoría
+    de YAG (oct. 2026) pedía señal de negocio local para Tarancón/Cuenca. Las
+    páginas de servicio enlazan a este bloque por @id en vez de redefinirlo.
+  -->
+  <!--
     WebSite, además de Organization. Es la señal documentada que usa Google para
     decidir qué nombre de sitio muestra en los resultados; con solo Organization
     puede acabar inventándoselo a partir del <title> o del dominio.
@@ -109,7 +114,7 @@
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Organization",
+      "@type": ["Organization", "ProfessionalService"],
       "@id": "https://datalentsolutions.com/#organization",
       "name": "Datalent Solutions",
       "url": "https://datalentsolutions.com",
@@ -124,6 +129,7 @@
         "addressRegion": "Cuenca",
         "addressCountry": "ES"
       },
+      "areaServed": { "@type": "Country", "name": "España" },
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "Customer Service",

@@ -137,6 +137,7 @@ export class AgenticAiComponent {
         serviceType: 'Agentic AI para RR. HH.',
         provider: {
           '@type': 'Organization',
+          '@id': 'https://datalentsolutions.com/#organization',
           name: 'Datalent Solutions',
           address: {
             '@type': 'PostalAddress',
