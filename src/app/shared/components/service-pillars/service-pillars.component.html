@@ -1,0 +1,44 @@
+<div class="pillars">
+  <header class="pillars__header">
+    <h2 class="pillars__heading">{{ heading() }}</h2>
+    <p class="pillars__intro">
+      Cada solución empieza con un alcance cerrado y todas comparten la misma regla: ningún
+      agente entra en producción sin límites de autonomía documentados y un punto de
+      control humano, bajo RGPD y el Reglamento Europeo de IA.
+    </p>
+  </header>
+
+  <ul class="pillars__grid" role="list">
+    @for (pillar of pillars; track pillar.variant) {
+      <li
+        class="pillar"
+        (pointermove)="onPointerMove($event, dots)"
+        (pointerleave)="dots.clearPointer()"
+      >
+        <app-dots-canvas #dots class="pillar__canvas" [variant]="pillar.variant" />
+
+        <div class="pillar__body">
+          <p class="pillar__engine">{{ pillar.engine }}</p>
+          <h3 class="pillar__name">{{ pillar.name }}</h3>
+          <p class="pillar__claim">{{ pillar.claim }}</p>
+          <p class="pillar__description">{{ pillar.description }}</p>
+          <p class="pillar__governance">{{ pillar.governance }}</p>
+
+          <div class="pillar__links">
+            <a class="pillar__link" [routerLink]="pillar.primary.path">
+              {{ pillar.primary.label }} <span aria-hidden="true">→</span>
+            </a>
+            @if (pillar.related) {
+              <p class="pillar__related">
+                También:
+                @for (link of pillar.related; track link.path; let last = $last) {
+                  <a [routerLink]="link.path">{{ link.label }}</a>{{ last ? '' : ' · ' }}
+                }
+              </p>
+            }
+          </div>
+        </div>
+      </li>
+    }
+  </ul>
+</div>

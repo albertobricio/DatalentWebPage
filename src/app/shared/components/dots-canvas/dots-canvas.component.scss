@@ -1,0 +1,11 @@
+:host {
+  display: block;
+}
+
+// El tamaño lo marca el CSS; el componente ajusta la resolución interna al
+// rect real (y al devicePixelRatio) con un ResizeObserver.
+.dots-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

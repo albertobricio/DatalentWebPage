@@ -1,0 +1,137 @@
+@use 'tokens' as *;
+
+// Pensado para ir dentro de <app-section background="inverse">: hereda el
+// texto claro y el anillo de foco claro de esa superficie.
+
+.pillars__header {
+  max-width: var(--measure-body);
+  margin-bottom: var(--space-xl);
+}
+
+.pillars__heading {
+  margin: 0 0 var(--space-md);
+}
+
+.pillars__intro {
+  margin: 0;
+  color: var(--text-muted-on-dark);
+  font-size: var(--font-size-body-lg);
+  line-height: var(--line-height-body-lg);
+}
+
+.pillars__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @media (min-width: 48rem) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.pillar {
+  display: flex;
+  flex-direction: column;
+  border: var(--border-width) solid var(--border-color-inverse);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-ink);
+  overflow: hidden;
+  transition: border-color var(--motion-default) var(--motion-easing);
+
+  // Colores que lee el canvas. Tokens, no valores: colors.scss es la única
+  // fuente de color.
+  --dots-base: var(--color-mist);
+  --dots-accent: var(--color-signal-on-dark);
+
+  &:hover,
+  &:focus-within {
+    border-color: var(--color-control-border-dark);
+  }
+}
+
+.pillar__canvas {
+  height: 11rem;
+  border-bottom: var(--border-width) solid var(--border-color-inverse);
+}
+
+.pillar__body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+}
+
+.pillar__engine {
+  margin: 0;
+  color: var(--color-signal-on-dark);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  line-height: var(--line-height-label);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.pillar__name {
+  margin: 0;
+  color: var(--text-inverse);
+}
+
+.pillar__claim {
+  margin: 0;
+  color: var(--text-inverse);
+  font-weight: var(--font-weight-semibold);
+}
+
+.pillar__description {
+  margin: 0;
+  color: var(--text-muted-on-dark);
+  line-height: var(--line-height-body);
+  flex-grow: 1;
+}
+
+.pillar__governance {
+  margin: var(--space-xs) 0 0;
+  padding-top: var(--space-sm);
+  border-top: var(--border-width) solid var(--border-color-inverse);
+  color: var(--text-muted-on-dark);
+  font-size: var(--font-size-body-sm);
+  line-height: var(--line-height-body-sm);
+}
+
+.pillar__links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.pillar__link {
+  display: inline-block;
+  padding-block: var(--space-xs);
+  color: var(--color-signal-on-dark);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--color-signal-on-dark-hover);
+    text-decoration: underline;
+  }
+}
+
+.pillar__related {
+  margin: 0;
+  color: var(--text-muted-on-dark);
+  font-size: var(--font-size-body-sm);
+
+  a {
+    color: var(--color-signal-on-dark);
+
+    &:hover {
+      color: var(--color-signal-on-dark-hover);
+    }
+  }
+}

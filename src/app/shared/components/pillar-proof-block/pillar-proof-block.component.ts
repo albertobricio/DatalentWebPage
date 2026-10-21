@@ -50,7 +50,7 @@ export class PillarProofBlockComponent {
     {
       marker: '04',
       name: 'Ciclo de vida del talento, integrado',
-      statement: 'Cinco prácticas, un solo sistema.',
+      statement: 'Cuatro soluciones, un solo sistema.',
     },
   ];
 }

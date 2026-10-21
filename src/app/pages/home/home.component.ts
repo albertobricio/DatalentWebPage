@@ -2,14 +2,14 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { HeroComponent } from '../../shared/components/hero/hero.component';
 import { PillarProofBlockComponent } from '../../shared/components/pillar-proof-block/pillar-proof-block.component';
 import { SectionComponent } from '../../shared/components/section/section.component';
-import { FeatureCardComponent } from '../../shared/components/feature-card/feature-card.component';
+import { ServicePillarsComponent } from '../../shared/components/service-pillars/service-pillars.component';
 import { TrustCardComponent } from '../../shared/components/trust-card/trust-card.component';
 import { CtaComponent } from '../../shared/components/cta/cta.component';
 import { SeoService } from '../../shared/seo.service';
 
 /**
  * Website v2 Sprint 2 — Home. Section order and content sourcing follow
- * home-wireframe.md exactly: Hero → PillarProofBlock → service grid →
+ * home-wireframe.md exactly: Hero → PillarProofBlock → ServicePillars (Flow, Match, Radar, Shield) →
  * How We Work → trust strip → closing dual-CTA banner. Replaces the pre-v2
  * Home (Tailwind hero, emoji problem-cards, four-service grid, testimonial
  * carousel, broken TrustIndex reviews widget) entirely — none of that
@@ -26,7 +26,7 @@ import { SeoService } from '../../shared/seo.service';
     HeroComponent,
     PillarProofBlockComponent,
     SectionComponent,
-    FeatureCardComponent,
+    ServicePillarsComponent,
     TrustCardComponent,
     CtaComponent,
   ],

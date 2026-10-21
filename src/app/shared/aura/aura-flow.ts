@@ -107,7 +107,7 @@ const PRACTICAS: readonly { id: string; label: string; path: string; resumen: st
     label: 'Todavía no lo tengo claro',
     path: '/servicios',
     resumen:
-      'Sin problema. Las cinco prácticas funcionan como un solo sistema, y el punto de entrada habitual es un diagnóstico gratuito de unos 30 minutos: revisamos tu caso concreto y te decimos si hay encaje, incluida la respuesta honesta de que no lo hay.',
+      'Sin problema. Las cuatro soluciones funcionan como un solo sistema, y el punto de entrada habitual es un diagnóstico gratuito de unos 30 minutos: revisamos tu caso concreto y te decimos si hay encaje, incluida la respuesta honesta de que no lo hay.',
   },
 ];
 

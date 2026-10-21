@@ -39,13 +39,19 @@
   }
 }
 
-// Desktop nav and CTAs are hidden below the desktop breakpoint; the mobile
+// Desktop nav and CTAs are hidden below the wide breakpoint; the mobile
 // menu panel carries the same content at that size.
+//
+// Medido: logo (178) + menú (573) + dos botones (458) + huecos y márgenes
+// ocupan ~1320px. Con el corte en 'desktop' (960px) la cabecera desbordaba y
+// daba scroll horizontal en cualquier portátil de 1280px. Ahora el menú
+// completo entra en 'wide' con un botón (~1095px) y el segundo aparece en
+// 'xwide'.
 .header__nav,
 .header__ctas {
   display: none;
 
-  @include respond-to('desktop') {
+  @include respond-to('wide') {
     display: flex;
   }
 
@@ -154,6 +160,14 @@
   gap: var(--space-sm);
 }
 
+.header__cta--extra {
+  display: none;
+
+  @include respond-to('xwide') {
+    display: revert;
+  }
+}
+
 .header__mobile-trigger {
   display: flex;
   align-items: center;
@@ -164,7 +178,7 @@
   border: none;
   cursor: pointer;
 
-  @include respond-to('desktop') {
+  @include respond-to('wide') {
     display: none;
   }
 }

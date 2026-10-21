@@ -3,7 +3,7 @@ import { RouterLink } from '@angular/router';
 import { HeroComponent } from '../../../shared/components/hero/hero.component';
 import { CardComponent } from '../../../shared/components/card/card.component';
 import { BadgeComponent } from '../../../shared/components/badge/badge.component';
-import { FeatureCardComponent } from '../../../shared/components/feature-card/feature-card.component';
+import { ServicePillarsComponent } from '../../../shared/components/service-pillars/service-pillars.component';
 import { CtaComponent } from '../../../shared/components/cta/cta.component';
 import { SectionComponent } from '../../../shared/components/section/section.component';
 import { BreadcrumbItem } from '../../../shared/components/breadcrumb/breadcrumb.component';
@@ -29,7 +29,7 @@ import { SeoService } from '../../../shared/seo.service';
     HeroComponent,
     CardComponent,
     BadgeComponent,
-    FeatureCardComponent,
+    ServicePillarsComponent,
     CtaComponent,
     SectionComponent,
   ],
@@ -55,7 +55,7 @@ export class ServicesHubComponent {
       path: '/servicios',
       ogTitle: 'Servicios | Datalent Solutions',
       ogDescription:
-        'Cinco prácticas que funcionan como un solo sistema: agentic AI, people analytics, compensación, gobernanza de IA y workforce intelligence.',
+        'Cuatro soluciones que funcionan como un solo sistema: Datalent Flow, Match, Radar y Shield.',
       jsonLd: {
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',

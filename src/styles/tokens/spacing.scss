@@ -23,6 +23,7 @@
 $bp-tablet: 600px;
 $bp-desktop: 960px;
 $bp-wide: 1280px;
+$bp-xwide: 1440px;
 
 // Mobile-first breakpoint mixin — every component includes this instead of
 // writing a raw @media query, so a breakpoint value only ever needs to change
@@ -41,7 +42,11 @@ $bp-wide: 1280px;
     @media (min-width: $bp-wide) {
       @content;
     }
+  } @else if $breakpoint == 'xwide' {
+    @media (min-width: $bp-xwide) {
+      @content;
+    }
   } @else {
-    @error "Unknown breakpoint `#{$breakpoint}`. Use 'tablet', 'desktop', or 'wide'.";
+    @error "Unknown breakpoint `#{$breakpoint}`. Use 'tablet', 'desktop', 'wide' or 'xwide'.";
   }
 }

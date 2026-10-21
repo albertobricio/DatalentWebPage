@@ -3,7 +3,7 @@
 :host {
   display: contents;
 
-  @include respond-to('desktop') {
+  @include respond-to('wide') {
     display: none;
   }
 }
