@@ -4,6 +4,13 @@
 
 Datalent trabaja en modelo advisory-led: no vende una plataforma SaaS autoconfigurable. Atiende en español e inglés.
 
+## Soluciones
+
+- Datalent Flow (HR FlowEngine): flujos de trabajo agénticos para trámites, consultas internas, onboarding y operaciones de RR. HH., con human-in-the-loop. Ver Agentic AI para RR. HH.
+- Datalent Match (TalentScope): reclutamiento agéntico (atracción, cribado y evaluaciones conversacionales) con auditoría de sesgo; alto riesgo según el Anexo III del Reglamento de IA, con decisión final siempre humana.
+- Datalent Radar (PeopleRadar): People Analytics, equidad retributiva y simulación de escenarios de plantilla (Workforce Intelligence).
+- Datalent Shield (EthicShield): clasificación de riesgo, auditoría ética y adecuación legal de sistemas de IA de RR. HH. al Reglamento (UE) 2024/1689 y al RGPD.
+
 ## Servicios
 
 - [Agentic AI para RR. HH.](https://datalentsolutions.com/servicios/agentic-ai-rrhh): revisión de viabilidad y diseño de agentes de IA para flujos de RR. HH. (cribado, reporting, soporte interno) con límites de autonomía y punto de control humano.
