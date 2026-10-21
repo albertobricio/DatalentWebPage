@@ -1,0 +1,23 @@
+# Datalent Solutions
+
+> Consultora boutique de RR. HH. con sede en Tarancón (Cuenca, España). Diseña, despliega y gobierna agentes de IA y sistemas analíticos para la función de RR. HH., con límites de autonomía documentados, supervisión humana en las decisiones que afectan a personas y gobernanza de datos bajo el RGPD y el Reglamento (UE) 2024/1689 de IA.
+
+Datalent trabaja en modelo advisory-led: no vende una plataforma SaaS autoconfigurable. Atiende en español e inglés.
+
+## Servicios
+
+- [Agentic AI para RR. HH.](https://datalentsolutions.com/servicios/agentic-ai-rrhh): revisión de viabilidad y diseño de agentes de IA para flujos de RR. HH. (cribado, reporting, soporte interno) con límites de autonomía y punto de control humano.
+- [People Analytics](https://datalentsolutions.com/servicios/people-analytics): diagnósticos de cultura, compromiso, rotación y equidad de procesos, con metodología y linaje de datos visibles.
+- [Compensación y Total Rewards](https://datalentsolutions.com/servicios/compensacion-total-rewards): auditorías de equidad retributiva, benchmarking salarial y diseño de Total Rewards, con la Directiva (UE) 2023/970 como marco.
+- [Gobernanza de IA](https://datalentsolutions.com/servicios/gobernanza-ia): clasificación de riesgo de sistemas de IA de RR. HH. según el Reglamento Europeo de IA, diseño de supervisión humana y auditoría de sesgo.
+- [Workforce Intelligence](https://datalentsolutions.com/servicios/workforce-intelligence): planificación de plantilla basada en escenarios, siempre con al menos dos escenarios por decisión.
+
+## Empresa
+
+- [Por qué Datalent](https://datalentsolutions.com/por-que-datalent): pilares y posicionamiento.
+- [Preguntas frecuentes](https://datalentsolutions.com/faq)
+- [Contacto](https://datalentsolutions.com/contacto)
+
+## Opcional
+
+- [El Radar Agéntico (newsletter)](https://datalentsolutions.com/newsletter)
