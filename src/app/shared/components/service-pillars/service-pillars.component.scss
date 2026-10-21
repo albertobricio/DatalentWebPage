@@ -33,6 +33,9 @@
 }
 
 .pillar {
+  // El menú y el pie enlazan a /servicios#<solución>: sin este margen la
+  // cabecera fija tapaba el principio de la tarjeta.
+  scroll-margin-top: 6rem;
   display: flex;
   flex-direction: column;
   border: var(--border-width) solid var(--border-color-inverse);
@@ -119,6 +122,28 @@
   &:hover {
     color: var(--color-signal-on-dark-hover);
     text-decoration: underline;
+  }
+}
+
+.pillar__contact {
+  align-self: flex-start;
+  margin-top: var(--space-xs);
+  padding: var(--space-xs) var(--space-md);
+  border: var(--border-width) solid var(--color-control-border-dark);
+  border-radius: var(--radius-md);
+  color: var(--text-inverse);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  text-decoration: none;
+  transition:
+    background-color var(--motion-fast) var(--motion-easing),
+    border-color var(--motion-fast) var(--motion-easing);
+
+  &:hover {
+    border-color: var(--color-signal-on-dark);
+    background-color: var(--color-border-dark);
+    color: var(--text-inverse);
+    text-decoration: none;
   }
 }
 

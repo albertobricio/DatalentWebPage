@@ -46,7 +46,7 @@ export class WorkforceIntelligenceComponent {
 
   protected readonly breadcrumbItems: BreadcrumbItem[] = [
     { label: 'Inicio', url: '/' },
-    { label: 'Servicios' },
+    { label: 'Soluciones', url: '/servicios' },
     { label: 'Workforce Intelligence' },
   ];
 

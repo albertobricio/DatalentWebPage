@@ -13,6 +13,8 @@
 export interface NavChild {
   readonly label: string;
   readonly path?: string;
+  /** Ancla dentro de `path`, p. ej. la tarjeta de una solución en /servicios. */
+  readonly fragment?: string;
 }
 
 export interface NavItem {
@@ -30,14 +32,13 @@ export const NAV_ITEMS: readonly NavItem[] = [
     // the hub unreachable from the header. Exposing it as the first child
     // is the conventional fix and needs no change to the dropdown's
     // keyboard/aria behaviour.
-    label: 'Servicios',
+    label: 'Soluciones',
     children: [
-      { label: 'Ver todos los servicios', path: '/servicios' },
-      { label: 'Agentic AI para RR. HH.', path: '/servicios/agentic-ai-rrhh' },
-      { label: 'People Analytics', path: '/servicios/people-analytics' },
-      { label: 'Compensación y Total Rewards', path: '/servicios/compensacion-total-rewards' },
-      { label: 'Gobernanza de IA', path: '/servicios/gobernanza-ia' },
-      { label: 'Workforce Intelligence', path: '/servicios/workforce-intelligence' },
+      { label: 'Ver todas las soluciones', path: '/servicios' },
+      { label: 'Datalent Flow', path: '/servicios', fragment: 'flow' },
+      { label: 'Datalent Match', path: '/servicios', fragment: 'match' },
+      { label: 'Datalent Radar', path: '/servicios', fragment: 'radar' },
+      { label: 'Datalent Shield', path: '/servicios', fragment: 'shield' },
     ],
   },
   { label: 'Por qué Datalent', path: '/por-que-datalent' },

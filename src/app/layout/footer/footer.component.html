@@ -21,12 +21,12 @@
       </div>
 
       <div class="footer__column">
-        <h2 class="footer__heading">Prácticas</h2>
+        <h2 class="footer__heading">Soluciones</h2>
         <ul class="footer__list">
           @for (item of practices; track item.label) {
             <li>
               @if (item.path) {
-                <a [routerLink]="item.path">{{ item.label }}</a>
+                <a [routerLink]="item.path" [fragment]="item.fragment">{{ item.label }}</a>
               } @else {
                 <span class="footer__inactive">
                   {{ item.label }}

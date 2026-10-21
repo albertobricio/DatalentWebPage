@@ -13,18 +13,19 @@ interface ServiceOption {
 }
 
 /**
- * Matches the six practices (service-catalog.md) plus a general/other
- * fallback — this is the qualification signal page-specs.md's Contact
- * entry exists to capture, closing docs/business-audit-v2.md's "every
- * lead tagged Consulta general" finding.
+ * Las cuatro soluciones más un diagnóstico general y "otro". Es la señal de
+ * cualificación que el formulario existe para capturar (docs/business-audit-v2.md:
+ * "todos los leads etiquetados como Consulta general").
+ *
+ * El value coincide con la variante de cada solución, así que
+ * /contacto?motivo=radar llega con Radar ya elegido (ver applyMotivo).
  */
 const SERVICE_OPTIONS: readonly ServiceOption[] = [
   { value: 'general', label: 'Diagnóstico general' },
-  { value: 'agentic-ai', label: 'Agentic AI para RR. HH.' },
-  { value: 'people-analytics', label: 'People Analytics' },
-  { value: 'compensacion-total-rewards', label: 'Compensación y Total Rewards' },
-  { value: 'gobernanza-ia', label: 'Gobernanza de IA' },
-  { value: 'workforce-intelligence', label: 'Workforce Intelligence' },
+  { value: 'flow', label: 'Datalent Flow · flujos de trabajo agénticos' },
+  { value: 'match', label: 'Datalent Match · reclutamiento y selección' },
+  { value: 'radar', label: 'Datalent Radar · People Analytics y plantilla' },
+  { value: 'shield', label: 'Datalent Shield · gobernanza y cumplimiento de IA' },
   { value: 'otro', label: 'Otro' },
 ];
 

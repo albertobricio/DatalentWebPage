@@ -39,12 +39,12 @@ export const SITE_FAQ_ITEMS: readonly FaqItem[] = [
     {
       question: '¿Cómo evitáis que un modelo introduzca sesgo en la selección?',
       answer:
-        '<p>Con auditoría de sesgo obligatoria <em>antes</em> de que un modelo influya en una decisión real, no después: cribado de impacto dispar frente al umbral de la regla del 4/5, documentación de qué variables alimentan el modelo y con qué peso, y re-validación periódica, porque un modelo que no se mantiene se degrada en silencio.</p>',
+        '<p>En <strong>Datalent Match</strong>, con auditoría de sesgo obligatoria <em>antes</em> de que un modelo influya en una decisión real, no después: cribado de impacto dispar frente al umbral de la regla del 4/5, documentación de qué variables alimentan el modelo y con qué peso, y re-validación periódica, porque un modelo que no se mantiene se degrada en silencio.</p>',
     },
     {
       question: '¿Ofrecéis equidad retributiva o benchmarking salarial?',
       answer:
-        '<p>Sí, es el punto de entrada de la práctica de Compensación &amp; Total Rewards: una auditoría de equidad retributiva o un benchmark de mercado para un conjunto de roles definido, siempre mostrando la brecha bruta y la ajustada por separado. Reportar solo una de las dos es engañoso en cualquier dirección. La Directiva (UE) 2023/970 de Transparencia Retributiva es el marco de referencia, y su plazo de transposición ya ha pasado.</p>',
+        '<p>Sí, forma parte de <strong>Datalent Radar</strong> y es su punto de entrada en retribución: una auditoría de equidad retributiva o un benchmark de mercado para un conjunto de roles definido, siempre mostrando la brecha bruta y la ajustada por separado. Reportar solo una de las dos es engañoso en cualquier dirección. La Directiva (UE) 2023/970 de Transparencia Retributiva es el marco de referencia, y su plazo de transposición ya ha pasado.</p>',
     },
     {
       question: '¿Cómo os integráis con nuestro ATS o HRIS actual?',

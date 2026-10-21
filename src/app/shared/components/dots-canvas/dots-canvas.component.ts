@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
-export type DotsVariant = 'flow' | 'match' | 'radar' | 'shield';
+export type DotsVariant = 'flow' | 'match' | 'radar' | 'shield' | 'field';
 
 interface Dot {
   /** Posición final, en unidades normalizadas 0–1 del canvas. */
@@ -33,7 +33,7 @@ interface Rgb {
 
 /**
  * Micro-canvas de puntos de las tarjetas de solución (Flow, Match, Radar,
- * Shield). Canvas 2D sin dependencias: la CSP es `script-src 'self'` y una
+ * Shield) y, con la variante `field`, la constelación del hero de Home. Canvas 2D sin dependencias: la CSP es `script-src 'self'` y una
  * librería 3D para cuatro ilustraciones de 160px no compensaba su peso.
  *
  * Reacciona a dos cosas:
@@ -215,6 +215,9 @@ export class DotsCanvasComponent {
       case 'shield':
         this.drawShield(ctx);
         break;
+      case 'field':
+        this.drawField(ctx);
+        break;
     }
   }
 
@@ -385,6 +388,77 @@ export class DotsCanvasComponent {
       this.fill(ctx, x, y, d.r + lift * 1.2, lift, 0.45 + lift * 0.55);
     }
   }
+
+  // ── Field: constelación del hero ──────────────────────────────────────
+  // Ocupa todo el rectángulo (no el cuadrado centrado de las tarjetas). Los
+  // puntos derivan despacio, se enlazan con sus vecinos cercanos y, con el
+  // cursor, se acercan a él y le tienden enlaces.
+
+  private drawField(ctx: CanvasRenderingContext2D): void {
+    const spread = 1 - easeOutCubic(this.assembly);
+    const unit = Math.max(this.width, this.height);
+    const pointer = this.pointer
+      ? { x: this.pointer.x * this.width, y: this.pointer.y * this.height }
+      : null;
+
+    const points = this.dots.map((d) => {
+      const driftX = Math.sin(this.time * 0.35 + d.phase * 6.28) * 0.012;
+      const driftY = Math.cos(this.time * 0.3 + d.phase * 6.28) * 0.012;
+      let x = (d.x + driftX + d.sx * spread) * this.width;
+      let y = (d.y + driftY + d.sy * spread) * this.height;
+      let near = 0;
+      if (pointer) {
+        const dist = Math.hypot(x - pointer.x, y - pointer.y) / unit;
+        near = (1 - clamp(dist / 0.22, 0, 1)) * this.hover;
+        x = lerp(x, pointer.x, near * 0.18);
+        y = lerp(y, pointer.y, near * 0.18);
+      }
+      return { x, y, r: d.r, near };
+    });
+
+    const linkDistance = unit * 0.13;
+    ctx.lineWidth = 1;
+    for (let i = 0; i < points.length; i++) {
+      for (let j = i + 1; j < points.length; j++) {
+        const a = points[i];
+        const b = points[j];
+        const dist = Math.hypot(a.x - b.x, a.y - b.y);
+        if (dist > linkDistance) {
+          continue;
+        }
+        const strength = 1 - dist / linkDistance;
+        const lit = Math.max(a.near, b.near);
+        ctx.strokeStyle = rgba(
+          mixRgb(this.base, this.accent, lit),
+          (0.18 + lit * 0.35) * strength * this.assemblyAlpha(),
+        );
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+      }
+    }
+
+    if (pointer) {
+      for (const p of points) {
+        if (p.near > 0.05) {
+          ctx.strokeStyle = rgba(this.accent, p.near * 0.45 * this.assemblyAlpha());
+          ctx.beginPath();
+          ctx.moveTo(p.x, p.y);
+          ctx.lineTo(pointer.x, pointer.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    points.forEach((p, i) => {
+      // Uno de cada nueve puntos es un "agente": acento fijo y pulso propio.
+      const agent = i % 9 === 4;
+      const pulse = agent ? 0.5 + 0.5 * Math.sin(this.time * 2 + this.dots[i].phase * 6.28) : 0;
+      const mix = agent ? 1 : p.near;
+      this.fill(ctx, p.x, p.y, p.r + (agent ? 1.2 + pulse : 0) + p.near * 1.5, mix, 0.45 + mix * 0.5);
+    });
+  }
 }
 
 // ── Geometría de cada variante ─────────────────────────────────────────
@@ -441,6 +515,21 @@ function buildDots(variant: DotsVariant): Dot[] {
           dots.push(make(0.5 + Math.cos(a) * radius, 0.5 + Math.sin(a) * radius, 1.3));
         }
       });
+      return dots;
+    }
+
+    case 'field': {
+      // Rejilla con jitter: cubre el área de forma pareja sin verse cuadriculada.
+      const dots: Dot[] = [];
+      const cols = 13;
+      const rows = 9;
+      for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+          const x = (col + 0.5 + (random() - 0.5) * 0.8) / cols;
+          const y = (row + 0.5 + (random() - 0.5) * 0.8) / rows;
+          dots.push(make(x, y, 1.2 + random() * 1.3));
+        }
+      }
       return dots;
     }
 

@@ -41,7 +41,7 @@ export class AiGovernanceComponent {
 
   protected readonly breadcrumbItems: BreadcrumbItem[] = [
     { label: 'Inicio', url: '/' },
-    { label: 'Servicios' },
+    { label: 'Soluciones', url: '/servicios' },
     { label: 'Gobernanza de IA' },
   ];
 

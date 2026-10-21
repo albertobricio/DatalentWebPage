@@ -5,6 +5,7 @@ import { SectionComponent } from '../../shared/components/section/section.compon
 import { ServicePillarsComponent } from '../../shared/components/service-pillars/service-pillars.component';
 import { TrustCardComponent } from '../../shared/components/trust-card/trust-card.component';
 import { CtaComponent } from '../../shared/components/cta/cta.component';
+import { TimelineComponent, TimelineStep } from '../../shared/components/timeline/timeline.component';
 import { SeoService } from '../../shared/seo.service';
 
 /**
@@ -29,6 +30,7 @@ import { SeoService } from '../../shared/seo.service';
     ServicePillarsComponent,
     TrustCardComponent,
     CtaComponent,
+    TimelineComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -36,6 +38,26 @@ import { SeoService } from '../../shared/seo.service';
 })
 export class HomeComponent {
   private readonly seo = inject(SeoService);
+
+  // Las mismas tres fases (entrada → diseño y despliegue → relación
+  // continua) que cada página de práctica detalla en su propio timeline.
+  protected readonly steps: TimelineStep[] = [
+    {
+      label: 'Diagnóstico acotado',
+      description:
+        'Una conversación gratuita de unos 30 minutos sobre un caso concreto. Te decimos si hay encaje y por qué solución empezar, incluida la respuesta honesta de que no lo hay.',
+    },
+    {
+      label: 'Diseño y despliegue',
+      description:
+        'Ningún agente entra en producción sin su clasificación de riesgo, sus límites de autonomía documentados y el punto de control humano definido.',
+    },
+    {
+      label: 'Gobernanza continua',
+      description:
+        'Seguimos siendo responsables de lo que construimos: revisiones periódicas, re-validación de sesgo y ajustes cuando cambia el proceso o la norma.',
+    },
+  ];
 
   constructor() {
     // SEO goal per page-specs.md: rank for the category terms, explicitly

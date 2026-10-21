@@ -7,7 +7,12 @@
   páginas.
 -->
 <div class="container">
-  <div class="hero" [class.hero--with-mark]="showSignalMark()">
+  <div
+    class="hero"
+    [class.hero--with-visual]="dotsVariant()"
+    (pointermove)="dots()?.setPointer($event.clientX, $event.clientY)"
+    (pointerleave)="dots()?.clearPointer()"
+  >
     <div class="hero__content">
       @if (breadcrumbItems(); as items) {
         <app-breadcrumb class="hero__breadcrumb" [items]="items" />
@@ -25,19 +30,12 @@
       </div>
     </div>
 
-    @if (showSignalMark()) {
-      <div class="hero__mark" aria-hidden="true">
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="100" cy="100" r="28" fill="var(--color-signal)" />
-          <path
-            d="M 100 40 A 60 60 0 1 1 47 130"
-            fill="none"
-            stroke="var(--color-signal)"
-            stroke-width="3"
-            stroke-linecap="round"
-          />
-        </svg>
-      </div>
+    @if (dotsVariant(); as variant) {
+      <app-dots-canvas
+        class="hero__visual"
+        [class.hero__visual--field]="variant === 'field'"
+        [variant]="variant"
+      />
     }
   </div>
 </div>

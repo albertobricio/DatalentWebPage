@@ -24,7 +24,7 @@
               @for (child of item.children; track child.label) {
                 <li>
                   @if (child.path) {
-                    <a [routerLink]="child.path" (click)="onLinkClick()">{{ child.label }}</a>
+                    <a [routerLink]="child.path" [fragment]="child.fragment" (click)="onLinkClick()">{{ child.label }}</a>
                   } @else {
                     <span class="mobile-menu__inactive">
                       {{ child.label }}

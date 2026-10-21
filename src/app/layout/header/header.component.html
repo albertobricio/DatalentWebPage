@@ -28,7 +28,7 @@
                 @for (child of item.children; track child.label) {
                   <li>
                     @if (child.path) {
-                      <a [routerLink]="child.path" (click)="closeDropdowns()">{{ child.label }}</a>
+                      <a [routerLink]="child.path" [fragment]="child.fragment" (click)="closeDropdowns()">{{ child.label }}</a>
                     } @else {
                       <span class="header__nav-inactive">
                         {{ child.label }}

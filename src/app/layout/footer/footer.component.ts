@@ -5,27 +5,22 @@ import { LogoComponent } from '../../shared/components/logo/logo.component';
 interface FooterLink {
   readonly label: string;
   readonly path?: string;
+  readonly fragment?: string;
   readonly href?: string;
 }
 
 /**
- * Lists all six practices as five entries — Compensation & Benefits and
- * Total Rewards are one combined page per page-specs.md §5 (Total Rewards
- * nests inside the Comp & Benefits relationship rather than standing
- * alone), matching nav-items.ts's own single "Compensación y Total
- * Rewards" entry. See site-map.md's Footer Navigation. As of Sprint 6,
- * every entry has a real path — this template's `path?`-optional shape
- * and the FooterComponent's own inactive-vs-linked rendering logic stay
- * in place for whenever a seventh practice is documented ahead of being
- * built.
+ * Columna "Soluciones": las cuatro soluciones, cada una enlazada a su tarjeta
+ * en /servicios (mismo patrón que el menú, nav-items.ts). Las páginas de
+ * práctica se enlazan desde esas tarjetas. La forma `path?` opcional y el
+ * renderizado "Próximamente" se conservan para entradas aún no construidas.
  */
 const PRACTICES: readonly FooterLink[] = [
-  { label: 'Todos los servicios', path: '/servicios' },
-  { label: 'Agentic AI', path: '/servicios/agentic-ai-rrhh' },
-  { label: 'People Analytics', path: '/servicios/people-analytics' },
-  { label: 'Compensación y Total Rewards', path: '/servicios/compensacion-total-rewards' },
-  { label: 'Gobernanza de IA', path: '/servicios/gobernanza-ia' },
-  { label: 'Workforce Intelligence', path: '/servicios/workforce-intelligence' },
+  { label: 'Todas las soluciones', path: '/servicios' },
+  { label: 'Datalent Flow', path: '/servicios', fragment: 'flow' },
+  { label: 'Datalent Match', path: '/servicios', fragment: 'match' },
+  { label: 'Datalent Radar', path: '/servicios', fragment: 'radar' },
+  { label: 'Datalent Shield', path: '/servicios', fragment: 'shield' },
 ];
 
 const COMPANY_LINKS: readonly FooterLink[] = [

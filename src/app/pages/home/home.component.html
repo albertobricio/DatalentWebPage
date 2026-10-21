@@ -5,7 +5,7 @@
     description="Automatizamos flujos completos de RR. HH. (selección, reporting, soporte interno) con agentes que operan dentro de límites de autonomía definidos y escalan a una persona cuando corresponde, dentro de un único sistema con cuatro soluciones: Flow, Match, Radar y Shield."
     ctaVariant="briefing"
     secondaryCtaVariant="diagnostico"
-    [showSignalMark]="true"
+    dotsVariant="field"
   />
 
   <app-section background="secondary">
@@ -20,34 +20,29 @@
     </div>
   </app-section>
 
-  <app-section background="secondary">
-    <div class="container container--prose">
-      <h2>Cómo trabajamos</h2>
-      <p>
-        Datalent es <strong>advisory-led y technology-enabled</strong>. No somos una
-        plataforma SaaS que se configura en solitario, ni una consultora generalista de
-        RR. HH. Diseñamos, desplegamos y gobernamos agentes de IA y sistemas analíticos
-        para la función de RR. HH. de cada cliente, y seguimos siendo responsables de la
-        gobernanza de lo que construimos.
-      </p>
-      <p>
-        No vendemos un producto autoconfigurable ni entregamos un informe y
-        desaparecemos: cada sistema que desplegamos mantiene una relación de gobernanza
-        activa y responsable.
-      </p>
-    </div>
-  </app-section>
-
   <app-section>
-    <div class="container trust-strip">
-      <app-trust-card>
-        Cada agente opera con límites de autonomía documentados y un punto de control
-        humano. Nunca decisiones automatizadas sin supervisión.
-      </app-trust-card>
-      <app-trust-card>
-        Datos alojados y gobernados bajo marco europeo: RGPD y Reglamento (UE) 2024/1689
-        de IA.
-      </app-trust-card>
+    <div class="container">
+      <div class="how-we-work__header">
+        <h2>Cómo trabajamos</h2>
+        <p class="section-intro">
+          <strong>Advisory-led y technology-enabled.</strong> No somos una plataforma SaaS
+          que se configura en solitario ni entregamos un informe y desaparecemos: diseñamos,
+          desplegamos y seguimos respondiendo de la gobernanza de lo que construimos.
+        </p>
+      </div>
+
+      <app-timeline [steps]="steps" />
+
+      <div class="trust-strip how-we-work__trust">
+        <app-trust-card>
+          Cada agente opera con límites de autonomía documentados y un punto de control
+          humano. Nunca decisiones automatizadas sin supervisión.
+        </app-trust-card>
+        <app-trust-card>
+          Datos alojados y gobernados bajo marco europeo: RGPD y Reglamento (UE) 2024/1689
+          de IA.
+        </app-trust-card>
+      </div>
     </div>
   </app-section>
 

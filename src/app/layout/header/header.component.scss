@@ -1,13 +1,17 @@
 @use 'tokens' as *;
 
+// El sticky va en el host, no en .header: un elemento sticky solo se mueve
+// dentro de su padre, y el padre de .header es este host, que mide justo lo
+// mismo que la cabecera. Con el sticky dentro, la cabecera se iba con el
+// scroll aunque el CSS dijera lo contrario.
 :host {
   display: block;
-}
-
-.header {
   position: sticky;
   top: 0;
   z-index: 50;
+}
+
+.header {
   background-color: var(--color-paper);
   border-bottom: var(--border-width) solid var(--color-border);
 }

@@ -65,7 +65,17 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    // Sin scrollPositionRestoration, Angular conserva el scroll entre rutas:
+    // pulsar una tarjeta al final de Home abría la página de destino a media
+    // altura. 'enabled' sube arriba en cada navegación y restaura la posición
+    // al volver atrás. anchorScrolling hace que /servicios#radar baje a la
+    // tarjeta (el menú y el pie enlazan así a cada solución).
+    RouterModule.forRoot(routes, {
+      scrollPositionRestoration: 'enabled',
+      anchorScrolling: 'enabled',
+    }),
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

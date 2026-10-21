@@ -63,7 +63,8 @@ const IR_A_CONTACTO: AuraAction = {
 const IR_A_FAQ: AuraAction = { label: 'Ver todas las preguntas frecuentes', path: '/faq' };
 
 /**
- * Las cinco prácticas, con la ruta real de cada una. El texto es el punto de
+ * Las cinco páginas de práctica, cada una presentada por la solución a la que
+ * pertenece (Flow, Match, Radar, Shield), con la ruta real de cada una. El texto es el punto de
  * entrada de service-catalog.md, no una descripción nueva.
  */
 const PRACTICAS: readonly { id: string; label: string; path: string; resumen: string }[] = [
@@ -72,35 +73,35 @@ const PRACTICAS: readonly { id: string; label: string; path: string; resumen: st
     label: 'Automatizar un flujo de RR. HH. con agentes',
     path: '/servicios/agentic-ai-rrhh',
     resumen:
-      'Agentic AI. Diseñamos agentes que planifican y ejecutan flujos completos (cribado, reporting, soporte interno) dentro de límites de autonomía documentados, con un punto de control humano en cada decisión que afecta a una persona.',
+      'Datalent Flow y Datalent Match (Agentic AI). Diseñamos agentes que planifican y ejecutan flujos completos (cribado, reporting, soporte interno) dentro de límites de autonomía documentados, con un punto de control humano en cada decisión que afecta a una persona.',
   },
   {
     id: 'p-analytics',
     label: 'Entender rotación, cultura o compromiso',
     path: '/servicios/people-analytics',
     resumen:
-      'People Analytics. Convertimos datos de plantilla en una decisión, con la fuente, la muestra y el método siempre a la vista. Si ya usas una plataforma, actuamos como capa de validación de metodología y gobernanza.',
+      'Datalent Radar (People Analytics). Convertimos datos de plantilla en una decisión, con la fuente, la muestra y el método siempre a la vista. Si ya usas una plataforma, actuamos como capa de validación de metodología y gobernanza.',
   },
   {
     id: 'p-comp',
     label: 'Equidad retributiva o bandas salariales',
     path: '/servicios/compensacion-total-rewards',
     resumen:
-      'Compensación y Total Rewards. Auditoría de equidad retributiva, benchmarking de mercado y diseño de Total Rewards, con la distinción entre brecha bruta y ajustada explicada.',
+      'Datalent Radar (Compensación y Total Rewards). Auditoría de equidad retributiva, benchmarking de mercado y diseño de Total Rewards, con la distinción entre brecha bruta y ajustada explicada.',
   },
   {
     id: 'p-gov',
     label: 'Cumplir el Reglamento Europeo de IA',
     path: '/servicios/gobernanza-ia',
     resumen:
-      'Gobernanza de IA. Clasificamos el riesgo, diseñamos la supervisión humana y documentamos cada decisión, antes de que lo pida un regulador, un comité de empresa o tu propio departamento legal.',
+      'Datalent Shield (Gobernanza de IA). Clasificamos el riesgo, diseñamos la supervisión humana y documentamos cada decisión, antes de que lo pida un regulador, un comité de empresa o tu propio departamento legal.',
   },
   {
     id: 'p-wi',
     label: 'Planificar plantilla, skills o una reorganización',
     path: '/servicios/workforce-intelligence',
     resumen:
-      'Workforce Intelligence. Modelamos las decisiones de plantilla (headcount, skills, estructura) bajo al menos dos futuros distintos, con los supuestos de cada uno declarados.',
+      'Datalent Radar (Workforce Intelligence). Modelamos las decisiones de plantilla (headcount, skills, estructura) bajo al menos dos futuros distintos, con los supuestos de cada uno declarados.',
   },
   {
     id: 'p-nose',

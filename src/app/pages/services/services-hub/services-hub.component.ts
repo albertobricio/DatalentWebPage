@@ -42,7 +42,7 @@ export class ServicesHubComponent {
 
   protected readonly breadcrumbItems: BreadcrumbItem[] = [
     { label: 'Inicio', url: '/' },
-    { label: 'Servicios' },
+    { label: 'Soluciones' },
   ];
 
   constructor() {

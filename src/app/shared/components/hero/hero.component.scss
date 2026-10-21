@@ -14,7 +14,7 @@
   }
 }
 
-.hero--with-mark {
+.hero--with-visual {
   @include respond-to('desktop') {
     max-width: none;
     display: grid;
@@ -56,19 +56,28 @@
   gap: var(--space-md);
 }
 
-.hero__mark {
+// Panel de puntos. En móvil se oculta: ocuparía una pantalla entera antes del
+// contenido, y sin cursor pierde la mitad de su gracia.
+.hero__visual {
   display: none;
+
+  // Sobre papel el gris claro de la rampa desaparece; los puntos usan el
+  // gris de texto atenuado y el acento de marca.
+  --dots-base: var(--color-slate);
+  --dots-accent: var(--color-signal);
 
   @include respond-to('desktop') {
     display: block;
-    justify-self: center;
     width: 100%;
-    max-width: 16rem;
+    max-width: 26rem;
+    height: 18rem;
+    justify-self: end;
   }
+}
 
-  svg {
-    display: block;
-    width: 100%;
-    height: auto;
+.hero__visual--field {
+  @include respond-to('desktop') {
+    max-width: none;
+    height: 24rem;
   }
 }

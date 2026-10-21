@@ -47,7 +47,7 @@ export class CompensationTotalRewardsComponent {
 
   protected readonly breadcrumbItems: BreadcrumbItem[] = [
     { label: 'Inicio', url: '/' },
-    { label: 'Servicios' },
+    { label: 'Soluciones', url: '/servicios' },
     { label: 'Compensación & Total Rewards' },
   ];
 

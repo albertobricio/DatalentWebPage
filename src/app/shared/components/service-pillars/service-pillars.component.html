@@ -12,6 +12,7 @@
     @for (pillar of pillars; track pillar.variant) {
       <li
         class="pillar"
+        [id]="pillar.variant"
         (pointermove)="onPointerMove($event, dots)"
         (pointerleave)="dots.clearPointer()"
       >
@@ -36,6 +37,13 @@
                 }
               </p>
             }
+            <a
+              class="pillar__contact"
+              routerLink="/contacto"
+              [queryParams]="{ motivo: pillar.variant }"
+            >
+              Consultar sobre {{ pillar.name }}
+            </a>
           </div>
         </div>
       </li>
