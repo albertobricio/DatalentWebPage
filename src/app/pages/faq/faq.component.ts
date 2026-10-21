@@ -43,7 +43,7 @@ export class FaqComponent implements OnInit, AfterViewInit {
     this.seo.set({
       title: 'Preguntas frecuentes | Datalent Solutions',
       description:
-        'Respuestas directas sobre autonomía de los agentes, supervisión humana, residencia de datos, auditoría de sesgo, equidad retributiva e integración con tu ATS o HRIS.',
+        'Respuestas sobre autonomía de los agentes, supervisión humana, residencia de datos, auditoría de sesgo, equidad retributiva e integración con tu ATS o HRIS.',
       path: '/faq',
     });
   }

@@ -97,9 +97,9 @@ export class WorkforceIntelligenceComponent {
   constructor() {
     this.seo.set({
       title:
-        'Workforce Intelligence | Planificación de escenarios y skills intelligence | Datalent Solutions',
+        'Workforce Intelligence y planificación de plantilla | Datalent',
       description:
-        'Planificación estratégica de plantilla basada en escenarios, no en dashboards: Build-Buy-Borrow-Bot-Bridge, análisis de skills y planificación por horizontes, con al menos dos escenarios en cada decisión.',
+        'Planificación de plantilla basada en escenarios, no en dashboards: Build-Buy-Borrow-Bot-Bridge, análisis de skills y al menos dos escenarios por decisión.',
       keywords:
         'workforce intelligence RRHH, planificación de plantilla, workforce planning España, análisis de skills, Build Buy Borrow Bot',
       path: '/servicios/workforce-intelligence',

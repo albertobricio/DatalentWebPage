@@ -122,9 +122,9 @@ export class AgenticAiComponent {
   constructor() {
     this.seo.set({
       title:
-        'Agentic AI para RR. HH. | Agentes de IA gobernados, no automatización disfrazada | Datalent Solutions',
+        'Agentes de IA gobernados para RR. HH. | Datalent Solutions',
       description:
-        'Diseñamos agentes de IA que planifican y ejecutan flujos completos de RR. HH. dentro de límites de autonomía documentados, con un punto de control humano en cada decisión que afecta a una persona.',
+        'Agentes de IA que ejecutan flujos de RR. HH. dentro de límites de autonomía documentados, con control humano en cada decisión que afecta a una persona.',
       keywords:
         'agentic AI RRHH, IA agéntica recursos humanos, agentes de IA gobernados RRHH, automatización RRHH con supervisión humana',
       path: '/servicios/agentic-ai-rrhh',

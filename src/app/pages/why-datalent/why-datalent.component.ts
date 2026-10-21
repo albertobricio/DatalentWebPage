@@ -49,9 +49,9 @@ export class WhyDatalentComponent {
 
   constructor() {
     this.seo.set({
-      title: 'Por qué Datalent | Autonomía gobernada y diseño europeo | Datalent Solutions',
+      title: 'Por qué Datalent | Autonomía gobernada y diseño europeo',
       description:
-        'Cuatro pilares y una lista explícita de lo que no somos. Autonomía gobernada, diseño europeo, criterio senior sin capas intermedias y un ciclo de vida del talento integrado.',
+        'Cuatro pilares y lo que no somos: autonomía gobernada, diseño europeo, criterio senior sin capas intermedias y un ciclo de vida del talento integrado.',
       keywords:
         'por qué Datalent, consultoría boutique gobernanza IA RRHH, agentic AI europea RRHH',
       path: '/por-que-datalent',

@@ -47,9 +47,9 @@ export class ServicesHubComponent {
 
   constructor() {
     this.seo.set({
-      title: 'Servicios | Cinco prácticas, un solo sistema | Datalent Solutions',
+      title: 'Servicios de IA y analítica para RR. HH. | Datalent Solutions',
       description:
-        'Agentic AI, People Analytics, Compensación & Total Rewards, Gobernanza de IA y Workforce Intelligence. Consultoría advisory-led y technology-enabled, no una plataforma que configuras en solitario.',
+        'Agentic AI, People Analytics, Compensación, Gobernanza de IA y Workforce Intelligence: consultoría para RR. HH., no una plataforma autoconfigurable.',
       keywords:
         'servicios de RRHH con IA, consultoría people analytics y gobernanza IA, consultoría agentic AI RRHH España',
       path: '/servicios',

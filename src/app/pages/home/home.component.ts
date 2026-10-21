@@ -43,9 +43,9 @@ export class HomeComponent {
     // keywords included "eurofirms, adecco" — docs/business-analysis.md
     // flagged this as diluting the B2B positioning).
     this.seo.set({
-      title: 'Datalent Solutions | Agentic AI para RR. HH., diseñada y gobernada en Europa',
+      title: 'Datalent Solutions | Agentic AI para RR. HH. gobernada en Europa',
       description:
-        'Diseñamos, desplegamos y gobernamos agentes de IA para RR. HH. con límites de autonomía documentados, un punto de control humano y gobernanza de datos europea desde el primer día.',
+        'Diseñamos, desplegamos y gobernamos agentes de IA para RR. HH. con límites de autonomía documentados, supervisión humana y gobernanza de datos europea.',
       keywords:
         'agentic AI RRHH, IA agéntica recursos humanos, people analytics España, gobernanza de IA RRHH, EU AI Act recursos humanos',
       path: '/',

@@ -95,7 +95,7 @@ export class PeopleAnalyticsComponent {
   constructor() {
     this.seo.set({
       title:
-        'People Analytics | Diagnóstico de cultura y rotación con metodología a la vista | Datalent Solutions',
+        'People Analytics: cultura y rotación | Datalent Solutions',
       description:
         'Diagnóstico de cultura organizacional y análisis de rotación basado en evidencia, con la metodología y el linaje de datos siempre a la vista.',
       keywords:

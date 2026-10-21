@@ -74,7 +74,7 @@ export class ContactComponent {
     this.seo.set({
       title: 'Contacto | Datalent Solutions',
       description:
-        'Habla con Datalent Solutions sobre agentic AI para RR. HH., people analytics, compensación o gobernanza de IA. Respuesta de un especialista en menos de 24 horas hábiles.',
+        'Habla con Datalent Solutions sobre agentic AI para RR. HH., people analytics, compensación o gobernanza de IA. Respuesta en menos de 24 horas hábiles.',
       path: '/contacto',
       jsonLd: {
         '@context': 'https://schema.org',
