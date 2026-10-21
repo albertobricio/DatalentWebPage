@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   // EmailJS configuration (replace these placeholders with real values)
-  emailjsServiceId: 'service_20ywxtx',
+  emailjsServiceId: 'service_azjlw6o',
   emailjsTemplateId: 'template_v8n6h7d',
   emailjsPublicKey: 'X7LMygptiRfraGflL',
   // Default recipient for mailto fallback
