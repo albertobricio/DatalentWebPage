@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   ElementRef,
   HostListener,
   signal,
@@ -10,6 +11,7 @@ import { RouterLink } from '@angular/router';
 import {
   AURA_FLOW,
   AURA_INICIO,
+  AURA_PASO_PERDIDO,
   AuraAction,
   AuraOption,
   AuraStep,
@@ -59,7 +61,8 @@ export class AuraComponent {
   protected readonly abierto = signal(false);
   protected readonly paso = signal<AuraStep>(this.buscar(AURA_INICIO));
   protected readonly turnos = signal<readonly Turno[]>([]);
-
+  /** Solo tiene sentido volver a empezar cuando ya se ha elegido algo. */
+  protected readonly hayConversacion = computed(() => this.turnos().length > 1);
 
   protected abrir(): void {
     if (this.turnos().length === 0) {
@@ -91,7 +94,7 @@ export class AuraComponent {
       { quien: 'aura', lineas: siguiente.says },
     ]);
     this.paso.set(siguiente);
-    this.bajarAlFinal();
+    this.mostrarUltimaRespuesta();
   }
 
   /** Reinicia la conversación sin recargar la página. */
@@ -99,7 +102,7 @@ export class AuraComponent {
     const inicio = this.buscar(AURA_INICIO);
     this.paso.set(inicio);
     this.turnos.set([{ quien: 'aura', lineas: inicio.says }]);
-    this.bajarAlFinal();
+    this.mostrarUltimaRespuesta();
   }
 
   protected paramsDe(accion: AuraAction): Record<string, string> {
@@ -111,19 +114,34 @@ export class AuraComponent {
     this.abierto.set(false);
   }
 
-  private bajarAlFinal(): void {
+  /**
+   * Lleva el hilo al principio de la última respuesta de Aura. Bajar hasta el
+   * final dejaba cortado el arranque de las respuestas largas del FAQ y
+   * obligaba a subir para leerlas desde la primera línea.
+   */
+  private mostrarUltimaRespuesta(): void {
     setTimeout(() => {
-      const el = this.hilo()?.nativeElement;
-      if (el) el.scrollTop = el.scrollHeight;
+      const hilo = this.hilo()?.nativeElement;
+      const turnos = hilo?.querySelectorAll<HTMLElement>('.aura__turno--aura');
+      const ultima = turnos?.[turnos.length - 1];
+      if (!hilo || !ultima) return;
+      const margen = 12;
+      const desplazamiento =
+        ultima.getBoundingClientRect().top - hilo.getBoundingClientRect().top;
+      hilo.scrollTop = Math.max(0, hilo.scrollTop + desplazamiento - margen);
     }, 0);
   }
 
   private buscar(id: string): AuraStep {
     const paso = AURA_FLOW.find((p) => p.id === id);
     // El guion es estático y cerrado, así que esto solo puede fallar por un
-    // error de programación al editar aura-flow.ts. Falla ruidosamente en vez
-    // de dejar a Aura muda.
-    if (!paso) throw new Error(`Aura: no existe el paso "${id}" en AURA_FLOW`);
+    // error de programación al editar aura-flow.ts. Se avisa en consola para
+    // quien lo edite, y el visitante recibe una salida amable en lugar de un
+    // panel mudo.
+    if (!paso) {
+      console.error(`Aura: no existe el paso "${id}" en AURA_FLOW`);
+      return AURA_PASO_PERDIDO;
+    }
     return paso;
   }
 }

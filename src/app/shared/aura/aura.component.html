@@ -18,7 +18,8 @@
       <path d="M 12 3 A 9 9 0 1 1 4.1 16.5" fill="none" stroke-width="2" stroke-linecap="round" />
     </svg>
   </span>
-  Preguntar a Aura
+  ¿Te ayudo?
+  <span class="visually-hidden">Abre Aura, el asistente automático de la web</span>
 </button>
 
 @if (abierto()) {
@@ -58,7 +59,7 @@
         </span>
         <div>
           <h2 id="aura-titulo" class="aura__titulo">Aura</h2>
-          <p class="aura__subtitulo">Asistente guiado</p>
+          <p class="aura__subtitulo">Asistente automático</p>
         </div>
       </div>
       <button type="button" class="aura__cerrar" (click)="cerrar()">
@@ -68,12 +69,16 @@
     </header>
 
     <!--
-      aria-live="polite" para que un lector de pantalla anuncie cada respuesta
-      nueva sin interrumpir lo que esté leyendo. El hilo es una lista porque
-      eso es: una secuencia ordenada de turnos.
+      Las opciones y los enlaces van dentro del hilo, justo debajo de la
+      última respuesta, como en cualquier chat. En un pie fijo ocupaban más
+      alto que la propia conversación y dejaban las respuestas en cuatro
+      líneas visibles.
+
+      aria-live="polite" va solo en la lista de turnos, para que un lector de
+      pantalla anuncie cada respuesta nueva sin leer también todos los botones.
     -->
-    <div #hilo class="aura__hilo" aria-live="polite">
-      <ol class="aura__turnos">
+    <div #hilo class="aura__hilo">
+      <ol class="aura__turnos" aria-live="polite">
         @for (turno of turnos(); track $index) {
           <li class="aura__turno aura__turno--{{ turno.quien }}">
             <span class="visually-hidden">{{ turno.quien === 'aura' ? 'Aura dice:' : 'Tú elegiste:' }}</span>
@@ -83,14 +88,13 @@
           </li>
         }
       </ol>
-    </div>
 
-    <div class="aura__pie">
       @if (paso().actions?.length) {
         <div class="aura__acciones">
-          @for (accion of paso().actions; track accion.label) {
+          @for (accion of paso().actions; track accion.label; let primera = $first) {
             <a
               class="aura__accion"
+              [class.aura__accion--secundaria]="!primera"
               [routerLink]="accion.path"
               [queryParams]="paramsDe(accion)"
               (click)="alNavegar()"
@@ -107,7 +111,7 @@
           natural, así que ofrecer una caja de escritura prometería algo que no
           puede cumplir y convertiría cada intento fallido en una decepción.
         -->
-        <ul class="aura__opciones">
+        <ul class="aura__opciones" aria-label="Opciones">
           @for (opcion of paso().options; track opcion.nextId) {
             <li>
               <button type="button" class="aura__opcion" (click)="elegir(opcion)">
@@ -117,10 +121,14 @@
           }
         </ul>
       }
-
-      <button type="button" class="aura__reiniciar" (click)="reiniciar()">
-        Empezar de nuevo
-      </button>
     </div>
+
+    @if (hayConversacion()) {
+      <div class="aura__pie">
+        <button type="button" class="aura__reiniciar" (click)="reiniciar()">
+          Empezar de nuevo
+        </button>
+      </div>
+    }
   </div>
 }

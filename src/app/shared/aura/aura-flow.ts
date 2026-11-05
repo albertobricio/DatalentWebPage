@@ -53,7 +53,9 @@ function desdeFaq(id: string, indice: number, options: readonly AuraOption[], ac
 }
 
 const VOLVER: AuraOption = { label: 'Volver al inicio', nextId: 'inicio' };
-const MAS_PREGUNTAS: AuraOption = { label: 'Otra pregunta frecuente', nextId: 'faq' };
+const OTRA_DUDA: AuraOption = { label: 'Tengo otra duda', nextId: 'faq' };
+const OTRO_PROBLEMA: AuraOption = { label: 'Ver otro problema', nextId: 'practicas' };
+const PERSONA: AuraOption = { label: 'Hablar con una persona', nextId: 'persona' };
 
 const IR_A_CONTACTO: AuraAction = {
   label: 'Pide tu diagnóstico gratuito (30 min)',
@@ -63,52 +65,72 @@ const IR_A_CONTACTO: AuraAction = {
 const IR_A_FAQ: AuraAction = { label: 'Ver todas las preguntas frecuentes', path: '/faq' };
 
 /**
- * Las cinco páginas de práctica, cada una presentada por la solución a la que
- * pertenece (Flow, Match, Radar, Shield), con la ruta real de cada una. El texto es el punto de
- * entrada de service-catalog.md, no una descripción nueva.
+ * Los problemas que Aura sabe reconocer, contados como los cuenta una pyme y
+ * cada uno llevado a la solución (Flow, Match, Radar, Shield) y a la página
+ * real que lo explica. Las etiquetas siguen las del desplegable de /contacto
+ * para que el visitante reconozca las mismas palabras en los dos sitios. Los
+ * resúmenes no añaden nada que no digan ya las páginas de servicio.
  */
-const PRACTICAS: readonly { id: string; label: string; path: string; resumen: string }[] = [
+const PRACTICAS: readonly { id: string; label: string; path: string; resumen: readonly string[] }[] = [
   {
-    id: 'p-agentic',
-    label: 'Automatizar un flujo de RR. HH. con agentes',
+    id: 'p-flow',
+    label: 'Papeleo y tareas repetitivas de personal',
     path: '/servicios/agentic-ai-rrhh',
-    resumen:
-      'Datalent Flow y Datalent Match (Agentic AI). Diseñamos agentes que planifican y ejecutan flujos completos (cribado, reporting, soporte interno) dentro de límites de autonomía documentados, con un punto de control humano en cada decisión que afecta a una persona.',
+    resumen: [
+      'De eso se encarga Datalent Flow. Ponemos agentes de IA a hacer de principio a fin tareas como preparar informes o responder las dudas internas de la plantilla, siempre dentro de unos límites que dejamos por escrito.',
+      'Cuando algo afecta a una persona, lo revisa alguien de tu equipo antes de que cuente.',
+    ],
+  },
+  {
+    id: 'p-match',
+    label: 'Encontrar y contratar personal',
+    path: '/servicios/agentic-ai-rrhh',
+    resumen: [
+      'De eso se encarga Datalent Match. Un agente revisa todas las candidaturas, preselecciona y prepara el primer contacto con los perfiles que encajan.',
+      'Nunca rechaza a nadie ni hace una oferta por su cuenta: eso lo decide siempre una persona. Y antes de usarlo comprobamos que no discrimina.',
+    ],
   },
   {
     id: 'p-analytics',
-    label: 'Entender rotación, cultura o compromiso',
+    label: 'Que no se me vaya la gente',
     path: '/servicios/people-analytics',
-    resumen:
-      'Datalent Radar (People Analytics). Convertimos datos de plantilla en una decisión, con la fuente, la muestra y el método siempre a la vista. Si ya usas una plataforma, actuamos como capa de validación de metodología y gobernanza.',
+    resumen: [
+      'Para eso está Datalent Radar. Usamos los datos que ya tienes de tu plantilla para ver qué está pasando y qué conviene hacer.',
+      'Siempre te enseñamos de dónde sale cada conclusión y cómo la hemos calculado.',
+    ],
   },
   {
     id: 'p-comp',
-    label: 'Equidad retributiva o bandas salariales',
+    label: 'Revisar sueldos o la igualdad salarial',
     path: '/servicios/compensacion-total-rewards',
-    resumen:
-      'Datalent Radar (Compensación y Total Rewards). Auditoría de equidad retributiva, benchmarking de mercado y diseño de Total Rewards, con la distinción entre brecha bruta y ajustada explicada.',
+    resumen: [
+      'También es parte de Datalent Radar. Comprobamos si hay diferencias de sueldo que no se puedan justificar, comparamos tus salarios con el mercado y te ayudamos a ordenar todo lo que ofreces al equipo: sueldo, beneficios, formación y reconocimiento.',
+    ],
   },
   {
     id: 'p-gov',
-    label: 'Cumplir el Reglamento Europeo de IA',
+    label: 'Usar IA sin problemas legales',
     path: '/servicios/gobernanza-ia',
-    resumen:
-      'Datalent Shield (Gobernanza de IA). Clasificamos el riesgo, diseñamos la supervisión humana y documentamos cada decisión, antes de que lo pida un regulador, un comité de empresa o tu propio departamento legal.',
+    resumen: [
+      'De eso se encarga Datalent Shield. Si usas o vas a usar IA con tu personal, vemos qué te exige el Reglamento Europeo de IA, decidimos en qué puntos tiene que revisar una persona y lo dejamos documentado.',
+      'Así lo tienes listo si te lo pide un inspector, tu comité de empresa o tu asesoría.',
+    ],
   },
   {
     id: 'p-wi',
-    label: 'Planificar plantilla, skills o una reorganización',
+    label: 'Organizar la plantilla de cara al futuro',
     path: '/servicios/workforce-intelligence',
-    resumen:
-      'Datalent Radar (Workforce Intelligence). Modelamos las decisiones de plantilla (headcount, skills, estructura) bajo al menos dos futuros distintos, con los supuestos de cada uno declarados.',
+    resumen: [
+      'Es la parte de Datalent Radar que mira hacia delante. Preparamos al menos dos escenarios para decidir cuánta gente vas a necesitar, con qué perfiles y cómo organizarla, y dejamos escritos los supuestos de cada uno.',
+    ],
   },
   {
     id: 'p-nose',
     label: 'Todavía no lo tengo claro',
     path: '/servicios',
-    resumen:
-      'Sin problema. Las cuatro soluciones funcionan como un solo sistema, y el punto de entrada habitual es un diagnóstico gratuito de unos 30 minutos: revisamos tu caso concreto y te decimos si hay encaje, incluida la respuesta honesta de que no lo hay.',
+    resumen: [
+      'Es lo más normal. Para eso está el diagnóstico gratuito de unos 30 minutos: vemos tu caso y te decimos con sinceridad si podemos ayudarte o si todavía no te compensa.',
+    ],
   },
 ];
 
@@ -119,12 +141,13 @@ const PRACTICAS: readonly { id: string; label: string; path: string; resumen: st
 const FAQ_OFRECIDAS: readonly { indice: number; etiqueta: string }[] = [
   { indice: 11, etiqueta: '¿Trabajáis con empresas pequeñas?' },
   { indice: 10, etiqueta: '¿Cuánto cuesta?' },
-  { indice: 3, etiqueta: '¿La IA decide sola o hay supervisión humana?' },
-  { indice: 4, etiqueta: '¿Dónde se alojan los datos? ¿RGPD y AI Act?' },
-  { indice: 5, etiqueta: '¿Cómo evitáis el sesgo en selección?' },
-  { indice: 1, etiqueta: '¿Sois software o consultoría?' },
-  { indice: 2, etiqueta: '¿Quién lleva mi proyecto?' },
+  { indice: 8, etiqueta: '¿Cómo empiezo?' },
   { indice: 7, etiqueta: '¿Necesito algún programa especial?' },
+  { indice: 3, etiqueta: '¿La IA decide sola?' },
+  { indice: 4, etiqueta: '¿Qué pasa con mis datos?' },
+  { indice: 5, etiqueta: '¿Cómo evitáis que la IA discrimine al contratar?' },
+  { indice: 1, etiqueta: '¿Sois un programa o una consultoría?' },
+  { indice: 2, etiqueta: '¿Quién lleva mi proyecto?' },
   { indice: 9, etiqueta: '¿Imponéis permanencia?' },
 ];
 
@@ -133,51 +156,68 @@ export const AURA_FLOW: readonly AuraStep[] = [
     id: 'inicio',
     // La declaración de qué es Aura vive aquí, en el saludo, y no en un bloque
     // fijo. El bloque ocupaba un tercio del panel en móvil para repetir algo
-    // que este mensaje ya dice. Lo que sí se recupera de él es la frase de
-    // privacidad, que no estaba en ningún otro sitio.
+    // que este mensaje ya dice. Primero la ayuda y después la transparencia:
+    // que se sepa que es un sistema automático (art. 50 del Reglamento
+    // Europeo de IA) y que no envía nada fuera del navegador.
     says: [
-      'Hola. Soy Aura, el asistente guiado de Datalent Solutions.',
-      'No soy un agente ni entiendo texto libre: te ofrezco opciones, respondo con lo que ya está publicado aquí y no envío nada fuera de tu navegador. ¿Por dónde empezamos?',
+      'Hola, soy Aura. Te ayudo a encontrar lo que buscas en esta web.',
+      'Soy un asistente automático y funciono con opciones, sin campo para escribir. No hay una persona al otro lado y no envío nada fuera de tu navegador.',
+      '¿Qué te trae por aquí?',
     ],
     options: [
-      { label: 'Tengo un problema concreto', nextId: 'practicas' },
-      { label: 'Quiero resolver una duda', nextId: 'faq' },
+      { label: 'Quiero resolver un problema de personal', nextId: 'practicas' },
+      { label: 'Tengo una duda', nextId: 'faq' },
       { label: 'Prefiero hablar con una persona', nextId: 'persona' },
     ],
   },
   {
     id: 'practicas',
-    says: ['¿Qué se parece más a lo que tienes entre manos?'],
-    options: PRACTICAS.map((p) => ({ label: p.label, nextId: p.id })),
+    says: ['¿Cuál se parece más a lo que te pasa?'],
+    options: [...PRACTICAS.map((p) => ({ label: p.label, nextId: p.id })), VOLVER],
   },
   ...PRACTICAS.map(
     (p): AuraStep => ({
       id: p.id,
-      says: [p.resumen],
-      options: [{ label: 'Ver otra práctica', nextId: 'practicas' }, VOLVER],
-      actions: [{ label: 'Abrir esta página', path: p.path }, IR_A_CONTACTO],
+      says: [...p.resumen, 'Si quieres, lo vemos juntos en un diagnóstico gratuito.'],
+      options: [OTRO_PROBLEMA, PERSONA, VOLVER],
+      actions: [IR_A_CONTACTO, { label: 'Leer más sobre esto', path: p.path }],
     }),
   ),
   {
     id: 'faq',
-    says: ['Estas son las dudas que más nos llegan. Las respuestas son las mismas que hay en la página de preguntas frecuentes.'],
+    says: [
+      'Estas son las dudas que más nos llegan. Te contesto lo mismo que pone en nuestra página de preguntas frecuentes.',
+    ],
     options: [
       ...FAQ_OFRECIDAS.map((f) => ({ label: f.etiqueta, nextId: `faq-${f.indice}` })),
       VOLVER,
     ],
   },
   ...FAQ_OFRECIDAS.map((f) =>
-    desdeFaq(`faq-${f.indice}`, f.indice, [MAS_PREGUNTAS, VOLVER], [IR_A_FAQ, IR_A_CONTACTO]),
+    desdeFaq(`faq-${f.indice}`, f.indice, [OTRA_DUDA, PERSONA, VOLVER], [IR_A_CONTACTO, IR_A_FAQ]),
   ),
   {
     id: 'persona',
     says: [
-      'Lo mejor que puedo hacer por ti es apartarme.',
-      'Recibes respuesta directa de quien llevaría el proyecto, en menos de 24 horas hábiles. No es una reserva de calendario automática.',
+      'Muy bien. Escríbenos desde el formulario de contacto y te responderá directamente la persona que llevaría tu caso, en menos de 24 horas hábiles.',
     ],
     options: [VOLVER],
     actions: [IR_A_CONTACTO],
   },
 ];
+
+/**
+ * Lo que dice Aura si se pide un paso que no existe. Solo puede pasar por un
+ * error al editar este archivo, pero en ese caso el visitante no debe ver un
+ * panel mudo: se le ofrece salir por contacto o volver a empezar.
+ */
+export const AURA_PASO_PERDIDO: AuraStep = {
+  id: 'perdido',
+  says: [
+    'Vaya, me he perdido. Puedes volver al inicio o escribirnos y te contesta una persona.',
+  ],
+  options: [VOLVER],
+  actions: [IR_A_CONTACTO],
+};
 
 export const AURA_INICIO = 'inicio';

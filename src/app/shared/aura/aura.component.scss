@@ -195,15 +195,17 @@
 // -------------------------------------------------------------------- pie
 
 .aura__pie {
-  padding: var(--space-md);
+  padding: var(--space-xs) var(--space-md);
   border-top: var(--border-width) solid var(--color-border);
 }
 
+// Las acciones y las opciones viven dentro del hilo, debajo de la última
+// respuesta de Aura.
 .aura__acciones {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-sm);
-  margin-bottom: var(--space-md);
+  margin-top: var(--space-md);
 }
 
 .aura__accion {
@@ -215,6 +217,7 @@
   font-weight: var(--font-weight-label);
   color: var(--text-inverse);
   background-color: var(--color-signal);
+  border: var(--border-width) solid transparent;
   border-radius: var(--radius-sm);
   text-decoration: none;
 
@@ -225,10 +228,24 @@
   }
 }
 
+// Solo la primera acción es la principal. Las demás van como enlace con
+// borde, para que no compitan dos botones rellenos por la misma atención.
+.aura__accion--secundaria {
+  color: var(--color-signal);
+  background-color: transparent;
+  border: var(--border-width) solid var(--color-signal);
+
+  &:hover {
+    color: var(--color-signal-dark);
+    background-color: var(--color-paper-alt);
+  }
+}
+
 .aura__opciones {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
+  margin-top: var(--space-md);
 }
 
 .aura__opcion {
@@ -255,7 +272,7 @@
 }
 
 .aura__reiniciar {
-  margin-top: var(--space-md);
+  min-height: 2.75rem;
   padding: var(--space-xs) 0;
   font-family: var(--font-family-base);
   font-size: var(--font-size-body-sm);
