@@ -52,7 +52,7 @@ export class ServicePillarsComponent {
       claim: 'Flujos de trabajo agénticos e inteligencia operativa interna.',
       description:
         'Agentes que resuelven de principio a fin trámites, consultas internas, onboarding y operaciones de RR. HH. dentro de límites de autonomía documentados, y que escalan a una persona cada excepción y cada decisión que afecta a alguien.',
-      governance: 'Riesgo clasificado por flujo antes de desplegar · Human-in-the-loop',
+      governance: 'Riesgo clasificado por flujo antes de desplegar · Una persona revisa cada decisión',
       primary: { label: 'Ver Agentic AI para RR. HH.', path: '/servicios/agentic-ai-rrhh' },
     },
     {

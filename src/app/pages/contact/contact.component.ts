@@ -9,7 +9,10 @@ import { SeoService } from '../../shared/seo.service';
 
 interface ServiceOption {
   readonly value: string;
+  /** Lo que ve el visitante: el problema, no el nombre del producto. */
   readonly label: string;
+  /** Lo que llega en el email, para saber a qué solución corresponde. */
+  readonly brand: string;
 }
 
 /**
@@ -21,22 +24,24 @@ interface ServiceOption {
  * /contacto?motivo=radar llega con Radar ya elegido (ver applyMotivo).
  */
 const SERVICE_OPTIONS: readonly ServiceOption[] = [
-  { value: 'general', label: 'Diagnóstico general' },
-  { value: 'flow', label: 'Datalent Flow · flujos de trabajo agénticos' },
-  { value: 'match', label: 'Datalent Match · reclutamiento y selección' },
-  { value: 'radar', label: 'Datalent Radar · People Analytics y plantilla' },
-  { value: 'shield', label: 'Datalent Shield · gobernanza y cumplimiento de IA' },
-  { value: 'otro', label: 'Otro' },
+  { value: 'general', label: 'Todavía no lo sé: quiero un diagnóstico', brand: 'Diagnóstico general' },
+  { value: 'match', label: 'Encontrar y contratar personal', brand: 'Datalent Match' },
+  { value: 'flow', label: 'Papeleo y tareas repetitivas de personal', brand: 'Datalent Flow' },
+  { value: 'radar', label: 'Que no se me vaya la gente y organizar la plantilla', brand: 'Datalent Radar' },
+  { value: 'shield', label: 'Usar IA sin problemas legales', brand: 'Datalent Shield' },
+  { value: 'otro', label: 'Otra cosa', brand: 'Otro' },
 ];
 
+// 'briefing' ya no lo genera ningún botón; se mantiene para que los enlaces
+// antiguos con ?motivo=briefing sigan llegando al diagnóstico.
 const MOTIVO_LABELS: Readonly<Record<string, string>> = {
   diagnostico: 'Diagnóstico gratuito',
-  briefing: 'Briefing ejecutivo',
+  briefing: 'Diagnóstico gratuito',
 };
 
 const MOTIVO_DEFAULT_SERVICE: Readonly<Record<string, string>> = {
   diagnostico: 'general',
-  briefing: 'otro',
+  briefing: 'general',
 };
 
 @Component({
@@ -113,9 +118,8 @@ export class ContactComponent {
     this.submitStatus.set(null);
 
     const value = this.form.getRawValue();
-    const serviceLabel =
-      this.serviceOptions.find((option) => option.value === value.servicio)?.label ??
-      value.servicio;
+    const option = this.serviceOptions.find((item) => item.value === value.servicio);
+    const serviceLabel = option ? `${option.label} (${option.brand})` : value.servicio;
 
     const payload = {
       from_name: value.nombre,

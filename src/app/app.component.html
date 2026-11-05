@@ -24,7 +24,7 @@
 }
 
 @if (showCookieBanner()) {
-  <div class="cookie-banner" role="region" aria-label="Aviso de cookies">
+  <div #cookieBanner class="cookie-banner" role="region" aria-label="Aviso de cookies" tabindex="-1">
     <p class="cookie-banner__text">
       Usamos cookies para mejorar tu experiencia y analizar el uso del sitio. Puedes
       aceptar o rechazar su uso. Consulta nuestra

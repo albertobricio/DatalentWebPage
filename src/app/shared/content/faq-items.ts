@@ -19,7 +19,7 @@ export const SITE_FAQ_ITEMS: readonly FaqItem[] = [
     {
       question: '¿Sois software o consultoría?',
       answer:
-        '<p>Consultoría, con tecnología propia donde aporta: <strong>advisory-led y technology-enabled</strong>. No vendemos una plataforma que configuras en solitario, ni entregamos un informe y desaparecemos. Diseñamos el sistema, lo desplegamos y seguimos siendo responsables de su gobernanza.</p>',
+        '<p>Consultoría, con tecnología propia donde aporta. No vendemos una plataforma que configuras en solitario, ni entregamos un informe y desaparecemos. Diseñamos el sistema, lo desplegamos y seguimos siendo responsables de su gobernanza.</p>',
     },
     {
       question: '¿Quién lleva mi proyecto?',
@@ -47,9 +47,9 @@ export const SITE_FAQ_ITEMS: readonly FaqItem[] = [
         '<p>Sí, forma parte de <strong>Datalent Radar</strong> y es su punto de entrada en retribución: una auditoría de equidad retributiva o un benchmark de mercado para un conjunto de roles definido, siempre mostrando la brecha bruta y la ajustada por separado. Reportar solo una de las dos es engañoso en cualquier dirección. La Directiva (UE) 2023/970 de Transparencia Retributiva es el marco de referencia, y su plazo de transposición ya ha pasado.</p>',
     },
     {
-      question: '¿Cómo os integráis con nuestro ATS o HRIS actual?',
+      question: '¿Necesito algún programa o sistema de RR. HH. para trabajar con vosotros?',
       answer:
-        '<p>No pedimos sustituir la plataforma que ya tienes. Si ya operas Workday, SAP SuccessFactors, Visier o similar, el trabajo se apoya en esos sistemas como fuente de datos y, cuando corresponde, actuamos como capa independiente de validación de metodología y gobernanza sobre ellos. El alcance técnico de la integración se define en el diagnóstico inicial, no antes.</p>',
+        '<p>No. Trabajamos con lo que ya tengas: las nóminas que lleva tu gestoría, hojas de cálculo o tu programa de gestión de personal, si usas uno. No te pedimos cambiarlo. Qué datos hacen falta y cómo se conectan se decide en el diagnóstico inicial, no antes.</p>',
     },
     {
       question: '¿Cómo empiezo?',
@@ -60,5 +60,19 @@ export const SITE_FAQ_ITEMS: readonly FaqItem[] = [
       question: '¿Imponéis permanencia o contratos largos?',
       answer:
         '<p>No. Cada práctica tiene un punto de entrada acotado y de alcance cerrado, precisamente para que puedas evaluar el trabajo antes de comprometerte a nada mayor. La relación continua, cuando existe, es una decisión posterior y explícita.</p>',
+    },
+    // Posiciones 10 y 11: añadidas al final a propósito. Aura (aura-flow.ts)
+    // ofrece respuestas de esta lista por su posición; insertar en medio
+    // desplazaría las demás.
+    {
+      question: '¿Cuánto cuesta?',
+      answer:
+        '<p>Cada proyecto tiene un precio y un plazo cerrados, que conoces antes de empezar. Nunca cobramos por horas. El diagnóstico inicial de 30 minutos es gratuito y no te compromete a nada.</p>',
+    },
+    // PENDIENTE: revisión de Gema antes de publicar.
+    {
+      question: '¿Trabajáis con empresas pequeñas o sin departamento de RR. HH.?',
+      answer:
+        '<p>Sí. Trabajamos con pymes y autónomos, y no hace falta tener departamento de RR. HH. ni los datos ordenados. En el diagnóstico gratuito vemos qué tienes, qué te preocupa y por dónde tiene sentido empezar, incluida la respuesta honesta de que todavía no compensa.</p>',
     },
   ];

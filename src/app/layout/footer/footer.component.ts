@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LogoComponent } from '../../shared/components/logo/logo.component';
+import { CookieConsentService } from '../../shared/cookie-consent.service';
 
 interface FooterLink {
   readonly label: string;
@@ -47,4 +48,11 @@ export class FooterComponent {
   protected readonly companyLinks = COMPANY_LINKS;
   protected readonly legalLinks = LEGAL_LINKS;
   protected readonly currentYear = new Date().getFullYear();
+
+  private readonly consent = inject(CookieConsentService);
+
+  /** Reabre el aviso de cookies para cambiar la decisión (RGPD, art. 7.3). */
+  protected openCookieSettings(): void {
+    this.consent.reopen();
+  }
 }

@@ -1,10 +1,18 @@
-import { ChangeDetectionStrategy, Component, PLATFORM_ID, inject, signal } from '@angular/core';
-import { ViewportScroller, isPlatformBrowser } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  effect,
+  inject,
+  viewChild,
+} from '@angular/core';
+import { ViewportScroller } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { ButtonComponent } from './shared/components/button/button.component';
 import { AuraComponent } from './shared/aura/aura.component';
+import { CookieConsentService } from './shared/cookie-consent.service';
 
 declare global {
   interface Window {
@@ -21,62 +29,33 @@ declare global {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  private readonly platformId = inject(PLATFORM_ID);
-  private readonly isBrowser = isPlatformBrowser(this.platformId);
+  // La decisión de cookies vive en CookieConsentService para que el enlace
+  // "Configurar cookies" del pie pueda volver a abrir el aviso. Antes solo se
+  // recordaba "Aceptar"; ahora se guarda la decisión, sea cual sea.
+  private readonly consent = inject(CookieConsentService);
+  protected readonly showCookieBanner = this.consent.bannerVisible;
+
+  private readonly cookieBanner = viewChild<ElementRef<HTMLElement>>('cookieBanner');
 
   constructor() {
     // El scroll a anclas del router (/servicios#radar) ignora scroll-margin-top
     // y dejaba el destino debajo de la cabecera fija. 96px = cabecera + aire.
     inject(ViewportScroller).setOffset([0, 96]);
+
+    // Al reabrir el aviso desde el pie, el foco va al aviso: si no, quien
+    // navega con teclado o lector de pantalla no sabría que ha aparecido.
+    effect(() => {
+      if (this.consent.focusRequest() > 0) {
+        this.cookieBanner()?.nativeElement.focus();
+      }
+    });
   }
 
-  // Antes solo se recordaba "Aceptar": quien rechazaba volvía a ver el aviso
-  // en cada carga de página. Ahora se guarda la decisión, sea cual sea.
-  // 'cookiesDatalentAccepted' es la clave antigua; se sigue leyendo para no
-  // volver a preguntar a quien ya aceptó.
-  protected readonly showCookieBanner = signal(this.isBrowser && !this.readConsent());
-
   protected acceptCookies(): void {
-    if (!this.isBrowser) {
-      return;
-    }
-    this.storeConsent('accepted');
-    this.showCookieBanner.set(false);
-    window.gtag?.('consent', 'update', {
-      ad_storage: 'granted',
-      analytics_storage: 'granted',
-    });
+    this.consent.accept();
   }
 
   protected rejectCookies(): void {
-    if (!this.isBrowser) {
-      return;
-    }
-    this.storeConsent('rejected');
-    this.showCookieBanner.set(false);
-    window.gtag?.('consent', 'update', {
-      ad_storage: 'denied',
-      analytics_storage: 'denied',
-    });
-  }
-
-  private readConsent(): string | null {
-    try {
-      return (
-        localStorage.getItem('cookiesDatalentConsent') ??
-        (localStorage.getItem('cookiesDatalentAccepted') ? 'accepted' : null)
-      );
-    } catch {
-      // Navegación privada o almacenamiento bloqueado: se vuelve a preguntar.
-      return null;
-    }
-  }
-
-  private storeConsent(value: 'accepted' | 'rejected'): void {
-    try {
-      localStorage.setItem('cookiesDatalentConsent', value);
-    } catch {
-      // Sin almacenamiento la decisión vale solo para esta visita.
-    }
+    this.consent.reject();
   }
 }

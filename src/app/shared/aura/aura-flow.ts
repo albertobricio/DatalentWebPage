@@ -13,7 +13,7 @@ export interface AuraAction {
   /** Ruta interna a la que lleva la acción. */
   readonly path: string;
   /** Parámetro `motivo`, el mismo que ya usan las CTA del sitio. */
-  readonly motivo?: 'diagnostico' | 'briefing';
+  readonly motivo?: 'diagnostico';
 }
 
 export interface AuraOption {
@@ -56,7 +56,7 @@ const VOLVER: AuraOption = { label: 'Volver al inicio', nextId: 'inicio' };
 const MAS_PREGUNTAS: AuraOption = { label: 'Otra pregunta frecuente', nextId: 'faq' };
 
 const IR_A_CONTACTO: AuraAction = {
-  label: 'Solicitar diagnóstico gratuito',
+  label: 'Pide tu diagnóstico gratuito (30 min)',
   path: '/contacto',
   motivo: 'diagnostico',
 };
@@ -113,13 +113,18 @@ const PRACTICAS: readonly { id: string; label: string; path: string; resumen: st
 ];
 
 /** Índices de SITE_FAQ_ITEMS que Aura ofrece, en el orden en que los ofrece. */
+//
+// Las posiciones 10 y 11 son las preguntas añadidas para pymes. Van al final de
+// SITE_FAQ_ITEMS para no desplazar los índices de las demás.
 const FAQ_OFRECIDAS: readonly { indice: number; etiqueta: string }[] = [
+  { indice: 11, etiqueta: '¿Trabajáis con empresas pequeñas?' },
+  { indice: 10, etiqueta: '¿Cuánto cuesta?' },
   { indice: 3, etiqueta: '¿La IA decide sola o hay supervisión humana?' },
   { indice: 4, etiqueta: '¿Dónde se alojan los datos? ¿RGPD y AI Act?' },
   { indice: 5, etiqueta: '¿Cómo evitáis el sesgo en selección?' },
   { indice: 1, etiqueta: '¿Sois software o consultoría?' },
   { indice: 2, etiqueta: '¿Quién lleva mi proyecto?' },
-  { indice: 7, etiqueta: '¿Os integráis con nuestro ATS o HRIS?' },
+  { indice: 7, etiqueta: '¿Necesito algún programa especial?' },
   { indice: 9, etiqueta: '¿Imponéis permanencia?' },
 ];
 
@@ -171,10 +176,7 @@ export const AURA_FLOW: readonly AuraStep[] = [
       'Recibes respuesta directa de quien llevaría el proyecto, en menos de 24 horas hábiles. No es una reserva de calendario automática.',
     ],
     options: [VOLVER],
-    actions: [
-      IR_A_CONTACTO,
-      { label: 'Reservar briefing ejecutivo', path: '/contacto', motivo: 'briefing' },
-    ],
+    actions: [IR_A_CONTACTO],
   },
 ];
 

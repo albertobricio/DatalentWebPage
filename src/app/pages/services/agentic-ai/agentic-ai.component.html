@@ -4,7 +4,7 @@
     dotsVariant="flow"
     title="Agentic AI para RR. HH., con un límite de autonomía que puedes auditar"
     description="Diseñamos agentes que planifican y ejecutan flujos completos de RR. HH., siempre dentro de límites de autonomía documentados y con un punto de control humano en cada decisión que afecta a una persona."
-    ctaVariant="briefing"
+    ctaVariant="diagnostico"
     [breadcrumbItems]="breadcrumbItems"
   />
 
@@ -71,16 +71,16 @@
 
   <app-section>
     <div class="container container--prose">
-      <h2>Human-in-the-loop</h2>
+      <h2>Supervisión humana</h2>
       <p class="section-intro">
         La autonomía es un espectro, y el punto correcto dentro de ese espectro es una
         decisión de diseño, no un techo tecnológico.
       </p>
       <h3>Tres posturas, y cuándo usamos cada una</h3>
       <dl class="term-list">
-        <dt>Human-in-the-loop (HITL)</dt>
+        <dt>Aprobación previa (human-in-the-loop)</dt>
         <dd>una persona debe aprobar antes de que la acción se ejecute. Es la postura por defecto para cualquier paso con impacto directo en el resultado laboral de una persona.</dd>
-        <dt>Human-on-the-loop (HOTL)</dt>
+        <dt>Supervisión posterior (human-on-the-loop)</dt>
         <dd>el agente actúa y una persona supervisa, con capacidad de intervenir o anular después del hecho. Reservado para pasos de bajo riesgo y fácilmente revisables, como redactar un borrador de informe.</dd>
         <dt>Sin punto de control humano</dt>
         <dd>no lo usamos en flujos de RR. HH. con impacto en personas. No es una opción de diseño válida para este dominio.</dd>
@@ -180,13 +180,13 @@
 
   <app-section background="inverse">
     <div class="container cta-banner">
-      <h2>Habla con quien va a diseñar el límite de autonomía, no con un formulario</h2>
+      <h2>Te responde la persona que diseñará tus agentes, en menos de 24 horas hábiles</h2>
       <p>
-        Un briefing ejecutivo de 30 minutos para aplicar el test agéntico-vs-automatización
-        a tu caso concreto.
+        En un diagnóstico gratuito de 30 minutos vemos si tu caso necesita un agente o
+        basta con una automatización sencilla.
       </p>
       <div class="cta-banner__actions">
-        <app-cta variant="briefing" />
+        <app-cta variant="diagnostico" />
         <a class="cta-banner__link" routerLink="/servicios/gobernanza-ia">
           Ver Gobernanza de IA <span aria-hidden="true">→</span>
         </a>

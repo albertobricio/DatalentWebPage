@@ -87,6 +87,25 @@
   }
 }
 
+// "Configurar cookies" es un botón (abre el aviso, no navega), pero en la
+// columna Legal tiene que leerse igual que los enlaces que lo rodean.
+.footer__consent {
+  display: block;
+  padding: var(--space-xs) 0;
+  background: none;
+  border: 0;
+  color: var(--text-inverse);
+  font: inherit;
+  font-size: var(--font-size-body-sm);
+  text-align: left;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-signal-on-dark);
+    text-decoration: underline;
+  }
+}
+
 .footer__inactive {
   display: flex;
   flex-wrap: wrap;

@@ -64,6 +64,11 @@
               <a [href]="item.href" target="_blank" rel="noopener noreferrer">{{ item.label }}</a>
             </li>
           }
+          <li>
+            <button type="button" class="footer__consent" (click)="openCookieSettings()">
+              Configurar cookies
+            </button>
+          </li>
         </ul>
       </div>
     </div>

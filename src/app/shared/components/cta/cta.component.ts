@@ -1,11 +1,14 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { ButtonComponent } from '../button/button.component';
 
-export type CtaVariant = 'diagnostico' | 'briefing';
+// Una sola acción principal en todo el sitio (ronda pymes, nov. 2026). El
+// briefing ejecutivo se retiró: duraba lo mismo que el diagnóstico, llevaba al
+// mismo formulario y "Reservar" prometía una cita de calendario que no existe.
+// /contacto sigue aceptando ?motivo=briefing para no romper enlaces antiguos.
+export type CtaVariant = 'diagnostico';
 
 export const CTA_LABELS: Record<CtaVariant, string> = {
-  diagnostico: 'Solicitar diagnóstico gratuito',
-  briefing: 'Reservar briefing ejecutivo',
+  diagnostico: 'Pide tu diagnóstico gratuito (30 min)',
 };
 
 /**

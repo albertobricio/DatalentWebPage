@@ -33,7 +33,7 @@ export class HeroComponent {
   readonly eyebrow = input.required<string>();
   readonly title = input.required<string>();
   readonly description = input.required<string>();
-  readonly ctaVariant = input<CtaVariant>('briefing');
+  readonly ctaVariant = input<CtaVariant>('diagnostico');
   readonly secondaryCtaVariant = input<CtaVariant | undefined>(undefined);
   readonly breadcrumbItems = input<BreadcrumbItem[] | undefined>(undefined);
   readonly dotsVariant = input<DotsVariant | undefined>(undefined);
