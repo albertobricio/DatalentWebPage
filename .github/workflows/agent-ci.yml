@@ -1,0 +1,43 @@
+name: agent
+
+# Solo se dispara con cambios del agente o del corpus: el resto del repositorio
+# es la web de Datalent y no tiene nada que ver con este servicio.
+on:
+  push:
+    paths: ["agent/**", "corpus/**", ".github/workflows/agent-ci.yml"]
+  pull_request:
+    paths: ["agent/**", "corpus/**"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r agent/requirements.txt
+
+      # Sin ANTHROPIC_API_KEY a propósito. Toda la capa determinista (guardia,
+      # analizador de ofertas, arnés en replay, auditoría) debe pasar sin
+      # credenciales. Si algún día deja de hacerlo, es una regresión de diseño.
+      - name: Tests
+        env:
+          PTA_API_KEYS: "ci:clave-de-integracion-continua"
+        run: |
+          for f in guard harness ofertas api; do
+            echo "--- test_$f"
+            python3 agent/tests/test_$f.py
+          done
+
+      - name: Suite de regresión del corpus (replay)
+        run: python3 agent/cli.py eval --replay agent/tests/fixtures/replay-demo.json
+
+      - name: El corpus no ha superado el umbral de RAG
+        run: |
+          python3 -c "
+          import sys; sys.path.insert(0,'agent')
+          from pta import corpus
+          c = corpus.cargar()
+          print(f'{c.tokens_aprox:,} tokens de {corpus.LIMITE_SIN_RAG:,}')
+          sys.exit(1 if c.necesita_rag else 0)"

@@ -4,8 +4,24 @@
     {
       "name": "datalent-dev",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "start"],
+      "runtimeArgs": [
+        "run",
+        "start"
+      ],
       "port": 4200
+    },
+    {
+      "name": "pta-api",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "uvicorn",
+        "agent.api:app",
+        "--port",
+        "8080",
+        "--reload"
+      ],
+      "port": 8080
     }
   ]
 }

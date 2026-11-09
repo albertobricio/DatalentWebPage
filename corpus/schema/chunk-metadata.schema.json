@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://datalentsolutions.com/schemas/corpus/chunk-metadata/v1.json",
+  "title": "Metadatos de fragmento del corpus normativo",
+  "description": "Contrato de metadatos validado en ingesta. Un fragmento que no valide contra este esquema no entra en el índice. Corresponde a la seccion 5.4 del documento de arquitectura, ampliado con el modelo de tres estados de regla.",
+  "type": "object",
+  "required": [
+    "chunk_id",
+    "tenant_id",
+    "doc_id",
+    "doc_type",
+    "jurisdiccion",
+    "instrumento",
+    "autoridad",
+    "estado_regla",
+    "verificacion",
+    "idioma",
+    "confidencialidad",
+    "contiene_pii",
+    "hash_contenido",
+    "ingerido_en",
+    "ingerido_por"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "chunk_id": { "type": "string", "format": "uuid" },
+    "tenant_id": {
+      "description": "UUID del tenant, o la cadena GLOBAL para corpus compartido. El filtro por este campo se aplica en la capa de datos mediante RLS, no en la aplicacion.",
+      "oneOf": [
+        { "type": "string", "format": "uuid" },
+        { "const": "GLOBAL" }
+      ]
+    },
+    "doc_id": { "type": "string", "format": "uuid" },
+    "doc_type": {
+      "type": "string",
+      "enum": [
+        "norma_ue",
+        "norma_nacional",
+        "borrador_normativo",
+        "convenio",
+        "jurisprudencia",
+        "guia_autoridad",
+        "politica_interna",
+        "job_description",
+        "auditoria_previa",
+        "metodologia_datalent",
+        "faq"
+      ]
+    },
+    "jurisdiccion": {
+      "type": "string",
+      "pattern": "^(UE|[A-Z]{2})$",
+      "description": "UE para Derecho de la Union, o codigo ISO 3166-1 alpha-2."
+    },
+    "instrumento": {
+      "type": "string",
+      "description": "Identificador estable del instrumento. Ej: directiva_2023_970, rd_902_2020, et_rdl_2_2015."
+    },
+    "referencia": {
+      "type": "string",
+      "description": "Referencia citable exacta. Ej: art. 9.1.c. Obligatoria en doc_type normativo; el troceado nunca parte un articulo."
+    },
+    "titulo_seccion": { "type": "string" },
+    "autoridad": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9,
+      "description": "1 Derecho originario y reglamentos UE · 2 directivas UE · 3 ley nacional · 4 reglamento nacional · 5 convenio · 6 guia de autoridad · 7 jurisprudencia · 8 politica interna · 9 metodologia Datalent. Ante contradiccion gana el valor mas bajo, y el conflicto se senala de forma expresa."
+    },
+    "estado_regla": {
+      "type": "string",
+      "enum": ["VIGENTE", "INTERPRETATIVO", "PREVISTO", "DEROGADO"],
+      "description": "VIGENTE genera hallazgo de incumplimiento. INTERPRETATIVO genera riesgo interpretativo, nunca hallazgo. PREVISTO genera riesgo de preparacion. DEROGADO no se recupera salvo consulta con fecha efectiva anterior."
+    },
+    "verificacion": {
+      "type": "object",
+      "required": ["estado"],
+      "additionalProperties": false,
+      "properties": {
+        "estado": {
+          "type": "string",
+          "enum": ["VERIFICADO", "PENDIENTE_VERIFICACION", "RECHAZADO"],
+          "description": "Solo VERIFICADO se recupera en produccion. PENDIENTE_VERIFICACION es visible en staging y para el equipo juridico."
+        },
+        "fuente_oficial_url": { "type": "string", "format": "uri" },
+        "verificado_por": { "type": "string" },
+        "verificado_en": { "type": "string", "format": "date-time" }
+      }
+    },
+    "vigencia_desde": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Permite la consulta con fecha efectiva. Una auditoria del ejercicio 2026 razona con la norma vigente en 2026, no con la de hoy."
+    },
+    "vigencia_hasta": { "type": ["string", "null"], "format": "date" },
+    "version_documento": {
+      "type": "string",
+      "description": "Version del texto consolidado. Ej: consolidada_2026-05-12."
+    },
+    "idioma": { "type": "string", "pattern": "^[a-z]{2}$" },
+    "confidencialidad": {
+      "type": "string",
+      "enum": ["publico", "interno", "restringido"]
+    },
+    "contiene_pii": {
+      "type": "boolean",
+      "description": "Si es true, el fragmento no se incluye en ningun prefijo de prompt cacheado ni sale en exportaciones sin control de k-anonimato."
+    },
+    "hash_contenido": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "reemplaza_a": {
+      "type": ["string", "null"],
+      "format": "uuid",
+      "description": "chunk_id de la version anterior. El corpus es append-only: nada se borra, se sustituye."
+    },
+    "ingerido_en": { "type": "string", "format": "date-time" },
+    "ingerido_por": { "type": "string" }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "doc_type": {
+            "enum": ["norma_ue", "norma_nacional", "borrador_normativo", "jurisprudencia"]
+          }
+        }
+      },
+      "then": {
+        "required": ["referencia", "vigencia_desde"]
+      }
+    },
+    {
+      "if": {
+        "properties": { "estado_regla": { "const": "PREVISTO" } }
+      },
+      "then": {
+        "properties": {
+          "doc_type": { "const": "borrador_normativo" },
+          "verificacion": {
+            "properties": {
+              "estado": { "const": "PENDIENTE_VERIFICACION" }
+            }
+          }
+        },
+        "description": "Un borrador nunca puede marcarse VERIFICADO: por definicion su texto no es definitivo."
+      }
+    },
+    {
+      "if": {
+        "properties": { "tenant_id": { "const": "GLOBAL" } }
+      },
+      "then": {
+        "properties": { "contiene_pii": { "const": false } },
+        "description": "El corpus global nunca contiene datos personales. La transferencia entre tenants no ocurre."
+      }
+    }
+  ]
+}

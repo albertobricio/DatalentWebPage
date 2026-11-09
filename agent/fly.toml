@@ -1,0 +1,55 @@
+# Despliegue del Pay Transparency Compliance Agent.
+#
+#   fly launch --no-deploy --copy-config --config agent/fly.toml
+#   fly volumes create pta_audit --region mad --size 1
+#   fly secrets set PTA_API_KEYS="acme:$(openssl rand -hex 24)"
+#   fly secrets set ANTHROPIC_API_KEY="sk-ant-..."
+#   fly deploy --config agent/fly.toml --dockerfile agent/Dockerfile
+#
+# La región es `mad` (Madrid) y no es una preferencia estética. Toda la
+# propuesta de valor de Datalent frente a Workday y Visier es la residencia
+# europea del dato. Desplegar esto en `iad` contradice el producto.
+
+app = "pta-datalent"
+primary_region = "mad"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  PTA_ENV = "production"
+  PTA_AUDIT_LOG = "/var/lib/pta/audit.jsonl"
+
+# El registro del art. 12 del Reglamento (UE) 2024/1689 necesita sobrevivir al
+# despliegue. En la capa efímera del contenedor la cadena se pierde y el
+# registro deja de servir para una inspección.
+[[mounts]]
+  source = "pta_audit"
+  destination = "/var/lib/pta"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = "suspend"
+  auto_start_machines = true
+  min_machines_running = 1
+
+  # Una sola instancia, deliberadamente. El límite de peticiones vive en
+  # memoria del proceso: con varias réplicas el límite efectivo se multiplica
+  # por el número de máquinas. Antes de escalar horizontalmente hay que mover
+  # el contador a Redis.
+  [http_service.concurrency]
+    type = "requests"
+    soft_limit = 40
+    hard_limit = 60
+
+[[http_service.checks]]
+  grace_period = "10s"
+  interval = "30s"
+  method = "GET"
+  path = "/health"
+  timeout = "5s"
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"

@@ -1,0 +1,266 @@
+{
+  "$comment": "Registro de citas verificadas. Fuente de verdad legible por máquina para la guardia determinista del agente. Un artículo que no esté aquí NO puede citarse. Ver corpus/README.md.",
+  "version": "2026-07-29",
+  "instrumentos": {
+    "UE-DIR-2023-970": {
+      "titulo": "Directiva (UE) 2023/970 del Parlamento Europeo y del Consejo, de 10 de mayo de 2023",
+      "autoridad": 2,
+      "total_articulos": 37,
+      "estado_por_jurisdiccion": {
+        "ES": "INTERPRETATIVO",
+        "UE": "VIGENTE"
+      },
+      "verificacion": "VERIFICADO",
+      "fuente": "https://www.boe.es/doue/2023/132/L00021-00044.pdf",
+      "articulos": {
+        "1": "Objeto",
+        "2": "Ámbito de aplicación",
+        "3": "Definiciones",
+        "4": "Mismo trabajo y trabajo de igual valor",
+        "5": "Transparencia retributiva previa al empleo",
+        "6": "Transparencia en las políticas de fijación de las retribuciones y de progresión retributiva",
+        "7": "Derecho a la información",
+        "8": "Accesibilidad de la información",
+        "9": "Información sobre la brecha retributiva entre trabajadores y trabajadoras",
+        "10": "Evaluación retributiva conjunta",
+        "11": "Apoyo a los empleadores con una plantilla inferior a 250 trabajadores",
+        "12": "Protección de datos",
+        "13": "Diálogo social",
+        "14": "Defensa de los derechos",
+        "15": "Procedimientos en nombre o en favor de los trabajadores",
+        "16": "Derecho a indemnización",
+        "17": "Otras vías de reparación",
+        "18": "Inversión de la carga de la prueba",
+        "19": "Probar la realización del mismo trabajo o de un trabajo de igual valor",
+        "20": "Acceso a las pruebas",
+        "21": "Plazos de prescripción",
+        "22": "Costas procesales",
+        "23": "Sanciones",
+        "24": "Igualdad de retribución en los contratos y concesiones públicos",
+        "25": "Victimización y protección frente a un trato menos favorable",
+        "26": "Relación con la Directiva 2006/54/CE",
+        "27": "Nivel de protección",
+        "28": "Organismos de fomento de la igualdad",
+        "29": "Seguimiento y sensibilización",
+        "30": "Negociación y acciones colectivas",
+        "31": "Estadísticas",
+        "32": "Divulgación de la información",
+        "33": "Aplicación",
+        "34": "Transposición",
+        "35": "Presentación de informes y revisión",
+        "36": "Entrada en vigor",
+        "37": "Destinatarios"
+      },
+      "hechos_clave": {
+        "4.4": "Criterios objetivos y neutros: competencias, esfuerzo, responsabilidad y condiciones de trabajo, y si procede cualquier otro factor pertinente.",
+        "7": "Respuesta en plazo razonable y en cualquier caso en los dos meses siguientes a la solicitud.",
+        "9.1": "Siete métricas, letras a) a g), en orden legal.",
+        "10": "Umbral del 5% de diferencia media no justificada, con seis meses para subsanar antes de activar la evaluación conjunta.",
+        "31": "Datos a Eurostat a partir del 31 de enero de 2028 para el año de referencia 2026.",
+        "34.1": "Transposición a más tardar el 7 de junio de 2026.",
+        "35": "Los Estados informan a la Comisión sobre el cumplimiento a más tardar el 7 de junio de 2031."
+      }
+    },
+    "ES-ET": {
+      "titulo": "Real Decreto Legislativo 2/2015, texto refundido de la Ley del Estatuto de los Trabajadores",
+      "autoridad": 3,
+      "estado_por_jurisdiccion": {
+        "ES": "VIGENTE"
+      },
+      "verificacion": "VERIFICADO_PARCIAL",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2015-11430",
+      "articulos_verificados": {
+        "22": "Sistema de clasificación profesional",
+        "28": "Igualdad de remuneración por razón de sexo"
+      },
+      "hechos_clave": {
+        "22.3": "La definición de los grupos profesionales se basará en un análisis correlacional entre sesgos de género, puestos de trabajo, criterios de encuadramiento y retribuciones.",
+        "28.1": "Igual retribución por trabajo de igual valor. Cuatro dimensiones: naturaleza de funciones o tareas, condiciones educativas profesionales o de formación, factores relacionados con el desempeño, y condiciones laborales.",
+        "28.2": "Registro retributivo obligatorio. Acceso de las personas trabajadoras a través de la representación legal, no como derecho individual directo.",
+        "28.3": "Justificación obligatoria en el registro cuando el promedio de retribuciones de un sexo supera al del otro en un 25% o más, en empresas de al menos 50 personas trabajadoras."
+      }
+    },
+    "ES-RD902-2020": {
+      "titulo": "Real Decreto 902/2020, de 13 de octubre, de igualdad retributiva entre mujeres y hombres",
+      "autoridad": 4,
+      "total_articulos": 11,
+      "estado_por_jurisdiccion": {
+        "ES": "VIGENTE"
+      },
+      "verificacion": "VERIFICADO_PARCIAL",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2020-12215",
+      "articulos_verificados": {
+        "2": "Ámbito de aplicación",
+        "3": "Principio de transparencia retributiva",
+        "4": "La obligación de igual retribución por trabajo de igual valor",
+        "5": "Registro retributivo",
+        "6": "Registro retributivo de las empresas con auditoría retributiva",
+        "7": "Auditoría retributiva",
+        "8": "Contenido de la auditoría retributiva"
+      },
+      "hechos_clave": {
+        "3": "El principio de transparencia retributiva vincula a las empresas y a los convenios colectivos.",
+        "4.1": "Vincula a todas las empresas con independencia del número de personas trabajadoras, y a todos los convenios y acuerdos colectivos.",
+        "4.4": "Criterios de adecuación, totalidad y objetividad.",
+        "5": "Registro retributivo obligatorio para todas las empresas, incluido personal directivo y altos cargos. Sin umbral de plantilla.",
+        "6": "Las empresas con auditoría retributiva reflejan además medias y medianas de las agrupaciones de trabajos de igual valor.",
+        "7": "La auditoría retributiva es obligatoria para las empresas que elaboren plan de igualdad."
+      }
+    },
+    "ES-RD901-2020": {
+      "titulo": "Real Decreto 901/2020, de 13 de octubre, por el que se regulan los planes de igualdad y su registro",
+      "autoridad": 4,
+      "estado_por_jurisdiccion": {
+        "ES": "VIGENTE"
+      },
+      "verificacion": "VERIFICADO_PARCIAL",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2020-12214",
+      "articulos_verificados": {
+        "2": "Ámbito de aplicación"
+      },
+      "hechos_clave": {
+        "2.2": "Plan de igualdad obligatorio desde 50 o más personas trabajadoras. El cómputo incluye toda modalidad de contratación, cada persona a tiempo parcial cuenta como una más, y se suman los contratos temporales extinguidos en los seis meses anteriores a razón de cien días o fracción por persona."
+      }
+    },
+    "ES-ORDEN-PCM-1047-2022": {
+      "titulo": "Orden PCM/1047/2022, de 1 de noviembre, procedimiento de valoración de los puestos de trabajo",
+      "autoridad": 4,
+      "estado_por_jurisdiccion": {
+        "ES": "VIGENTE"
+      },
+      "verificacion": "VERIFICADO",
+      "fuente": "https://www.boe.es/buscar/doc.php?id=BOE-A-2022-18040",
+      "hechos_clave": {
+        "1.2": "La implantación del procedimiento por parte de las empresas tiene carácter voluntario.",
+        "puerto_seguro": "Las valoraciones realizadas conforme a este procedimiento se entienden ajustadas a los requisitos formales del RD 902/2020.",
+        "ponderacion": "Sobre 1000 puntos. A) Naturaleza de las funciones 40%, B) Condiciones educativas 20%, C) Condiciones profesionales y de formación 25%, D) Condiciones laborales 15%."
+      },
+      "articulos_verificados": {
+        "1": "Objeto. Aprobación y publicación del procedimiento de valoración de puestos de trabajo"
+      }
+    },
+    "ES-LO3-2007": {
+      "titulo": "Ley Orgánica 3/2007, de 22 de marzo, para la igualdad efectiva de mujeres y hombres",
+      "autoridad": 3,
+      "estado_por_jurisdiccion": {
+        "ES": "VIGENTE"
+      },
+      "verificacion": "VERIFICADO_PARCIAL",
+      "articulos_verificados": {
+        "46": "Concepto y contenido de los planes de igualdad"
+      },
+      "hechos_clave": {
+        "46.2": "La elaboración del diagnóstico se realiza en el seno de la Comisión Negociadora del Plan de Igualdad."
+      }
+    },
+    "ES-RDL-5-2000": {
+      "titulo": "Real Decreto Legislativo 5/2000, texto refundido de la Ley sobre Infracciones y Sanciones en el Orden Social",
+      "autoridad": 3,
+      "estado_por_jurisdiccion": {
+        "ES": "VIGENTE"
+      },
+      "verificacion": "VERIFICADO_PARCIAL",
+      "fuente": "https://www.boe.es/buscar/act.php?id=BOE-A-2000-15060",
+      "articulos_verificados": {
+        "7": "Infracciones graves",
+        "8": "Infracciones muy graves",
+        "40": "Cuantía de las sanciones"
+      },
+      "hechos_clave": {
+        "7.13": "Grave: no cumplir las obligaciones que en materia de planes y medidas de igualdad establecen la LO 3/2007, el Estatuto de los Trabajadores o el convenio colectivo aplicable.",
+        "8.12": "Muy grave: decisiones unilaterales de la empresa que impliquen discriminaciones directas o indirectas favorables o adversas EN MATERIA DE RETRIBUCIONES, jornadas, formación, promoción y demás condiciones de trabajo, por circunstancias de sexo, origen, estado civil, religión, ideas políticas, orientación e identidad sexual, adhesión sindical y otras.",
+        "8.17": "Muy grave: no elaborar o no aplicar el plan de igualdad, o hacerlo incumpliendo manifiestamente los términos, cuando la obligación responda al art. 46 bis.2.",
+        "40.1.a": "Leves: mínimo 70 a 150 euros; medio 151 a 370; máximo 371 a 750.",
+        "40.1.b": "Graves: mínimo 751 a 1.500 euros; medio 1.501 a 3.750; máximo 3.751 a 7.500.",
+        "40.1.c": "Muy graves: mínimo 7.501 a 30.000 euros; medio 30.001 a 120.005; máximo 120.006 a 225.018."
+      },
+      "importes_verificados": [
+        70,
+        150,
+        151,
+        370,
+        371,
+        750,
+        751,
+        1500,
+        1501,
+        3750,
+        3751,
+        7500,
+        7501,
+        30000,
+        30001,
+        120005,
+        120006,
+        225018
+      ]
+    },
+    "ES-TRAMITACION-RD-TRANSPOSICION": {
+      "titulo": "Proyecto de Real Decreto por el que se transpone la Directiva (UE) 2023/970",
+      "autoridad": 4,
+      "estado_por_jurisdiccion": {
+        "ES": "PREVISTO"
+      },
+      "verificacion": "PENDIENTE_VERIFICACION",
+      "fuente": "https://expinterweb.mites.gob.es/participa/listado/download/37cb621c-4858-458b-a175-e15bb96dd6a1",
+      "hechos_clave": {
+        "tramite": "Consulta pública previa del 24 de abril al 8 de mayo de 2026, al amparo del art. 133.1 de la Ley 39/2015. Sin articulado: es previa a la redacción del proyecto.",
+        "alternativas": "El Ministerio declara que no se consideran soluciones alternativas distintas de insertar los nuevos derechos exigidos por la Directiva.",
+        "estado": "Sin publicación en BOE a 29 de julio de 2026."
+      },
+      "sin_verificar": [
+        "Plazo de 2 meses para el plan correctivo",
+        "Umbral de 50 personas para criterios de progresión",
+        "Nulidad de cláusulas de confidencialidad salarial",
+        "Cualquier contenido articulado"
+      ]
+    },
+    "UE-REG-2024-1689": {
+      "titulo": "Reglamento (UE) 2024/1689, de 13 de junio de 2024, Reglamento de Inteligencia Artificial",
+      "autoridad": 1,
+      "estado_por_jurisdiccion": {
+        "ES": "VIGENTE",
+        "UE": "VIGENTE"
+      },
+      "verificacion": "VERIFICADO_PARCIAL",
+      "fuente": "https://www.boe.es/doue/2024/1689/L00001-00144.pdf",
+      "articulos_verificados": {
+        "4": "Alfabetización en materia de IA",
+        "6": "Reglas de clasificación de los sistemas de IA de alto riesgo",
+        "14": "Supervisión humana",
+        "26": "Obligaciones de los responsables del despliegue de sistemas de IA de alto riesgo",
+        "50": "Obligaciones de transparencia de determinados sistemas de IA",
+        "113": "Entrada en vigor y aplicación"
+      },
+      "hechos_clave": {
+        "anexo_III_4b": "Alto riesgo: sistemas destinados a tomar decisiones que afecten a las condiciones de las relaciones de índole laboral. La retribución lo es.",
+        "6.3": "La excepción no se aplica nunca cuando el sistema efectúa elaboración de perfiles de personas físicas: siempre se considerará de alto riesgo.",
+        "26.7": "Antes de poner en servicio un sistema de alto riesgo en el lugar de trabajo, el empleador informará a los representantes de los trabajadores y a los trabajadores afectados.",
+        "113": "Aplicable desde el 2 de agosto de 2026. Capítulos I y II desde el 2 de febrero de 2025. Art. 6.1 desde el 2 de agosto de 2027."
+      }
+    },
+    "UE-REG-2016-679": {
+      "titulo": "Reglamento (UE) 2016/679, Reglamento General de Protección de Datos",
+      "autoridad": 1,
+      "estado_por_jurisdiccion": {
+        "ES": "VIGENTE",
+        "UE": "VIGENTE"
+      },
+      "verificacion": "VERIFICADO_PARCIAL",
+      "fuente": "https://www.boe.es/doue/2016/119/L00001-00088.pdf",
+      "articulos_verificados": {
+        "9": "Tratamiento de categorías especiales de datos personales",
+        "22": "Decisiones individuales automatizadas, incluida la elaboración de perfiles",
+        "35": "Evaluación de impacto relativa a la protección de datos",
+        "88": "Tratamiento en el ámbito laboral"
+      },
+      "hechos_clave": {
+        "22.1": "Derecho a no ser objeto de decisión basada únicamente en tratamiento automatizado con efectos jurídicos o significativos.",
+        "22.3": "Derecho mínimo a intervención humana, a expresar el punto de vista y a impugnar la decisión.",
+        "35.3.a": "DPIA obligatoria ante evaluación sistemática y exhaustiva de aspectos personales basada en tratamiento automatizado.",
+        "9.1": "El sexo NO es categoría especial. Sí lo son origen étnico o racial, afiliación sindical y datos de salud.",
+        "88": "Los Estados pueden fijar normas más específicas por ley o convenio colectivo, incluida igualdad y diversidad."
+      }
+    }
+  }
+}
