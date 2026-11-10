@@ -1,0 +1,36 @@
+# Dependabot: propone actualizaciones como pull requests. No despliega nada:
+# el deploy solo se lanza con un push a main, así que cada PR se revisa antes.
+#
+# Por qué existe. En julio de 2026 el sitio se dejó en Angular 20.3.26 con cero
+# avisos. En noviembre tenía ocho avisos de producción, cuatro de severidad
+# alta, y nadie lo sabía porque nada lo comprobaba. Ver docs/seguridad.md.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      # Los paquetes de Angular se publican juntos y se exigen la misma versión
+      # exacta entre sí: actualizarlos de uno en uno no resuelve.
+      angular:
+        patterns:
+          - "@angular/*"
+          - "@angular-devkit/*"
+    ignore:
+      # Un salto de versión mayor de Angular es una migración, no un parche.
+      - dependency-name: "@angular/*"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@angular-devkit/*"
+        update-types: ["version-update:semver-major"]
+      # Angular 20 fija el rango de TypeScript que admite.
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday

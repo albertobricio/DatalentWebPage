@@ -13,6 +13,7 @@
               <button
                 type="button"
                 class="header__nav-trigger"
+                [class.header__nav-link--active]="inServices()"
                 [attr.aria-expanded]="openDropdown() === item.label"
                 [attr.aria-controls]="item.label + '-menu'"
                 (click)="toggleDropdown(item.label)"

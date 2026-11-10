@@ -1,9 +1,8 @@
-import { AfterViewInit, Component, OnInit, inject } from '@angular/core';
-import { Router } from '@angular/router';
-import {
-  FaqAccordionComponent,
-  FaqItem,
-} from '../../shared/components/faq-accordion/faq-accordion.component';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { BreadcrumbComponent, BreadcrumbItem } from '../../shared/components/breadcrumb/breadcrumb.component';
+import { CtaComponent } from '../../shared/components/cta/cta.component';
+import { FaqAccordionComponent } from '../../shared/components/faq-accordion/faq-accordion.component';
+import { SectionComponent } from '../../shared/components/section/section.component';
 import { SITE_FAQ_ITEMS } from '../../shared/content/faq-items';
 import { SeoService } from '../../shared/seo.service';
 
@@ -25,56 +24,40 @@ import { SeoService } from '../../shared/seo.service';
  * Where an answer depends on facts specific to an engagement — hosting
  * jurisdiction, legal basis, risk tier — it says so rather than
  * asserting a generic guarantee, per .claude/memory/non-fabrication-policy.md.
+ *
+ * Nov. 2026: el enlace "Contáctanos" del final era un <a> sin href que
+ * navegaba a Home y buscaba un #contact que dejó de existir con la v2, así
+ * que dejaba al visitante en la portada. Tampoco era alcanzable con teclado.
+ * Ahora la página cierra con el mismo banner que el resto del sitio. Se fue
+ * también el código que lo acompañaba (scrollToSection y el listener que
+ * cerraba los demás <details>, sustituido por el atributo `name` nativo).
  */
 @Component({
   selector: 'app-faq',
   standalone: true,
-  imports: [FaqAccordionComponent],
+  imports: [BreadcrumbComponent, CtaComponent, FaqAccordionComponent, SectionComponent],
   templateUrl: './faq.component.html',
-  styleUrls: ['./faq.component.scss'],
+  styleUrl: './faq.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FaqComponent implements OnInit, AfterViewInit {
-  private router = inject(Router);
+export class FaqComponent {
   private readonly seo = inject(SeoService);
 
   protected readonly items = SITE_FAQ_ITEMS;
+
+  protected readonly breadcrumbItems: BreadcrumbItem[] = [
+    { label: 'Inicio', url: '/' },
+    { label: 'Preguntas frecuentes' },
+  ];
 
   constructor() {
     this.seo.set({
       title: 'Preguntas frecuentes | Datalent Solutions',
       description:
-        'Respuestas sobre autonomía de los agentes, supervisión humana, residencia de datos, auditoría de sesgo, equidad retributiva e integración con tu ATS o HRIS.',
+        'Respuestas sobre autonomía de los agentes, supervisión humana, residencia de datos, auditoría de sesgo, equidad retributiva, precios y cómo empezar.',
       path: '/faq',
+      breadcrumbs: this.breadcrumbItems,
+      faq: this.items,
     });
-  }
-
-  ngOnInit(): void {
-    window.scrollTo(0, 0);
-    window.dispatchEvent(new Event('scroll'));
-  }
-
-  ngAfterViewInit(): void {
-    const detailsElements = document.querySelectorAll('#accordion details');
-    detailsElements.forEach((detail) => {
-      detail.addEventListener('toggle', () => {
-        if (detail['open']) {
-          detailsElements.forEach((otherDetail) => {
-            if (otherDetail !== detail) {
-              otherDetail['open'] = false;
-            }
-          });
-        }
-      });
-    });
-  }
-
-  scrollToSection(sectionId: string) {
-    this.router.navigate(['/']);
-    setTimeout(() => {
-      const el = document.getElementById(sectionId);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }, 50);
   }
 }

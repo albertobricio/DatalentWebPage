@@ -28,9 +28,9 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   
   <!-- SEO & Meta Tags -->
-  <title>Datalent Solutions | Agentic AI para RR. HH. gobernada en Europa</title>
-  <meta name="description" content="Diseñamos, desplegamos y gobernamos agentes de IA para RR. HH. con límites de autonomía documentados, supervisión humana y gobernanza de datos europea.">
-  <meta name="keywords" content="agentic AI RRHH, IA agéntica recursos humanos, people analytics España, gobernanza de IA RRHH, EU AI Act recursos humanos">
+  <title>IA para recursos humanos, gobernada en Europa | Datalent</title>
+  <meta name="description" content="Agentes de IA para selección, trámites laborales y seguimiento de plantilla, con supervisión humana. RGPD y Reglamento Europeo de IA. Diagnóstico gratuito.">
+  <meta name="keywords" content="IA para recursos humanos, inteligencia artificial RRHH, agentes de IA RRHH, gobernanza de IA RRHH, Reglamento Europeo de IA recursos humanos, people analytics España">
   <meta name="author" content="Datalent Solutions">
   <meta name="language" content="es">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -45,8 +45,8 @@
 
   <!-- Open Graph / Social Media -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://datalentsolutions.com">
-  <meta property="og:title" content="Datalent Solutions | Agentic AI para RR. HH. gobernada en Europa">
+  <meta property="og:url" content="https://datalentsolutions.com/">
+  <meta property="og:title" content="IA para recursos humanos, gobernada en Europa | Datalent">
   <meta property="og:description" content="Agentes de IA para RR. HH. con límites de autonomía documentados, un punto de control humano y gobernanza de datos europea.">
   <meta property="og:image" content="https://datalentsolutions.com/assets/og-image.png">
   <meta property="og:image:type" content="image/png">
@@ -57,12 +57,12 @@
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Datalent Solutions | Agentic AI para RR. HH. gobernada en Europa">
+  <meta name="twitter:title" content="IA para recursos humanos, gobernada en Europa | Datalent">
   <meta name="twitter:description" content="Agentes de IA para RR. HH. con límites de autonomía documentados y gobernanza de datos europea.">
   <meta name="twitter:image" content="https://datalentsolutions.com/assets/og-image.png">
   
   <!-- Canonical URL -->
-  <link rel="canonical" href="https://datalentsolutions.com">
+  <link rel="canonical" href="https://datalentsolutions.com/">
   <base href="/">
   
   <!--
@@ -78,8 +78,20 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png">
   
-  <!-- Preconnect to external resources for performance -->
-  <link rel="preconnect" href="https://api.emailjs.com" crossorigin>
+  <!--
+    Antes había aquí un preconnect a api.emailjs.com. Abría una conexión con
+    un tercero en TODAS las páginas y para todos los visitantes, aunque solo
+    se usa al enviar el formulario de /contacto: gastaba una conexión y
+    desmentía el "cero peticiones a terceros al cargar" de docs/seguridad.md.
+
+    En su lugar se precargan las dos fuentes que pintan lo primero que se ve
+    (el titular en Source Serif y el texto en Inter). Sin esto el navegador no
+    sabe que las necesita hasta haber descargado y procesado el CSS, y el
+    titular se pinta primero con la fuente de reserva y luego salta. Los
+    nombres deben coincidir con src/styles/theme/_fonts.scss.
+  -->
+  <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/source-serif-4-700-latin.woff2" as="font" type="font/woff2" crossorigin>
 
   <!-- Typography: Inter (UI/body) + Source Serif 4 (display headlines only) -->
   <!-- See projects/datalent-v2/typography-rules.md for the scoped-serif rationale. -->

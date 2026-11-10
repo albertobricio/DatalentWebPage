@@ -16,7 +16,7 @@
           target="_blank"
           rel="noopener noreferrer"
         >
-          LinkedIn
+          LinkedIn<span class="visually-hidden"> (se abre en una pestaña nueva)</span>
         </a>
       </div>
 
@@ -33,6 +33,17 @@
                   <span class="footer__soon">Próximamente</span>
                 </span>
               }
+            </li>
+          }
+        </ul>
+      </div>
+
+      <div class="footer__column">
+        <h2 class="footer__heading">Servicios</h2>
+        <ul class="footer__list">
+          @for (item of servicePages; track item.label) {
+            <li>
+              <a [routerLink]="item.path">{{ item.label }}</a>
             </li>
           }
         </ul>
@@ -61,7 +72,9 @@
         <ul class="footer__list">
           @for (item of legalLinks; track item.label) {
             <li>
-              <a [href]="item.href" target="_blank" rel="noopener noreferrer">{{ item.label }}</a>
+              <a [href]="item.href" target="_blank" rel="noopener noreferrer"
+                >{{ item.label }}<span class="visually-hidden"> (PDF, se abre en una pestaña nueva)</span></a
+              >
             </li>
           }
           <li>

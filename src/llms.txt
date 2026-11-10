@@ -22,5 +22,6 @@ Datalent trabaja en modelo advisory-led: no vende una plataforma SaaS autoconfig
 ## Empresa
 
 - [Por qué Datalent](https://datalentsolutions.com/por-que-datalent): pilares y posicionamiento.
+- [Confianza y cumplimiento](https://datalentsolutions.com/confianza): reglas de gobernanza que se aplican en cada proyecto (clasificación de riesgo, supervisión humana, auditoría de sesgo, trazabilidad) y qué documentación se entrega.
 - [Preguntas frecuentes](https://datalentsolutions.com/faq)
 - [Contacto](https://datalentsolutions.com/contacto)

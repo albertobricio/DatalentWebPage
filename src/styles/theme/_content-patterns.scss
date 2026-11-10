@@ -188,6 +188,7 @@
 
   input[type='text'],
   input[type='email'],
+  input[type='tel'],
   select,
   textarea {
     padding: var(--space-sm) var(--space-md);
@@ -198,6 +199,10 @@
     border: var(--border-width) solid var(--color-border);
     border-radius: var(--radius-sm);
     min-height: 2.75rem;
+    // Un control nunca es más ancho que su campo: sin esto un <select> toma
+    // el ancho de su opción más larga y empuja la maquetación.
+    width: 100%;
+    min-width: 0;
 
     &:focus-visible {
       outline: 2px solid var(--focus-ring-color);
@@ -248,6 +253,14 @@
   margin: 0;
   font-size: var(--font-size-body-sm);
   color: var(--color-error);
+}
+
+// Ayuda bajo un campo. Mismo cuerpo que el error para que, al aparecer este,
+// el formulario no salte de altura.
+.form-field__hint {
+  margin: 0;
+  font-size: var(--font-size-body-sm);
+  color: var(--color-slate);
 }
 
 // Se marca el campo OPCIONAL, no los obligatorios. Cuatro de los seis campos

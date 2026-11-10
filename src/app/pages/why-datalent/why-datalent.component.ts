@@ -55,6 +55,7 @@ export class WhyDatalentComponent {
       keywords:
         'por qué Datalent, consultoría boutique gobernanza IA RRHH, agentic AI europea RRHH',
       path: '/por-que-datalent',
+      breadcrumbs: this.breadcrumbItems,
       ogTitle: 'Por qué Datalent | Datalent Solutions',
       ogDescription:
         'Cuatro pilares, y una lista explícita de lo que no somos, porque un posicionamiento que no descarta nada no es un posicionamiento.',

@@ -128,6 +128,8 @@ export class AgenticAiComponent {
       keywords:
         'agentic AI RRHH, IA agéntica recursos humanos, agentes de IA gobernados RRHH, automatización RRHH con supervisión humana',
       path: '/servicios/agentic-ai-rrhh',
+      breadcrumbs: this.breadcrumbItems,
+      faq: this.faqItems,
       ogTitle: 'Agentic AI para RR. HH. | Datalent Solutions',
       ogDescription:
         'Agentes de IA que ejecutan flujos completos de RR. HH. dentro de límites de autonomía documentados, con punto de control humano.',

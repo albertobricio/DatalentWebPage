@@ -103,6 +103,8 @@ export class WorkforceIntelligenceComponent {
       keywords:
         'workforce intelligence RRHH, planificación de plantilla, workforce planning España, análisis de skills, Build Buy Borrow Bot',
       path: '/servicios/workforce-intelligence',
+      breadcrumbs: this.breadcrumbItems,
+      faq: this.faqItems,
       ogTitle: 'Workforce Intelligence | Datalent Solutions',
       ogDescription:
         'Planificación estratégica de plantilla basada en escenarios: Build-Buy-Borrow-Bot-Bridge, análisis de skills y planificación por horizontes.',

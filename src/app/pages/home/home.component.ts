@@ -64,12 +64,21 @@ export class HomeComponent {
     // excluding job-seeker and competitor-brand terms (the prior meta
     // keywords included "eurofirms, adecco" — docs/business-analysis.md
     // flagged this as diluting the B2B positioning).
+    //
+    // Nov. 2026: el título decía "Datalent Solutions | Agentic AI para RR. HH.
+    // gobernada en Europa". Tres problemas: (1) la marca iba delante, en la
+    // posición con más peso del título; (2) "agentic AI
+    // RRHH" era también el término de /servicios/agentic-ai-rrhh, así que dos
+    // páginas competían por la misma consulta; (3) "RR. HH." con puntos y
+    // espacio no coincide con lo que la gente escribe. La portada va ahora al
+    // término amplio en castellano y la página de servicio conserva el
+    // específico. Debe coincidir con el <title> estático de src/index.html.
     this.seo.set({
-      title: 'Datalent Solutions | Agentic AI para RR. HH. gobernada en Europa',
+      title: 'IA para recursos humanos, gobernada en Europa | Datalent',
       description:
-        'Diseñamos, desplegamos y gobernamos agentes de IA para RR. HH. con límites de autonomía documentados, supervisión humana y gobernanza de datos europea.',
+        'Agentes de IA para selección, trámites laborales y seguimiento de plantilla, con supervisión humana. RGPD y Reglamento Europeo de IA. Diagnóstico gratuito.',
       keywords:
-        'agentic AI RRHH, IA agéntica recursos humanos, people analytics España, gobernanza de IA RRHH, EU AI Act recursos humanos',
+        'IA para recursos humanos, inteligencia artificial RRHH, agentes de IA RRHH, gobernanza de IA RRHH, Reglamento Europeo de IA recursos humanos, people analytics España',
       path: '/',
     });
   }

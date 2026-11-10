@@ -1,8 +1,15 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  inject,
+  signal,
+  viewChild,
+} from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { environment } from '../../../environments/environment';
-import { EmailService } from '../../providers/email.service';
+import { CONTACT_LIMITS, EmailService } from '../../providers/email.service';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { BadgeComponent } from '../../shared/components/badge/badge.component';
 import { SeoService } from '../../shared/seo.service';
@@ -32,6 +39,20 @@ const SERVICE_OPTIONS: readonly ServiceOption[] = [
   { value: 'otro', label: 'Otra cosa', brand: 'Otro' },
 ];
 
+/**
+ * Tamaño de empresa, opcional. Los tramos son los de la definición europea de
+ * pyme (Recomendación 2003/361/CE: micro, pequeña, mediana y grande por
+ * número de personas), que es como se segmenta este mercado. Sirve para
+ * preparar el diagnóstico antes de la llamada en lugar de preguntarlo en ella.
+ */
+const COMPANY_SIZES: readonly { readonly value: string; readonly label: string }[] = [
+  { value: '', label: 'Prefiero no indicarlo' },
+  { value: 'micro', label: 'Menos de 10 personas' },
+  { value: 'pequena', label: 'De 10 a 49 personas' },
+  { value: 'mediana', label: 'De 50 a 249 personas' },
+  { value: 'grande', label: '250 personas o más' },
+];
+
 // 'briefing' ya no lo genera ningún botón; se mantiene para que los enlaces
 // antiguos con ?motivo=briefing sigan llegando al diagnóstico.
 const MOTIVO_LABELS: Readonly<Record<string, string>> = {
@@ -43,6 +64,13 @@ const MOTIVO_DEFAULT_SERVICE: Readonly<Record<string, string>> = {
   diagnostico: 'general',
   briefing: 'general',
 };
+
+/**
+ * Menos de esto entre abrir la página y enviar no lo hace una persona: hay
+ * cuatro campos obligatorios y una casilla. Los bots que rellenan formularios
+ * envían en milisegundos.
+ */
+const MIN_FILL_MS = 3000;
 
 @Component({
   selector: 'app-contact',
@@ -57,31 +85,46 @@ export class ContactComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly emailService = inject(EmailService);
   private readonly seo = inject(SeoService);
+  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
+
+  private readonly confirmation = viewChild<ElementRef<HTMLElement>>('confirmation');
+  private readonly openedAt = Date.now();
 
   protected readonly serviceOptions = SERVICE_OPTIONS;
+  protected readonly companySizes = COMPANY_SIZES;
+  protected readonly limits = CONTACT_LIMITS;
   protected readonly contactEmail = environment.contactEmail;
 
   protected readonly submitting = signal(false);
-  protected readonly submitStatus = signal<{ type: 'success' | 'error'; message: string } | null>(
-    null,
-  );
+  /** Enviado con éxito: el formulario se sustituye por la confirmación. */
+  protected readonly sent = signal(false);
+  protected readonly errorMessage = signal<string | null>(null);
   protected readonly contextLabel = signal<string | null>(null);
 
   protected readonly form = this.fb.nonNullable.group({
-    nombre: ['', [Validators.required]],
-    email: ['', [Validators.required, Validators.email]],
-    empresa: [''],
+    nombre: ['', [Validators.required, Validators.maxLength(CONTACT_LIMITS.nombre)]],
+    email: ['', [Validators.required, Validators.email, Validators.maxLength(CONTACT_LIMITS.email)]],
+    telefono: [
+      '',
+      [Validators.pattern(/^[0-9+() .-]{6,}$/), Validators.maxLength(CONTACT_LIMITS.telefono)],
+    ],
+    empresa: ['', [Validators.maxLength(CONTACT_LIMITS.empresa)]],
+    tamano: [''],
     servicio: ['general', [Validators.required]],
-    mensaje: ['', [Validators.required, Validators.maxLength(2000)]],
+    mensaje: ['', [Validators.required, Validators.maxLength(CONTACT_LIMITS.mensaje)]],
     privacidad: [false, [Validators.requiredTrue]],
+    // Campo trampa: invisible para una persona, irresistible para un bot que
+    // rellena todo lo que encuentra. Ver el comentario en la plantilla.
+    referencia: [''],
   });
 
   constructor() {
     this.seo.set({
-      title: 'Contacto | Datalent Solutions',
+      title: 'Contacto y diagnóstico gratuito | Datalent Solutions',
       description:
-        'Habla con Datalent Solutions sobre agentic AI para RR. HH., people analytics, compensación o gobernanza de IA. Respuesta en menos de 24 horas hábiles.',
+        'Pide un diagnóstico gratuito de 30 minutos sobre IA para RR. HH., people analytics, retribución o gobernanza de IA. Respuesta en menos de 24 horas hábiles.',
       path: '/contacto',
+      breadcrumbs: [{ label: 'Inicio', url: '/' }, { label: 'Contacto' }],
       jsonLd: {
         '@context': 'https://schema.org',
         '@type': 'ContactPage',
@@ -107,44 +150,85 @@ export class ContactComponent {
     }
   }
 
-
   protected async onSubmit(): Promise<void> {
-    if (this.form.invalid || this.submitting()) {
+    if (this.submitting()) {
+      return;
+    }
+
+    if (this.form.invalid) {
       this.form.markAllAsTouched();
+      this.focusFirstInvalid();
+      return;
+    }
+
+    const value = this.form.getRawValue();
+    const fallback = `No hemos podido enviar tu solicitud. Escríbenos directamente a ${this.contactEmail}.`;
+
+    // Trampa rellenada o envío instantáneo: casi seguro un bot. Se responde
+    // con el mismo mensaje de error que un fallo de red, que ofrece el correo
+    // directo. Así una persona marcada por error (un gestor de contraseñas
+    // que rellene el campo oculto) no pierde la vía de contacto, y al bot no
+    // se le dice qué ha fallado.
+    if (value.referencia || Date.now() - this.openedAt < MIN_FILL_MS) {
+      this.errorMessage.set(fallback);
       return;
     }
 
     this.submitting.set(true);
-    this.submitStatus.set(null);
+    this.errorMessage.set(null);
 
-    const value = this.form.getRawValue();
     const option = this.serviceOptions.find((item) => item.value === value.servicio);
     const serviceLabel = option ? `${option.label} (${option.brand})` : value.servicio;
+    const sizeLabel = this.companySizes.find((item) => item.value === value.tamano && item.value)?.label ?? '';
 
-    const payload = {
+    // Los dos datos de cualificación van también al principio del mensaje:
+    // la plantilla de EmailJS no los conoce todavía como variables propias.
+    const extras = [
+      sizeLabel ? `Tamaño de la empresa: ${sizeLabel}` : '',
+      value.telefono ? `Teléfono: ${value.telefono}` : '',
+    ].filter(Boolean);
+    const message = extras.length ? `${extras.join('\n')}\n\n${value.mensaje}` : value.mensaje;
+
+    const result = await this.emailService.sendMail({
       from_name: value.nombre,
       from_email: value.email,
       company: value.empresa,
       service_interest: serviceLabel,
-      message: value.mensaje,
+      message,
       to_email: this.contactEmail,
-    };
-
-    const success = await this.emailService.sendMail(payload);
+      company_size: sizeLabel,
+      phone: value.telefono,
+    });
     this.submitting.set(false);
 
-    if (success) {
-      this.submitStatus.set({
-        type: 'success',
-        message: 'Gracias. Hemos recibido tu solicitud y te responderemos en menos de 24 horas hábiles.',
-      });
-      this.form.reset({ servicio: 'general', privacidad: false });
-    } else {
-      this.submitStatus.set({
-        type: 'error',
-        message: `No hemos podido enviar tu solicitud. Escríbenos directamente a ${this.contactEmail}.`,
-      });
+    switch (result) {
+      case 'ok':
+        this.sent.set(true);
+        // La confirmación sustituye al formulario. Sin mover el foco, quien
+        // navega con teclado o lector de pantalla se queda en un botón que
+        // ya no existe y no se entera de que el envío ha salido bien.
+        setTimeout(() => this.confirmation()?.nativeElement.focus(), 0);
+        break;
+      case 'cooldown':
+        this.errorMessage.set(
+          `Acabas de enviar una solicitud y ya la tenemos. Si quieres añadir algo, escríbenos a ${this.contactEmail}.`,
+        );
+        break;
+      case 'invalid':
+        this.errorMessage.set(
+          `Hay algún dato que no podemos enviar tal como está. Revísalo o escríbenos a ${this.contactEmail}.`,
+        );
+        break;
+      default:
+        this.errorMessage.set(fallback);
     }
+  }
+
+  /** Lleva el foco al primer campo con error, en el orden del formulario. */
+  private focusFirstInvalid(): void {
+    this.host.nativeElement
+      .querySelector<HTMLElement>('input.ng-invalid, select.ng-invalid, textarea.ng-invalid')
+      ?.focus();
   }
 
   private applyMotivo(motivo: string): void {

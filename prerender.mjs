@@ -26,15 +26,18 @@ import puppeteer from 'puppeteer';
 const DIST = 'dist/datalent-web-page';
 const PORT = 4321;
 
-// Must stay in sync with src/app/app-routing.module.ts. '/' is rendered
-// separately because it redirects to /home and needs to overwrite the
-// root index.html shell.
+// Must stay in sync with src/app/app-routing.module.ts.
+//
+// '/home' ya no es una página: el router la redirige a '/'. Se sigue
+// prerenderizando para que los enlaces antiguos a /home encuentren un HTML
+// (con canónico a '/') en vez del 404 de GitHub Pages.
 const ROUTES = [
   '/',
   '/home',
   '/faq',
   '/servicios',
   '/por-que-datalent',
+  '/confianza',
   '/contacto',
   '/servicios/gobernanza-ia',
   '/servicios/agentic-ai-rrhh',
@@ -42,6 +45,12 @@ const ROUTES = [
   '/servicios/workforce-intelligence',
   '/servicios/people-analytics',
 ];
+
+// Página de error. Se renderiza pidiendo una ruta que no existe, para que el
+// router caiga en la ruta comodín, y se escribe en dist/404.html, que es el
+// archivo que GitHub Pages sirve (con estado 404) ante cualquier URL
+// desconocida. No va en ROUTES porque no es una carpeta ni entra en el sitemap.
+const NOT_FOUND = { route: '/pagina-que-no-existe', out: '404.html' };
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -54,6 +63,8 @@ const MIME = {
   '.svg': 'image/svg+xml',
   '.woff2': 'font/woff2',
   '.pdf': 'application/pdf',
+  '.txt': 'text/plain; charset=utf-8',
+  '.xml': 'application/xml',
 };
 
 // The pristine shell is read ONCE, up front, and every SPA fallback is served
@@ -101,7 +112,7 @@ const server = await serve();
 const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
 let failures = 0;
 
-for (const route of ROUTES) {
+for (const route of [...ROUTES, NOT_FOUND.route]) {
   const page = await browser.newPage();
   try {
     await page.goto(`http://localhost:${PORT}${route}`, {
@@ -131,7 +142,17 @@ for (const route of ROUTES) {
     if (!h1) throw new Error('rendered without an <h1>');
 
     const outPath =
-      route === '/' ? join(DIST, 'index.html') : join(DIST, route, 'index.html');
+      route === NOT_FOUND.route
+        ? join(DIST, NOT_FOUND.out)
+        : route === '/'
+          ? join(DIST, 'index.html')
+          : join(DIST, route, 'index.html');
+
+    // La página de error tiene que llevar noindex: si no, cada URL rota que
+    // alguien enlace sería una página indexable más.
+    if (route === NOT_FOUND.route && !/<meta name="robots" content="noindex/.test(html)) {
+      throw new Error('la página 404 se ha renderizado sin noindex');
+    }
     await mkdir(dirname(outPath), { recursive: true });
     await writeFile(outPath, html, 'utf8');
 
@@ -152,7 +173,7 @@ if (failures) {
   console.error(`\nPrerender failed for ${failures} route(s).`);
   process.exit(1);
 }
-console.log(`\nPrerendered ${ROUTES.length} routes into ${DIST}/`);
+console.log(`\nPrerendered ${ROUTES.length} routes + ${NOT_FOUND.out} into ${DIST}/`);
 
 /**
  * El sitemap se genera aquí, a partir del mismo ROUTES que se acaba de

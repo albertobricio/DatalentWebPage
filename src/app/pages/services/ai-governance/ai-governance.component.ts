@@ -74,6 +74,7 @@ export class AiGovernanceComponent {
       keywords:
         'clasificación de riesgo IA Reglamento Europeo, cumplimiento EU AI Act RRHH, auditoría de sesgo IA selección de personal',
       path: '/servicios/gobernanza-ia',
+      breadcrumbs: this.breadcrumbItems,
       ogTitle: 'Gobernanza de IA para RR. HH. | Datalent Solutions',
       ogDescription:
         'Clasificación de riesgo, supervisión humana y auditoría de sesgo para IA en RR. HH., alineado con el Reglamento Europeo de IA y el RGPD.',

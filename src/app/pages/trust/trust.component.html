@@ -1,0 +1,161 @@
+<article>
+  <app-hero
+    eyebrow="Confianza y cumplimiento"
+    title="Cómo tratamos los datos, en tu proyecto y en esta web"
+    description="Lo que un equipo de compras, legal o TI necesita saber antes de contratar, reunido en una página. Cada punto está desarrollado en la página de su solución."
+    ctaVariant="diagnostico"
+    dotsVariant="shield"
+    [breadcrumbItems]="breadcrumbItems"
+  />
+
+  <app-section>
+    <div class="container container--prose">
+      <h2>En cada proyecto</h2>
+      <p class="section-intro">
+        Estas reglas valen para las cuatro soluciones y no dependen del tamaño del encargo.
+      </p>
+
+      <dl class="term-list">
+        <dt>Clasificación de riesgo antes de construir</dt>
+        <dd>
+          Todo sistema que influya en una decisión de empleo parte de la premisa del Anexo
+          III del Reglamento (UE) 2024/1689: alto riesgo. La clasificación se entrega con su
+          razonamiento, y antes de clasificar se determina si actúas como proveedor o como
+          responsable del despliegue.
+        </dd>
+
+        <dt>Supervisión humana documentada</dt>
+        <dd>
+          Cada agente lleva por escrito su límite de autonomía y su punto de control humano.
+          Ninguna decisión que afecte a una persona es definitiva sin revisión, como exigen
+          el artículo 14 del Reglamento y el artículo 22 del RGPD.
+        </dd>
+
+        <dt>Alojamiento y base legal, sistema por sistema</dt>
+        <dd>
+          La jurisdicción de alojamiento, la base legal del tratamiento y la clasificación de
+          riesgo se determinan y documentan para cada sistema antes del despliegue. No lo
+          prometemos en genérico porque depende de qué datos entran y desde dónde.
+        </dd>
+
+        <dt>Auditoría de sesgo antes de producción</dt>
+        <dd>
+          Antes de que un modelo influya en una decisión real: cribado de impacto dispar
+          frente al umbral de la regla del 4/5, documentación de qué variables alimentan el
+          modelo y con qué peso, y re-validación periódica.
+        </dd>
+
+        <dt>Trazabilidad de cada decisión</dt>
+        <dd>
+          Cada agente que diseñamos registra la acción y el razonamiento que la originó, de
+          modo que cualquier decisión se puede reconstruir después.
+        </dd>
+
+        <dt>Metodología a la vista</dt>
+        <dd>
+          Los análisis se entregan con su metodología y el linaje de los datos. En
+          retribución, la brecha bruta y la ajustada se muestran siempre por separado.
+        </dd>
+      </dl>
+
+      <p class="trust__more">
+        <a class="text-link" routerLink="/servicios/gobernanza-ia">
+          Ver Gobernanza de IA <span aria-hidden="true">→</span>
+        </a>
+        <a class="text-link" routerLink="/faq">
+          Ver preguntas frecuentes <span aria-hidden="true">→</span>
+        </a>
+      </p>
+    </div>
+  </app-section>
+
+  <app-section background="secondary">
+    <div class="container">
+      <h2>Lo que recibes por escrito</h2>
+      <p class="section-intro">
+        Documentos que puedes enseñar a tu comité de empresa, a tu asesoría o a un inspector.
+      </p>
+      <div class="card-grid--3">
+        <app-card>
+          <h3>Clasificación de riesgo</h3>
+          <p>
+            El nivel de riesgo de cada sistema según el Reglamento Europeo de IA, con el
+            razonamiento y la referencia al Anexo III.
+          </p>
+        </app-card>
+        <app-card>
+          <h3>Especificación del agente</h3>
+          <p>
+            Objetivo, límite de autonomía, disparadores de escalado, punto de control humano
+            y estado de gobernanza, fijados antes del despliegue.
+          </p>
+        </app-card>
+        <app-card>
+          <h3>Marco de gobernanza</h3>
+          <p>
+            Metodología de auditoría de sesgo, diseño de la supervisión humana y
+            documentación de la residencia de los datos.
+          </p>
+        </app-card>
+      </div>
+    </div>
+  </app-section>
+
+  <app-section>
+    <div class="container container--prose">
+      <h2>Esta web, con el mismo criterio</h2>
+      <p class="section-intro">
+        Lo que pedimos a los sistemas de nuestros clientes se lo aplicamos al escaparate.
+        Puedes comprobarlo con las herramientas de tu navegador.
+      </p>
+
+      <dl class="term-list">
+        <dt>Sin tipografías, scripts ni píxeles de otros servicios</dt>
+        <dd>
+          Al abrir una página, tu navegador solo habla con el dominio de esta web. Las
+          tipografías se sirven desde aquí y no se carga código externo.
+        </dd>
+
+        <dt>Un asistente sin modelo de lenguaje</dt>
+        <dd>
+          Aura funciona con un guion cerrado y contesta lo mismo que la página de preguntas
+          frecuentes. No genera texto, no admite escritura libre y no envía nada fuera de tu
+          navegador.
+        </dd>
+
+        <dt>Un solo servicio externo, y solo si nos escribes</dt>
+        <dd>
+          El formulario de contacto se envía por correo a través de EmailJS cuando pulsas
+          «Enviar solicitud». Hasta ese momento, nada de lo que escribes sale de tu navegador.
+        </dd>
+
+        <dt>Código ajeno bloqueado por el navegador</dt>
+        <dd>
+          Una política de seguridad de contenido impide que se ejecute cualquier script que
+          no venga de este dominio.
+        </dd>
+
+        <dt>Aviso de vulnerabilidades</dt>
+        <dd>
+          Si encuentras un fallo de seguridad en esta web, escríbenos a
+          <a [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>. El contacto está
+          publicado también en
+          <a href="/.well-known/security.txt">security.txt</a>.
+        </dd>
+      </dl>
+    </div>
+  </app-section>
+
+  <app-section background="inverse">
+    <div class="container cta-banner">
+      <h2>¿Tu equipo legal o de TI necesita algo más?</h2>
+      <p>
+        Tráelo al diagnóstico gratuito de 30 minutos o escríbenos. Lo que dependa de tu
+        caso lo respondemos sobre tu caso.
+      </p>
+      <div class="cta-banner__actions">
+        <app-cta variant="diagnostico" />
+      </div>
+    </div>
+  </app-section>
+</article>

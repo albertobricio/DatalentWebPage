@@ -3,8 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'home', component: HomeComponent },
+  // La portada vive en "/", no en "/home". Antes la raíz redirigía a /home:
+  // la URL que veía y compartía el visitante era /home mientras el canónico
+  // decía "/", y el enlace "Inicio" de la cabecera nunca se marcaba como
+  // activo porque compara con "/". /home se conserva como redirección para
+  // no romper los enlaces que ya circulan.
+  { path: '', pathMatch: 'full', component: HomeComponent },
+  { path: 'home', pathMatch: 'full', redirectTo: '' },
   {
     path: 'faq',
     loadComponent: () => import('./pages/faq/faq.component').then((m) => m.FaqComponent),
@@ -61,7 +66,21 @@ const routes: Routes = [
     loadComponent: () =>
       import('./pages/why-datalent/why-datalent.component').then((m) => m.WhyDatalentComponent),
   },
-  { path: '**', redirectTo: '' }
+  {
+    path: 'confianza',
+    loadComponent: () =>
+      import('./pages/trust/trust.component').then((m) => m.TrustComponent),
+  },
+  // Una URL que no existe muestra una página de error con salidas, no la
+  // portada. Redirigir todo a "/" hacía que un enlace roto pareciera
+  // funcionar: el visitante aterrizaba en Home sin saber que lo que buscaba
+  // no estaba, y para un buscador cada URL inventada era una copia de la
+  // portada (un "soft 404").
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./pages/not-found/not-found.component').then((m) => m.NotFoundComponent),
+  },
 ];
 
 @NgModule({
