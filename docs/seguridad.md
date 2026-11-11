@@ -110,6 +110,12 @@ Hallazgo de noviembre de 2026. No es un fallo de código, pero es el riesgo más
 
 **Decisión de Gema (10 de noviembre de 2026): el aviso de cookies se queda como está.** No hay que volver a proponer retirarlo. Sigue pendiente la revisión de los dos PDF y del aviso legal, que corresponde a Gema y a quien la asesore legalmente.
 
+### La redirección a HTTPS del cliente no es una medida de seguridad
+
+`src/main.ts` redirige a HTTPS por JavaScript. Hasta noviembre de 2026 lo hacía en cualquier host distinto de `localhost` y sin conservar el puerto, lo que rompía las pruebas en `127.0.0.1` y en la red local. Ahora solo actúa en `datalentsolutions.com`.
+
+Se conserva como red de seguridad por si se desactiva «Enforce HTTPS» en GitHub Pages, pero no protege de nada por sí sola: se ejecuta en una página que ya se ha servido sin cifrar. La protección real es la redirección del servidor más HSTS, y HSTS es una de las cabeceras que GitHub Pages no permite definir. **Comprobar que «Enforce HTTPS» está activado** en Settings → Pages.
+
 ### Publicado: `/.well-known/security.txt`
 
 El archivo existía en la raíz del repositorio pero **nunca se desplegaba**: no estaba en los `assets` de `angular.json`. Además apuntaba a `www.` y caducaba el 22 de diciembre de 2026. Ahora vive en `src/.well-known/`, se copia en el build, caduca el 1 de noviembre de 2027 y el despliegue falla si falta. **Hay que renovar la fecha `Expires` antes de esa fecha.**

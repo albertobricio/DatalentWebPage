@@ -3,7 +3,7 @@
 **Fecha:** 10 de noviembre de 2026.
 **Alcance:** seguridad, SEO técnico, experiencia de uso y captación B2B. Como el Sprint 8, corrige lo construido y añade solo dos páginas: una de error 404 y una de confianza y cumplimiento.
 
-**Estado: sin commitear y sin desplegar.** Verificado en local con build de producción, prerender de las 12 rutas y recorrido en navegador a 1440 px y 375 px.
+**Estado: confirmado y subido en la rama `web/sprint-9-seguridad-seo-b2b`, sin fusionar en `main` y sin desplegar.** El despliegue se lanza al llegar a `main`. Verificado en local con build de producción, prerender de las 12 rutas y recorrido en navegador a 1440 px y 375 px.
 
 ---
 
@@ -64,6 +64,23 @@ Detalle en `docs/seguridad.md`. Lo esencial:
 
 - **Cualificación en el formulario.** Dos campos opcionales: teléfono y tamaño de empresa, con los tramos de la definición europea de pyme (Recomendación 2003/361/CE). Viajan dentro del mensaje, así que llegan sin tocar la plantilla de EmailJS.
 - **`/confianza`.** Página para quien revisa a un proveedor desde compras, legal o TI. No afirma nada nuevo: reúne lo que ya decían el FAQ y las páginas de servicio, y añade hechos comprobables de la propia web. **Pendiente de revisión de Gema antes de publicar.**
+
+---
+
+## Segunda pasada: accesibilidad medida (11 de noviembre)
+
+Auditoría con axe-core (reglas WCAG 2.0, 2.1 y 2.2 en niveles A y AA, más buenas prácticas) sobre el build de producción: las 12 páginas y la 404, en móvil y escritorio, y además con Aura abierta, con el menú móvil abierto y con el formulario mostrando errores. **29 estados, 0 infracciones** tras corregir estas cuatro cosas, todas anteriores al sprint:
+
+| Hallazgo | Dónde | Arreglo |
+|---|---|---|
+| Enlace dentro de un párrafo distinguible solo por el color (1,5:1 frente al texto; WCAG 1.4.1 pide 3:1 u otra señal) | Workforce Intelligence | Los enlaces dentro de párrafos y definiciones se subrayan en todo el sitio |
+| Región con scroll propio inalcanzable con teclado (WCAG 2.1.1) | Diagrama de límite de autonomía, en móvil | `tabindex`, rol y nombre accesible |
+| Dos cabeceras de sitio para un lector de pantalla | Panel de Aura abierto | El `<header>` del panel pasa a `<div>` |
+| El sitio redirigía a `https://<host>/` sin el puerto en cualquier host que no fuera `localhost` | `src/main.ts` | La redirección solo actúa en `datalentsolutions.com` |
+
+El último no es de accesibilidad: apareció porque impedía auditar. Abrir el sitio en `127.0.0.1` o en la IP de la red local, que es como se prueba en un móvil real, llevaba a una página de error del navegador.
+
+Se intentó medir también con Lighthouse y no fue posible: sus versiones 12 y 13 fallan con el Chrome que instala Puppeteer en este equipo. Las cifras de rendimiento siguen sin medirse.
 
 ---
 

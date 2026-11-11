@@ -111,6 +111,18 @@ a {
   }
 }
 
+// La excepción a lo anterior: un enlace dentro de un párrafo o de una
+// definición sí se subraya. Medido con axe: el azul del enlace (#1f3d7a)
+// contra el gris del texto que lo rodea (#5e594e) da 1,5:1, y WCAG 1.4.1
+// pide 3:1 o una señal que no sea el color. Sin subrayado, quien no
+// distingue bien los tonos no ve que ahí hay un enlace. Los enlaces sueltos
+// (.text-link) y los botones siguen sin subrayar: ya se leen como acciones.
+p a:not(.text-link):not(.btn),
+dd a:not(.text-link):not(.btn) {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
 // Visible, never-suppressed focus state — design-system.md's WCAG commitment.
 :focus-visible {
   outline: 2px solid var(--focus-ring-color);

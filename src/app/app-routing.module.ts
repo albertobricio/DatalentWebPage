@@ -90,9 +90,21 @@ const routes: Routes = [
     // altura. 'enabled' sube arriba en cada navegación y restaura la posición
     // al volver atrás. anchorScrolling hace que /servicios#radar baje a la
     // tarjeta (el menú y el pie enlazan así a cada solución).
+    //
+    // initialNavigation 'enabledBlocking': Angular no pinta nada hasta haber
+    // resuelto la primera ruta, incluida la descarga de su chunk. Sin esto,
+    // en cualquier página que no fuera Home pasaba lo siguiente: el HTML
+    // prerenderizado se veía bien, Angular arrancaba y lo sustituía por
+    // cabecera + <main> vacío + pie (el pie subía hasta arriba), y cuando
+    // llegaba el chunk de la página el pie volvía a bajar. Medido con
+    // Lighthouse en móvil: CLS de 0,93 (el umbral de "bueno" es 0,1) y LCP
+    // de 5,4 s en Contacto, Confianza y las páginas de servicio, frente a
+    // CLS 0 en Home, que no carga chunk. Ahora el HTML prerenderizado sigue
+    // en pantalla hasta que la página completa está lista para sustituirlo.
     RouterModule.forRoot(routes, {
       scrollPositionRestoration: 'enabled',
       anchorScrolling: 'enabled',
+      initialNavigation: 'enabledBlocking',
     }),
   ],
   exports: [RouterModule]

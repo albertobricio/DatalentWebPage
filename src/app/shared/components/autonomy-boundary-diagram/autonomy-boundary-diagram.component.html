@@ -5,8 +5,17 @@
     ilegibles; y la página nunca hace scroll horizontal, solo este bloque.
     La descripción completa va en <desc>, así que quien no ve el diagrama no
     depende de poder desplazarlo.
+
+    tabindex y nombre accesible: una región con scroll propio tiene que poder
+    recibir el foco, o quien navega solo con teclado no tiene forma de
+    desplazarla (WCAG 2.1.1). Con el foco dentro, las flechas la mueven.
   -->
-  <div class="autonomy-diagram__frame">
+  <div
+    class="autonomy-diagram__frame"
+    tabindex="0"
+    role="group"
+    aria-label="Diagrama del límite de autonomía. En pantallas estrechas se desplaza en horizontal."
+  >
     <svg
       class="autonomy-diagram__svg"
       viewBox="0 0 700 420"
