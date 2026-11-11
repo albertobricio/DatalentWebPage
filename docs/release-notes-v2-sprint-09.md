@@ -67,20 +67,36 @@ Detalle en `docs/seguridad.md`. Lo esencial:
 
 ---
 
-## Segunda pasada: accesibilidad medida (11 de noviembre)
+## Segunda pasada: accesibilidad y rendimiento medidos (11 de noviembre)
 
-Auditoría con axe-core (reglas WCAG 2.0, 2.1 y 2.2 en niveles A y AA, más buenas prácticas) sobre el build de producción: las 12 páginas y la 404, en móvil y escritorio, y además con Aura abierta, con el menú móvil abierto y con el formulario mostrando errores. **29 estados, 0 infracciones** tras corregir estas cuatro cosas, todas anteriores al sprint:
+### Accesibilidad
+
+Auditoría con axe-core (reglas WCAG 2.0, 2.1 y 2.2 en niveles A y AA, más buenas prácticas) sobre el build de producción: las 12 páginas y la 404, en móvil y escritorio, y además con Aura abierta, con el menú móvil abierto y con el formulario mostrando errores. **29 estados, 0 infracciones** tras corregir tres cosas, todas anteriores al sprint:
 
 | Hallazgo | Dónde | Arreglo |
 |---|---|---|
 | Enlace dentro de un párrafo distinguible solo por el color (1,5:1 frente al texto; WCAG 1.4.1 pide 3:1 u otra señal) | Workforce Intelligence | Los enlaces dentro de párrafos y definiciones se subrayan en todo el sitio |
 | Región con scroll propio inalcanzable con teclado (WCAG 2.1.1) | Diagrama de límite de autonomía, en móvil | `tabindex`, rol y nombre accesible |
 | Dos cabeceras de sitio para un lector de pantalla | Panel de Aura abierto | El `<header>` del panel pasa a `<div>` |
-| El sitio redirigía a `https://<host>/` sin el puerto en cualquier host que no fuera `localhost` | `src/main.ts` | La redirección solo actúa en `datalentsolutions.com` |
 
-El último no es de accesibilidad: apareció porque impedía auditar. Abrir el sitio en `127.0.0.1` o en la IP de la red local, que es como se prueba en un móvil real, llevaba a una página de error del navegador.
+### La redirección a HTTPS impedía probar el sitio
 
-Se intentó medir también con Lighthouse y no fue posible: sus versiones 12 y 13 fallan con el Chrome que instala Puppeteer en este equipo. Las cifras de rendimiento siguen sin medirse.
+`src/main.ts` redirigía a `https://<host>/`, sin el puerto, en cualquier host que no fuera `localhost`. Abrir el sitio en `127.0.0.1` o en la IP de la red local, que es como se prueba en un móvil real, llevaba a una página de error del navegador. Lighthouse usa `127.0.0.1`, así que tampoco se podía auditar. Ahora la redirección solo actúa en `datalentsolutions.com`.
+
+### Rendimiento
+
+Lighthouse 13, perfil móvil, sobre el build de producción servido en local. El servidor local no comprime, así que los tiempos absolutos salen peores que en GitHub Pages; lo que vale es la comparación.
+
+| | Antes | Después |
+|---|---|---|
+| Salto de maquetación (CLS) en Contacto, Confianza y Agentic AI | 0,93 | 0 |
+| Puntuación de rendimiento en esas tres páginas | 52 a 53 | 79 a 81 |
+| CLS y rendimiento en la portada | 0 y 98 | 0 y 99 |
+| Accesibilidad, buenas prácticas y SEO (5 páginas medidas) | sin medir | 100 en las tres |
+
+El umbral de «bueno» para el CLS es 0,1. El salto venía de la falta de hidratación: en cualquier página que no fuera la portada, Angular sustituía el HTML prerenderizado por cabecera, contenido vacío y pie, el pie subía hasta arriba, y volvía a bajar al llegar el código de la página. Con `initialNavigation: 'enabledBlocking'` Angular no pinta hasta tener la página entera. Comprobado fotograma a fotograma con la red limitada: no hay ningún instante en blanco en el relevo.
+
+**Lo que queda sin resolver.** En esas mismas páginas Lighthouse da un LCP de 5 a 6 s, frente a 1,2 s en la portada. El contenido está en pantalla desde el primer pintado (1,2 a 1,6 s), pero como Angular vuelve a crear los elementos al arrancar, Lighthouse fecha el LCP en ese momento. Medido con la API del navegador (`PerformanceObserver`) el LCP coincide con el primer pintado. No se ha podido determinar cuál de las dos cifras verán los datos de campo de Google. La solución de fondo es la hidratación real, que exige prerenderizar con Angular SSR en lugar de con Puppeteer: es una migración, no un ajuste.
 
 ---
 
