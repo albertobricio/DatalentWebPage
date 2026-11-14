@@ -3,7 +3,7 @@
 **Fecha:** 10 de noviembre de 2026.
 **Alcance:** seguridad, SEO técnico, experiencia de uso y captación B2B. Como el Sprint 8, corrige lo construido y añade solo dos páginas: una de error 404 y una de confianza y cumplimiento.
 
-**Estado: confirmado y subido en la rama `web/sprint-9-seguridad-seo-b2b`, sin fusionar en `main` y sin desplegar.** El despliegue se lanza al llegar a `main`. Verificado en local con build de producción, prerender de las 12 rutas y recorrido en navegador a 1440 px y 375 px.
+**Estado: fusionado en `main` y desplegado el 14 de noviembre de 2026.** Verificado en local con build de producción, prerender de las 12 rutas y recorrido en navegador a 1440 px y 375 px.
 
 ---
 
@@ -96,7 +96,54 @@ Lighthouse 13, perfil móvil, sobre el build de producción servido en local. El
 
 El umbral de «bueno» para el CLS es 0,1. El salto venía de la falta de hidratación: en cualquier página que no fuera la portada, Angular sustituía el HTML prerenderizado por cabecera, contenido vacío y pie, el pie subía hasta arriba, y volvía a bajar al llegar el código de la página. Con `initialNavigation: 'enabledBlocking'` Angular no pinta hasta tener la página entera. Comprobado fotograma a fotograma con la red limitada: no hay ningún instante en blanco en el relevo.
 
-**Lo que queda sin resolver.** En esas mismas páginas Lighthouse da un LCP de 5 a 6 s, frente a 1,2 s en la portada. El contenido está en pantalla desde el primer pintado (1,2 a 1,6 s), pero como Angular vuelve a crear los elementos al arrancar, Lighthouse fecha el LCP en ese momento. Medido con la API del navegador (`PerformanceObserver`) el LCP coincide con el primer pintado. No se ha podido determinar cuál de las dos cifras verán los datos de campo de Google. La solución de fondo es la hidratación real, que exige prerenderizar con Angular SSR en lugar de con Puppeteer: es una migración, no un ajuste.
+**El LCP alto de la medición local no se da en producción.** En local, Lighthouse daba un LCP de 5 a 6 s en las páginas interiores. Medido contra la web publicada el 14 de noviembre, el LCP coincide con el primer pintado en todas:
+
+| Página (producción, perfil móvil) | Rendimiento | FCP | LCP | CLS |
+|---|---|---|---|---|
+| Portada | 99 | 1,1 s | 1,1 s | 0 |
+| Contacto | 98 | 1,0 s | 1,0 s | 0 |
+| Confianza | 99 | 0,9 s | 0,9 s | 0 |
+| Agentic AI | 99 | 1,0 s | 1,0 s | 0 |
+
+Accesibilidad, buenas prácticas y SEO dan 100 en las cuatro. La diferencia con la medición local venía del servidor de pruebas, que no comprime: con el JavaScript sin comprimir, Angular arrancaba tan tarde que Lighthouse fechaba ahí el LCP. La hidratación con Angular SSR sigue siendo la solución limpia, pero deja de ser urgente.
+
+---
+
+## Despliegue (14 de noviembre)
+
+Fusionado en `main` como `08d7739` (pull request 1) y desplegado. Verificado contra la web publicada, sin caché:
+
+- Las 11 rutas del sitemap responden 200 con su título y su canónico; `/home` responde con canónico a `/`.
+- Una URL inexistente devuelve estado 404 con la página de error y `noindex`.
+- `/.well-known/security.txt`, `robots.txt`, `sitemap.xml` y `llms.txt` responden 200. Los archivos antiguos de Inter y `assets/404.html` ya no existen.
+- Recorrido con navegador en móvil: sin errores de consola, sin desbordamiento horizontal, sin peticiones a terceros y sin cookies en ninguna página.
+
+**Hallazgo del despliegue:** `http://datalentsolutions.com` responde 200 sin redirigir a HTTPS. «Enforce HTTPS» está desactivado en GitHub Pages. Un navegador acaba en HTTPS gracias al script de `main.ts`, pero un rastreador o cualquier cliente sin JavaScript recibe la página sin cifrar. Ver `docs/seguridad.md`.
+
+**Envío real del formulario, probado el 14 de noviembre.** Una solicitud de prueba enviada desde `/contacto` en producción: EmailJS respondió 200 «OK» y la página mostró la confirmación con el foco en ella. Falta confirmar a mano que el correo llegó al buzón, que es lo único que no se ve desde fuera.
+
+**Visto durante la prueba:** el aviso de cookies es fijo y, mientras no se resuelve, ocupa el 25 % de la pantalla en un móvil de 375 px (199 px) y el 12 % en escritorio. En móvil, al llegar al final de la página tapa los dos últimos enlaces del pie («Política de cookies» y «Configurar cookies»). Los dos son accesibles desde el propio aviso, así que no bloquea a nadie, pero un clic automatizado sobre «Enviar solicitud» cayó en el aviso y no en el botón.
+
+---
+
+## Tercera pasada: el aviso de cookies deja de tapar contenido (14 de noviembre)
+
+**Estado: verificado en local sobre el build de producción. Se publica con el despliegue de `main` que incluye este cambio.**
+
+El aviso se queda, como se decidió. Cambia cómo ocupa la pantalla:
+
+| | Antes | Después |
+|---|---|---|
+| Enlaces del pie tapados al final de la página, en móvil | 2 | 0 |
+| Foco del teclado en «Enviar solicitud» con el aviso abierto | podía quedar debajo del aviso | queda por encima |
+| Fotogramas con el aviso a la vista para quien ya decidió, en cada carga | hasta que arrancaba Angular | 0 |
+| Salto de maquetación al aparecer el aviso (CLS) | 0 | 0 |
+
+- **`position: sticky` en lugar de `fixed`.** Sigue pegado al borde inferior mientras se desplaza la página, pero al llegar al final descansa en su propio hueco, debajo del pie.
+- **`scroll-padding-bottom` con la altura real del aviso**, que `AppComponent` publica como variable CSS. Es lo que evita que el foco del teclado quede oculto (WCAG 2.2, criterio 2.4.11).
+- **El aviso ya no va en el HTML prerenderizado.** El prerender corre sin ninguna decisión guardada, así que el aviso quedaba horneado en las 12 páginas y quien ya había aceptado o rechazado lo veía parpadear en cada carga. Ahora lo añade Angular solo a quien no ha decidido.
+
+Verificado en móvil y escritorio sobre el build de producción: 37 estados de accesibilidad con axe (los 29 anteriores más 8 con el aviso visible), 0 infracciones.
 
 ---
 

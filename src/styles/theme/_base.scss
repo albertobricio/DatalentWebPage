@@ -12,6 +12,10 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
+  // Altura del aviso de cookies mientras está visible (la publica
+  // AppComponent). Sin aviso vale 0. Hace que el foco del teclado y los
+  // saltos a ancla no dejen el destino escondido debajo del aviso.
+  scroll-padding-bottom: var(--cookie-banner-height, 0px);
 }
 
 @media (prefers-reduced-motion: reduce) {
