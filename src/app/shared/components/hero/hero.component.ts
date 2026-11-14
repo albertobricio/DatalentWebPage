@@ -44,7 +44,8 @@ export class HeroComponent {
     const variant = this.secondaryCtaVariant();
     return variant ? CTA_LABELS[variant] : '';
   });
-  protected readonly secondaryCtaQueryParams = computed(() => ({
-    motivo: this.secondaryCtaVariant(),
-  }));
+  protected readonly secondaryCtaQueryParams = computed<Record<string, string> | undefined>(() => {
+    const variant = this.secondaryCtaVariant();
+    return variant ? { motivo: variant } : undefined;
+  });
 }
