@@ -110,11 +110,13 @@ Hallazgo de noviembre de 2026. No es un fallo de código, pero es el riesgo más
 
 **Decisión de Gema (10 de noviembre de 2026): el aviso de cookies se queda como está.** No hay que volver a proponer retirarlo. Sigue pendiente la revisión de los dos PDF y del aviso legal, que corresponde a Gema y a quien la asesore legalmente.
 
-### La redirección a HTTPS del cliente no es una medida de seguridad
+### «Enforce HTTPS» está desactivado en GitHub Pages
 
-`src/main.ts` redirige a HTTPS por JavaScript. Hasta noviembre de 2026 lo hacía en cualquier host distinto de `localhost` y sin conservar el puerto, lo que rompía las pruebas en `127.0.0.1` y en la red local. Ahora solo actúa en `datalentsolutions.com`.
+Comprobado el 14 de noviembre de 2026 contra producción: `http://datalentsolutions.com/` responde **200 con el contenido**, sin redirección. El servidor entrega el sitio sin cifrar a quien lo pida por HTTP.
 
-Se conserva como red de seguridad por si se desactiva «Enforce HTTPS» en GitHub Pages, pero no protege de nada por sí sola: se ejecuta en una página que ya se ha servido sin cifrar. La protección real es la redirección del servidor más HSTS, y HSTS es una de las cabeceras que GitHub Pages no permite definir. **Comprobar que «Enforce HTTPS» está activado** en Settings → Pages.
+Lo único que lleva a HTTPS es el script de `src/main.ts`, y solo en un navegador con JavaScript. No protege la primera carga, que es justo la que puede interceptar quien esté en medio de la conexión, y no afecta a rastreadores ni a clientes sin JavaScript. Hasta noviembre de 2026 ese script actuaba en cualquier host distinto de `localhost` y sin conservar el puerto, lo que rompía las pruebas en `127.0.0.1` y en la red local; ahora solo actúa en `datalentsolutions.com`.
+
+**Qué hacer:** activar «Enforce HTTPS» en el repositorio, en Settings → Pages. Lo tiene que hacer quien administre el repositorio. Con eso la redirección la hace el servidor. HSTS seguirá sin poder definirse, porque GitHub Pages no permite cabeceras propias.
 
 ### Publicado: `/.well-known/security.txt`
 

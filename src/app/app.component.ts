@@ -6,7 +6,7 @@ import {
   inject,
   viewChild,
 } from '@angular/core';
-import { ViewportScroller } from '@angular/common';
+import { DOCUMENT, ViewportScroller } from '@angular/common';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 import { HeaderComponent } from './layout/header/header.component';
@@ -64,6 +64,35 @@ export class AppComponent {
         }
         this.main()?.nativeElement.focus({ preventScroll: true });
       });
+
+    // Mientras el aviso está a la vista, su altura se publica como variable
+    // CSS en <html>. _base.scss la usa en scroll-padding-bottom para que el
+    // navegador, al llevar el foco a un campo con el tabulador, lo deje por
+    // encima del aviso y no debajo (WCAG 2.2, criterio 2.4.11, foco no
+    // oculto). La altura cambia con el ancho de pantalla, de ahí el
+    // ResizeObserver en lugar de un valor fijo.
+    const root = inject(DOCUMENT).documentElement;
+    effect((onCleanup) => {
+      const banner = this.cookieBanner()?.nativeElement;
+      if (!banner || typeof ResizeObserver === 'undefined') {
+        return;
+      }
+      const observer = new ResizeObserver(() => {
+        // Un elemento ya retirado del documento mide 0: no es una altura.
+        if (!banner.isConnected) {
+          return;
+        }
+        root.style.setProperty(
+          '--cookie-banner-height',
+          `${Math.ceil(banner.getBoundingClientRect().height)}px`,
+        );
+      });
+      observer.observe(banner);
+      onCleanup(() => {
+        observer.disconnect();
+        root.style.removeProperty('--cookie-banner-height');
+      });
+    });
 
     // Al reabrir el aviso desde el pie, el foco va al aviso: si no, quien
     // navega con teclado o lector de pantalla no sabría que ha aparecido.

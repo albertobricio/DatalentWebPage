@@ -7,9 +7,17 @@
 }
 
 .cookie-banner {
-  position: fixed;
-  left: 0;
-  right: 0;
+  // sticky, no fixed. Con fixed el aviso no ocupaba sitio en la página: al
+  // llegar al final tapaba lo último del pie. Medido en un móvil de 375px,
+  // 199px de aviso (el 25 % de la pantalla) sobre los enlaces «Política de
+  // cookies» y «Configurar cookies». Con sticky sigue pegado al borde
+  // inferior mientras se desplaza, pero al final de la página descansa en su
+  // propio hueco, debajo del pie, y no tapa nada.
+  //
+  // Funciona porque es el último elemento de app-root y ningún antecesor
+  // tiene overflow: si algún día se le pone overflow a un contenedor, deja
+  // de pegarse.
+  position: sticky;
   bottom: 0;
   z-index: 70;
   display: flex;

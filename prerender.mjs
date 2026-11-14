@@ -134,6 +134,26 @@ for (const route of [...ROUTES, NOT_FOUND.route]) {
     // and a couple of seconds per route is free in a build step.
     await new Promise((r) => setTimeout(r, 2500));
 
+    // El aviso de cookies no se guarda en el HTML estático. El prerender
+    // corre sin ninguna decisión almacenada, así que Angular lo pinta, y antes
+    // quedaba horneado en las 12 páginas: quien ya había aceptado o rechazado
+    // lo veía aparecer en cada carga y desaparecer un segundo después, cuando
+    // Angular arrancaba y leía su decisión. Ahora el HTML sale sin aviso y
+    // Angular lo añade solo a quien aún no ha decidido. Se limpia también la
+    // variable de altura que AppComponent deja en <html>.
+    await page.evaluate(async () => {
+      document.querySelector('.cookie-banner')?.remove();
+      // Dos fotogramas: el ResizeObserver de AppComponent se dispara en el
+      // siguiente al quitar el elemento, y hay que limpiar después de él.
+      await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+      const root = document.documentElement;
+      root.style.removeProperty('--cookie-banner-height');
+      if (!root.getAttribute('style')) root.removeAttribute('style');
+    });
+    if (/class="cookie-banner"|--cookie-banner-height/.test(await page.content())) {
+      throw new Error('el aviso de cookies se ha colado en el HTML estático');
+    }
+
     const html = await page.content();
     const h1 = await page.$eval('h1', (el) => el.textContent.trim()).catch(() => '');
     const hasJsonLd = html.includes('application/ld+json');
