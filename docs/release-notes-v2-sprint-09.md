@@ -147,6 +147,31 @@ Verificado en móvil y escritorio sobre el build de producción: 37 estados de a
 
 ---
 
+## Primera tanda de Dependabot (14 de noviembre)
+
+Al activarse, Dependabot abrió ocho pull requests. Revisados uno a uno:
+
+| PR | Cambio | Decisión | Motivo |
+|---|---|---|---|
+| 5 | `tslib` 2.8.1 a 2.9.1 | Fusionado | Build y prerender completos; el HTML generado no cambia |
+| 3 | `actions/checkout` 4 a 7 | Fusionado | El SHA coincide con la etiqueta v7.0.1; el despliegue pasó con ella |
+| 4 | `actions/setup-node` 4.4.0 a 7.1.0 | Fusionado | El SHA coincide con la etiqueta v7.1.0; el despliegue pasó con ella |
+| 2 | `actions/setup-python` 5 a 7 | Fusionado | Las pruebas del agente pasaron con ella |
+| 8 | `zone.js` 0.15.1 a 0.16.3 | Abierto, sin fusionar | `@angular/core@20.3.35` exige `zone.js ~0.15.0`; `npm ci` falla con ERESOLVE |
+| 9 | `jasmine-core` 4.6.1 a 7.0.2 | Abierto, sin fusionar | `karma-jasmine-html-reporter@2.1.0` exige jasmine 4 o 5; `npm ci` falla con ERESOLVE |
+| 6 | `@types/jasmine` 4.3.6 a 7.0.0 | Abierto, sin fusionar | Tiene que ir a la par que `jasmine-core` |
+| 7 | `@types/node` 20 a 26 | Abierto, sin fusionar | El despliegue usa Node 22 |
+
+Los requisitos de versiones salen del registro de npm (`npm view <paquete> peerDependencies`), consultado el 14 de noviembre de 2026.
+
+**Lo que enseñó la revisión:**
+
+- **Nada construía la web en un pull request.** Los cuatro de npm no tenían ninguna comprobación y dos de ellos ni instalaban. Ahora `.github/workflows/pr-build.yml` instala, construye y prerenderiza en cada pull request, con permiso de solo lectura y sin desplegar. Hace las mismas comprobaciones que `deploy.yml`: 12 rutas, `404.html` con `noindex`, `security.txt` y portada prerenderizada.
+- **Angular 20 deja de recibir parches el 28 de noviembre de 2026.** Fuente: tabla de versiones con soporte de Angular (`adev/src/content/reference/releases.md` en el repositorio `angular/angular`), consultada el 14 de noviembre de 2026. Angular 21 y 22 admiten `zone.js` 0.16, así que el PR 8 se resuelve con esa migración.
+- **El repositorio no tiene pruebas unitarias** (ni `*.spec.ts` ni `karma.conf`), pero mantiene `karma` y `jasmine` en `devDependencies`. Los PR 6 y 9 actualizan dependencias que hoy no se usan.
+
+---
+
 ## Pendiente, y no es código
 
 1. **Textos legales.** La política de cookies publicada es una plantilla sin terminar y describe cookies publicitarias que la web no usa; el aviso de cookies pide consentimiento para una analítica que no existe; falta el aviso legal de la LSSI-CE. Ver `docs/seguridad.md`.

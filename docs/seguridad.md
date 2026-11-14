@@ -34,6 +34,7 @@ Lo que cambia para que no se repita:
 - **`.github/dependabot.yml`**: propone cada semana las actualizaciones de npm y de las acciones de GitHub como pull request. No despliega nada por sí solo.
 - **Paso de auditoría en `deploy.yml`**: `npm audit --omit=dev --audit-level=high` en cada despliegue. Avisa, no bloquea.
 - **Acciones fijadas por SHA de commit** en `deploy.yml`. Ese workflow tiene permiso de escritura sobre el repositorio; una etiqueta como `@v4` se puede mover a otro commit y un SHA no.
+- **`.github/workflows/pr-build.yml`** (14 de noviembre): instala, construye y prerenderiza la web en cada pull request, con permiso de solo lectura y sin desplegar. Hasta entonces los pull requests de Dependabot para npm llegaban sin ninguna comprobación.
 
 Queda una cosa que no se hace desde el código: activar las **alertas de Dependabot** en GitHub (Settings → Code security), que avisan por correo cuando aparece un aviso contra una dependencia ya instalada.
 
