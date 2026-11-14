@@ -30,4 +30,11 @@ export interface FaqItem {
 })
 export class FaqAccordionComponent {
   readonly items = input.required<readonly FaqItem[]>();
+
+  /**
+   * Si se indica, todos los <details> comparten ese `name` y el navegador
+   * mantiene abierta solo una respuesta a la vez, sin JavaScript. Sustituye
+   * al listener de `toggle` que /faq montaba a mano sobre el DOM.
+   */
+  readonly group = input<string | undefined>(undefined);
 }

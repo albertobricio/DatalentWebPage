@@ -1,0 +1,18 @@
+@use 'tokens' as *;
+
+:host {
+  display: block;
+}
+
+.trust__more {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  margin: var(--space-lg) 0 0 0;
+}
+
+// Los enlaces dentro de una definición van subrayados: en un bloque de texto
+// gris el color solo no basta para distinguirlos (WCAG 1.4.1).
+.term-list dd a {
+  text-decoration: underline;
+}

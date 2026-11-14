@@ -1,19 +1,26 @@
-  <div class="container"></div>
-<section id="accordion" class="faq-section">
-  <h1>Preguntas frecuentes</h1>
-  <p class="subtitle">
-    Autonomía, gobernanza del dato y equidad retributiva, respondidas sin rodeos.
-  </p>
+<article>
+  <section class="faq">
+    <div class="container container--prose">
+      <app-breadcrumb class="faq__breadcrumb" [items]="breadcrumbItems" />
+      <h1>Preguntas frecuentes</h1>
+      <p class="faq__subtitle">
+        Autonomía, gobernanza del dato, equidad retributiva y precios, respondidas sin rodeos.
+      </p>
 
-  <app-faq-accordion [items]="items" />
+      <app-faq-accordion [items]="items" group="faq" />
+    </div>
+  </section>
 
- <div class="cta">
-  <p>
-    ¿Tienes más preguntas?
-    <a class="cta-link" (click)="scrollToSection('contact')">
-      Contáctanos
-    </a>
-    y te responderemos en menos de 24 h.
-  </p>
-</div>
-</section>
+  <app-section background="inverse">
+    <div class="container cta-banner">
+      <h2>¿Tu pregunta no está aquí?</h2>
+      <p>
+        Escríbenos y te responde quien llevaría tu proyecto, en menos de 24 horas
+        hábiles. O tráela al diagnóstico gratuito.
+      </p>
+      <div class="cta-banner__actions">
+        <app-cta variant="diagnostico" />
+      </div>
+    </div>
+  </app-section>
+</article>

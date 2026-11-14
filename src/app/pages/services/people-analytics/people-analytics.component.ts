@@ -101,6 +101,8 @@ export class PeopleAnalyticsComponent {
       keywords:
         'people analytics España, diagnóstico de cultura organizacional con datos, análisis de rotación basado en evidencia, auditoría de sesgo RRHH',
       path: '/servicios/people-analytics',
+      breadcrumbs: this.breadcrumbItems,
+      faq: this.faqItems,
       ogTitle: 'People Analytics | Datalent Solutions',
       ogDescription:
         'Diagnóstico de cultura organizacional y análisis de rotación basado en evidencia, con la metodología y el linaje de datos mostrados.',

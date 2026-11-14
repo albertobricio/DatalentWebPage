@@ -32,7 +32,13 @@
     aria-labelledby="aura-titulo"
     tabindex="-1"
   >
-    <header class="aura__cabecera">
+    <!--
+      Es un <div> y no un <header>: fuera de un <article> o un <section>, un
+      <header> es el landmark "banner" de la página, y con el panel abierto el
+      documento pasaba a tener dos cabeceras de sitio para un lector de
+      pantalla. El título del diálogo ya lo da aria-labelledby.
+    -->
+    <div class="aura__cabecera">
       <!--
         La imagen de Aura es una marca abstracta, no un rostro. Un retrato
         fotorrealista comunica "hay una persona al otro lado" más deprisa de lo
@@ -66,7 +72,7 @@
         <span class="visually-hidden">Cerrar Aura</span>
         <span aria-hidden="true">×</span>
       </button>
-    </header>
+    </div>
 
     <!--
       Las opciones y los enlaces van dentro del hilo, justo debajo de la

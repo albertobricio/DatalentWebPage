@@ -12,12 +12,23 @@ on:
 permissions:
   contents: write
 
+# Dos pushes seguidos no despliegan a la vez: el segundo espera al primero en
+# lugar de competir por la rama gh-pages.
+concurrency:
+  group: deploy-pages
+  cancel-in-progress: false
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+      # Las acciones van fijadas por SHA de commit, no por etiqueta. Una
+      # etiqueta como @v4 se puede mover a otro commit; un SHA no. Este
+      # workflow tiene permiso de escritura sobre el repositorio, así que una
+      # acción comprometida podría publicar lo que quisiera en la web.
+      # Dependabot (.github/dependabot.yml) propone las actualizaciones.
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           # fetch full history so the action can create/update the gh-pages branch
           fetch-depth: 0
@@ -25,12 +36,22 @@ jobs:
           persist-credentials: true
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: '22'
 
       - name: Install dependencies
         run: npm ci
+
+      # Solo dependencias de producción: son las que acaban en el navegador
+      # del visitante. No bloquea el despliegue (una corrección urgente de
+      # contenido no debe quedar retenida por un aviso recién publicado), pero
+      # deja el aviso a la vista en el resumen de la ejecución.
+      - name: Auditar dependencias de producción
+        run: |
+          if ! npm audit --omit=dev --audit-level=high; then
+            echo "::warning::Hay vulnerabilidades altas en dependencias de producción. Ejecuta 'npm audit --omit=dev' y actualiza."
+          fi
 
       # Sin argumentos extra. `npm run build:prod -- <args>` los pegaba al final
       # de la cadena "ng build ... && node prerender.mjs", con lo que
@@ -42,15 +63,26 @@ jobs:
         run: npm run build:prod
 
       # El prerender escribe una carpeta por ruta, así que aquí deben existir
-      # 11 index.html. Si el build no prerenderiza, el deploy sube un cascarón
+      # 12 index.html. Si el build no prerenderiza, el deploy sube un cascarón
       # vacío sin que nadie se entere; esto lo convierte en un fallo ruidoso.
-      - name: Verificar que el prerender ha producido las 11 rutas
+      - name: Verificar que el prerender ha producido las 12 rutas
         run: |
           count=$(find dist/datalent-web-page -name index.html | wc -l)
           echo "index.html encontrados: $count"
           find dist/datalent-web-page -name index.html | sort
-          if [ "$count" -ne 11 ]; then
-            echo "::error::Se esperaban 11 rutas prerenderizadas y hay $count."
+          if [ "$count" -ne 12 ]; then
+            echo "::error::Se esperaban 12 rutas prerenderizadas y hay $count."
+            exit 1
+          fi
+          # 404.html es lo que GitHub Pages sirve ante una URL que no existe.
+          if ! grep -q 'name="robots" content="noindex' dist/datalent-web-page/404.html; then
+            echo "::error::Falta 404.html o no lleva noindex."
+            exit 1
+          fi
+          # security.txt vive en una carpeta oculta; si el build deja de
+          # copiarla nadie lo notaría hasta que caduque.
+          if [ ! -s dist/datalent-web-page/.well-known/security.txt ]; then
+            echo "::error::Falta .well-known/security.txt en el build."
             exit 1
           fi
           if grep -q '<app-root></app-root>' dist/datalent-web-page/index.html; then
@@ -61,7 +93,7 @@ jobs:
       # Minúsculas. Los runners son Linux y distinguen mayúsculas, así que
       # ./dist/DatalentWebPage no existía y el paso fallaba.
       - name: Deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@84c30a85c19949d7eee79c4ff27748b70285e453 # v4.1.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist/datalent-web-page

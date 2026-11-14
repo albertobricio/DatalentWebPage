@@ -99,6 +99,8 @@ export class CompensationTotalRewardsComponent {
       keywords:
         'auditoría de brecha salarial España, cumplimiento directiva transparencia retributiva UE, benchmarking salarial RRHH, total rewards RRHH',
       path: '/servicios/compensacion-total-rewards',
+      breadcrumbs: this.breadcrumbItems,
+      faq: this.faqItems,
       ogTitle: 'Compensación & Total Rewards | Datalent Solutions',
       ogDescription:
         'Auditoría de equidad retributiva, benchmarking de mercado y diseño de Total Rewards bajo la Directiva Europea de Transparencia Retributiva.',

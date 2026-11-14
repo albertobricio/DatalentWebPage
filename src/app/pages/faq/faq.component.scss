@@ -1,67 +1,37 @@
 @use 'tokens' as *;
 
-// Sprint 1.5 migration: moved out of the inline <style> block that used to
-// live in faq.component.html (hardcoded dark-cyan hex values, #0a0a0a /
-// #19caff / #0b3c59) into this file, using design tokens throughout. Same
-// accordion structure, same content, same open/closed behavior.
+// Nov. 2026: la página era la única del sitio con el titular centrado y en
+// azul; el resto alinea a la izquierda con el <h1> en tinta (ver el
+// comentario de HeroComponent sobre por qué nunca se centra). Ahora comparte
+// contenedor, alineación y color con las demás.
 //
-// Sprint 4.5: the accordion markup/styling itself (details/summary,
-// marker, p/ul/blockquote answer content) moved into the shared
-// app-faq-accordion component — this file now only holds what's actually
-// specific to this page's own heading/subtitle/footer-CTA chrome.
+// El acordeón en sí vive en app-faq-accordion; aquí solo queda el marco de
+// esta página.
 
 :host {
   display: block;
-  background-color: var(--color-paper);
 }
 
-.faq-section {
-  max-width: 50rem;
-  margin: 0 auto;
-  padding: var(--space-3xl) var(--space-md);
-  font-family: var(--font-family-base);
-  color: var(--color-ink);
-}
-
-// Sprint 7: this was an <h2> with no <h1> anywhere on the page — an SEO
-// and accessibility defect surfaced by the prerender step, which could not
-// find a heading to wait on. It is the page title, so it is now an <h1>.
-.faq-section h1 {
-  font-size: var(--font-size-h2);
-  color: var(--color-signal);
-  text-align: center;
-  margin-bottom: var(--space-sm);
+.faq {
+  padding-block: var(--space-2xl);
 
   @include respond-to('desktop') {
-    font-size: var(--font-size-h2-desktop);
+    padding-block: var(--space-3xl);
+  }
+
+  h1 {
+    margin-bottom: var(--space-sm);
   }
 }
 
-.faq-section .subtitle {
-  text-align: center;
-  font-size: var(--font-size-body);
+.faq__breadcrumb {
+  display: block;
+  margin-bottom: var(--space-md);
+}
+
+.faq__subtitle {
+  margin: 0 0 var(--space-xl) 0;
   color: var(--color-slate);
-  margin-bottom: var(--space-2xl);
-}
-
-.cta {
-  margin-top: var(--space-2xl);
-  text-align: center;
-}
-
-.cta-link {
-  color: var(--color-signal);
-  font-weight: var(--font-weight-label);
-  text-decoration: none;
-  cursor: pointer;
-
-  &:hover {
-    color: var(--color-signal-dark);
-    text-decoration: underline;
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--focus-ring-color);
-    outline-offset: 2px;
-  }
+  font-size: var(--font-size-body-lg);
+  line-height: var(--line-height-body-lg);
 }

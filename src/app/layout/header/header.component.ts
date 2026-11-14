@@ -1,5 +1,14 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  HostListener,
+  inject,
+  signal,
+} from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { filter, map } from 'rxjs';
 import { LogoComponent } from '../../shared/components/logo/logo.component';
 import { NAV_ITEMS } from '../nav-items';
 import { CtaComponent } from '../../shared/components/cta/cta.component';
@@ -23,6 +32,36 @@ export class HeaderComponent {
   protected readonly navItems = NAV_ITEMS;
   protected readonly mobileMenuOpen = signal(false);
   protected readonly openDropdown = signal<string | null>(null);
+
+  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly router = inject(Router);
+
+  /**
+   * "Soluciones" es un botón que abre un desplegable, no un enlace, así que
+   * routerLinkActive no puede marcarlo. Sin esto, en cualquier página de
+   * /servicios la cabecera no indicaba en qué sección estaba el visitante.
+   */
+  protected readonly inServices = toSignal(
+    this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+      map((event) => event.urlAfterRedirects.startsWith('/servicios')),
+    ),
+    { initialValue: false },
+  );
+
+  /** Escape cierra el desplegable, como cualquier menú. */
+  @HostListener('document:keydown.escape')
+  protected onEscape(): void {
+    this.closeDropdowns();
+  }
+
+  /** Un clic fuera de la cabecera también lo cierra; antes se quedaba abierto. */
+  @HostListener('document:click', ['$event'])
+  protected onDocumentClick(event: MouseEvent): void {
+    if (this.openDropdown() && !this.host.nativeElement.contains(event.target as Node)) {
+      this.closeDropdowns();
+    }
+  }
 
   protected toggleMobileMenu(): void {
     this.mobileMenuOpen.update((open) => !open);

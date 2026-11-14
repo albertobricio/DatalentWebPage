@@ -1,5 +1,5 @@
 @for (item of items(); track item.question) {
-  <details>
+  <details [attr.name]="group() ?? null">
     <summary>{{ item.question }}</summary>
     <div class="faq-accordion__answer" [innerHTML]="item.answer"></div>
   </details>

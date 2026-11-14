@@ -12,6 +12,266 @@
         @if (contextLabel(); as label) {
           <app-badge variant="accent">Solicitud: {{ label }}</app-badge>
         }
+      </div>
+
+      <!--
+        Orden en el documento: presentación, formulario, y después "qué pasa
+        ahora" y las vías alternativas. En móvil se lee en ese orden, así que
+        el formulario queda a un gesto del titular en lugar de a tres
+        pantallas. En escritorio la rejilla devuelve el bloque de apoyo a la
+        columna izquierda, debajo de la presentación.
+      -->
+      <div class="contact__main">
+      @if (sent()) {
+        <!--
+          La confirmación sustituye al formulario. Antes era una línea verde
+          bajo el botón: en móvil quedaba fuera de pantalla si el teclado
+          seguía abierto, y el formulario vacío justo encima invitaba a pensar
+          que el envío se había perdido.
+        -->
+        <div #confirmation class="contact-done" tabindex="-1" role="status">
+          <h2>Solicitud recibida</h2>
+          <p>
+            Gracias. Te responderá directamente la persona que llevaría tu proyecto, en
+            menos de 24 horas hábiles.
+          </p>
+          <p>
+            Si no ves nuestra respuesta, revisa la carpeta de correo no deseado o
+            escríbenos a <a [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>.
+          </p>
+          <div class="contact-done__links">
+            <a class="text-link" routerLink="/faq">
+              Ver preguntas frecuentes <span aria-hidden="true">→</span>
+            </a>
+            <a class="text-link" routerLink="/servicios">
+              Ver las soluciones <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      } @else {
+        <form class="contact-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+          <div class="form-field">
+            <label for="nombre">
+              Nombre completo
+              <span class="visually-hidden">(obligatorio)</span>
+            </label>
+            <input
+              id="nombre"
+              type="text"
+              formControlName="nombre"
+              required
+              autocomplete="name"
+              [attr.maxlength]="limits.nombre"
+              [attr.aria-invalid]="form.controls.nombre.invalid && form.controls.nombre.touched"
+              [attr.aria-describedby]="
+                form.controls.nombre.invalid && form.controls.nombre.touched ? 'nombre-error' : null
+              "
+            />
+            @if (form.controls.nombre.invalid && form.controls.nombre.touched) {
+              <p id="nombre-error" class="form-field__error">Indica tu nombre completo.</p>
+            }
+          </div>
+
+          <div class="contact-form__row">
+            <div class="form-field">
+              <label for="email">
+                Email
+                <span class="visually-hidden">(obligatorio)</span>
+              </label>
+              <input
+                id="email"
+                type="email"
+                formControlName="email"
+                required
+                autocomplete="email"
+                [attr.maxlength]="limits.email"
+                [attr.aria-invalid]="form.controls.email.invalid && form.controls.email.touched"
+                [attr.aria-describedby]="
+                  form.controls.email.invalid && form.controls.email.touched ? 'email-error' : null
+                "
+              />
+              @if (form.controls.email.invalid && form.controls.email.touched) {
+                <p id="email-error" class="form-field__error">Indica un email válido.</p>
+              }
+            </div>
+
+            <div class="form-field">
+              <label for="telefono">
+                Teléfono <span class="form-field__optional">(opcional)</span>
+              </label>
+              <input
+                id="telefono"
+                type="tel"
+                formControlName="telefono"
+                autocomplete="tel"
+                inputmode="tel"
+                [attr.maxlength]="limits.telefono"
+                [attr.aria-invalid]="form.controls.telefono.invalid && form.controls.telefono.touched"
+                [attr.aria-describedby]="
+                  form.controls.telefono.invalid && form.controls.telefono.touched
+                    ? 'telefono-error'
+                    : null
+                "
+              />
+              @if (form.controls.telefono.invalid && form.controls.telefono.touched) {
+                <p id="telefono-error" class="form-field__error">
+                  Revisa el teléfono: solo números, espacios y el prefijo.
+                </p>
+              }
+            </div>
+          </div>
+
+          <div class="contact-form__row">
+            <div class="form-field">
+              <label for="empresa">
+                Empresa <span class="form-field__optional">(opcional)</span>
+              </label>
+              <input
+                id="empresa"
+                type="text"
+                formControlName="empresa"
+                autocomplete="organization"
+                [attr.maxlength]="limits.empresa"
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="tamano">
+                Tamaño de la empresa <span class="form-field__optional">(opcional)</span>
+              </label>
+              <select id="tamano" formControlName="tamano">
+                @for (size of companySizes; track size.value) {
+                  <option [value]="size.value">{{ size.label }}</option>
+                }
+              </select>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="servicio">
+              ¿En qué te podemos ayudar?
+              <span class="visually-hidden">(obligatorio)</span>
+            </label>
+            <select id="servicio" formControlName="servicio" required>
+              @for (option of serviceOptions; track option.value) {
+                <option [value]="option.value">{{ option.label }}</option>
+              }
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="mensaje">
+              ¿Cuál es tu reto?
+              <span class="visually-hidden">(obligatorio)</span>
+            </label>
+            <textarea
+              id="mensaje"
+              rows="5"
+              formControlName="mensaje"
+              required
+              [attr.maxlength]="limits.mensaje"
+              [attr.aria-invalid]="form.controls.mensaje.invalid && form.controls.mensaje.touched"
+              [attr.aria-describedby]="
+                form.controls.mensaje.invalid && form.controls.mensaje.touched
+                  ? 'mensaje-error'
+                  : 'mensaje-ayuda'
+              "
+            ></textarea>
+            @if (form.controls.mensaje.invalid && form.controls.mensaje.touched) {
+              <p id="mensaje-error" class="form-field__error">
+                Cuéntanos brevemente tu reto (máx. {{ limits.mensaje }} caracteres).
+              </p>
+            } @else {
+              <p id="mensaje-ayuda" class="form-field__hint">
+                Con dos o tres frases basta. No incluyas datos personales de tu plantilla.
+              </p>
+            }
+          </div>
+
+          <!--
+            Campo trampa contra bots. Una persona no lo ve ni llega a él con el
+            tabulador; un bot que rellena todos los campos del formulario sí lo
+            rellena, y el envío se descarta en ContactComponent.
+
+            Va fuera de pantalla y no con display:none porque muchos bots
+            saltan los campos ocultos con display:none. aria-hidden lo quita
+            del árbol de accesibilidad, y el nombre evita las palabras que
+            dispara el autocompletado del navegador (web, url, teléfono).
+          -->
+          <div class="contact-form__trap" aria-hidden="true">
+            <label for="referencia">No rellenes este campo</label>
+            <input
+              id="referencia"
+              type="text"
+              formControlName="referencia"
+              tabindex="-1"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="form-field form-field--checkbox">
+            <input
+              id="privacidad"
+              type="checkbox"
+              formControlName="privacidad"
+              required
+              [attr.aria-invalid]="form.controls.privacidad.invalid && form.controls.privacidad.touched"
+              [attr.aria-describedby]="
+                form.controls.privacidad.invalid && form.controls.privacidad.touched
+                  ? 'privacidad-error'
+                  : null
+              "
+            />
+            <label for="privacidad">
+              He leído y acepto la
+              <a href="assets/data-privacy.pdf" target="_blank" rel="noopener noreferrer"
+                >política de privacidad<span class="visually-hidden"> (PDF, se abre en una pestaña nueva)</span></a
+              >
+              <span class="visually-hidden">(obligatorio)</span>
+            </label>
+            @if (form.controls.privacidad.invalid && form.controls.privacidad.touched) {
+              <p id="privacidad-error" class="form-field__error">
+                Debes aceptar la política de privacidad para continuar.
+              </p>
+            }
+          </div>
+
+          <app-button type="submit" [disabled]="submitting()">
+            {{ submitting() ? 'Enviando…' : 'Enviar solicitud' }}
+          </app-button>
+
+          @if (errorMessage(); as message) {
+            <p class="form-status form-status--error" role="alert">{{ message }}</p>
+          }
+        </form>
+      }
+      </div>
+
+      <aside class="contact__aside" aria-label="Qué pasa después y otras vías de contacto">
+        <!--
+          Lo que más frena un formulario B2B es no saber qué se desencadena al
+          enviarlo: ¿una llamada comercial?, ¿una propuesta que no he pedido?
+          Los tres pasos ya estaban escritos en el sitio (FAQ "¿Cómo empiezo?",
+          timeline de Home); aquí se ponen donde se toma la decisión.
+        -->
+        <div class="contact__next">
+          <h2 class="contact__next-title">Qué pasa después</h2>
+          <ol class="contact__steps">
+            <li>
+              <strong>Te respondemos en menos de 24 horas hábiles.</strong>
+              Escribe quien llevaría tu proyecto.
+            </li>
+            <li>
+              <strong>Hacemos un diagnóstico gratuito de unos 30 minutos.</strong>
+              Sobre un caso concreto de tu empresa.
+            </li>
+            <li>
+              <strong>Te decimos por dónde empezar.</strong>
+              O que no hay encaje, si es lo que vemos. No sales con una propuesta
+              cerrada ni con un compromiso.
+            </li>
+          </ol>
+        </div>
 
         <!--
           Eran tres bloques apilados, cada uno con su propia pregunta retórica
@@ -29,118 +289,13 @@
             <li>
               Consulta las <a routerLink="/faq">preguntas frecuentes</a>
             </li>
+            <li>
+              Si vienes de compras, legal o TI, mira
+              <a routerLink="/confianza">cómo tratamos los datos</a>
+            </li>
           </ul>
         </div>
-      </div>
-
-      <form class="contact-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
-        <div class="form-field">
-          <label for="nombre">
-            Nombre completo
-            <span class="visually-hidden">(obligatorio)</span>
-          </label>
-          <input
-            id="nombre"
-            type="text"
-            formControlName="nombre"
-            required
-            autocomplete="name"
-            [attr.aria-invalid]="form.controls.nombre.invalid && form.controls.nombre.touched"
-            aria-describedby="nombre-error"
-          />
-          @if (form.controls.nombre.invalid && form.controls.nombre.touched) {
-            <p id="nombre-error" class="form-field__error">Indica tu nombre completo.</p>
-          }
-        </div>
-
-        <div class="form-field">
-          <label for="email">
-            Email
-            <span class="visually-hidden">(obligatorio)</span>
-          </label>
-          <input
-            id="email"
-            type="email"
-            formControlName="email"
-            required
-            autocomplete="email"
-            [attr.aria-invalid]="form.controls.email.invalid && form.controls.email.touched"
-            aria-describedby="email-error"
-          />
-          @if (form.controls.email.invalid && form.controls.email.touched) {
-            <p id="email-error" class="form-field__error">Indica un email válido.</p>
-          }
-        </div>
-
-        <div class="form-field">
-          <label for="empresa">Empresa <span class="form-field__optional">(opcional)</span></label>
-          <input id="empresa" type="text" formControlName="empresa" autocomplete="organization" />
-        </div>
-
-        <div class="form-field">
-          <label for="servicio">
-            Servicio de interés
-            <span class="visually-hidden">(obligatorio)</span>
-          </label>
-          <select id="servicio" formControlName="servicio" required>
-            @for (option of serviceOptions; track option.value) {
-              <option [value]="option.value">{{ option.label }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="form-field">
-          <label for="mensaje">
-            ¿Cuál es tu reto?
-            <span class="visually-hidden">(obligatorio)</span>
-          </label>
-          <textarea
-            id="mensaje"
-            rows="5"
-            formControlName="mensaje"
-            required
-            maxlength="2000"
-            [attr.aria-invalid]="form.controls.mensaje.invalid && form.controls.mensaje.touched"
-            aria-describedby="mensaje-error"
-          ></textarea>
-          @if (form.controls.mensaje.invalid && form.controls.mensaje.touched) {
-            <p id="mensaje-error" class="form-field__error">Cuéntanos brevemente tu reto (máx. 2000 caracteres).</p>
-          }
-        </div>
-
-        <div class="form-field form-field--checkbox">
-          <input
-            id="privacidad"
-            type="checkbox"
-            formControlName="privacidad"
-            required
-            [attr.aria-invalid]="form.controls.privacidad.invalid && form.controls.privacidad.touched"
-            aria-describedby="privacidad-error"
-          />
-          <label for="privacidad">
-            He leído y acepto la
-            <a href="assets/data-privacy.pdf" target="_blank" rel="noopener noreferrer"
-              >política de privacidad</a
-            >
-            <span class="visually-hidden">(obligatorio)</span>
-          </label>
-          @if (form.controls.privacidad.invalid && form.controls.privacidad.touched) {
-            <p id="privacidad-error" class="form-field__error">
-              Debes aceptar la política de privacidad para continuar.
-            </p>
-          }
-        </div>
-
-        <app-button type="submit" [disabled]="submitting()">
-          {{ submitting() ? 'Enviando…' : 'Enviar solicitud' }}
-        </app-button>
-
-        @if (submitStatus(); as status) {
-          <p class="form-status form-status--{{ status.type }}" role="alert">
-            {{ status.message }}
-          </p>
-        }
-      </form>
+      </aside>
     </div>
   </div>
 </section>

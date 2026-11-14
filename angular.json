@@ -22,6 +22,7 @@
               "src/favicon.ico",
               "src/robots.txt",
               "src/llms.txt",
+              "src/.well-known",
               "src/assets"
             ],
             "styles": [

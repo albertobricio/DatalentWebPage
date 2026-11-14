@@ -17,12 +17,40 @@
 
 .contact__layout {
   display: grid;
-  grid-template-columns: 1fr;
+  // minmax(0, 1fr), no 1fr. Con 1fr la columna no puede encoger por debajo
+  // del ancho mínimo de su contenido, y el <select> mide lo que mide su
+  // opción más larga ("Que no se me vaya la gente y organizar la plantilla").
+  // Medido en un móvil de 375px: la columna se iba a 481px y toda la página
+  // se desbordaba hacia la derecha, con el texto cortado.
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-2xl);
 
   @include respond-to('desktop') {
-    grid-template-columns: 5fr 7fr;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      'intro main'
+      'aside main';
+    row-gap: 0;
     align-items: start;
+  }
+}
+
+.contact__intro {
+  @include respond-to('desktop') {
+    grid-area: intro;
+  }
+}
+
+.contact__main {
+  @include respond-to('desktop') {
+    grid-area: main;
+  }
+}
+
+.contact__aside {
+  @include respond-to('desktop') {
+    grid-area: aside;
   }
 }
 
@@ -84,4 +112,116 @@ app-badge {
   @include respond-to('desktop') {
     padding: var(--space-xl);
   }
+}
+
+// Email + teléfono y empresa + tamaño van en pareja a partir de tablet. Los dos
+// campos nuevos (teléfono y tamaño) son opcionales: en pareja el formulario
+// no crece en altura respecto al que había.
+.contact-form__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-lg);
+
+  @include respond-to('tablet') {
+    // minmax(0, …) y no 1fr a secas: el <select> tiene un ancho mínimo propio
+    // y con 1fr ensanchaba su columna, desalineando esta fila de la anterior.
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+}
+
+// Campo trampa: fuera de pantalla, no display:none (ver la plantilla).
+.contact-form__trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.contact__next {
+  // En móvil el hueco lo pone la rejilla; en escritorio va pegado a la intro.
+  @include respond-to('desktop') {
+    margin-top: var(--space-lg);
+  }
+}
+
+.contact__next-title {
+  margin: 0 0 var(--space-md) 0;
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-label);
+  color: var(--color-ink);
+}
+
+.contact__steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  counter-reset: paso;
+
+  li {
+    position: relative;
+    padding-left: 2.25rem;
+    font-size: var(--font-size-body-sm);
+    line-height: var(--line-height-body-sm);
+    color: var(--color-slate);
+    counter-increment: paso;
+
+    &::before {
+      content: counter(paso);
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: grid;
+      place-items: center;
+      width: 1.5rem;
+      height: 1.5rem;
+      border: var(--border-width) solid var(--color-signal);
+      border-radius: 50%;
+      font-size: 0.75rem;
+      font-weight: var(--font-weight-bold);
+      color: var(--color-signal);
+    }
+  }
+
+  strong {
+    display: block;
+    color: var(--color-ink);
+  }
+}
+
+.contact-done {
+  padding: var(--space-lg);
+  background-color: var(--color-paper-alt);
+  border-radius: var(--radius-lg);
+  border-left: 4px solid var(--color-success);
+
+  @include respond-to('desktop') {
+    padding: var(--space-xl);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  h2 {
+    margin: 0 0 var(--space-md) 0;
+  }
+
+  p {
+    margin: 0 0 var(--space-md) 0;
+    color: var(--color-slate);
+  }
+
+  a:not(.text-link) {
+    text-decoration: underline;
+  }
+}
+
+.contact-done__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
 }

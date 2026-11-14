@@ -53,6 +53,7 @@ export class ServicesHubComponent {
       keywords:
         'servicios de RRHH con IA, consultoría people analytics y gobernanza IA, consultoría agentic AI RRHH España',
       path: '/servicios',
+      breadcrumbs: this.breadcrumbItems,
       ogTitle: 'Servicios | Datalent Solutions',
       ogDescription:
         'Cuatro soluciones que funcionan como un solo sistema: Datalent Flow, Match, Radar y Shield.',
