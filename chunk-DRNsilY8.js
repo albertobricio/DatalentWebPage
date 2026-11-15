@@ -1,0 +1,1 @@
+var e={production:!0,emailjsServiceId:`service_azjlw6o`,emailjsTemplateId:`template_v8n6h7d`,emailjsPublicKey:`X7LMygptiRfraGflL`,contactEmail:`gmorales@datalentsolutions.com`};export{e as t};
