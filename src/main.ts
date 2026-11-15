@@ -1,5 +1,5 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { importProvidersFrom } from '@angular/core';
+import { importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { AppComponent } from './app/app.component';
 import { AppRoutingModule } from './app/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,5 +21,5 @@ if (location.protocol === 'http:' && /(^|\.)datalentsolutions\.com$/.test(locati
 }
 
 bootstrapApplication(AppComponent, {
-  providers: [importProvidersFrom(BrowserModule, AppRoutingModule)]
+  providers: [provideZoneChangeDetection(), importProvidersFrom(BrowserModule, AppRoutingModule)]
 }).catch(err => console.error(err));

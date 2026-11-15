@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import emailjs from '@emailjs/browser';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 
 /**
  * Lo único que este servicio acepta enviar. Antes el parámetro era `any` y la

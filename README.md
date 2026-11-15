@@ -1,6 +1,6 @@
 # Datalent Solutions Web Page
 
-Este proyecto es una aplicación Angular 20 optimizada para SEO y ciberseguridad, siguiendo el plan estratégico de posicionamiento web.
+Este proyecto es una aplicación Angular 22 optimizada para SEO y ciberseguridad, siguiendo el plan estratégico de posicionamiento web.
 
 ## Características principales
 - SEO técnico avanzado: meta tags, sitemap.xml, robots.txt, Schema.org
@@ -9,8 +9,8 @@ Este proyecto es una aplicación Angular 20 optimizada para SEO y ciberseguridad
 - Cumplimiento legal: enlaces a políticas de privacidad y cookies
 
 ## Requisitos
-- Node.js 18+
-- Angular CLI 20
+- Node.js 22.22.3 o superior dentro de la serie 22, o 24.15 o superior (lo exige Angular 22)
+- Angular CLI 22 (viene en las dependencias: `npx ng`)
 
 ## Instalación
 ```bash

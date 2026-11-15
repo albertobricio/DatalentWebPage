@@ -51,10 +51,13 @@ export class MobileMenuComponent {
   }
 
   @HostListener('document:keydown.tab', ['$event'])
-  protected onTab(event: KeyboardEvent): void {
+  protected onTab(evento: Event): void {
     if (!this.open()) {
       return;
     }
+    // Con la comprobación estricta de plantillas, el $event de un listener
+    // de documento es de tipo Event. "keydown.tab" solo llega desde el teclado.
+    const event = evento as KeyboardEvent;
     const focusable = this.getFocusable();
     if (focusable.length === 0) {
       return;

@@ -7,11 +7,19 @@
  * not — so every OpenGraph and Twitter Card tag on the site was inert for
  * link previews, and service-page indexing was deferred and unreliable.
  *
- * Why headless Chrome rather than @angular/ssr: the project is on Angular
- * 20 and Angular's SSR path needs 22 (see docs/release-notes-v2-sprint-07.md).
- * Rendering in a real browser also means the existing isPlatformBrowser-gated
- * JSON-LD / canonical / meta injection in the page components runs exactly as
- * written and gets captured — no SSR-safety refactor of six components needed.
+ * Why headless Chrome rather than @angular/ssr: when this was written the
+ * project was on Angular 20 with the Webpack `browser` builder, and Angular's
+ * SSR path needs the `application` builder (see
+ * docs/release-notes-v2-sprint-07.md). Since the Angular 22 migration
+ * (docs/release-notes-angular-22.md) the project does use that builder, so
+ * @angular/ssr is now an option, but it has not been adopted. Rendering in a
+ * real browser means the existing isPlatformBrowser-gated JSON-LD / canonical
+ * / meta injection in the page components runs exactly as written and gets
+ * captured — no SSR-safety refactor of six components needed.
+ *
+ * This script needs `ng build` to leave its files directly in DIST. The
+ * `application` builder writes to `<outputPath>/browser` by default;
+ * angular.json sets `outputPath.browser` to "" so they stay here.
  *
  * Known tradeoff: there is no hydration. Angular re-renders on boot and
  * replaces the prerendered DOM. That is invisible to crawlers (which read the
