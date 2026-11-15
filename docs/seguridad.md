@@ -1,6 +1,6 @@
 # Postura de seguridad del sitio
 
-Estado a 10 de noviembre de 2026. Cubre solo la web pública (`datalentsolutions.com`), no los sistemas de cliente.
+Estado a 15 de noviembre de 2026. Cubre solo la web pública (`datalentsolutions.com`), no los sistemas de cliente.
 
 ## Resuelto
 
@@ -36,6 +36,32 @@ Lo que cambia para que no se repita:
 - **Acciones fijadas por SHA de commit** en `deploy.yml`. Ese workflow tiene permiso de escritura sobre el repositorio; una etiqueta como `@v4` se puede mover a otro commit y un SHA no.
 
 Queda una cosa que no se hace desde el código: activar las **alertas de Dependabot** en GitHub (Settings → Code security), que avisan por correo cuando aparece un aviso contra una dependencia ya instalada.
+
+### Noviembre de 2026: de Angular 20 a Angular 22
+
+Angular 20 deja de recibir parches de seguridad el **28 de noviembre de 2026**. A partir de ese día, un aviso como los ocho de este mes ya no tendría una versión corregida a la que subir sin cambiar de versión mayor.
+
+| Versión | Estado | Soporte activo hasta | LTS hasta |
+|---|---|---|---|
+| 22 | Activa | junio de 2027 | junio de 2028 |
+| 21 | LTS | 3 de junio de 2026 | junio de 2027 |
+| 20 | LTS | 19 de noviembre de 2025 | 28 de noviembre de 2026 |
+
+Fuente: tabla de versiones con soporte del repositorio de Angular (`adev/src/content/reference/releases.md`, publicada en angular.dev/reference/releases), consultada el 14 de noviembre de 2026.
+
+Lo que cambia:
+
+- Angular 20.3.35 → **22.2.6**, en dos pasos con `ng update` (20 a 21 y 21 a 22). TypeScript 5.8 → 6.0. `zone.js` 0.15.1 → 0.16.3, que incluye correcciones de endurecimiento frente a DOM clobbering y a claves `__proto__`.
+- `npm audit --omit=dev`: 0 vulnerabilidades, igual que antes.
+- `npm audit` completo, con dependencias de desarrollo: de 21 avisos moderados a **0**. Desaparecen al subir a la 22.
+- El build deja Webpack (`@angular-devkit/build-angular:browser`, obsoleto en Angular 22) y pasa a `@angular/build:application`. El lockfile baja de 1.044 paquetes a 624, así que hay menos código de terceros que vigilar.
+- La CSP no cambia y se sigue cumpliendo. El HTML generado no lleva scripts en línea ni atributos `on*`, y la comprobación en navegador da 0 infracciones en las 12 rutas y la 404.
+
+**Una opción de `angular.json` que no hay que tocar:** `optimization.styles.inlineCritical` está en `false` en la configuración de producción. Comprobado con un build de prueba el 15 de noviembre de 2026: si se activa, el builder deja la hoja de estilos con `media="print"` y añade un `<script>` en línea que la pasa a `media="all"`. La CSP (`script-src 'self'`) bloquea ese script, así que la hoja nunca se aplicaría en pantalla y la página se vería solo con los 2,8 kB de CSS crítico.
+
+**Próxima fecha:** Angular 22 sale de soporte activo en junio de 2027 y de LTS en junio de 2028. Dependabot sigue sin proponer saltos de versión mayor de Angular, así que la siguiente migración hay que planificarla a mano antes de esa fecha.
+
+Detalle, comprobaciones y decisiones pendientes en `docs/release-notes-angular-22.md`.
 
 ### Fuentes autoalojadas
 
@@ -96,6 +122,8 @@ Nada de eso es protección real: todo corre en el navegador de quien envía, y q
 ### Sin hidratación ni SSR
 
 Documentado en `docs/release-notes-v2-sprint-07.md`. No es un problema de seguridad por sí mismo, pero cierra la puerta a CSP con nonce.
+
+Desde la migración a Angular 22 el proyecto usa el builder `application`, que es el requisito de `@angular/ssr`. Eso hace posible el prerender nativo con hidratación, pero no cambia este punto: un nonce por petición sigue necesitando un servidor, y GitHub Pages no lo es.
 
 ---
 

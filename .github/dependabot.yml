@@ -20,13 +20,25 @@ updates:
           - "@angular/*"
           - "@angular-devkit/*"
     ignore:
-      # Un salto de versión mayor de Angular es una migración, no un parche.
+      # Un salto de versión mayor de Angular es una migración y se hace a mano.
+      # La última, de la 20 a la 22, está en docs/release-notes-angular-22.md.
+      # Angular 22 tiene soporte activo hasta junio de 2027 y LTS hasta junio
+      # de 2028: la siguiente migración hay que hacerla antes de esa fecha.
       - dependency-name: "@angular/*"
         update-types: ["version-update:semver-major"]
+      # Desde la migración a Angular 22 no queda ningún paquete
+      # @angular-devkit/* como dependencia directa (el builder pasó a
+      # @angular/build). La regla se conserva por si vuelve a entrar alguno.
       - dependency-name: "@angular-devkit/*"
         update-types: ["version-update:semver-major"]
-      # Angular 20 fija el rango de TypeScript que admite.
+      # Angular fija el rango de TypeScript que admite. Angular 22 solo
+      # acepta la serie 6.0 (>=6.0 <6.1).
       - dependency-name: "typescript"
+        update-types: ["version-update:semver-major", "version-update:semver-minor"]
+      # Lo mismo con zone.js: Angular 22 admite ~0.15.0 y ~0.16.0. En las
+      # versiones 0.x cada salto de segunda cifra puede romper, y Dependabot
+      # ya propuso la 0.16 cuando Angular 20 solo admitía la 0.15.
+      - dependency-name: "zone.js"
         update-types: ["version-update:semver-major", "version-update:semver-minor"]
 
   - package-ecosystem: github-actions

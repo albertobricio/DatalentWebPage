@@ -11,4 +11,4 @@
 
 ---
 
-This project is a custom Angular 20 web application skeleton, ready for further development. Continue by running `npm install` to fetch dependencies, then `npm start` to launch the development server.
+This project is a custom Angular 22 web application skeleton, ready for further development. Continue by running `npm install` to fetch dependencies, then `npm start` to launch the development server.
