@@ -50,6 +50,8 @@ Angular 20 deja de recibir parches de seguridad el **28 de noviembre de 2026**. 
 
 Fuente: tabla de versiones con soporte del repositorio de Angular (`adev/src/content/reference/releases.md`, publicada en angular.dev/reference/releases), consultada el 14 de noviembre de 2026.
 
+**Desplegado el 15 de noviembre de 2026** (pull request 12). Resultado en producción en `docs/release-notes-angular-22.md`, apartado «Despliegue».
+
 Lo que cambia:
 
 - Angular 20.3.35 → **22.2.6**, en dos pasos con `ng update` (20 a 21 y 21 a 22). TypeScript 5.8 → 6.0. `zone.js` 0.15.1 → 0.16.3, que incluye correcciones de endurecimiento frente a DOM clobbering y a claves `__proto__`.
