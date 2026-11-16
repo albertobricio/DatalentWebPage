@@ -157,7 +157,7 @@ Al activarse, Dependabot abrió ocho pull requests. Revisados uno a uno:
 | 3 | `actions/checkout` 4 a 7 | Fusionado | El SHA coincide con la etiqueta v7.0.1; el despliegue pasó con ella |
 | 4 | `actions/setup-node` 4.4.0 a 7.1.0 | Fusionado | El SHA coincide con la etiqueta v7.1.0; el despliegue pasó con ella |
 | 2 | `actions/setup-python` 5 a 7 | Fusionado | Las pruebas del agente pasaron con ella |
-| 8 | `zone.js` 0.15.1 a 0.16.3 | Abierto, sin fusionar | `@angular/core@20.3.35` exige `zone.js ~0.15.0`; `npm ci` falla con ERESOLVE |
+| 8 | `zone.js` 0.15.1 a 0.16.3 | Cerrado el 15 de noviembre | `@angular/core@20.3.35` exige `zone.js ~0.15.0`; `npm ci` falla con ERESOLVE. Lo cerró Dependabot al fusionar la migración a Angular 22, que ya lo incluye |
 | 9 | `jasmine-core` 4.6.1 a 7.0.2 | Abierto, sin fusionar | `karma-jasmine-html-reporter@2.1.0` exige jasmine 4 o 5; `npm ci` falla con ERESOLVE |
 | 6 | `@types/jasmine` 4.3.6 a 7.0.0 | Abierto, sin fusionar | Tiene que ir a la par que `jasmine-core` |
 | 7 | `@types/node` 20 a 26 | Abierto, sin fusionar | El despliegue usa Node 22 |

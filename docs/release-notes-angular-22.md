@@ -3,7 +3,7 @@
 **Fecha:** 14 y 15 de noviembre de 2026.
 **Alcance:** migración técnica. No cambia ningún texto, página, estilo ni comportamiento visible de la web.
 
-**Estado: en la rama `claude/cool-shtern-8b36fe`, sin fusionar en `main` y sin desplegar.** Un push a `main` publica la web, así que la fusión queda como decisión de Gema (ver el final de este documento).
+**Estado: fusionada en `main` como `b1bce30` (pull request 12) y desplegada el 15 de noviembre de 2026.** El resultado en producción está en el apartado «Despliegue». Los apartados anteriores a ese se escribieron antes de fusionar y describen las pruebas hechas sobre la rama.
 
 ---
 
@@ -127,15 +127,50 @@ Para saber que estas pruebas detectan lo que dicen detectar, se pasaron sobre un
 
 ---
 
-## Lo que no se pudo comprobar
+## Despliegue (15 de noviembre)
 
-- **El despliegue real.** No se hizo push, así que el workflow de GitHub Actions no se ha ejecutado con estos cambios. Se reprodujeron en local sus pasos: `npm ci`, la auditoría, `npm run build:prod` y las cuatro comprobaciones del paso «Verificar».
-- **La versión de Node del runner.** Angular 22 exige Node 22.22.3 o superior dentro de la serie 22. `deploy.yml` pide `node-version: '22'`, que resuelve a la última 22 disponible. En local se usó la 22.23.1.
+**Antes de fusionar.** El pull request 12 se construyó en GitHub con `.github/workflows/pr-build.yml`, sobre la fusión de la rama con `main`: instalación, build, prerender y verificación sin errores. Eso confirma que la versión de Node del runner sirve para Angular 22.
+
+Además de las pruebas de la rama, se hizo una revisión aparte sobre un build local de esa fusión, comparándolo con la web publicada ese día (Angular 20): 22 cargas (11 rutas en móvil y en escritorio) sin ninguna diferencia, axe-core sin infracciones en 37 estados y navegación interna por 8 páginas sin recargas ni errores.
+
+**La fusión.** Se hizo con commit de fusión y no aplastada, para conservar un commit por paso (ver «Cómo volver atrás»). `deploy.yml` terminó con todos sus pasos correctos en unos 90 segundos.
+
+**En producción.** Se guardó una foto de la web publicada justo antes de fusionar y se comparó con la de después:
+
+| Comprobación | Resultado |
+|---|---|
+| 11 rutas en móvil (375 px) y escritorio (1.280 px), antes y después | 22 cargas, 0 diferencias |
+| Errores de consola, infracciones de CSP, peticiones a terceros, cookies | 0 |
+| axe-core (WCAG 2.0, 2.1 y 2.2, niveles A y AA), 37 estados | 0 infracciones |
+| Aviso de cookies: posición, foco, rechazar, reabrir, visitante que ya decidió | igual que antes |
+| 12 páginas con 200, URL inexistente con 404 y `noindex`, `security.txt`, `robots.txt`, `sitemap.xml`, `llms.txt` | correcto |
+
+La comparación se hace con Angular ya arrancado y cubre título, descripción, `robots`, canónico, etiquetas Open Graph y Twitter, JSON-LD, encabezados, texto completo, enlaces, controles, número de elementos y altura de la página. También varias interacciones: el diálogo de Aura (abrir, avanzar, cerrar), el menú móvil, las preguntas frecuentes y los cuatro mensajes de error del formulario enviado vacío, con el foco en el primer campo. No se envió ningún formulario.
+
+**Lighthouse en producción**, perfil móvil, versión 13.6.0. «Antes» es la medición del 14 de noviembre con Angular 20:
+
+| Página | Rendimiento | JavaScript transferido | LCP | Tiempo de bloqueo |
+|---|---|---|---|---|
+| Portada | 99 → 99 | 154 → 126 kB | 1,1 → 2,1 s | 130 → 60 ms |
+| Contacto | 98 → 99 | 174 → 147 kB | 1,0 → 0,9 s | 160 → 120 ms |
+| Confianza | 99 → 100 | 161 → 131 kB | 0,9 → 0,9 s | 110 → 40 ms |
+| Agentic AI | 99 → 100 | 164 → 137 kB | 1,0 → 1,0 s | 140 → 60 ms |
+
+Accesibilidad, buenas prácticas y SEO dan 100 en las cuatro, igual que antes. El salto de maquetación (CLS) es 0.
+
+**El LCP de la portada es el único dato que empeora, y la causa no está confirmada.** Es una cifra simulada por Lighthouse. Se repitió en cuatro pasadas (entre 2,09 y 2,12 s) y sigue por debajo del umbral de 2,5 s. En esas mismas pasadas, el LCP observado fue de 0,25 a 0,44 s. Medido aparte en un navegador con red y procesador lentos (150 ms de latencia, 1,6 Mbps, procesador cuatro veces más lento), el título de la portada se pinta a los 0,7 s y no vuelve a registrarse ningún candidato posterior.
+
+**Visto en esa misma medición:** en `/contacto`, el elemento más grande de la página se vuelve a pintar a los 2,2 s, cuando Angular sustituye el HTML prerenderizado. No se midió con Angular 20, así que no se sabe si es nuevo. Es el coste de prerenderizar sin hidratación (punto 6 de las decisiones).
+
+---
+
+## Lo que sigue sin comprobar
+
+El despliegue real, la versión de Node del runner, Lighthouse y la comparación con el `main` más reciente figuraban aquí antes de fusionar. Ya están comprobados; ver «Despliegue».
+
 - **Otros navegadores.** Todo se probó en Chrome 157. No se probó Safari, Firefox ni un móvil real. El builder nuevo compila para los navegadores de «Baseline widely available».
-- **Lighthouse.** El repositorio no lo incluye. El salto de maquetación y el tiempo de arranque se midieron con Puppeteer.
 - **El envío real del formulario.** Enviar uno habría mandado un correo de verdad. `@emailjs/browser` sigue en la misma versión (4.4.1) y el código que lo llama no cambia.
 - **Lectores de pantalla.** axe-core es una comprobación automática. No se hizo prueba manual con VoiceOver ni NVDA.
-- **La comparación con el `main` más reciente.** La copia de referencia es la del `main` del que partió la rama (`6aed947`). Los cuatro commits posteriores se fusionaron, pero no se regeneró la referencia: solo cambian `tslib` y versiones de acciones de GitHub.
 
 Nota sobre la última pasada: se hizo con el portátil con la tapa cerrada, que se dormía en ciclos de hasta 15 minutos. Un prerender falló por tiempo de espera en una ruta mientras el equipo dormía. Repetido, pasó limpio a la primera.
 
@@ -143,7 +178,7 @@ Nota sobre la última pasada: se hizo con el portátil con la tapa cerrada, que 
 
 ## Decisiones que quedan para Gema
 
-1. **Fusionar y desplegar.** La rama está lista. Fusionarla en `main` publica la web. Conviene hacerlo por pull request y mirar la ejecución del workflow, que es lo único que no se ha podido probar.
+1. **Fusionar y desplegar.** Hecho el 15 de noviembre de 2026 por pull request (el 12). Ver «Despliegue».
 
 2. **Quitar Karma y Jasmine.** Propuesta: quitarlos. El repositorio no tiene ninguna prueba (`*.spec.ts`), ni `karma.conf`, ni un objetivo `test` en `angular.json`, ni lo tenía antes de la migración. `npm test` termina con «Cannot determine project or target for command». No se ha quitado nada. Lo que saldría:
    - De `devDependencies`: `karma`, `karma-chrome-launcher`, `karma-coverage`, `karma-jasmine`, `karma-jasmine-html-reporter`, `jasmine-core` y `@types/jasmine`.
@@ -154,10 +189,11 @@ Nota sobre la última pasada: se hizo con el portátil con la tapa cerrada, que 
 
 3. **Quitar dos paquetes de Angular que no se usan.** `@angular/animations` no se importa en ningún archivo, y `@angular/platform-browser-dynamic` solo lo usa `src/test.ts`. Los dos están marcados como obsoletos en la 22. Tiene sentido quitarlos junto con el punto 2.
 
-4. **Los cuatro pull requests de Dependabot abiertos.**
-   - `zone.js` 0.16.3: esta rama ya lo sube. Se puede cerrar al fusionar.
-   - `jasmine-core` 7.0.2 y `@types/jasmine` 7.0.0: cerrar sin fusionar si se acepta el punto 2.
-   - `@types/node` 26: esta rama no lo toca (sigue en la serie 20). El despliegue usa Node 22, así que lo coherente sería la serie 22 de los tipos y no la 26.
+4. **Los pull requests de Dependabot abiertos.** Estado a 15 de noviembre, después de fusionar. Desde ese día cada uno se construye solo con `pr-build.yml`:
+   - `zone.js` 0.16.3 (PR 8): Dependabot lo cerró al fusionar la migración, que ya lo incluye.
+   - `jasmine-core` 7.0.2 (PR 9): el build falla en la instalación. `@types/jasmine` 7.0.0 (PR 6) y `karma-jasmine-html-reporter` 2.3.0 (PR 14) construyen. Los tres se cierran sin fusionar si se acepta el punto 2.
+   - `@types/node` 26 (PR 7): construye. La migración no lo toca (sigue en la serie 20). El despliegue usa Node 22, así que lo coherente sería la serie 22 de los tipos y no la 26.
+   - `@emailjs/browser` 5.0.3 (PR 13): construye, pero es un salto de versión mayor de la librería que envía el formulario de contacto. El build no prueba que el envío funcione: antes de fusionarlo hay que leer sus notas de versión y hacer un envío real.
 
 5. **Una regla nueva en Dependabot.** Además de actualizar los comentarios, se añadió una regla para que no proponga saltos de `zone.js` fuera del rango que admite Angular, igual que ya hacía con TypeScript. Si no se quiere, son cuatro líneas de `.github/dependabot.yml`.
 
